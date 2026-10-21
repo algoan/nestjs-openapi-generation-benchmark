@@ -72,7 +72,9 @@ bench/                  the harness: ease, correctness, perf, oasdiff, report
 Requirements: Node.js ≥ 22.18 (24 used here), optionally [`oasdiff`](https://github.com/oasdiff/oasdiff)
 (`brew install oasdiff`) and `mongod` (for the contract test; downloaded by mongodb-memory-server otherwise).
 The nestoa variant installs `@algoan/nestoa` from GitHub Packages: export `GITHUB_PACKAGES_TOKEN`
-(a token with `read:packages`) before installing it.
+(a token with `read:packages`) before installing it. The `nestoa-main` variant runs nestoa built from
+its main branch: `npm run setup` builds it with `bench/scripts/build-nestoa-main.sh` when a Rust
+toolchain (`cargo`) is available; without it, that variant is reported as failed.
 
 ```sh
 npm run setup              # install the harness, the app and every variant
