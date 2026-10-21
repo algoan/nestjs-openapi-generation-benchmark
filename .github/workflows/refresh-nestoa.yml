@@ -73,10 +73,22 @@ jobs:
         if: env.VARIANT == 'nestoa-main'
         uses: dtolnay/rust-toolchain@stable
 
+      # Cloned apart from the build, without persisting the token: nothing the build runs can read it
+      - name: Check out nestoa
+        if: env.VARIANT == 'nestoa-main'
+        uses: actions/checkout@v7
+        with:
+          repository: algoan/nestoa
+          ref: ${{ env.NESTOA_REF }}
+          token: ${{ secrets.NESTOA_TOKEN }}
+          path: .nestoa
+          persist-credentials: false
+
       - name: Build nestoa main
         if: env.VARIANT == 'nestoa-main'
         env:
-          NESTOA_REPO: https://x-access-token:${{ secrets.NESTOA_TOKEN }}@github.com/algoan/nestoa.git
+          NESTOA_REPO: ${{ github.workspace }}/.nestoa
+          NESTOA_REF: HEAD
         run: |
           bench/scripts/build-nestoa-main.sh
           SHORT=$(cut -c1-7 .tools/bin/nestoa-main.commit)
