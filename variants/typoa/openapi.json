@@ -793,525 +793,6 @@
         "operationId": "Remove"
       }
     },
-    "/shelters/{shelterId}/adoptions": {
-      "post": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "x-request-id",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AdoptionReceipt"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateAdoptionDto"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "Create"
-      },
-      "get": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "default": 1
-            },
-            "required": false
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "default": 10
-            },
-            "required": false
-          },
-          {
-            "name": "filter",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "required": false
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "schema": {
-              "$ref": "#/components/schemas/AdoptionRequestStatus"
-            },
-            "required": false
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaginatedData_Adoption"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "FindAll"
-      }
-    },
-    "/shelters/{shelterId}/adoptions/{adoptionId}": {
-      "get": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "adoptionId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Adoption"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "FindOne"
-      },
-      "delete": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "adoptionId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "Remove"
-      }
-    },
-    "/shelters/{shelterId}/adoptions/{adoptionId}/approve": {
-      "post": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "adoptionId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Adoption"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "Approve"
-      }
-    },
-    "/shelters/{shelterId}/adoptions/{adoptionId}/reject": {
-      "post": {
-        "parameters": [
-          {
-            "name": "shelterId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          },
-          {
-            "name": "adoptionId",
-            "in": "path",
-            "schema": {
-              "$ref": "#/components/schemas/ObjectId"
-            },
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Adoption"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "403": {
-            "description": "Forbidden",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not Found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          },
-          "409": {
-            "description": "Conflict",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HttpError"
-                }
-              }
-            }
-          }
-        },
-        "tags": [],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RejectAdoptionDto"
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "bearer": []
-          }
-        ],
-        "operationId": "Reject"
-      }
-    },
     "/shelters/{shelterId}/dogs": {
       "post": {
         "parameters": [
@@ -2157,6 +1638,525 @@
         ],
         "operationId": "FindOne"
       }
+    },
+    "/shelters/{shelterId}/adoptions": {
+      "post": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "x-request-id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdoptionReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAdoptionDto"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "Create"
+      },
+      "get": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 1
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "number",
+              "default": 10
+            },
+            "required": false
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/AdoptionRequestStatus"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData_Adoption"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "FindAll"
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "FindOne"
+      },
+      "delete": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "Remove"
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}/approve": {
+      "post": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "Approve"
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}/reject": {
+      "post": {
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "$ref": "#/components/schemas/ObjectId"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "tags": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectAdoptionDto"
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "operationId": "Reject"
+      }
     }
   },
   "components": {
@@ -2680,166 +2680,6 @@
           "genre"
         ]
       },
-      "AdoptionRequestStatus": {
-        "type": "string",
-        "enum": [
-          "PENDING",
-          "APPROVED",
-          "REJECTED"
-        ]
-      },
-      "AdoptionReceipt": {
-        "type": "object",
-        "properties": {
-          "adoptionId": {
-            "type": "string"
-          },
-          "status": {
-            "$ref": "#/components/schemas/AdoptionRequestStatus"
-          },
-          "expectedDecisionDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "adoptionId",
-          "status",
-          "expectedDecisionDate"
-        ]
-      },
-      "Adopter": {
-        "type": "object",
-        "properties": {
-          "firstName": {
-            "type": "string"
-          },
-          "lastName": {
-            "type": "string"
-          },
-          "email": {
-            "type": "string"
-          },
-          "phone": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "firstName",
-          "lastName",
-          "email"
-        ]
-      },
-      "CreateAdoptionDto": {
-        "type": "object",
-        "properties": {
-          "animalId": {
-            "type": "string"
-          },
-          "species": {
-            "$ref": "#/components/schemas/Species"
-          },
-          "adopter": {
-            "$ref": "#/components/schemas/Adopter"
-          },
-          "fee": {
-            "type": "number"
-          },
-          "notes": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "animalId",
-          "species",
-          "adopter",
-          "fee"
-        ]
-      },
-      "Adoption": {
-        "type": "object",
-        "properties": {
-          "_id": {
-            "$ref": "#/components/schemas/ObjectId"
-          },
-          "shelterId": {
-            "$ref": "#/components/schemas/ObjectId"
-          },
-          "animalId": {
-            "$ref": "#/components/schemas/ObjectId"
-          },
-          "species": {
-            "$ref": "#/components/schemas/Species"
-          },
-          "adopter": {
-            "$ref": "#/components/schemas/Adopter"
-          },
-          "status": {
-            "$ref": "#/components/schemas/AdoptionRequestStatus"
-          },
-          "fee": {
-            "type": "number"
-          },
-          "notes": {
-            "type": "string"
-          },
-          "rejectionReason": {
-            "type": "string"
-          },
-          "decidedAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "required": [
-          "_id",
-          "shelterId",
-          "animalId",
-          "species",
-          "adopter",
-          "status",
-          "fee",
-          "createdAt",
-          "updatedAt"
-        ]
-      },
-      "PaginatedData_Adoption": {
-        "type": "object",
-        "properties": {
-          "resources": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Adoption"
-            }
-          },
-          "pagination": {
-            "$ref": "#/components/schemas/PaginationLinks"
-          }
-        },
-        "required": [
-          "resources",
-          "pagination"
-        ]
-      },
-      "RejectAdoptionDto": {
-        "type": "object",
-        "properties": {
-          "reason": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "reason"
-        ]
-      },
       "DogSize": {
         "type": "string",
         "enum": [
@@ -3187,6 +3027,166 @@
             "type": "number"
           }
         }
+      },
+      "AdoptionRequestStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "APPROVED",
+          "REJECTED"
+        ]
+      },
+      "AdoptionReceipt": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "expectedDecisionDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "status",
+          "expectedDecisionDate"
+        ]
+      },
+      "Adopter": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ]
+      },
+      "CreateAdoptionDto": {
+        "type": "object",
+        "properties": {
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "fee": {
+            "type": "number"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "animalId",
+          "species",
+          "adopter",
+          "fee"
+        ]
+      },
+      "Adoption": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "shelterId": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "animalId": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "fee": {
+            "type": "number"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "rejectionReason": {
+            "type": "string"
+          },
+          "decidedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "shelterId",
+          "animalId",
+          "species",
+          "adopter",
+          "status",
+          "fee",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "PaginatedData_Adoption": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Adoption"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "resources",
+          "pagination"
+        ]
+      },
+      "RejectAdoptionDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ]
       }
     },
     "securitySchemes": {

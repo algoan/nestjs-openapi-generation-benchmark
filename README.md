@@ -17,7 +17,43 @@ the main candidates on one realistic codebase, on three grades:
 | [`ts-oas`](https://github.com/ts-oas/ts-oas) | static: endpoint descriptions written as TypeScript types |
 | [`nestoa`](https://github.com/algoan/nestoa) | static: Rust parser of the TypeScript sources |
 
-**Results: [`bench/results/REPORT.md`](bench/results/REPORT.md).**
+**Results: [`bench/results/REPORT.md`](bench/results/REPORT.md)** (and the charts in `bench/results/report.html`).
+
+## Results at a glance
+
+Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better everywhere.
+
+| Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| nestoa (unreleased main) | main@46b4f83 | **20** | 60 | 250 | **19 ms** | **8 MB** |
+| nestoa | 0.1.7 | 27 | 149 | 377 | 48 ms | 46 MB |
+| nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.39 s | 434 MB |
+| @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.69 s | 512 MB |
+| typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 891 ms | 442 MB |
+| @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.80 s | 690 MB |
+| tsoa | 6.6.0 | 300 | **0** | **0** | 812 ms | 415 MB |
+| ts-oas | 0.6.1 | 515 | 3 | 4 | 824 ms | 430 MB |
+
+What the numbers say:
+
+- **There is a clear trade-off between effort and correctness.** The tools that reach (near) zero differences —
+  tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time (decorators, JSDoc
+  tags, or hand-written endpoint types: 170 to 515 lines). Every one of those lines can drift from the code.
+- **nestoa needs the fewest changes by far** (20–27 lines, no source annotation besides 3 return types and
+  a few `@throws` tags) and is **two orders of magnitude faster and lighter** than every Node-based tool.
+  Its remaining core gap is a single pattern: the query parameters read by a custom param decorator
+  (`@PaginationParams()`), which it can only ignore. It does not read class-validator constraints at all.
+- **The published nestoa 0.1.7 lags its main branch**: security, `@nestjs/mapped-types` helpers, `text/csv`,
+  `HttpStatus.*` members were added since; releasing main roughly halves its core differences.
+- **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
+  (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
+- **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
+  Mongo `ObjectId`s into objects; not a realistic option.
+- **nestia** latest (12–14) requires TypeScript 7; 11.3.4 was used, with ts-patch.
+
+Correctness is a **ceiling**: each variant was iterated against the comparator until the tool could not express
+more without unreasonable effort, so "differences" measure what a tool *can* express, and "lines changed"
+measure what it costs to get there.
 
 ## Layout
 
@@ -145,6 +181,11 @@ tree), 5 times by default after a warm-up run. Tools are called directly, not th
   codebase written for a given tool (e.g. with `@nestjs/swagger` decorators or nestia's typed routes from
   the start) would favour that tool.
 - What a tool cannot express is recorded in its `bench.json` notes and shown in the report.
+- A tool may only be patched to fix bugs that stop it from running (nest-openapi-gen), never to add features;
+  the patch is counted in the lines changed.
+- `nestoa (unreleased main)` is built from source by `bench/scripts/build-nestoa-main.sh` and is not an
+  installable release: it is listed to show where the tool is going, not as a peer of the published tools.
+- Timings vary between sessions (up to ~2× for the slowest Node tools); the ranking does not change.
 
 ## Adding a tool
 

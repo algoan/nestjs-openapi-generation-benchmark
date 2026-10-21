@@ -84,7 +84,10 @@ const benchVariant = (variant: Variant, expected: unknown): VariantResult => {
     const comparison: Comparison = compareDocuments(expected, readDocument(outputFile));
     const { differences, ...summary } = comparison;
     result.correctness = summary;
-    result.oasdiff = runOasdiff(EXPECTED_FILE, outputFile, comparison.addedPrefix);
+    // oasdiff does not apply `servers` to the paths: pass the prefix the comparator applied
+    const generated = readDocument(outputFile) as { servers?: { url?: string }[] };
+    const serverPrefix: string | undefined = generated.servers?.[0]?.url?.replace(/^[a-z]+:\/\/[^/]+/i, '').replace(/\/$/, '') || undefined;
+    result.oasdiff = runOasdiff(EXPECTED_FILE, outputFile, comparison.addedPrefix ?? serverPrefix);
     writeFileSync(join(outDir, 'differences.md'), renderDifferences(result, differences));
     writeFileSync(join(outDir, 'differences.json'), `${JSON.stringify(differences, null, 2)}\n`);
   } catch (err) {

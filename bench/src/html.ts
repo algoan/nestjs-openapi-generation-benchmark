@@ -81,7 +81,7 @@ export const renderHtml = (bench: BenchResult): string => {
 @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; } }
 :root[data-theme="dark"] .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; }
 body { margin: 0; }
-.viz-root { background: var(--surface-1); color: var(--text-primary); font: 14px/1.4 system-ui, sans-serif; padding: 24px; min-height: 100vh; box-sizing: border-box; }
+.viz-root { background: var(--surface-1); color: var(--text-primary); font: 14px/1.4 system-ui, sans-serif; padding: 24px; box-sizing: border-box; }
 h1 { font-size: 20px; margin: 0 0 4px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 16px; }
 .card { background: var(--surface-2); border-radius: 8px; padding: 16px; margin: 0; }

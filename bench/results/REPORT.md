@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-21T18:29:44.568Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-21T18:34:20.384Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,14 +8,14 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 198 (#4) | 119 (#7) | 1072 (#8) | – | – |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#5) | 92 (#3) | – | – |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#3) | 0 (#1) | 22 (#2) | – | – |
-| **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#8) | 377 (#7) | – | – |
-| **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#6) | 250 (#5) | – | – |
-| **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#1) | – | – |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 164 (#4) | – | – |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#4) | 304 (#6) | – | – |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#8) | 2394 (#8) | 2.39 s (#6) | 434 MB (#5) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#5) | 92 (#4) | 2.80 s (#8) | 690 MB (#8) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#3) | 2.69 s (#7) | 512 MB (#7) |
+| **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#7) | 377 (#7) | 48 ms (#2) | 46 MB (#2) |
+| **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#6) | 250 (#5) | 19 ms (#1) | 8 MB (#1) |
+| **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#2) | 824 ms (#4) | 430 MB (#4) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 0 (#1) | 812 ms (#3) | 415 MB (#3) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#4) | 304 (#6) | 891 ms (#5) | 442 MB (#6) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -26,7 +26,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 163 | +187 −11 | `nest-openapi-gen`, `patch-package` | -1 MB |
+| nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | -1 MB |
 | @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +47 MB |
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +2 MB |
 | nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | -8 MB |
@@ -41,20 +41,20 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 
 | Tool | operations | parameters | requestBody | responses | errors | constraints | security | docs | core | total | expected facts matched |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 0 | 1 | 0 | 118 | 828 | 89 | 25 | 11 | **119** | **1072** | 64.1% |
+| nest-openapi-gen | 0 | 407 | 16 | 823 | 828 | 89 | 25 | 206 | **1246** | **2394** | 46.7% |
 | @nestia/sdk | 1 | 1 | 0 | 8 | 0 | 80 | 1 | 1 | **10** | **92** | 97.0% |
 | @nestjs/swagger | 0 | 0 | 0 | 0 | 0 | 14 | 0 | 8 | **0** | **22** | 99.3% |
 | nestoa | 0 | 61 | 84 | 4 | 0 | 192 | 25 | 11 | **149** | **377** | 90.4% |
 | nestoa (unreleased main) | 0 | 60 | 0 | 0 | 0 | 190 | 0 | 0 | **60** | **250** | 94.6% |
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
-| tsoa | 0 | 0 | 0 | 0 | 0 | 164 | 0 | 0 | **0** | **164** | 100.0% |
+| tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
 
 Recall (share of the expected facts found) per category:
 
 | Tool | operations | parameters | requestBody | responses | errors | constraints | security | docs |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 100.0% | 99.5% | 100.0% | 92.2% | 0.0% | 11.0% | 13.8% | 94.7% |
+| nest-openapi-gen | 100.0% | 84.8% | 94.1% | 70.8% | 0.0% | 11.0% | 13.8% | 0.0% |
 | @nestia/sdk | 96.6% | 99.5% | 100.0% | 99.7% | 100.0% | 20.0% | 96.6% | 99.5% |
 | @nestjs/swagger | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 86.0% | 100.0% | 96.1% |
 | nestoa | 100.0% | 69.2% | 69.1% | 99.8% | 100.0% | 0.0% | 13.8% | 94.7% |
@@ -63,34 +63,47 @@ Recall (share of the expected facts found) per category:
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
 
-[oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one:
+[oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one. It is a second opinion, not used for the ranking: it compares representations, so it also counts renamed security schemes, added `operationId`s, `format: double`, or enums written as `oneOf` of constants.
 
 | Tool | Breaking (ERR) | Warnings | Info | Total |
 | --- | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 36 | 0 | 221 | 257 |
+| nest-openapi-gen | 146 | 0 | 388 | 534 |
 | @nestia/sdk | 233 | 0 | 269 | 502 |
 | @nestjs/swagger | 31 | 0 | 106 | 137 |
 | nestoa | 34 | 48 | 181 | 263 |
 | nestoa (unreleased main) | 28 | 20 | 202 | 250 |
 | ts-oas | 55 | 1 | 59 | 115 |
-| tsoa | 29 | 0 | 32 | 61 |
-| typoa | 29 | 0 | 32 | 61 |
+| tsoa | 49 | 0 | 197 | 246 |
+| typoa | 57 | 6 | 122 | 185 |
 
 ## 3. Speed and memory
 
 | Tool | Step | Wall (median) | Wall (min–max) | CPU (median) | Peak RSS (median) |
 | --- | ---: | ---: | ---: | ---: | ---: |
+| nest-openapi-gen | `generate` | 2.39 s | 2.36 s – 2.42 s | 3.32 s | 434 MB |
+| @nestia/sdk | `generate` | 2.80 s | 2.77 s – 2.84 s | 4.36 s | 690 MB |
+| @nestjs/swagger | `build` | 2.28 s | 2.18 s – 2.50 s | 3.38 s | 512 MB |
+| @nestjs/swagger | `generate` | 483 ms | 390 ms – 536 ms | 500 ms | 139 MB |
+| @nestjs/swagger | **total** | **2.69 s** |  | 3.83 s | 512 MB |
+| nestoa | `generate` | 48 ms | 48 ms – 50 ms | 30 ms | 46 MB |
+| nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 36 ms | 0 ms | 8 MB |
+| ts-oas | `generate` | 824 ms | 808 ms – 865 ms | 1.66 s | 430 MB |
+| tsoa | `generate` | 812 ms | 806 ms – 833 ms | 1.52 s | 415 MB |
+| typoa | `generate` | 891 ms | 867 ms – 916 ms | 1.61 s | 442 MB |
+
+5 measured runs per tool, after one warm-up run.
 
 ## Notes per tool
 
 ### nest-openapi-gen (`variants/nest-openapi-gen`)
 
-- nest-openapi-gen 1.0.20 (latest, 2024) has no CLI: generate-openapi.js calls its generate() function with prefix '/v1' (the global prefix must be repeated by hand) and tsconfig.build.json. It parses the sources with ts-morph 10.1 (bundled TypeScript 4.2.4), no build or boot needed. Works on TS 5.9 sources.
-- Out of the box it crashes on this codebase, so the tool is patched with patch-package (patches/nest-openapi-gen+1.0.20.patch, applied on npm install, ~40 changed lines in the tool): (1) crash on enum-member literal types (`species: Species.CAT`); (2) crash on @nestjs/mapped-types DTOs (PartialType/OmitType properties have no value declaration), now read from their declarations with the symbol's optional flag; (3) typo 'Path' instead of 'Patch' in the HTTP decorators list: PATCH routes were silently dropped.
-- Further small patches for features the tool lacks: status codes (always 200 upstream; now @HttpCode, 201 for POST, no content for void), Content-Type from @Header (text/csv), requestBody.required, operation and property descriptions from JSDoc (upstream computes the method description but never emits it), string/number literal types (`status: 'ok'`), generic interfaces instantiated with their type arguments (DataToPaginate<T>.resources was `{}`), and serialisation through a primitive toJSON() (mongodb ObjectId was expanded into its class members, ~1000 facts; Date already handled).
-- Source changes: explicit return types on 3 handlers that relied on inference (the inferred HydratedDocument type is unusable statically), and a documentation-only `@Query() _paginationQuery: PaginationQuery` interface parameter on the 5 paginated handlers, since the custom @PaginationParams() decorator is invisible to the tool (README recommends interfaces for @Query). An interface metatype is skipped by ValidationPipe, so behaviour is unchanged.
-- Not expressible: the pagination envelope (the tool documents the declared DataToPaginate<T>, not the { resources, pagination } body built by PaginationBodyInterceptor); fields removed by a Mongoose toJSON transform (Shelter.isDeleted appears); optional query params with DefaultValuePipe (includeAdopted marked required); integer/defaults.
-- No support at all for security schemes, @Roles/@Unprotected, error responses or exception filters: no 401/403/404/... and no bearer auth in the document. class-validator constraints are ignored: the tool only reads its own @Min/@Max/@Email/@Pattern decorators, which would have to be duplicated on every property (not done). @param JSDoc tags are not used for parameter descriptions. Tags are derived from controller class names; the EventPattern controller is correctly ignored (no HTTP decorator).
+- nest-openapi-gen 1.0.20 (latest, 2024) has no CLI: generate-openapi.js calls generate() with prefix '/v1' (the global prefix is repeated by hand). It reads the NestJS decorators and declared types with ts-morph 10 (bundled TypeScript 4.2); no build or boot.
+- The published tool does not run on this codebase: a patch-package patch (patches/, counted) fixes only its bugs: a crash on properties without a value declaration (@nestjs/mapped-types DTOs), a crash on enum-member types (`species: Species.CAT`), and the typo 'Path' instead of 'Patch' in its verb list that silently drops every PATCH route.
+- Every response is documented as 200 (no @HttpCode, no 201 for POST, a body even for 204), always as application/json (no text/csv), and request bodies are never marked required.
+- mongodb ObjectId and Mongoose types are lowered structurally: every _id is an object with toHexString, equals, toJSON… (most of the extra facts).
+- Generic types are not instantiated (DataToPaginate<T> resources become {}), and the PaginationBodyInterceptor envelope is invisible; JSDoc descriptions are computed but never emitted.
+- Needs declared return types (3 handlers annotated). The pagination query params of the custom @PaginationParams() decorator are declared with a documentation-only `@Query() _paginationQuery: PaginationQuery` parameter on the 5 paginated handlers (an interface metatype is skipped by ValidationPipe, behaviour unchanged).
+- No support at all for security, error responses, or class-validator constraints (only its own @Min/@Max/@Email decorators, not added since they would duplicate class-validator).
 
 Differences: [`bench/results/nest-openapi-gen/differences.md`](nest-openapi-gen/differences.md)
 
@@ -110,6 +123,17 @@ Differences: [`bench/results/nest-openapi-gen/differences.md`](nest-openapi-gen/
 Differences: [`bench/results/nestia/differences.md`](nestia/differences.md)
 
 ### @nestjs/swagger (`variants/nestjs-swagger`)
+
+- Uses @nestjs/swagger 11.4.7, the latest 11.x: 12.x requires NestJS 12.
+- Nest CLI plugin (classValidatorShim + introspectComments) with dtoFileNameSuffix extended to .model.ts / .interface.ts / .interfaces.ts, so Mongoose models and JSDoc are reflected without @ApiProperty; requires `nest build`.
+- Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and reuses setupApp() for the v1 prefix.
+- The plugin only reads classes: the response interfaces (AdoptionReceipt, ShelterStats, PaginationLinks, HttpError) were turned into classes; HealthStatus lives in a controller file, so it needs manual @ApiProperty.
+- mongodb ObjectId properties make the plugin emit require("bson/bson"), which crashes at runtime (package exports): each one needs @ApiProperty({ type: String }). ObjectId path params are reflected as a $ref to an empty ObjectId schema: the generation script overrides components.schemas.ObjectId with { type: string } (generic for any Mongo project).
+- @nestjs/mapped-types helpers are not reflected: PartialType/OmitType imported from @nestjs/swagger instead.
+- The pagination envelope (interceptor) and query params (custom param decorator) are invisible to reflection: reusable ApiPaginatedResponse(Model) composite decorator (ApiExtraModels + getSchemaPath + ApiQuery).
+- Handlers without return type infer Promise<HydratedDocument<T>> (documented as a bare object), unions (Cat | Dog) are not supported, Pipe-based optional query/header params are reflected as required: explicit @ApiOkResponse / oneOf / @ApiQuery / @ApiHeader needed.
+- Security and 401/403 come from composing the existing @Roles() decorator with ApiBearerAuth + error responses (applyDecorators); other error responses (400/404/409) need one decorator per route or controller, using HttpError as the shared schema.
+- Not fixed: the class-validator shim ignores @IsInt (no integer type) and @ArrayMaxSize; JSDoc @param descriptions are not read for path/query params (only method summaries and property comments).
 
 Differences: [`bench/results/nestjs-swagger/differences.md`](nestjs-swagger/differences.md)
 
@@ -165,7 +189,7 @@ Differences: [`bench/results/ts-oas/differences.md`](ts-oas/differences.md)
 - `@nestjs/mapped-types` classes (`extends PartialType(OmitType(...))`) crash the type resolver, so each mapped DTO gets a merged interface (`Partial<Omit<...>>`) marked `@tsoaModel`.
 - Mongo `ObjectId` fails because mongoose augments the bson interface, giving two declarations tsoa cannot merge. Fixed with a third augmentation marked `@tsoaModel` in `src/types/object-id.ts`, added to `controllerPathGlobs` (`.d.ts` files are ignored). ObjectId is then documented as string via its `toJSON`.
 - Handlers without a return type are inferred, but Mongoose `HydratedDocument` is unresolvable, so 3 handlers got an explicit `Promise<Model>`. POST creates need `@SuccessResponse(201)`, since tsoa defaults to 200 and does not read `@HttpCode`. The CSV route needs `@Produces('text/csv')`. Security uses `rootSecurity` and `@NoSecurity()` on `@Unprotected()` routes. Error bodies are listed by hand with `@Response<HttpError>(code)` on classes and methods. `@ignore` hides `isDeleted`.
-- class-validator constraints are not read: they are duplicated as JSDoc tags (`@maxLength`, `@minimum`, `@isInt`, `@format email`, `@minItems`…). Every remaining difference is a `format` tsoa always emits (`double` for `number`, `int32` with `@isInt`), which it has no option to turn off.
+- class-validator constraints are not read: they are duplicated as JSDoc tags (`@maxLength`, `@minimum`, `@isInt`, `@format email`, `@minItems`…). tsoa always emits `format: double` / `int32` on numbers (no option to turn it off); the comparator ignores numeric formats.
 - `noImplicitAdditionalProperties: ignore`: the other modes emit `additionalProperties: false` on every model, which is wrong for responses.
 
 Differences: [`bench/results/tsoa/differences.md`](tsoa/differences.md)

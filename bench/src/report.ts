@@ -160,7 +160,10 @@ export const renderReport = (bench: BenchResult): string => {
     '',
   );
   if (ok.some((r: VariantResult): boolean => r.oasdiff?.available === true)) {
-    lines.push('[oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one:', '');
+    lines.push(
+      '[oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one. It is a second opinion, not used for the ranking: it compares representations, so it also counts renamed security schemes, added `operationId`s, `format: double`, or enums written as `oneOf` of constants.',
+      '',
+    );
     lines.push(
       table(
         ['Tool', 'Breaking (ERR)', 'Warnings', 'Info', 'Total'],
