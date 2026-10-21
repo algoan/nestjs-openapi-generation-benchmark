@@ -1,11 +1,11 @@
 #!/bin/sh
 # Build the unreleased nestoa from its main branch, for the `nestoa-main` variant.
 #   NESTOA_REPO: git URL or local path of the nestoa repository (default: GitHub)
-#   NESTOA_REF:  commit, tag or branch to build (default: main)
+#   NESTOA_REF:  commit, tag or branch to build (default: the commit benchmarked in variants/nestoa-main/bench.json)
 set -eu
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 REPO="${NESTOA_REPO:-https://github.com/algoan/nestoa.git}"
-REF="${NESTOA_REF:-main}"
+REF="${NESTOA_REF:-46b4f83}"
 SRC="$ROOT/.tools/nestoa-src"
 
 rm -rf "$SRC"
