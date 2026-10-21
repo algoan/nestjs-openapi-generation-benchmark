@@ -226,6 +226,7 @@
         ],
         "dependenciesRemoved": [],
         "installFootprintMb": 14.11328125,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "generate-openapi.js",
@@ -512,7 +513,8 @@
           "typia"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 61.5078125,
+        "installFootprintMb": 61.13671875,
+        "productionFootprintMb": 70.54296875,
         "changes": [
           {
             "file": "nestia.config.ts",
@@ -843,6 +845,7 @@
         ],
         "dependenciesRemoved": [],
         "installFootprintMb": 17.05078125,
+        "productionFootprintMb": 22.08203125,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -1240,6 +1243,7 @@
         ],
         "dependenciesRemoved": [],
         "installFootprintMb": 6.5546875,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": ".npmrc",
@@ -1494,6 +1498,7 @@
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
         "installFootprintMb": 0,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "nestoa.config.json",
@@ -1718,18 +1723,19 @@
       "ease": {
         "filesTouched": 18,
         "filesAdded": 7,
-        "linesAdded": 514,
-        "linesRemoved": 1,
-        "linesChanged": 515,
+        "linesAdded": 513,
+        "linesRemoved": 0,
+        "linesChanged": 513,
         "sourceFilesTouched": 16,
         "sourceLinesChanged": 489,
-        "configLinesChanged": 26,
+        "configLinesChanged": 24,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [
           "ts-oas"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 1.046875,
+        "installFootprintMb": 1.05078125,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "generate-openapi.mjs",
@@ -1742,8 +1748,8 @@
             "file": "package.json",
             "status": "modified",
             "kind": "config",
-            "added": 2,
-            "removed": 1
+            "added": 1,
+            "removed": 0
           },
           {
             "file": "src/adoptions/adoptions.api.ts",
@@ -2048,6 +2054,7 @@
         ],
         "dependenciesRemoved": [],
         "installFootprintMb": 8.5546875,
+        "productionFootprintMb": 43.625,
         "changes": [
           {
             "file": "package.json",
@@ -2426,6 +2433,7 @@
         ],
         "dependenciesRemoved": [],
         "installFootprintMb": 22.02734375,
+        "productionFootprintMb": 29.0078125,
         "changes": [
           {
             "file": "generate-openapi.js",

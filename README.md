@@ -32,17 +32,21 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
 | @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.94 s | 674 MB |
 | tsoa | 6.6.0 | 300 | **0** | **0** | 792 ms | 415 MB |
-| ts-oas | 0.6.1 | 515 | 3 | 4 | 816 ms | 430 MB |
+| ts-oas | 0.6.1 | 513 | 3 | 4 | 816 ms | 430 MB |
 
 What the numbers say:
 
 - **There is a clear trade-off between effort and correctness.** The tools that reach (near) zero differences —
   tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time (decorators, JSDoc
-  tags, or hand-written endpoint types: 170 to 515 lines). Every one of those lines can drift from the code.
+  tags, or hand-written endpoint types: 170 to 513 lines). Every one of those lines can drift from the code.
 - **nestoa needs the fewest changes by far** (19–27 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **two orders of magnitude faster and lighter** than every Node-based tool.
   Its remaining core gap is a single pattern: the query parameters read by a custom param decorator
   (`@PaginationParams()`), which it can only ignore. It does not read class-validator constraints at all.
+- **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen and ts-oas are dev
+  dependencies (nestoa main is a standalone binary): 0 MB in the service's production install. The tools whose
+  decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB for typoa, +44 MB for tsoa,
+  +71 MB for nestia (tsoa and nestia pull `typescript` into the production dependencies).
 - **The published nestoa 0.1.7 lags its main branch**: security, `@nestjs/mapped-types` helpers, `text/csv`,
   `HttpStatus.*` members were added since; releasing main roughly halves its core differences.
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
@@ -137,7 +141,8 @@ would, following the tool's documentation, to describe the real API as well as t
 (see [`bench/VARIANT_GUIDE.md`](bench/VARIANT_GUIDE.md)). The app's behaviour must not change: the contract
 test passes in every variant. The grade is the diff between the variant and `app/`: files touched, lines
 added and removed (sources and configuration, lock files and generated files excluded), dependencies added,
-and the `node_modules` growth.
+the `node_modules` growth, and the growth of the production dependency tree (`npm ls --omit=dev`): what
+ships with the service, where a tool used only at build time weighs nothing.
 
 ### Correctness
 

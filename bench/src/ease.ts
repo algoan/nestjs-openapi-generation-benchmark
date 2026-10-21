@@ -2,7 +2,7 @@
  * Ease of use: what had to change in the baseline app (`app/`) to get the document out of a tool.
  */
 import { execFileSync, spawnSync } from 'node:child_process';
-import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { existsSync, lstatSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative } from 'node:path';
 import { APP_DIR } from './variants.ts';
 import type { Variant } from './variants.ts';
@@ -48,6 +48,8 @@ export interface EaseResult {
   dependenciesRemoved: string[];
   /** node_modules size difference with the app, in MB */
   installFootprintMb?: number;
+  /** Size difference of the production dependency tree (`npm ls --omit=dev`) with the app, in MB: what ships with the service */
+  productionFootprintMb?: number;
   changes: FileChange[];
 }
 
@@ -104,6 +106,40 @@ const folderSizeMb = (dir: string): number | undefined => {
   }
 };
 
+/** Disk usage of a directory (like `du`), without its nested node_modules */
+const packageSizeBytes = (dir: string): number => {
+  let bytes: number = lstatSync(dir).blocks * 512;
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === 'node_modules') {
+      continue;
+    }
+    const full: string = join(dir, entry.name);
+    bytes += entry.isDirectory() ? packageSizeBytes(full) : lstatSync(full).blocks * 512;
+  }
+
+  return bytes;
+};
+
+/** Size of the installed production dependency tree: the packages a `npm ci --omit=dev` would keep */
+const productionSizeMb = (dir: string): number | undefined => {
+  if (!existsSync(join(dir, 'node_modules'))) {
+    return undefined;
+  }
+  // A missing or invalid package makes npm ls fail while still printing a partial list
+  const res = spawnSync('npm', ['ls', '--omit=dev', '--all', '--parseable'], { cwd: dir, encoding: 'utf8' });
+  if (res.error !== undefined || res.status !== 0) {
+    return undefined;
+  }
+  const packages: string[] = [...new Set(res.stdout.trim().split('\n'))].filter(
+    (p: string): boolean => p !== '' && p !== dir && existsSync(p),
+  );
+  if (packages.length === 0) {
+    return undefined;
+  }
+
+  return packages.reduce((acc: number, p: string): number => acc + packageSizeBytes(p), 0) / 1024 / 1024;
+};
+
 const isSource = (file: string): boolean => file.startsWith('src/');
 
 export const measureEase = (variant: Variant): EaseResult => {
@@ -134,6 +170,8 @@ export const measureEase = (variant: Variant): EaseResult => {
   const variantDeps: Set<string> = dependencies(variant.dir);
   const appSize: number | undefined = folderSizeMb(join(APP_DIR, 'node_modules'));
   const variantSize: number | undefined = folderSizeMb(join(variant.dir, 'node_modules'));
+  const appProdSize: number | undefined = productionSizeMb(APP_DIR);
+  const variantProdSize: number | undefined = productionSizeMb(variant.dir);
   const sum = (list: FileChange[], f: (c: FileChange) => number): number => list.reduce((acc, c) => acc + f(c), 0);
   const source: FileChange[] = changes.filter((c: FileChange): boolean => c.kind === 'source');
   const config: FileChange[] = changes.filter((c: FileChange): boolean => c.kind === 'config');
@@ -151,6 +189,8 @@ export const measureEase = (variant: Variant): EaseResult => {
     dependenciesAdded: [...variantDeps].filter((d: string): boolean => !appDeps.has(d)).sort(),
     dependenciesRemoved: [...appDeps].filter((d: string): boolean => !variantDeps.has(d)).sort(),
     installFootprintMb: appSize !== undefined && variantSize !== undefined ? variantSize - appSize : undefined,
+    productionFootprintMb:
+      appProdSize !== undefined && variantProdSize !== undefined ? variantProdSize - appProdSize : undefined,
     changes: changes.sort((a: FileChange, b: FileChange): number => a.file.localeCompare(b.file)),
   };
 };
