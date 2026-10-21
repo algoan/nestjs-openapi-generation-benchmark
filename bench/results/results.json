@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-21T18:25:43.522Z",
+  "date": "2026-10-21T18:29:44.568Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -238,7 +238,18 @@
         "ts-patch": "3.3.0"
       },
       "approach": "compiler",
-      "notes": [],
+      "notes": [
+        "Version: @nestia/sdk 11.3.4 (typia 12, ts-patch 3), not the latest 12.x-14.x. Nestia 12+ runs on ttsc, which is built on typescript-go: it needs TypeScript 7 (`ttsc: platform-specific TypeScript binary not found (@typescript/typescript-darwin-arm64)`), and the app stays on TypeScript 5.9. ts-patch 4 needs TypeScript >= 6, so ts-patch 3.3.0 is used.",
+        "Setup: the three transform plugins go in tsconfig.json. `nestia swagger` runs the code with ts-node, and TS_NODE_COMPILER=ts-patch/compiler applies the transforms without patching node_modules/typescript, so `nest build` is unchanged. nestia.config.ts boots the AppModule with `{ preview: true }`, so no providers and no MongoDB connection, and calls setupApp() to get the `v1` global prefix. nestia.config.ts is excluded from tsconfig.build.json.",
+        "Nestia reads the TypeScript types of the handlers. Handlers without a return type infer mongoose HydratedDocument, which fails with 'nonsensible intersection', so 4 return types were added. Path parameters must be atomic types: `id: ObjectId` (after ParseObjectIdPipe) is rejected. ParseObjectIdPipe now only validates and returns the string, and the controllers call `new ObjectId(id)` for the services. This is the largest change (~50 lines) and keeps the 404 behaviour.",
+        "Custom param decorators (@User, @PaginationParams) are ignored and interceptors are not analysed. An ApiPaginated() decorator built on @nestia/core's SwaggerCustomizer adds the page/limit/filter/sort query parameters and rewrites the DataToPaginate<T> response into a PaginatedData<T> envelope. The PaginationLinks schema comes from typia.json.schema<PaginationLinks>(), which is evaluated lazily in the closure, so it only runs under the nestia transform, never at runtime.",
+        "Security: nestia has no global security. It reads `@security` JSDoc tags or the `swagger/apiSecurity` metadata of @nestjs/swagger's @ApiBearerAuth. The existing Roles decorator now sets that metadata, on the method or the class, and adds 401/403 HttpError responses through SwaggerCustomizer. @Unprotected routes therefore stay unsecured.",
+        "Error responses: there is no global or filter-based mechanism. `@throws 404` JSDoc gives an empty schema and @TypedException<HttpError> needs one decorator per status, so a small ApiErrors(...statuses) SwaggerCustomizer helper is used, one line per route, for 400/404/409.",
+        "GET /v1/books/export cannot be documented: @nestia/sdk only accepts application/json, x-www-form-urlencoded and text/plain responses, and the text/csv route aborts the whole generation. It is excluded with the `@ignore` JSDoc tag.",
+        "Not fixed: void 204 DELETE responses get an empty `application/json` content. `@Query('includeAdopted', new DefaultValuePipe(false), ParseBoolPipe) includeAdopted: boolean` is documented as required because pipes are not analysed. class-validator constraints (maxLength, min/max, email, integer…) are not read. Nestia only understands typia tags (`string & tags.MaxLength<50>`), which would mean rewriting the DTO types.",
+        "A single field header (@Headers('x-request-id')) is dropped. Only header objects are documented, so the handler now takes `@Headers() headers: { 'x-request-id'?: string }`.",
+        "Operation JSDoc becomes `description`/`summary`. Path, query and body names and descriptions, union return types (Cat | Dog), ObjectId/Date serialised as string (via toJSON), mapped-types DTOs and the @EventPattern controller are handled out of the box."
+      ],
       "correctness": {
         "categories": {
           "operations": {
@@ -251,11 +262,11 @@
           },
           "parameters": {
             "expected": 198,
-            "matched": 134,
-            "missing": 63,
+            "matched": 197,
+            "missing": 0,
             "mismatch": 1,
             "extra": 0,
-            "differences": 64
+            "differences": 1
           },
           "requestBody": {
             "expected": 272,
@@ -267,91 +278,89 @@
           },
           "responses": {
             "expected": 1275,
-            "matched": 1171,
-            "missing": 104,
+            "matched": 1271,
+            "missing": 4,
             "mismatch": 0,
-            "extra": 14,
-            "differences": 118
+            "extra": 4,
+            "differences": 8
           },
           "errors": {
             "expected": 828,
-            "matched": 0,
-            "missing": 828,
+            "matched": 828,
+            "missing": 0,
             "mismatch": 0,
             "extra": 0,
-            "differences": 828
+            "differences": 0
           },
           "constraints": {
             "expected": 100,
-            "matched": 0,
-            "missing": 100,
+            "matched": 20,
+            "missing": 80,
             "mismatch": 0,
             "extra": 0,
-            "differences": 100
+            "differences": 80
           },
           "security": {
             "expected": 29,
-            "matched": 3,
+            "matched": 28,
             "missing": 1,
-            "mismatch": 25,
+            "mismatch": 0,
             "extra": 0,
-            "differences": 26
+            "differences": 1
           },
           "docs": {
             "expected": 206,
-            "matched": 204,
-            "missing": 2,
+            "matched": 205,
+            "missing": 1,
             "mismatch": 0,
             "extra": 0,
-            "differences": 2
+            "differences": 1
           }
         },
         "core": {
           "expected": 1774,
-          "matched": 1605,
-          "missing": 168,
+          "matched": 1768,
+          "missing": 5,
           "mismatch": 1,
-          "extra": 14,
-          "differences": 183
+          "extra": 4,
+          "differences": 10
         },
         "total": {
           "expected": 2937,
-          "matched": 1812,
-          "missing": 1099,
-          "mismatch": 26,
-          "extra": 14,
-          "differences": 1139
+          "matched": 2849,
+          "missing": 87,
+          "mismatch": 1,
+          "extra": 4,
+          "differences": 92
         }
       },
       "oasdiff": {
         "available": true,
-        "errors": 183,
-        "warnings": 21,
-        "infos": 368,
-        "total": 572,
+        "errors": 233,
+        "warnings": 0,
+        "infos": 269,
+        "total": 502,
         "byId": {
           "request-parameter-enum-value-removed": 12,
+          "response-property-list-of-types-widened": 30,
           "response-property-max-unset": 4,
           "response-property-min-unset": 4,
           "response-property-one-of-added": 43,
           "response-property-type-changed": 54,
           "response-property-type-generalized": 4,
-          "response-required-property-removed": 5,
+          "api-security-removed": 25,
           "request-property-enum-value-removed": 42,
           "api-path-removed-without-deprecation": 1,
           "response-property-max-length-unset": 12,
           "request-parameter-became-required": 1,
           "response-body-one-of-added": 1,
-          "request-parameter-removed": 21,
-          "api-schema-removed": 10,
+          "api-schema-removed": 8,
           "api-security-component-added": 1,
           "api-security-component-removed": 1,
           "api-version-not-bumped": 1,
           "request-parameter-type-generalized": 6,
-          "response-non-success-status-removed": 92,
           "response-property-enum-value-removed": 138,
-          "response-required-property-added": 5,
-          "api-security-anonymous-access-added": 25,
+          "api-security-added": 25,
           "request-property-max-length-unset": 13,
           "request-property-max-unset": 6,
           "request-property-min-items-unset": 2,
@@ -369,22 +378,23 @@
         }
       },
       "ease": {
-        "filesTouched": 10,
-        "filesAdded": 1,
-        "linesAdded": 86,
-        "linesRemoved": 58,
-        "linesChanged": 144,
-        "sourceFilesTouched": 7,
-        "sourceLinesChanged": 116,
-        "configLinesChanged": 28,
+        "filesTouched": 15,
+        "filesAdded": 3,
+        "linesAdded": 221,
+        "linesRemoved": 70,
+        "linesChanged": 291,
+        "sourceFilesTouched": 11,
+        "sourceLinesChanged": 258,
+        "configLinesChanged": 33,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [
           "@nestia/core",
           "@nestia/sdk",
-          "ts-patch"
+          "ts-patch",
+          "typia"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 46.53125,
+        "installFootprintMb": 46.52734375,
         "changes": [
           {
             "file": "nestia.config.ts",
@@ -397,42 +407,63 @@
             "file": "package.json",
             "status": "modified",
             "kind": "config",
-            "added": 3,
-            "removed": 0
+            "added": 5,
+            "removed": 1
           },
           {
             "file": "src/adoptions/adoptions.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 19,
-            "removed": 19
+            "added": 37,
+            "removed": 23
           },
           {
             "file": "src/animals/animals.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 5,
+            "added": 8,
             "removed": 5
           },
           {
             "file": "src/animals/cats.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 14,
-            "removed": 14
+            "added": 22,
+            "removed": 15
           },
           {
             "file": "src/animals/dogs.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 7,
-            "removed": 7
+            "added": 13,
+            "removed": 8
           },
           {
             "file": "src/books/books.controller.ts",
             "status": "modified",
             "kind": "source",
+            "added": 9,
+            "removed": 1
+          },
+          {
+            "file": "src/core/auth/roles.decorator.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 2
+          },
+          {
+            "file": "src/core/pagination/index.ts",
+            "status": "modified",
+            "kind": "source",
             "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination-swagger.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 41,
             "removed": 0
           },
           {
@@ -443,11 +474,25 @@
             "removed": 4
           },
           {
+            "file": "src/core/swagger/api-errors.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 26,
+            "removed": 0
+          },
+          {
             "file": "src/shelters/shelters.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 8,
-            "removed": 8
+            "added": 17,
+            "removed": 9
+          },
+          {
+            "file": "tsconfig.build.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 1
           },
           {
             "file": "tsconfig.json",

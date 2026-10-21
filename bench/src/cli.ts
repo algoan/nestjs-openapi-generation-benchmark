@@ -13,6 +13,7 @@ import type { Comparison } from './correctness/compare.ts';
 import { measureEase } from './ease.ts';
 import { runOasdiff } from './oasdiff.ts';
 import { measurePerf, runShell } from './perf.ts';
+import { renderHtml } from './html.ts';
 import { renderDifferences, renderReport } from './report.ts';
 import type { BenchResult, VariantResult } from './report.ts';
 import { EXPECTED_FILE, installedVersion, loadVariants, RESULTS_DIR } from './variants.ts';
@@ -152,6 +153,7 @@ const main = (): void => {
   mkdirSync(RESULTS_DIR, { recursive: true });
   writeFileSync(resultsFile, `${JSON.stringify(bench, null, 2)}\n`);
   writeFileSync(join(RESULTS_DIR, 'REPORT.md'), renderReport(bench));
+  writeFileSync(join(RESULTS_DIR, 'report.html'), renderHtml(bench));
   log(`Report written to ${join(RESULTS_DIR, 'REPORT.md')}`);
 };
 

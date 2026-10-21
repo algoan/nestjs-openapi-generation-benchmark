@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-21T18:25:43.522Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-21T18:29:44.568Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,14 +8,14 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 198 (#5) | 119 (#6) | 1072 (#7) | – | – |
-| **@nestia/sdk** | 11.3.4 | compiler | 144 (#3) | 183 (#8) | 1139 (#8) | – | – |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#2) | – | – |
-| **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#7) | 377 (#6) | – | – |
-| **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#5) | 250 (#4) | – | – |
+| **nest-openapi-gen** | 1.0.20 | static | 198 (#4) | 119 (#7) | 1072 (#8) | – | – |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#5) | 92 (#3) | – | – |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#3) | 0 (#1) | 22 (#2) | – | – |
+| **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#8) | 377 (#7) | – | – |
+| **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#6) | 250 (#5) | – | – |
 | **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#1) | – | – |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 164 (#3) | – | – |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#6) | 8 (#4) | 304 (#5) | – | – |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 164 (#4) | – | – |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#4) | 304 (#6) | – | – |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -27,7 +27,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 163 | +187 −11 | `nest-openapi-gen`, `patch-package` | -1 MB |
-| @nestia/sdk | 10 | 1 | 7 / 75 | 116 | 28 | +86 −58 | `@nestia/core`, `@nestia/sdk`, `ts-patch` | +47 MB |
+| @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +47 MB |
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +2 MB |
 | nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | -8 MB |
 | nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 6 | +17 −3 | – | – |
@@ -42,7 +42,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | Tool | operations | parameters | requestBody | responses | errors | constraints | security | docs | core | total | expected facts matched |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | nest-openapi-gen | 0 | 1 | 0 | 118 | 828 | 89 | 25 | 11 | **119** | **1072** | 64.1% |
-| @nestia/sdk | 1 | 64 | 0 | 118 | 828 | 100 | 26 | 2 | **183** | **1139** | 61.7% |
+| @nestia/sdk | 1 | 1 | 0 | 8 | 0 | 80 | 1 | 1 | **10** | **92** | 97.0% |
 | @nestjs/swagger | 0 | 0 | 0 | 0 | 0 | 14 | 0 | 8 | **0** | **22** | 99.3% |
 | nestoa | 0 | 61 | 84 | 4 | 0 | 192 | 25 | 11 | **149** | **377** | 90.4% |
 | nestoa (unreleased main) | 0 | 60 | 0 | 0 | 0 | 190 | 0 | 0 | **60** | **250** | 94.6% |
@@ -55,7 +55,7 @@ Recall (share of the expected facts found) per category:
 | Tool | operations | parameters | requestBody | responses | errors | constraints | security | docs |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | nest-openapi-gen | 100.0% | 99.5% | 100.0% | 92.2% | 0.0% | 11.0% | 13.8% | 94.7% |
-| @nestia/sdk | 96.6% | 67.7% | 100.0% | 91.8% | 0.0% | 0.0% | 10.3% | 99.0% |
+| @nestia/sdk | 96.6% | 99.5% | 100.0% | 99.7% | 100.0% | 20.0% | 96.6% | 99.5% |
 | @nestjs/swagger | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 86.0% | 100.0% | 96.1% |
 | nestoa | 100.0% | 69.2% | 69.1% | 99.8% | 100.0% | 0.0% | 13.8% | 94.7% |
 | nestoa (unreleased main) | 100.0% | 69.7% | 100.0% | 100.0% | 100.0% | 2.0% | 100.0% | 100.0% |
@@ -68,7 +68,7 @@ Recall (share of the expected facts found) per category:
 | Tool | Breaking (ERR) | Warnings | Info | Total |
 | --- | ---: | ---: | ---: | ---: |
 | nest-openapi-gen | 36 | 0 | 221 | 257 |
-| @nestia/sdk | 183 | 21 | 368 | 572 |
+| @nestia/sdk | 233 | 0 | 269 | 502 |
 | @nestjs/swagger | 31 | 0 | 106 | 137 |
 | nestoa | 34 | 48 | 181 | 263 |
 | nestoa (unreleased main) | 28 | 20 | 202 | 250 |
@@ -95,6 +95,17 @@ Recall (share of the expected facts found) per category:
 Differences: [`bench/results/nest-openapi-gen/differences.md`](nest-openapi-gen/differences.md)
 
 ### @nestia/sdk (`variants/nestia`)
+
+- Version: @nestia/sdk 11.3.4 (typia 12, ts-patch 3), not the latest 12.x-14.x. Nestia 12+ runs on ttsc, which is built on typescript-go: it needs TypeScript 7 (`ttsc: platform-specific TypeScript binary not found (@typescript/typescript-darwin-arm64)`), and the app stays on TypeScript 5.9. ts-patch 4 needs TypeScript >= 6, so ts-patch 3.3.0 is used.
+- Setup: the three transform plugins go in tsconfig.json. `nestia swagger` runs the code with ts-node, and TS_NODE_COMPILER=ts-patch/compiler applies the transforms without patching node_modules/typescript, so `nest build` is unchanged. nestia.config.ts boots the AppModule with `{ preview: true }`, so no providers and no MongoDB connection, and calls setupApp() to get the `v1` global prefix. nestia.config.ts is excluded from tsconfig.build.json.
+- Nestia reads the TypeScript types of the handlers. Handlers without a return type infer mongoose HydratedDocument, which fails with 'nonsensible intersection', so 4 return types were added. Path parameters must be atomic types: `id: ObjectId` (after ParseObjectIdPipe) is rejected. ParseObjectIdPipe now only validates and returns the string, and the controllers call `new ObjectId(id)` for the services. This is the largest change (~50 lines) and keeps the 404 behaviour.
+- Custom param decorators (@User, @PaginationParams) are ignored and interceptors are not analysed. An ApiPaginated() decorator built on @nestia/core's SwaggerCustomizer adds the page/limit/filter/sort query parameters and rewrites the DataToPaginate<T> response into a PaginatedData<T> envelope. The PaginationLinks schema comes from typia.json.schema<PaginationLinks>(), which is evaluated lazily in the closure, so it only runs under the nestia transform, never at runtime.
+- Security: nestia has no global security. It reads `@security` JSDoc tags or the `swagger/apiSecurity` metadata of @nestjs/swagger's @ApiBearerAuth. The existing Roles decorator now sets that metadata, on the method or the class, and adds 401/403 HttpError responses through SwaggerCustomizer. @Unprotected routes therefore stay unsecured.
+- Error responses: there is no global or filter-based mechanism. `@throws 404` JSDoc gives an empty schema and @TypedException<HttpError> needs one decorator per status, so a small ApiErrors(...statuses) SwaggerCustomizer helper is used, one line per route, for 400/404/409.
+- GET /v1/books/export cannot be documented: @nestia/sdk only accepts application/json, x-www-form-urlencoded and text/plain responses, and the text/csv route aborts the whole generation. It is excluded with the `@ignore` JSDoc tag.
+- Not fixed: void 204 DELETE responses get an empty `application/json` content. `@Query('includeAdopted', new DefaultValuePipe(false), ParseBoolPipe) includeAdopted: boolean` is documented as required because pipes are not analysed. class-validator constraints (maxLength, min/max, email, integer…) are not read. Nestia only understands typia tags (`string & tags.MaxLength<50>`), which would mean rewriting the DTO types.
+- A single field header (@Headers('x-request-id')) is dropped. Only header objects are documented, so the handler now takes `@Headers() headers: { 'x-request-id'?: string }`.
+- Operation JSDoc becomes `description`/`summary`. Path, query and body names and descriptions, union return types (Cat | Dog), ObjectId/Date serialised as string (via toJSON), mapped-types DTOs and the @EventPattern controller are handled out of the box.
 
 Differences: [`bench/results/nestia/differences.md`](nestia/differences.md)
 
