@@ -81,13 +81,13 @@ jobs:
           repository: algoan/nestoa
           ref: ${{ env.NESTOA_REF }}
           token: ${{ secrets.NESTOA_TOKEN }}
-          path: .nestoa
+          path: .tools/nestoa-checkout # ignored, so kept out of the refresh pull request
           persist-credentials: false
 
       - name: Build nestoa main
         if: env.VARIANT == 'nestoa-main'
         env:
-          NESTOA_REPO: ${{ github.workspace }}/.nestoa
+          NESTOA_REPO: ${{ github.workspace }}/.tools/nestoa-checkout
           NESTOA_REF: HEAD
         run: |
           bench/scripts/build-nestoa-main.sh
