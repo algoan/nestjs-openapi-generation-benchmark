@@ -28,6 +28,8 @@ export interface BenchResult {
 const pct = (part: number, whole: number): string => (whole === 0 ? '–' : `${((100 * part) / whole).toFixed(1)}%`);
 const ms = (value: number): string => (value >= 1000 ? `${(value / 1000).toFixed(2)} s` : `${Math.round(value)} ms`);
 const mb = (value: number): string => `${Math.round(value)} MB`;
+const signedMb = (value: number | undefined): string =>
+  value === undefined ? '–' : `${Math.round(value) > 0 ? '+' : ''}${mb(value)}`;
 const dash = (value: unknown): string => (value === undefined || value === null ? '–' : String(value));
 
 const table = (header: string[], rows: string[][]): string =>
@@ -103,12 +105,12 @@ export const renderReport = (bench: BenchResult): string => {
   lines.push('## 1. Ease of use', '');
   lines.push(
     table(
-      ['Tool', 'Files touched', 'Files added', 'Source files touched', 'Source lines', 'Config lines', 'Total lines', 'Deps added', 'node_modules Δ'],
+      ['Tool', 'Files touched', 'Files added', 'Source files touched', 'Source lines', 'Config lines', 'Total lines', 'Deps added', 'node_modules Δ', 'Production Δ'],
       ok.map((r: VariantResult): string[] => {
         const e: EaseResult | undefined = r.ease;
 
         return e === undefined
-          ? [r.tool, '–', '–', '–', '–', '–', '–', '–', '–']
+          ? [r.tool, '–', '–', '–', '–', '–', '–', '–', '–', '–']
           : [
               r.tool,
               String(e.filesTouched),
@@ -118,10 +120,14 @@ export const renderReport = (bench: BenchResult): string => {
               String(e.configLinesChanged),
               `+${e.linesAdded} −${e.linesRemoved}`,
               e.dependenciesAdded.length === 0 ? '–' : e.dependenciesAdded.map((d: string): string => `\`${d}\``).join(', '),
-              e.installFootprintMb === undefined ? '–' : `${e.installFootprintMb >= 0 ? '+' : ''}${mb(e.installFootprintMb)}`,
+              signedMb(e.installFootprintMb),
+              signedMb(e.productionFootprintMb),
             ];
       }),
     ),
+    '',
+    '- **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.',
+    '- **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).',
     '',
   );
 

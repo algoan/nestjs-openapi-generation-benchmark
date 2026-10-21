@@ -13,7 +13,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#3) | 2.74 s (#7) | 509 MB (#7) |
 | **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#7) | 377 (#7) | 50 ms (#2) | 46 MB (#2) |
 | **nestoa (unreleased main)** | main@46b4f83 | static | 19 (#1) | 60 (#6) | 250 (#5) | 20 ms (#1) | 8 MB (#1) |
-| **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#2) | 816 ms (#4) | 430 MB (#5) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#3) | 4 (#2) | 816 ms (#4) | 430 MB (#5) |
 | **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 0 (#1) | 792 ms (#3) | 415 MB (#3) |
 | **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#4) | 304 (#6) | 898 ms (#5) | 443 MB (#6) |
 
@@ -24,16 +24,19 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 ## 1. Ease of use
 
-| Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB |
-| @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +62 MB |
-| @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB |
-| nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | +7 MB |
-| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 5 | +16 −3 | – | +0 MB |
-| ts-oas | 18 | 7 | 16 / 75 | 489 | 26 | +514 −1 | `ts-oas` | +1 MB |
-| tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB |
-| typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB |
+| Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ | Production Δ |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB | 0 MB |
+| @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +61 MB | +71 MB |
+| @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
+| nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | +7 MB | 0 MB |
+| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 5 | +16 −3 | – | 0 MB | 0 MB |
+| ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
+| tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
+| typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
+
+- **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
+- **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).
 
 ## 2. Correctness
 
