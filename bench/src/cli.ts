@@ -74,8 +74,9 @@ const benchVariant = (variant: Variant, expected: unknown, previous?: VariantRes
   try {
     if (values['skip-perf']) {
       log('  generating');
-      generateOnce(variant);
+      // Kept even if the generation fails, so that the next run can still carry them over
       result.perf = previous?.perf;
+      generateOnce(variant);
     } else {
       log('  measuring speed and memory');
       result.perf = measurePerf(variant, Number(values.runs), Number(values.warmup), (m: string) => log(`    ${m}`));

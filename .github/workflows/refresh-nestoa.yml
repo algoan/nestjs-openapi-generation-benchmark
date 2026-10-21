@@ -104,16 +104,22 @@ jobs:
           ' "main@$SHORT"
           node bench/src/cli.ts install --only nestoa-main
 
+      # The install runs with the token and without any install script; nestoa's own (which makes its
+      # binary executable) runs in another step, whose process never had the token
       - name: Install the released nestoa
         if: env.VARIANT == 'nestoa'
         working-directory: variants/nestoa
         env:
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
-        # Install scripts never see the token: they are skipped while it is set, then only nestoa's own
-        # (which makes its binary executable) runs, with a placeholder for the .npmrc variable
+        run: npm install --no-audit --no-fund --ignore-scripts --save-exact "@algoan/nestoa@$NESTOA_VERSION"
+
+      - name: Set up the released nestoa
+        if: env.VARIANT == 'nestoa'
+        working-directory: variants/nestoa
+        env:
+          GITHUB_PACKAGES_TOKEN: unused # read by .npmrc
         run: |
-          npm install --no-audit --no-fund --ignore-scripts --save-exact "@algoan/nestoa@$NESTOA_VERSION"
-          GITHUB_PACKAGES_TOKEN=unused npm rebuild --ignore-scripts=false @algoan/nestoa
+          npm rebuild --ignore-scripts=false @algoan/nestoa
           echo "NESTOA_LABEL=$(node -p 'require("@algoan/nestoa/package.json").version')" >> "$GITHUB_ENV"
 
       - name: Run the benchmark (ease and correctness)
