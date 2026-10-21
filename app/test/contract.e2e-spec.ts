@@ -6,8 +6,8 @@
  * - every request constraint of the document is enforced (one invalid request per constraint → 400),
  * - every documented status code is observed at least once.
  */
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { INestApplication, RequestMethod } from '@nestjs/common';
 import { METHOD_METADATA, PATH_METADATA } from '@nestjs/common/constants';
 import { ModulesContainer } from '@nestjs/core';
@@ -20,7 +20,20 @@ import { parse } from 'yaml';
 
 type Json = any; // eslint-disable-line @typescript-eslint/no-explicit-any
 
-const doc: Json = parse(readFileSync(join(__dirname, '../../expected/openapi.yaml'), 'utf8'));
+/** `expected/openapi.yaml` at the root of the repository, also found when the test runs from `variants/<tool>/test` */
+const findExpected = (dir: string): string => {
+  const candidate: string = join(dir, 'expected/openapi.yaml');
+  if (existsSync(candidate)) {
+    return candidate;
+  }
+  if (dirname(dir) === dir) {
+    throw new Error('expected/openapi.yaml not found');
+  }
+
+  return findExpected(dirname(dir));
+};
+
+const doc: Json = parse(readFileSync(findExpected(__dirname), 'utf8'));
 const METHODS: string[] = ['get', 'post', 'put', 'patch', 'delete'];
 
 // ------------------------------------------------------------------ document helpers

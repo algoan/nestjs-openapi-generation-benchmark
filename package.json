@@ -1,0 +1,11 @@
+{
+  "name": "nest-openapi-generation-benchmark",
+  "private": true,
+  "description": "Benchmark of the OpenAPI generators for NestJS on an Algoan-like codebase",
+  "scripts": {
+    "setup": "npm --prefix bench install && npm --prefix app install && node bench/src/cli.ts install",
+    "bench": "node bench/src/cli.ts run",
+    "bench:correctness": "node bench/src/cli.ts run --skip-perf",
+    "test:contract": "npm --prefix app run test:e2e"
+  }
+}
