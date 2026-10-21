@@ -1,0 +1,29 @@
+{
+  "tool": "typoa",
+  "packages": [
+    "typoa"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -f openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node generate-openapi.js"
+    }
+  ],
+  "generated": [
+    "openapi.json"
+  ],
+  "notes": [
+    "typoa is not NestJS-aware and is used only for its spec generation (generate() from a small script); its mandatory express router is written to a temporary directory and discarded.",
+    "typoa matches decorators by name only (ts-morph getName), so the NestJS @Get/@Post/@Patch/@Put/@Delete, @Body and @Query() decorators are read as its own; import aliases are not recognised, so typoa decorators are used through a namespace import (`@typoa.Query`, `@typoa.Path`...) next to the NestJS ones.",
+    "Every handler parameter must carry a typoa parameter decorator: @typoa.Path beside @Param, @typoa.Query beside @Query('x', pipe) (typoa crashes on non-literal pipe arguments), @typoa.Header beside @Headers, and @typoa.Request() (the only 'ignore me' decorator) on @User() and @PaginationParams() parameters.",
+    "A generic post-processing step converts the express `:param` paths to `{param}`, adds a `servers: [{ url: '/v1' }]` entry for the global prefix, and removes the `additionalProperties: false` typoa puts on every object (the ValidationPipe strips unknown properties, it does not reject them).",
+    "The pagination query params (page, limit, filter, sort), invisible behind the custom @PaginationParams() decorator, are declared as extra unused @typoa.Query handler parameters; the envelope built by PaginationBodyInterceptor is declared with @typoa.Response<PaginatedData<T>>(200).",
+    "POST routes return 201 in NestJS but typoa defaults to 200: @typoa.Response<T>(201) on every create; bearer security via @typoa.Security (per method on the partly public books controller); error bodies via @typoa.Response<HttpError>(code) at controller and method level; explicit return types added where the handler returned an inferred mongoose document.",
+    "Remaining core difference: Shelter.isDeleted (hidden by a mongoose toJSON transform, marked @internal) is still documented: typoa has no JSDoc tag to hide a property.",
+    "Not done: class-validator constraints are ignored (typoa only reads JSDoc tags like @minLength/@maximum, duplicating them was not considered reasonable), and plain JSDoc comments are ignored (only @summary/@description tags are read), so operation summaries and property/param descriptions are missing.",
+    "Operation ids are the capitalised method names (`Create`, `FindAll`...), hence duplicated across controllers unless @OperationId is added everywhere."
+  ]
+}

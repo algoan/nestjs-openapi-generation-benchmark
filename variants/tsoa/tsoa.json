@@ -1,0 +1,13 @@
+{
+  "entryFile": "src/main.ts",
+  "controllerPathGlobs": ["src/**/*.controller.ts", "src/types/*.ts"],
+  "noImplicitAdditionalProperties": "ignore",
+  "spec": {
+    "outputDirectory": ".",
+    "specFileBaseName": "openapi",
+    "specVersion": 3,
+    "basePath": "/v1",
+    "securityDefinitions": { "bearer": { "type": "http", "scheme": "bearer" } },
+    "rootSecurity": [{ "bearer": [] }]
+  }
+}

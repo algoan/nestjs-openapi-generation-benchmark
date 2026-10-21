@@ -1,0 +1,3576 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Petstore API",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "operationId": "GetHealthAPI",
+        "description": "Health check",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions": {
+      "post": {
+        "operationId": "CreateAdoptionAPI",
+        "description": "File an adoption request",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAdoptionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdoptionReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "FindAllAdoptionsAPI",
+        "description": "List the adoption requests of a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Only return the requests in this status",
+            "schema": {
+              "description": "Only return the requests in this status",
+              "enum": [
+                "APPROVED",
+                "PENDING",
+                "REJECTED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1",
+            "schema": {
+              "description": "Page number, starting at 1",
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of resources per page",
+            "schema": {
+              "description": "Number of resources per page",
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo filter",
+            "schema": {
+              "description": "JSON-encoded Mongo filter",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "schema": {
+              "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData<Adoption>"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}": {
+      "get": {
+        "operationId": "FindOneAdoptionAPI",
+        "description": "Get an adoption request",
+        "parameters": [
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "RemoveAdoptionAPI",
+        "description": "Cancel an adoption request",
+        "parameters": [
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}/approve": {
+      "post": {
+        "operationId": "ApproveAdoptionAPI",
+        "description": "Approve a pending adoption request",
+        "parameters": [
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict with the current state of the resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}/reject": {
+      "post": {
+        "operationId": "RejectAdoptionAPI",
+        "description": "Reject a pending adoption request",
+        "parameters": [
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectAdoptionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict with the current state of the resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/animals": {
+      "get": {
+        "operationId": "SearchAnimalsAPI",
+        "description": "Search the animals of a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "includeAdopted",
+            "in": "query",
+            "required": false,
+            "description": "Include the animals already adopted",
+            "schema": {
+              "description": "Include the animals already adopted",
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "description": "Animal species hosted by the shelters",
+            "schema": {
+              "description": "Animal species hosted by the shelters",
+              "enum": [
+                "CAT",
+                "DOG"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Adoption status of an animal",
+            "schema": {
+              "description": "Adoption status of an animal",
+              "enum": [
+                "ADOPTED",
+                "AVAILABLE",
+                "RESERVED"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "Case-insensitive prefix of the animal name",
+            "schema": {
+              "description": "Case-insensitive prefix of the animal name",
+              "maxLength": 50,
+              "type": "string"
+            }
+          },
+          {
+            "name": "minAge",
+            "in": "query",
+            "required": false,
+            "description": "Minimum age, in years",
+            "schema": {
+              "description": "Minimum age, in years",
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "$ref": "#/components/schemas/Cat"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Dog"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/animals/{animalId}": {
+      "get": {
+        "operationId": "FindOneAnimalAPI",
+        "description": "Get an animal, whatever its species",
+        "parameters": [
+          {
+            "name": "animalId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/Cat"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Dog"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/cats": {
+      "post": {
+        "operationId": "CreateCatAPI",
+        "description": "Register a cat in a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCatDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "FindAllCatsAPI",
+        "description": "List the cats of a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1",
+            "schema": {
+              "description": "Page number, starting at 1",
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of resources per page",
+            "schema": {
+              "description": "Number of resources per page",
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo filter",
+            "schema": {
+              "description": "JSON-encoded Mongo filter",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "schema": {
+              "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData<Cat>"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/cats/{catId}": {
+      "get": {
+        "operationId": "FindOneCatAPI",
+        "description": "Get a cat",
+        "parameters": [
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "UpdateCatAPI",
+        "description": "Update a cat",
+        "parameters": [
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCatDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "RemoveCatAPI",
+        "description": "Remove a cat from a shelter",
+        "parameters": [
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/dogs": {
+      "post": {
+        "operationId": "CreateDogAPI",
+        "description": "Register a dog in a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDogDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "FindAllDogsAPI",
+        "description": "List the dogs of a shelter",
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1",
+            "schema": {
+              "description": "Page number, starting at 1",
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of resources per page",
+            "schema": {
+              "description": "Number of resources per page",
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo filter",
+            "schema": {
+              "description": "JSON-encoded Mongo filter",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "schema": {
+              "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData<Dog>"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{shelterId}/dogs/{dogId}": {
+      "get": {
+        "operationId": "FindOneDogAPI",
+        "description": "Get a dog",
+        "parameters": [
+          {
+            "name": "dogId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/books": {
+      "get": {
+        "operationId": "FindAllBooksAPI",
+        "description": "Search the catalogue",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "description": "Full-text search on the title and the authors",
+            "schema": {
+              "description": "Full-text search on the title and the authors",
+              "type": "string"
+            }
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "CARE_GUIDE",
+                "CHILDREN",
+                "NOVEL",
+                "TRAINING"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1",
+            "schema": {
+              "description": "Page number, starting at 1",
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of resources per page",
+            "schema": {
+              "description": "Number of resources per page",
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo filter",
+            "schema": {
+              "description": "JSON-encoded Mongo filter",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "schema": {
+              "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData<Book>"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "post": {
+        "operationId": "CreateBookAPI",
+        "description": "Add a book to the catalogue",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict with the current state of the resource",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/books/export": {
+      "get": {
+        "operationId": "ExportBooksAPI",
+        "description": "Export the whole catalogue as CSV",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/csv": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      }
+    },
+    "/v1/books/{isbn}": {
+      "get": {
+        "operationId": "FindOneBookAPI",
+        "description": "Get a book by ISBN",
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "description": "ISBN-13, without dashes",
+            "schema": {
+              "description": "ISBN-13, without dashes",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        },
+        "security": []
+      },
+      "put": {
+        "operationId": "ReplaceBookAPI",
+        "description": "Replace a book",
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "description": "ISBN-13, without dashes",
+            "schema": {
+              "description": "ISBN-13, without dashes",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "RemoveBookAPI",
+        "description": "Remove a book from the catalogue",
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "description": "ISBN-13, without dashes",
+            "schema": {
+              "description": "ISBN-13, without dashes",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters": {
+      "post": {
+        "operationId": "CreateShelterAPI",
+        "description": "Create a shelter",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateShelterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "FindAllSheltersAPI",
+        "description": "List the shelters the caller has access to",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "description": "Page number, starting at 1",
+            "schema": {
+              "description": "Page number, starting at 1",
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Number of resources per page",
+            "schema": {
+              "description": "Number of resources per page",
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo filter",
+            "schema": {
+              "description": "JSON-encoded Mongo filter",
+              "type": "string"
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "schema": {
+              "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PaginatedData<Shelter>"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{id}": {
+      "get": {
+        "operationId": "FindOneShelterAPI",
+        "description": "Get a shelter by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The shelter id",
+            "schema": {
+              "description": "The shelter id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "UpdateShelterAPI",
+        "description": "Update a shelter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The shelter id",
+            "schema": {
+              "description": "The shelter id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateShelterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "RemoveShelterAPI",
+        "description": "Delete a shelter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The shelter id",
+            "schema": {
+              "description": "The shelter id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/shelters/{id}/stats": {
+      "get": {
+        "operationId": "GetShelterStatsAPI",
+        "description": "Get the yearly statistics of a shelter",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "The shelter id",
+            "schema": {
+              "description": "The shelter id",
+              "type": "string"
+            }
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "description": "The year of the statistics",
+            "schema": {
+              "description": "The year of the statistics",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShelterStats"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid bearer token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Missing role or shelter access",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "bearer": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "HealthStatus": {
+        "description": "Health check response",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
+          },
+          "uptime": {
+            "description": "Process uptime, in seconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "status",
+          "uptime"
+        ]
+      },
+      "ShelterParams": {
+        "type": "object",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "shelterId"
+        ]
+      },
+      "CreateAdoptionDto": {
+        "description": "Create Adoption DTO",
+        "type": "object",
+        "properties": {
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "fee": {
+            "description": "Adoption fee, in euros",
+            "minimum": 0,
+            "type": "number"
+          },
+          "notes": {
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "required": [
+          "adopter",
+          "animalId",
+          "fee",
+          "species"
+        ]
+      },
+      "Species": {
+        "description": "Animal species hosted by the shelters",
+        "enum": [
+          "CAT",
+          "DOG"
+        ],
+        "type": "string"
+      },
+      "Adopter": {
+        "description": "Person adopting an animal",
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "maxLength": 80,
+            "type": "string"
+          },
+          "lastName": {
+            "maxLength": 80,
+            "type": "string"
+          },
+          "email": {
+            "format": "email",
+            "type": "string"
+          },
+          "phone": {
+            "description": "Phone number, in the E.164 format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "firstName",
+          "lastName"
+        ]
+      },
+      "AdoptionReceipt": {
+        "description": "Receipt returned when an adoption request is filed",
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "expectedDecisionDate": {
+            "description": "When the shelter commits to answer",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "expectedDecisionDate",
+          "status"
+        ]
+      },
+      "AdoptionRequestStatus": {
+        "description": "Lifecycle of an adoption request",
+        "enum": [
+          "APPROVED",
+          "PENDING",
+          "REJECTED"
+        ],
+        "type": "string"
+      },
+      "HttpError": {
+        "description": "Body sent by the global HttpExceptionFilter",
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "status"
+        ]
+      },
+      "FindAllAdoptionsQuery": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "Only return the requests in this status",
+            "enum": [
+              "APPROVED",
+              "PENDING",
+              "REJECTED"
+            ],
+            "type": "string"
+          },
+          "page": {
+            "description": "Page number, starting at 1",
+            "type": "integer",
+            "default": 1
+          },
+          "limit": {
+            "description": "Number of resources per page",
+            "type": "integer",
+            "default": 10
+          },
+          "filter": {
+            "description": "JSON-encoded Mongo filter",
+            "type": "string"
+          },
+          "sort": {
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "type": "string"
+          }
+        }
+      },
+      "PaginatedData<Adoption>": {
+        "description": "Body of a paginated response, built by the PaginationBodyInterceptor",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Adoption"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "pagination",
+          "resources"
+        ]
+      },
+      "Adoption": {
+        "description": "Adoption Model",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "fee": {
+            "description": "Adoption fee, in euros",
+            "type": "number"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "rejectionReason": {
+            "description": "Why the request was rejected",
+            "type": "string"
+          },
+          "decidedAt": {
+            "description": "When the request was approved or rejected",
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "adopter",
+          "animalId",
+          "createdAt",
+          "fee",
+          "shelterId",
+          "species",
+          "status",
+          "updatedAt"
+        ]
+      },
+      "PaginationLinks": {
+        "description": "Pagination links of a paginated response",
+        "type": "object",
+        "properties": {
+          "next": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "previous": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "first": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "last": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "string"
+              }
+            ]
+          },
+          "totalPages": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          },
+          "totalResources": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "number"
+              }
+            ]
+          }
+        },
+        "required": [
+          "first",
+          "last",
+          "next",
+          "previous",
+          "totalPages",
+          "totalResources"
+        ]
+      },
+      "AdoptionParams": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "shelterId"
+        ]
+      },
+      "RejectAdoptionDto": {
+        "description": "Reject Adoption DTO",
+        "type": "object",
+        "properties": {
+          "reason": {
+            "description": "Why the request is rejected, sent to the adopter",
+            "minLength": 10,
+            "maxLength": 500,
+            "type": "string"
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      },
+      "ShelterParams_1": {
+        "type": "object",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "shelterId"
+        ]
+      },
+      "SearchAnimalsQuery": {
+        "type": "object",
+        "properties": {
+          "includeAdopted": {
+            "description": "Include the animals already adopted",
+            "default": false,
+            "type": "boolean"
+          },
+          "species": {
+            "description": "Animal species hosted by the shelters",
+            "enum": [
+              "CAT",
+              "DOG"
+            ],
+            "type": "string"
+          },
+          "status": {
+            "description": "Adoption status of an animal",
+            "enum": [
+              "ADOPTED",
+              "AVAILABLE",
+              "RESERVED"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Case-insensitive prefix of the animal name",
+            "maxLength": 50,
+            "type": "string"
+          },
+          "minAge": {
+            "description": "Minimum age, in years",
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      },
+      "Cat": {
+        "description": "Cat Model",
+        "type": "object",
+        "properties": {
+          "species": {
+            "type": "string",
+            "enum": [
+              "CAT"
+            ]
+          },
+          "indoor": {
+            "description": "Whether the cat must live indoors",
+            "type": "boolean"
+          },
+          "coatPattern": {
+            "enum": [
+              "BICOLOR",
+              "CALICO",
+              "SOLID",
+              "TABBY",
+              "TORTOISESHELL"
+            ],
+            "type": "string"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "$ref": "#/components/schemas/Sex"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionStatus"
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "description": "Weight in kilograms",
+            "type": "number"
+          },
+          "createdAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "createdAt",
+          "indoor",
+          "name",
+          "sex",
+          "shelterId",
+          "species",
+          "status",
+          "updatedAt",
+          "vaccinations"
+        ]
+      },
+      "Sex": {
+        "enum": [
+          "FEMALE",
+          "MALE",
+          "UNKNOWN"
+        ],
+        "type": "string"
+      },
+      "AdoptionStatus": {
+        "description": "Adoption status of an animal",
+        "enum": [
+          "ADOPTED",
+          "AVAILABLE",
+          "RESERVED"
+        ],
+        "type": "string"
+      },
+      "Vaccination": {
+        "description": "A vaccine injection",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Vaccine name",
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "date",
+          "name"
+        ]
+      },
+      "Dog": {
+        "description": "Dog Model",
+        "type": "object",
+        "properties": {
+          "species": {
+            "type": "string",
+            "enum": [
+              "DOG"
+            ]
+          },
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "$ref": "#/components/schemas/DogSize"
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "$ref": "#/components/schemas/Sex"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionStatus"
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "description": "Weight in kilograms",
+            "type": "number"
+          },
+          "createdAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "breed",
+          "createdAt",
+          "name",
+          "sex",
+          "shelterId",
+          "size",
+          "species",
+          "status",
+          "updatedAt",
+          "vaccinations"
+        ]
+      },
+      "DogSize": {
+        "enum": [
+          "LARGE",
+          "MEDIUM",
+          "SMALL"
+        ],
+        "type": "string"
+      },
+      "AnimalParams": {
+        "type": "object",
+        "properties": {
+          "animalId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "animalId",
+          "shelterId"
+        ]
+      },
+      "CreateCatDto": {
+        "description": "Create Cat DTO",
+        "type": "object",
+        "properties": {
+          "indoor": {
+            "description": "Whether the cat must live indoors",
+            "type": "boolean"
+          },
+          "coatPattern": {
+            "enum": [
+              "BICOLOR",
+              "CALICO",
+              "SOLID",
+              "TABBY",
+              "TORTOISESHELL"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "$ref": "#/components/schemas/Sex"
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "description": "Weight in kilograms",
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "indoor",
+          "name",
+          "sex"
+        ]
+      },
+      "PaginationQuery": {
+        "description": "Query parameters read by `@PaginationParams({ perPageName: 'limit' })`",
+        "type": "object",
+        "properties": {
+          "page": {
+            "description": "Page number, starting at 1",
+            "type": "integer",
+            "default": 1
+          },
+          "limit": {
+            "description": "Number of resources per page",
+            "type": "integer",
+            "default": 10
+          },
+          "filter": {
+            "description": "JSON-encoded Mongo filter",
+            "type": "string"
+          },
+          "sort": {
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "type": "string"
+          }
+        }
+      },
+      "PaginatedData<Cat>": {
+        "description": "Body of a paginated response, built by the PaginationBodyInterceptor",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cat"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "pagination",
+          "resources"
+        ]
+      },
+      "CatParams": {
+        "type": "object",
+        "properties": {
+          "catId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "catId",
+          "shelterId"
+        ]
+      },
+      "UpdateCatDto": {
+        "description": "Update Cat DTO",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "Adoption status of an animal",
+            "enum": [
+              "ADOPTED",
+              "AVAILABLE",
+              "RESERVED"
+            ],
+            "type": "string"
+          },
+          "indoor": {
+            "description": "Whether the cat must live indoors",
+            "type": "boolean"
+          },
+          "coatPattern": {
+            "enum": [
+              "BICOLOR",
+              "CALICO",
+              "SOLID",
+              "TABBY",
+              "TORTOISESHELL"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "enum": [
+              "FEMALE",
+              "MALE",
+              "UNKNOWN"
+            ],
+            "type": "string"
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "description": "Weight in kilograms",
+            "minimum": 0,
+            "type": "number"
+          }
+        }
+      },
+      "CreateDogDto": {
+        "description": "Create Dog DTO",
+        "type": "object",
+        "properties": {
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "$ref": "#/components/schemas/DogSize"
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          },
+          "name": {
+            "maxLength": 50,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "$ref": "#/components/schemas/Sex"
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "description": "Weight in kilograms",
+            "minimum": 0,
+            "type": "number"
+          }
+        },
+        "required": [
+          "breed",
+          "name",
+          "sex",
+          "size"
+        ]
+      },
+      "PaginatedData<Dog>": {
+        "description": "Body of a paginated response, built by the PaginationBodyInterceptor",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dog"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "pagination",
+          "resources"
+        ]
+      },
+      "DogParams": {
+        "type": "object",
+        "properties": {
+          "dogId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dogId",
+          "shelterId"
+        ]
+      },
+      "FindAllBooksQuery": {
+        "type": "object",
+        "properties": {
+          "search": {
+            "description": "Full-text search on the title and the authors",
+            "type": "string"
+          },
+          "genre": {
+            "enum": [
+              "CARE_GUIDE",
+              "CHILDREN",
+              "NOVEL",
+              "TRAINING"
+            ],
+            "type": "string"
+          },
+          "page": {
+            "description": "Page number, starting at 1",
+            "type": "integer",
+            "default": 1
+          },
+          "limit": {
+            "description": "Number of resources per page",
+            "type": "integer",
+            "default": 10
+          },
+          "filter": {
+            "description": "JSON-encoded Mongo filter",
+            "type": "string"
+          },
+          "sort": {
+            "description": "JSON-encoded Mongo sort, e.g. `{\"name\":1}`",
+            "type": "string"
+          }
+        }
+      },
+      "PaginatedData<Book>": {
+        "description": "Body of a paginated response, built by the PaginationBodyInterceptor",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Book"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "pagination",
+          "resources"
+        ]
+      },
+      "Book": {
+        "description": "A book of the pet-care catalogue",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "isbn": {
+            "description": "ISBN-13, without dashes",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "description": "ISO 639-1 language code",
+            "type": "string"
+          },
+          "topics": {
+            "description": "Species the book is about",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            }
+          },
+          "rating": {
+            "description": "Average reader rating, from 0 to 5",
+            "type": "number"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "authors",
+          "available",
+          "createdAt",
+          "genre",
+          "isbn",
+          "language",
+          "title",
+          "topics",
+          "updatedAt"
+        ]
+      },
+      "Author": {
+        "description": "Book author",
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "birthYear": {
+            "type": "integer",
+            "minimum": 1000,
+            "maximum": 2100
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "BookGenre": {
+        "enum": [
+          "CARE_GUIDE",
+          "CHILDREN",
+          "NOVEL",
+          "TRAINING"
+        ],
+        "type": "string"
+      },
+      "IsbnParams": {
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "description": "ISBN-13, without dashes",
+            "type": "string"
+          }
+        },
+        "required": [
+          "isbn"
+        ]
+      },
+      "CreateBookDto": {
+        "description": "Create Book DTO",
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "description": "ISBN-13, without dashes",
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "language": {
+            "description": "ISO 639-1 language code",
+            "minLength": 2,
+            "maxLength": 2,
+            "type": "string"
+          },
+          "topics": {
+            "description": "Species the book is about",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            }
+          },
+          "rating": {
+            "description": "Average reader rating, from 0 to 5",
+            "minimum": 0,
+            "maximum": 5,
+            "type": "number"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "authors",
+          "genre",
+          "isbn",
+          "title"
+        ]
+      },
+      "ReplaceBookDto": {
+        "description": "Replace Book DTO: the ISBN comes from the path",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "language": {
+            "description": "ISO 639-1 language code",
+            "minLength": 2,
+            "maxLength": 2,
+            "type": "string"
+          },
+          "topics": {
+            "description": "Species the book is about",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            }
+          },
+          "rating": {
+            "description": "Average reader rating, from 0 to 5",
+            "minimum": 0,
+            "maximum": 5,
+            "type": "number"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "authors",
+          "genre",
+          "title"
+        ]
+      },
+      "CreateShelterDto": {
+        "description": "Create Shelter DTO",
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Display name of the shelter",
+            "maxLength": 100,
+            "type": "string"
+          },
+          "country": {
+            "description": "ISO 3166-1 alpha-2 country code",
+            "type": "string"
+          },
+          "address": {
+            "description": "Postal address",
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "description": "Contact email",
+            "format": "email",
+            "type": "string"
+          },
+          "capacity": {
+            "description": "Maximum number of animals the shelter can host",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "description": "Free-form data attached by the caller",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {}
+          }
+        },
+        "required": [
+          "capacity",
+          "country",
+          "name"
+        ]
+      },
+      "Address": {
+        "description": "Postal address",
+        "type": "object",
+        "properties": {
+          "street": {
+            "maxLength": 120,
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "complement": {
+            "description": "Building, floor, etc.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "city",
+          "postalCode",
+          "street"
+        ]
+      },
+      "Shelter": {
+        "description": "Shelter Model",
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "description": "Display name of the shelter",
+            "type": "string"
+          },
+          "country": {
+            "description": "ISO 3166-1 alpha-2 country code",
+            "type": "string"
+          },
+          "address": {
+            "description": "Postal address",
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "description": "Contact email",
+            "type": "string"
+          },
+          "capacity": {
+            "description": "Maximum number of animals the shelter can host",
+            "type": "number"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ShelterStatus"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "description": "Free-form data attached by the caller",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {}
+          },
+          "createdAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "description": "Value added by mongoose",
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "capacity",
+          "country",
+          "createdAt",
+          "name",
+          "status",
+          "tags",
+          "updatedAt"
+        ]
+      },
+      "ShelterStatus": {
+        "description": "Whether a shelter currently welcomes new animals",
+        "enum": [
+          "CLOSED",
+          "FULL",
+          "OPEN"
+        ],
+        "type": "string"
+      },
+      "PaginatedData<Shelter>": {
+        "description": "Body of a paginated response, built by the PaginationBodyInterceptor",
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Shelter"
+            }
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PaginationLinks"
+          }
+        },
+        "required": [
+          "pagination",
+          "resources"
+        ]
+      },
+      "ShelterParams_2": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "The shelter id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id"
+        ]
+      },
+      "UpdateShelterDto": {
+        "description": "Update Shelter DTO: every field but the country can be updated",
+        "type": "object",
+        "properties": {
+          "status": {
+            "description": "Whether a shelter currently welcomes new animals",
+            "enum": [
+              "CLOSED",
+              "FULL",
+              "OPEN"
+            ],
+            "type": "string"
+          },
+          "name": {
+            "description": "Display name of the shelter",
+            "maxLength": 100,
+            "type": "string"
+          },
+          "email": {
+            "description": "Contact email",
+            "format": "email",
+            "type": "string"
+          },
+          "address": {
+            "description": "Postal address",
+            "$ref": "#/components/schemas/Address"
+          },
+          "capacity": {
+            "description": "Maximum number of animals the shelter can host",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "tags": {
+            "maxItems": 10,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "description": "Free-form data attached by the caller",
+            "type": "object",
+            "properties": {},
+            "additionalProperties": {}
+          }
+        }
+      },
+      "ShelterStats": {
+        "description": "Yearly statistics of a shelter",
+        "type": "object",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "hostedAnimals": {
+            "description": "Number of animals currently hosted",
+            "type": "number"
+          },
+          "adoptions": {
+            "type": "object",
+            "properties": {
+              "approved": {
+                "type": "number"
+              },
+              "rejected": {
+                "type": "number"
+              },
+              "pending": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "approved",
+              "pending",
+              "rejected"
+            ]
+          },
+          "occupancyRate": {
+            "description": "Hosted animals / capacity, between 0 and 1",
+            "type": "number"
+          }
+        },
+        "required": [
+          "adoptions",
+          "hostedAnimals",
+          "occupancyRate",
+          "shelterId",
+          "year"
+        ]
+      }
+    }
+  }
+}

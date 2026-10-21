@@ -1,0 +1,26 @@
+{
+  "tool": "@nestia/sdk",
+  "packages": ["@nestia/sdk", "@nestia/core", "typia", "ts-patch"],
+  "approach": "compiler",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json node_modules/.nestia",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "TS_NODE_COMPILER=ts-patch/compiler node node_modules/@nestia/sdk/lib/executable/sdk.js swagger"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "Version: @nestia/sdk 11.3.4 (typia 12, ts-patch 3), not the latest 12.x-14.x. Nestia 12+ runs on ttsc, which is built on typescript-go: it needs TypeScript 7 (`ttsc: platform-specific TypeScript binary not found (@typescript/typescript-darwin-arm64)`), and the app stays on TypeScript 5.9. ts-patch 4 needs TypeScript >= 6, so ts-patch 3.3.0 is used.",
+    "Setup: the three transform plugins go in tsconfig.json. `nestia swagger` runs the code with ts-node, and TS_NODE_COMPILER=ts-patch/compiler applies the transforms without patching node_modules/typescript, so `nest build` is unchanged. nestia.config.ts boots the AppModule with `{ preview: true }`, so no providers and no MongoDB connection, and calls setupApp() to get the `v1` global prefix. nestia.config.ts is excluded from tsconfig.build.json.",
+    "Nestia reads the TypeScript types of the handlers. Handlers without a return type infer mongoose HydratedDocument, which fails with 'nonsensible intersection', so 4 return types were added. Path parameters must be atomic types: `id: ObjectId` (after ParseObjectIdPipe) is rejected. ParseObjectIdPipe now only validates and returns the string, and the controllers call `new ObjectId(id)` for the services. This is the largest change (~50 lines) and keeps the 404 behaviour.",
+    "Custom param decorators (@User, @PaginationParams) are ignored and interceptors are not analysed. An ApiPaginated() decorator built on @nestia/core's SwaggerCustomizer adds the page/limit/filter/sort query parameters and rewrites the DataToPaginate<T> response into a PaginatedData<T> envelope. The PaginationLinks schema comes from typia.json.schema<PaginationLinks>(), which is evaluated lazily in the closure, so it only runs under the nestia transform, never at runtime.",
+    "Security: nestia has no global security. It reads `@security` JSDoc tags or the `swagger/apiSecurity` metadata of @nestjs/swagger's @ApiBearerAuth. The existing Roles decorator now sets that metadata, on the method or the class, and adds 401/403 HttpError responses through SwaggerCustomizer. @Unprotected routes therefore stay unsecured.",
+    "Error responses: there is no global or filter-based mechanism. `@throws 404` JSDoc gives an empty schema and @TypedException<HttpError> needs one decorator per status, so a small ApiErrors(...statuses) SwaggerCustomizer helper is used, one line per route, for 400/404/409.",
+    "GET /v1/books/export cannot be documented: @nestia/sdk only accepts application/json, x-www-form-urlencoded and text/plain responses, and the text/csv route aborts the whole generation. It is excluded with the `@ignore` JSDoc tag.",
+    "Not fixed: void 204 DELETE responses get an empty `application/json` content. `@Query('includeAdopted', new DefaultValuePipe(false), ParseBoolPipe) includeAdopted: boolean` is documented as required because pipes are not analysed. class-validator constraints (maxLength, min/max, email, integer…) are not read. Nestia only understands typia tags (`string & tags.MaxLength<50>`), which would mean rewriting the DTO types.",
+    "A single field header (@Headers('x-request-id')) is dropped. Only header objects are documented, so the handler now takes `@Headers() headers: { 'x-request-id'?: string }`.",
+    "Operation JSDoc becomes `description`/`summary`. Path, query and body names and descriptions, union return types (Cat | Dog), ObjectId/Date serialised as string (via toJSON), mapped-types DTOs and the @EventPattern controller are handled out of the box."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "tool": "tsoa",
+  "packages": [
+    "tsoa"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node node_modules/tsoa/dist/cli.js spec"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "tsoa 6.6.0: latest stable release (npm `latest` is 7.0.0-alpha.0 and `next` is 6.0.0-rc.5, both prereleases). Works with TypeScript 5.9. Only `tsoa spec` is used (no generated express routes), OpenAPI 3.0 (no 3.1 support in 6.x).",
+    "tsoa matches decorators by identifier name and is not NestJS-aware. Nest's `@Get`/`@Post`/`@Body`/`@Query('x')` happen to be recognised. Every controller needs `@Route` beside `@Controller`, and every parameter tsoa must not document (`@User()`, `@PaginationParams()`, whole-object `@Query()`) needs `@Inject()`. Undecorated parameters, `@Param` included, are treated as path params named after the variable.",
+    "Query DTOs and pagination query params: tsoa forbids mixing `@Query` and `@Queries` in one method, so each paginated/search route gets one extra trailing tsoa-only `@Queries() _query?: XxxQuery` parameter (Nest injects undefined), backed by small `PaginationQuery` / `...Query extends ...` interfaces.",
+    "Pagination envelope: the interceptor is invisible and the success schema always comes from the return type (`DataToPaginate<T>`). A `@Response` with the same status code is overwritten, so the documented body comes from an extra trailing `@Res() _paginated?: TsoaResponse<200, PaginatedData<T>>` parameter (responses from `@Res` parameters are applied after the success response).",
+    "`@nestjs/mapped-types` classes (`extends PartialType(OmitType(...))`) crash the type resolver, so each mapped DTO gets a merged interface (`Partial<Omit<...>>`) marked `@tsoaModel`.",
+    "Mongo `ObjectId` fails because mongoose augments the bson interface, giving two declarations tsoa cannot merge. Fixed with a third augmentation marked `@tsoaModel` in `src/types/object-id.ts`, added to `controllerPathGlobs` (`.d.ts` files are ignored). ObjectId is then documented as string via its `toJSON`.",
+    "Handlers without a return type are inferred, but Mongoose `HydratedDocument` is unresolvable, so 3 handlers got an explicit `Promise<Model>`. POST creates need `@SuccessResponse(201)`, since tsoa defaults to 200 and does not read `@HttpCode`. The CSV route needs `@Produces('text/csv')`. Security uses `rootSecurity` and `@NoSecurity()` on `@Unprotected()` routes. Error bodies are listed by hand with `@Response<HttpError>(code)` on classes and methods. `@ignore` hides `isDeleted`.",
+    "class-validator constraints are not read: they are duplicated as JSDoc tags (`@maxLength`, `@minimum`, `@isInt`, `@format email`, `@minItems`\u2026). tsoa always emits `format: double` / `int32` on numbers (no option to turn it off); the comparator ignores numeric formats.",
+    "`noImplicitAdditionalProperties: ignore`: the other modes emit `additionalProperties: false` on every model, which is wrong for responses."
+  ]
+}

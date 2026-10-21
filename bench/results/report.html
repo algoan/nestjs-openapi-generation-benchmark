@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NestJS OpenAPI generators benchmark</title>
+<style>
+.viz-root { color-scheme: light; --surface-1: #fcfcfb; --surface-2: #f3f2ef; --text-primary: #0b0b0b; --text-secondary: #52514e; --grid: #d9d8d3; --series-1: #2a78d6; }
+@media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; } }
+:root[data-theme="dark"] .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; }
+body { margin: 0; }
+.viz-root { background: var(--surface-1); color: var(--text-primary); font: 14px/1.4 system-ui, sans-serif; padding: 24px; box-sizing: border-box; }
+h1 { font-size: 20px; margin: 0 0 4px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 16px; }
+.card { background: var(--surface-2); border-radius: 8px; padding: 16px; margin: 0; }
+.card h2 { font-size: 15px; margin: 0; } .card p { color: var(--text-secondary); margin: 2px 0 8px; font-size: 12px; }
+svg { width: 100%; height: auto; overflow: visible; }
+.bar { fill: var(--series-1); } .axis { stroke: var(--grid); stroke-width: 1; }
+.label { fill: var(--text-primary); font-size: 12px; } .value { fill: var(--text-secondary); font-size: 12px; }
+.hit { fill: transparent; } .row:hover .hit, .row:focus .hit { fill: var(--grid); opacity: .35; } .row { outline: none; }
+#tip { position: fixed; pointer-events: none; background: var(--text-primary); color: var(--surface-1); padding: 4px 8px; border-radius: 4px; font-size: 12px; display: none; }
+table { border-collapse: collapse; margin-top: 24px; width: 100%; } th, td { padding: 6px 10px; border-bottom: 1px solid var(--grid); text-align: right; } th[scope=row], thead th:first-child { text-align: left; }
+thead th { color: var(--text-secondary); font-weight: 600; }
+</style></head>
+<body><main class="viz-root">
+<h1>NestJS OpenAPI generators benchmark</h1>
+<p class="meta">2026-10-21 · 10 × Apple M4 · Node v24.21.0 · one bar per tool, sorted best first</p>
+<div class="grid">
+<figure class="card">
+<figcaption><h2>Ease of use</h2><p>Lines changed in the app · lower is better</p></figcaption>
+<svg viewBox="0 0 700 216" role="img" aria-label="Ease of use">
+<line class="axis" x1="190" x2="190" y1="0" y2="216"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased main): 19" data-tip="nestoa (unreleased main): 19">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased main)</text>
+  <rect class="bar" x="190" y="8" width="15.5" height="14" rx="4"/>
+  <text class="value" x="211.49514563106797" y="19">19</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa: 27" data-tip="nestoa: 27">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">nestoa</text>
+  <rect class="bar" x="190" y="34" width="22.0" height="14" rx="4"/>
+  <text class="value" x="218.01941747572815" y="45">27</text>
+</g>
+<g class="row" tabindex="0" aria-label="nest-openapi-gen: 92" data-tip="nest-openapi-gen: 92">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">nest-openapi-gen</text>
+  <rect class="bar" x="190" y="60" width="75.0" height="14" rx="4"/>
+  <text class="value" x="271.02912621359224" y="71">92</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestjs/swagger: 170" data-tip="@nestjs/swagger: 170">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">@nestjs/swagger</text>
+  <rect class="bar" x="190" y="86" width="138.6" height="14" rx="4"/>
+  <text class="value" x="334.6407766990292" y="97">170</text>
+</g>
+<g class="row" tabindex="0" aria-label="typoa: 283" data-tip="typoa: 283">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">typoa</text>
+  <rect class="bar" x="190" y="112" width="230.8" height="14" rx="4"/>
+  <text class="value" x="426.79611650485435" y="123">283</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestia/sdk: 291" data-tip="@nestia/sdk: 291">
+  <rect class="hit" x="0" y="132" width="690" height="26"/>
+  <text class="label" x="180" y="149" text-anchor="end">@nestia/sdk</text>
+  <rect class="bar" x="190" y="138" width="237.3" height="14" rx="4"/>
+  <text class="value" x="433.32038834951453" y="149">291</text>
+</g>
+<g class="row" tabindex="0" aria-label="tsoa: 300" data-tip="tsoa: 300">
+  <rect class="hit" x="0" y="158" width="690" height="26"/>
+  <text class="label" x="180" y="175" text-anchor="end">tsoa</text>
+  <rect class="bar" x="190" y="164" width="244.7" height="14" rx="4"/>
+  <text class="value" x="440.6601941747573" y="175">300</text>
+</g>
+<g class="row" tabindex="0" aria-label="ts-oas: 515" data-tip="ts-oas: 515">
+  <rect class="hit" x="0" y="184" width="690" height="26"/>
+  <text class="label" x="180" y="201" text-anchor="end">ts-oas</text>
+  <rect class="bar" x="190" y="190" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="201">515</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Correctness — core</h2><p>Differences: operations, parameters, bodies, success responses · lower is better</p></figcaption>
+<svg viewBox="0 0 700 216" role="img" aria-label="Correctness — core">
+<line class="axis" x1="190" x2="190" y1="0" y2="216"/>
+<g class="row" tabindex="0" aria-label="@nestjs/swagger: 0" data-tip="@nestjs/swagger: 0">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">@nestjs/swagger</text>
+  <rect class="bar" x="190" y="8" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="19">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="tsoa: 0" data-tip="tsoa: 0">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">tsoa</text>
+  <rect class="bar" x="190" y="34" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="45">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="ts-oas: 3" data-tip="ts-oas: 3">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">ts-oas</text>
+  <rect class="bar" x="190" y="60" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="71">3</text>
+</g>
+<g class="row" tabindex="0" aria-label="typoa: 8" data-tip="typoa: 8">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">typoa</text>
+  <rect class="bar" x="190" y="86" width="2.7" height="14" rx="4"/>
+  <text class="value" x="198.69662921348313" y="97">8</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestia/sdk: 10" data-tip="@nestia/sdk: 10">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">@nestia/sdk</text>
+  <rect class="bar" x="190" y="112" width="3.4" height="14" rx="4"/>
+  <text class="value" x="199.37078651685394" y="123">10</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased main): 60" data-tip="nestoa (unreleased main): 60">
+  <rect class="hit" x="0" y="132" width="690" height="26"/>
+  <text class="label" x="180" y="149" text-anchor="end">nestoa (unreleased main)</text>
+  <rect class="bar" x="190" y="138" width="20.2" height="14" rx="4"/>
+  <text class="value" x="216.22471910112358" y="149">60</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa: 149" data-tip="nestoa: 149">
+  <rect class="hit" x="0" y="158" width="690" height="26"/>
+  <text class="label" x="180" y="175" text-anchor="end">nestoa</text>
+  <rect class="bar" x="190" y="164" width="50.2" height="14" rx="4"/>
+  <text class="value" x="246.22471910112358" y="175">149</text>
+</g>
+<g class="row" tabindex="0" aria-label="nest-openapi-gen: 1246" data-tip="nest-openapi-gen: 1246">
+  <rect class="hit" x="0" y="184" width="690" height="26"/>
+  <text class="label" x="180" y="201" text-anchor="end">nest-openapi-gen</text>
+  <rect class="bar" x="190" y="190" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="201">1246</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Correctness — all</h2><p>Differences incl. errors, constraints, security, docs · lower is better</p></figcaption>
+<svg viewBox="0 0 700 216" role="img" aria-label="Correctness — all">
+<line class="axis" x1="190" x2="190" y1="0" y2="216"/>
+<g class="row" tabindex="0" aria-label="tsoa: 0" data-tip="tsoa: 0">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">tsoa</text>
+  <rect class="bar" x="190" y="8" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="19">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="ts-oas: 4" data-tip="ts-oas: 4">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">ts-oas</text>
+  <rect class="bar" x="190" y="34" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="45">4</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestjs/swagger: 22" data-tip="@nestjs/swagger: 22">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">@nestjs/swagger</text>
+  <rect class="bar" x="190" y="60" width="3.9" height="14" rx="4"/>
+  <text class="value" x="199.859649122807" y="71">22</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestia/sdk: 92" data-tip="@nestia/sdk: 92">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">@nestia/sdk</text>
+  <rect class="bar" x="190" y="86" width="16.1" height="14" rx="4"/>
+  <text class="value" x="212.140350877193" y="97">92</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased main): 250" data-tip="nestoa (unreleased main): 250">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">nestoa (unreleased main)</text>
+  <rect class="bar" x="190" y="112" width="43.9" height="14" rx="4"/>
+  <text class="value" x="239.859649122807" y="123">250</text>
+</g>
+<g class="row" tabindex="0" aria-label="typoa: 304" data-tip="typoa: 304">
+  <rect class="hit" x="0" y="132" width="690" height="26"/>
+  <text class="label" x="180" y="149" text-anchor="end">typoa</text>
+  <rect class="bar" x="190" y="138" width="53.3" height="14" rx="4"/>
+  <text class="value" x="249.33333333333331" y="149">304</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa: 377" data-tip="nestoa: 377">
+  <rect class="hit" x="0" y="158" width="690" height="26"/>
+  <text class="label" x="180" y="175" text-anchor="end">nestoa</text>
+  <rect class="bar" x="190" y="164" width="66.1" height="14" rx="4"/>
+  <text class="value" x="262.140350877193" y="175">377</text>
+</g>
+<g class="row" tabindex="0" aria-label="nest-openapi-gen: 2394" data-tip="nest-openapi-gen: 2394">
+  <rect class="hit" x="0" y="184" width="690" height="26"/>
+  <text class="label" x="180" y="201" text-anchor="end">nest-openapi-gen</text>
+  <rect class="bar" x="190" y="190" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="201">2394</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Speed</h2><p>Median wall time, sources → document · lower is better</p></figcaption>
+<svg viewBox="0 0 700 216" role="img" aria-label="Speed">
+<line class="axis" x1="190" x2="190" y1="0" y2="216"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased main): 20 ms" data-tip="nestoa (unreleased main): 20 ms">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased main)</text>
+  <rect class="bar" x="190" y="8" width="2.9" height="14" rx="4"/>
+  <text class="value" x="198.89336243460292" y="19">20 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa: 50 ms" data-tip="nestoa: 50 ms">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">nestoa</text>
+  <rect class="bar" x="190" y="34" width="7.2" height="14" rx="4"/>
+  <text class="value" x="203.20514968604488" y="45">50 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="tsoa: 792 ms" data-tip="tsoa: 792 ms">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">tsoa</text>
+  <rect class="bar" x="190" y="60" width="113.2" height="14" rx="4"/>
+  <text class="value" x="309.1658061223278" y="71">792 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="ts-oas: 816 ms" data-tip="ts-oas: 816 ms">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">ts-oas</text>
+  <rect class="bar" x="190" y="86" width="116.5" height="14" rx="4"/>
+  <text class="value" x="312.5426992668879" y="97">816 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="typoa: 898 ms" data-tip="typoa: 898 ms">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">typoa</text>
+  <rect class="bar" x="190" y="112" width="128.3" height="14" rx="4"/>
+  <text class="value" x="324.26843702073654" y="123">898 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="nest-openapi-gen: 2.51 s" data-tip="nest-openapi-gen: 2.51 s">
+  <rect class="hit" x="0" y="132" width="690" height="26"/>
+  <text class="label" x="180" y="149" text-anchor="end">nest-openapi-gen</text>
+  <rect class="bar" x="190" y="138" width="358.4" height="14" rx="4"/>
+  <text class="value" x="554.4424371500097" y="149">2.51 s</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestjs/swagger: 2.74 s" data-tip="@nestjs/swagger: 2.74 s">
+  <rect class="hit" x="0" y="158" width="690" height="26"/>
+  <text class="label" x="180" y="175" text-anchor="end">@nestjs/swagger</text>
+  <rect class="bar" x="190" y="164" width="391.7" height="14" rx="4"/>
+  <text class="value" x="587.7169801603443" y="175">2.74 s</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestia/sdk: 2.94 s" data-tip="@nestia/sdk: 2.94 s">
+  <rect class="hit" x="0" y="184" width="690" height="26"/>
+  <text class="label" x="180" y="201" text-anchor="end">@nestia/sdk</text>
+  <rect class="bar" x="190" y="190" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="201">2.94 s</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Memory</h2><p>Median peak RSS · lower is better</p></figcaption>
+<svg viewBox="0 0 700 216" role="img" aria-label="Memory">
+<line class="axis" x1="190" x2="190" y1="0" y2="216"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased main): 8 MB" data-tip="nestoa (unreleased main): 8 MB">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased main)</text>
+  <rect class="bar" x="190" y="8" width="4.8" height="14" rx="4"/>
+  <text class="value" x="200.82892906815022" y="19">8 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa: 46 MB" data-tip="nestoa: 46 MB">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">nestoa</text>
+  <rect class="bar" x="190" y="34" width="28.7" height="14" rx="4"/>
+  <text class="value" x="224.67176634214186" y="45">46 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="tsoa: 415 MB" data-tip="tsoa: 415 MB">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">tsoa</text>
+  <rect class="bar" x="190" y="60" width="258.7" height="14" rx="4"/>
+  <text class="value" x="454.6981919332406" y="71">415 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="nest-openapi-gen: 424 MB" data-tip="nest-openapi-gen: 424 MB">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">nest-openapi-gen</text>
+  <rect class="bar" x="190" y="86" width="264.5" height="14" rx="4"/>
+  <text class="value" x="460.4909596662031" y="97">424 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="ts-oas: 430 MB" data-tip="ts-oas: 430 MB">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">ts-oas</text>
+  <rect class="bar" x="190" y="112" width="267.8" height="14" rx="4"/>
+  <text class="value" x="463.80111265646735" y="123">430 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="typoa: 443 MB" data-tip="typoa: 443 MB">
+  <rect class="hit" x="0" y="132" width="690" height="26"/>
+  <text class="label" x="180" y="149" text-anchor="end">typoa</text>
+  <rect class="bar" x="190" y="138" width="276.2" height="14" rx="4"/>
+  <text class="value" x="472.1641168289291" y="149">443 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestjs/swagger: 509 MB" data-tip="@nestjs/swagger: 509 MB">
+  <rect class="hit" x="0" y="158" width="690" height="26"/>
+  <text class="label" x="180" y="175" text-anchor="end">@nestjs/swagger</text>
+  <rect class="bar" x="190" y="164" width="316.9" height="14" rx="4"/>
+  <text class="value" x="512.9471488178025" y="175">509 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nestia/sdk: 674 MB" data-tip="@nestia/sdk: 674 MB">
+  <rect class="hit" x="0" y="184" width="690" height="26"/>
+  <text class="label" x="180" y="201" text-anchor="end">@nestia/sdk</text>
+  <rect class="bar" x="190" y="190" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="201">674 MB</text>
+</g>
+</svg>
+</figure>
+</div>
+<table><caption style="text-align:left;color:var(--text-secondary)">Table view</caption>
+<thead><tr><th>Tool</th><th>Ease of use</th><th>Correctness — core</th><th>Correctness — all</th><th>Speed</th><th>Memory</th></tr></thead>
+<tbody><tr><th scope="row">nest-openapi-gen</th><td>92</td><td>1246</td><td>2394</td><td>2.51 s</td><td>424 MB</td></tr>
+<tr><th scope="row">@nestia/sdk</th><td>291</td><td>10</td><td>92</td><td>2.94 s</td><td>674 MB</td></tr>
+<tr><th scope="row">@nestjs/swagger</th><td>170</td><td>0</td><td>22</td><td>2.74 s</td><td>509 MB</td></tr>
+<tr><th scope="row">nestoa</th><td>27</td><td>149</td><td>377</td><td>50 ms</td><td>46 MB</td></tr>
+<tr><th scope="row">nestoa (unreleased main)</th><td>19</td><td>60</td><td>250</td><td>20 ms</td><td>8 MB</td></tr>
+<tr><th scope="row">ts-oas</th><td>515</td><td>3</td><td>4</td><td>816 ms</td><td>430 MB</td></tr>
+<tr><th scope="row">tsoa</th><td>300</td><td>0</td><td>0</td><td>792 ms</td><td>415 MB</td></tr>
+<tr><th scope="row">typoa</th><td>283</td><td>8</td><td>304</td><td>898 ms</td><td>443 MB</td></tr></tbody></table>
+<div id="tip" role="tooltip"></div>
+</main>
+<script>
+const tip = document.getElementById('tip');
+document.querySelectorAll('.row').forEach((row) => {
+  const show = (x, y) => { tip.textContent = row.dataset.tip; tip.style.display = 'block'; tip.style.left = (x + 12) + 'px'; tip.style.top = (y + 12) + 'px'; };
+  row.addEventListener('mousemove', (e) => show(e.clientX, e.clientY));
+  row.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+  row.addEventListener('focus', () => { const b = row.getBoundingClientRect(); show(b.left + 200, b.top); });
+  row.addEventListener('blur', () => { tip.style.display = 'none'; });
+});
+</script>
+</body></html>

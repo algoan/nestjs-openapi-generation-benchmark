@@ -1,0 +1,26 @@
+{
+  "tool": "nest-openapi-gen",
+  "packages": [
+    "nest-openapi-gen",
+    "patch-package"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node generate-openapi.js"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "nest-openapi-gen 1.0.20 (latest, 2024) has no CLI: generate-openapi.js calls generate() with prefix '/v1' (the global prefix is repeated by hand). It reads the NestJS decorators and declared types with ts-morph 10 (bundled TypeScript 4.2); no build or boot.",
+    "The published tool does not run on this codebase: a patch-package patch (patches/, counted) fixes only its bugs: a crash on properties without a value declaration (@nestjs/mapped-types DTOs), a crash on enum-member types (`species: Species.CAT`), and the typo 'Path' instead of 'Patch' in its verb list that silently drops every PATCH route.",
+    "Every response is documented as 200 (no @HttpCode, no 201 for POST, a body even for 204), always as application/json (no text/csv), and request bodies are never marked required.",
+    "mongodb ObjectId and Mongoose types are lowered structurally: every _id is an object with toHexString, equals, toJSON\u2026 (most of the extra facts).",
+    "Generic types are not instantiated (DataToPaginate<T> resources become {}), and the PaginationBodyInterceptor envelope is invisible; JSDoc descriptions are computed but never emitted.",
+    "Needs declared return types (3 handlers annotated). The pagination query params of the custom @PaginationParams() decorator are declared with a documentation-only `@Query() _paginationQuery: PaginationQuery` parameter on the 5 paginated handlers (an interface metatype is skipped by ValidationPipe, behaviour unchanged).",
+    "No support at all for security, error responses, or class-validator constraints (only its own @Min/@Max/@Email decorators, not added since they would duplicate class-validator)."
+  ]
+}

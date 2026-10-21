@@ -1,0 +1,28 @@
+{
+  "tool": "ts-oas",
+  "packages": [
+    "ts-oas"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node generate-openapi.mjs"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "ts-oas 0.6.1 (latest) with the app's TypeScript 5.9.3, Node 24; generation runs on the sources, no build step.",
+    "Framework-agnostic: it reads nothing from the NestJS controllers. Every endpoint is re-declared by hand as a TypeScript type (`*.api.ts` beside the controllers: path with the hard-coded `v1` prefix, method, params, query, body, responses by status, security), reusing the app's DTO/model/interface types. Nothing keeps these declarations in sync with the controllers (routes, status codes, guards, pipes, interceptors).",
+    "Pagination (PaginationParams + PaginationBodyInterceptor), error responses (`HttpError` per status), bearer security (global `security` + `security: []` on @Unprotected routes) and handler JSDoc are all re-stated manually in the API types; shared helper types live in `src/core/openapi.ts`.",
+    "Intersection types (`A & { b: string }`) are not flattened for `params`/`query` (parameters silently disappear): named interfaces with `extends` must be used instead.",
+    "class-validator decorators are ignored: integers, formats and constraints are duplicated as JSDoc tags (`@type integer`, `@format email`, `@maxLength`\u2026) on the DTOs/models; `@type` short-circuits the schema to the tag content.",
+    "`@internal` is not honoured: `@ignore` added on `Shelter.isDeleted`.",
+    "Mongo `ObjectId` is expanded as the bson class: a generic `schemaProcessor` in the generation script maps it to `{ type: string }`.",
+    "`requestBody.required` has no built-in annotation: enabled with `customKeywords: ['required']` + `customKeywordPrefix: ''` and `@body.required true` on each operation.",
+    "Request headers are not supported (README TODO): the optional `x-request-id` header of POST /adoptions cannot be documented.",
+    "Generic schemas get names like `PaginatedData<Shelter>` in components; operationIds are the type names."
+  ]
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year#description",
+    "expected": "The year of the statistics"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  }
+]

@@ -1,0 +1,2497 @@
+{
+  "date": "2026-10-21T18:52:05.939Z",
+  "machine": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpus": "10 × Apple M4",
+    "node": "v24.21.0"
+  },
+  "variants": [
+    {
+      "name": "nest-openapi-gen",
+      "tool": "nest-openapi-gen",
+      "versions": {
+        "nest-openapi-gen": "1.0.20",
+        "patch-package": "8.0.1"
+      },
+      "approach": "static",
+      "notes": [
+        "nest-openapi-gen 1.0.20 (latest, 2024) has no CLI: generate-openapi.js calls generate() with prefix '/v1' (the global prefix is repeated by hand). It reads the NestJS decorators and declared types with ts-morph 10 (bundled TypeScript 4.2); no build or boot.",
+        "The published tool does not run on this codebase: a patch-package patch (patches/, counted) fixes only its bugs: a crash on properties without a value declaration (@nestjs/mapped-types DTOs), a crash on enum-member types (`species: Species.CAT`), and the typo 'Path' instead of 'Patch' in its verb list that silently drops every PATCH route.",
+        "Every response is documented as 200 (no @HttpCode, no 201 for POST, a body even for 204), always as application/json (no text/csv), and request bodies are never marked required.",
+        "mongodb ObjectId and Mongoose types are lowered structurally: every _id is an object with toHexString, equals, toJSON… (most of the extra facts).",
+        "Generic types are not instantiated (DataToPaginate<T> resources become {}), and the PaginationBodyInterceptor envelope is invisible; JSDoc descriptions are computed but never emitted.",
+        "Needs declared return types (3 handlers annotated). The pagination query params of the custom @PaginationParams() decorator are declared with a documentation-only `@Query() _paginationQuery: PaginationQuery` parameter on the 5 paginated handlers (an interface metatype is skipped by ValidationPipe, behaviour unchanged).",
+        "No support at all for security, error responses, or class-validator constraints (only its own @Min/@Max/@Email decorators, not added since they would duplicate class-validator)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node generate-openapi.js",
+            "wallMs": {
+              "median": 2509.0615,
+              "mean": 2541.6276167999995,
+              "min": 2455.463459,
+              "max": 2661.783875,
+              "stddev": 75.0616151442728
+            },
+            "cpuMs": {
+              "median": 3510,
+              "mean": 3506,
+              "min": 3400,
+              "max": 3590,
+              "stddev": 62.80127387243033
+            },
+            "maxRssMb": {
+              "median": 424.484375,
+              "mean": 424.31875,
+              "min": 414.53125,
+              "max": 435.1875,
+              "stddev": 7.326499686497639
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2509.0615,
+            "mean": 2541.6276167999995,
+            "min": 2455.463459,
+            "max": 2661.783875,
+            "stddev": 75.0616151442728
+          },
+          "cpuMs": {
+            "median": 3510,
+            "mean": 3506,
+            "min": 3400,
+            "max": 3590,
+            "stddev": 62.80127387243033
+          },
+          "maxRssMb": {
+            "median": 424.484375,
+            "mean": 424.31875,
+            "min": 414.53125,
+            "max": 435.1875,
+            "stddev": 7.326499686497639
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 168,
+            "missing": 0,
+            "mismatch": 30,
+            "extra": 377,
+            "differences": 407
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 256,
+            "missing": 0,
+            "mismatch": 16,
+            "extra": 0,
+            "differences": 16
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 903,
+            "missing": 326,
+            "mismatch": 46,
+            "extra": 451,
+            "differences": 823
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 0,
+            "missing": 828,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 828
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 11,
+            "missing": 75,
+            "mismatch": 14,
+            "extra": 0,
+            "differences": 89
+          },
+          "security": {
+            "expected": 29,
+            "matched": 4,
+            "missing": 0,
+            "mismatch": 25,
+            "extra": 0,
+            "differences": 25
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 0,
+            "missing": 206,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 206
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1356,
+          "missing": 326,
+          "mismatch": 92,
+          "extra": 828,
+          "differences": 1246
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 1371,
+          "missing": 1435,
+          "mismatch": 131,
+          "extra": 828,
+          "differences": 2394
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 146,
+        "warnings": 0,
+        "infos": 388,
+        "total": 534,
+        "byId": {
+          "response-property-type-changed": 28,
+          "response-required-property-removed": 53,
+          "response-success-status-removed": 9,
+          "response-media-type-removed": 1,
+          "response-property-max-unset": 2,
+          "response-property-min-unset": 2,
+          "response-property-type-generalized": 2,
+          "response-property-became-not-enum": 1,
+          "request-property-became-required": 7,
+          "request-parameter-type-changed": 29,
+          "response-property-max-length-unset": 8,
+          "response-property-became-optional": 1,
+          "request-parameter-became-required": 1,
+          "response-property-one-of-added": 1,
+          "response-body-one-of-added": 1,
+          "api-schema-removed": 2,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-tag-added": 29,
+          "request-parameter-default-value-removed": 10,
+          "request-parameter-type-generalized": 12,
+          "response-non-success-status-removed": 92,
+          "response-optional-property-removed": 15,
+          "response-required-property-added": 138,
+          "api-security-anonymous-access-added": 25,
+          "request-body-became-optional": 9,
+          "request-property-max-length-unset": 13,
+          "request-property-max-unset": 6,
+          "request-property-min-items-unset": 2,
+          "request-property-min-length-unset": 3,
+          "request-property-min-unset": 2,
+          "request-property-type-generalized": 9,
+          "response-success-status-added": 9,
+          "response-media-type-added": 1,
+          "request-property-max-items-unset": 2,
+          "response-optional-property-added": 2,
+          "response-property-became-required": 2,
+          "request-parameter-max-length-unset": 1,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 9,
+        "filesAdded": 2,
+        "linesAdded": 81,
+        "linesRemoved": 11,
+        "linesChanged": 92,
+        "sourceFilesTouched": 6,
+        "sourceLinesChanged": 35,
+        "configLinesChanged": 57,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "nest-openapi-gen",
+          "patch-package"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 14.11328125,
+        "changes": [
+          {
+            "file": "generate-openapi.js",
+            "status": "added",
+            "kind": "config",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 4,
+            "removed": 1
+          },
+          {
+            "file": "patches/nest-openapi-gen+1.0.20.patch",
+            "status": "added",
+            "kind": "config",
+            "added": 49,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 2
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 3
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 2
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/core/pagination/pagination.interfaces.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 10,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 2
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestia",
+      "tool": "@nestia/sdk",
+      "versions": {
+        "@nestia/sdk": "11.3.4",
+        "@nestia/core": "11.3.4",
+        "typia": "12.2.1",
+        "ts-patch": "3.3.0"
+      },
+      "approach": "compiler",
+      "notes": [
+        "Version: @nestia/sdk 11.3.4 (typia 12, ts-patch 3), not the latest 12.x-14.x. Nestia 12+ runs on ttsc, which is built on typescript-go: it needs TypeScript 7 (`ttsc: platform-specific TypeScript binary not found (@typescript/typescript-darwin-arm64)`), and the app stays on TypeScript 5.9. ts-patch 4 needs TypeScript >= 6, so ts-patch 3.3.0 is used.",
+        "Setup: the three transform plugins go in tsconfig.json. `nestia swagger` runs the code with ts-node, and TS_NODE_COMPILER=ts-patch/compiler applies the transforms without patching node_modules/typescript, so `nest build` is unchanged. nestia.config.ts boots the AppModule with `{ preview: true }`, so no providers and no MongoDB connection, and calls setupApp() to get the `v1` global prefix. nestia.config.ts is excluded from tsconfig.build.json.",
+        "Nestia reads the TypeScript types of the handlers. Handlers without a return type infer mongoose HydratedDocument, which fails with 'nonsensible intersection', so 4 return types were added. Path parameters must be atomic types: `id: ObjectId` (after ParseObjectIdPipe) is rejected. ParseObjectIdPipe now only validates and returns the string, and the controllers call `new ObjectId(id)` for the services. This is the largest change (~50 lines) and keeps the 404 behaviour.",
+        "Custom param decorators (@User, @PaginationParams) are ignored and interceptors are not analysed. An ApiPaginated() decorator built on @nestia/core's SwaggerCustomizer adds the page/limit/filter/sort query parameters and rewrites the DataToPaginate<T> response into a PaginatedData<T> envelope. The PaginationLinks schema comes from typia.json.schema<PaginationLinks>(), which is evaluated lazily in the closure, so it only runs under the nestia transform, never at runtime.",
+        "Security: nestia has no global security. It reads `@security` JSDoc tags or the `swagger/apiSecurity` metadata of @nestjs/swagger's @ApiBearerAuth. The existing Roles decorator now sets that metadata, on the method or the class, and adds 401/403 HttpError responses through SwaggerCustomizer. @Unprotected routes therefore stay unsecured.",
+        "Error responses: there is no global or filter-based mechanism. `@throws 404` JSDoc gives an empty schema and @TypedException<HttpError> needs one decorator per status, so a small ApiErrors(...statuses) SwaggerCustomizer helper is used, one line per route, for 400/404/409.",
+        "GET /v1/books/export cannot be documented: @nestia/sdk only accepts application/json, x-www-form-urlencoded and text/plain responses, and the text/csv route aborts the whole generation. It is excluded with the `@ignore` JSDoc tag.",
+        "Not fixed: void 204 DELETE responses get an empty `application/json` content. `@Query('includeAdopted', new DefaultValuePipe(false), ParseBoolPipe) includeAdopted: boolean` is documented as required because pipes are not analysed. class-validator constraints (maxLength, min/max, email, integer…) are not read. Nestia only understands typia tags (`string & tags.MaxLength<50>`), which would mean rewriting the DTO types.",
+        "A single field header (@Headers('x-request-id')) is dropped. Only header objects are documented, so the handler now takes `@Headers() headers: { 'x-request-id'?: string }`.",
+        "Operation JSDoc becomes `description`/`summary`. Path, query and body names and descriptions, union return types (Cat | Dog), ObjectId/Date serialised as string (via toJSON), mapped-types DTOs and the @EventPattern controller are handled out of the box."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "TS_NODE_COMPILER=ts-patch/compiler node node_modules/@nestia/sdk/lib/executable/sdk.js swagger",
+            "wallMs": {
+              "median": 2939.958333,
+              "mean": 3066.0642834,
+              "min": 2830.844375,
+              "max": 3636.98375,
+              "stddev": 290.325007835921
+            },
+            "cpuMs": {
+              "median": 4560,
+              "mean": 4706,
+              "min": 4380,
+              "max": 5530,
+              "stddev": 417.976075870378
+            },
+            "maxRssMb": {
+              "median": 674.0625,
+              "mean": 670.325,
+              "min": 618.28125,
+              "max": 693.234375,
+              "stddev": 27.384197584441836
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2939.958333,
+            "mean": 3066.0642834,
+            "min": 2830.844375,
+            "max": 3636.98375,
+            "stddev": 290.325007835921
+          },
+          "cpuMs": {
+            "median": 4560,
+            "mean": 4706,
+            "min": 4380,
+            "max": 5530,
+            "stddev": 417.976075870378
+          },
+          "maxRssMb": {
+            "median": 674.0625,
+            "mean": 670.325,
+            "min": 618.28125,
+            "max": 693.234375,
+            "stddev": 27.384197584441836
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 28,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 197,
+            "missing": 0,
+            "mismatch": 1,
+            "extra": 0,
+            "differences": 1
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1271,
+            "missing": 4,
+            "mismatch": 0,
+            "extra": 4,
+            "differences": 8
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 20,
+            "missing": 80,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 80
+          },
+          "security": {
+            "expected": 29,
+            "matched": 28,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 205,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1768,
+          "missing": 5,
+          "mismatch": 1,
+          "extra": 4,
+          "differences": 10
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2849,
+          "missing": 87,
+          "mismatch": 1,
+          "extra": 4,
+          "differences": 92
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 233,
+        "warnings": 0,
+        "infos": 269,
+        "total": 502,
+        "byId": {
+          "request-parameter-enum-value-removed": 12,
+          "response-property-list-of-types-widened": 30,
+          "response-property-max-unset": 4,
+          "response-property-min-unset": 4,
+          "response-property-one-of-added": 43,
+          "response-property-type-changed": 54,
+          "response-property-type-generalized": 4,
+          "api-security-removed": 25,
+          "request-property-enum-value-removed": 42,
+          "api-path-removed-without-deprecation": 1,
+          "response-property-max-length-unset": 12,
+          "request-parameter-became-required": 1,
+          "response-body-one-of-added": 1,
+          "api-schema-removed": 8,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "request-parameter-type-generalized": 6,
+          "response-property-enum-value-removed": 138,
+          "api-security-added": 25,
+          "request-property-max-length-unset": 13,
+          "request-property-max-unset": 6,
+          "request-property-min-items-unset": 2,
+          "request-property-min-length-unset": 3,
+          "request-property-min-unset": 12,
+          "request-property-one-of-added": 13,
+          "request-property-type-generalized": 22,
+          "response-media-type-added": 4,
+          "response-property-const-added": 8,
+          "request-property-max-items-unset": 2,
+          "request-parameter-max-length-unset": 1,
+          "request-parameter-min-unset": 1,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 15,
+        "filesAdded": 3,
+        "linesAdded": 221,
+        "linesRemoved": 70,
+        "linesChanged": 291,
+        "sourceFilesTouched": 11,
+        "sourceLinesChanged": 258,
+        "configLinesChanged": 33,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "@nestia/core",
+          "@nestia/sdk",
+          "ts-patch",
+          "typia"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 61.5078125,
+        "changes": [
+          {
+            "file": "nestia.config.ts",
+            "status": "added",
+            "kind": "config",
+            "added": 18,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 5,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 37,
+            "removed": 23
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 5
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 22,
+            "removed": 15
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 13,
+            "removed": 8
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 1
+          },
+          {
+            "file": "src/core/auth/roles.decorator.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 2
+          },
+          {
+            "file": "src/core/pagination/index.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination-swagger.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 41,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pipes/parse-object-id.pipe.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 4
+          },
+          {
+            "file": "src/core/swagger/api-errors.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 26,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 17,
+            "removed": 9
+          },
+          {
+            "file": "tsconfig.build.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "tsconfig.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 6,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestjs-swagger",
+      "tool": "@nestjs/swagger",
+      "versions": {
+        "@nestjs/swagger": "11.4.7"
+      },
+      "approach": "runtime",
+      "notes": [
+        "Uses @nestjs/swagger 11.4.7, the latest 11.x: 12.x requires NestJS 12.",
+        "Nest CLI plugin (classValidatorShim + introspectComments) with dtoFileNameSuffix extended to .model.ts / .interface.ts / .interfaces.ts, so Mongoose models and JSDoc are reflected without @ApiProperty; requires `nest build`.",
+        "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and reuses setupApp() for the v1 prefix.",
+        "The plugin only reads classes: the response interfaces (AdoptionReceipt, ShelterStats, PaginationLinks, HttpError) were turned into classes; HealthStatus lives in a controller file, so it needs manual @ApiProperty.",
+        "mongodb ObjectId properties make the plugin emit require(\"bson/bson\"), which crashes at runtime (package exports): each one needs @ApiProperty({ type: String }). ObjectId path params are reflected as a $ref to an empty ObjectId schema: the generation script overrides components.schemas.ObjectId with { type: string } (generic for any Mongo project).",
+        "@nestjs/mapped-types helpers are not reflected: PartialType/OmitType imported from @nestjs/swagger instead.",
+        "The pagination envelope (interceptor) and query params (custom param decorator) are invisible to reflection: reusable ApiPaginatedResponse(Model) composite decorator (ApiExtraModels + getSchemaPath + ApiQuery).",
+        "Handlers without return type infer Promise<HydratedDocument<T>> (documented as a bare object), unions (Cat | Dog) are not supported, Pipe-based optional query/header params are reflected as required: explicit @ApiOkResponse / oneOf / @ApiQuery / @ApiHeader needed.",
+        "Security and 401/403 come from composing the existing @Roles() decorator with ApiBearerAuth + error responses (applyDecorators); other error responses (400/404/409) need one decorator per route or controller, using HttpError as the shared schema.",
+        "Not fixed: the class-validator shim ignores @IsInt (no integer type) and @ArrayMaxSize; JSDoc @param descriptions are not read for path/query params (only method summaries and property comments)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "build",
+            "command": "node node_modules/@nestjs/cli/bin/nest.js build",
+            "wallMs": {
+              "median": 2263.169125,
+              "mean": 2236.1648082,
+              "min": 2134.175583,
+              "max": 2312.302,
+              "stddev": 60.78527943645238
+            },
+            "cpuMs": {
+              "median": 3170,
+              "mean": 3140,
+              "min": 2929.9999999999995,
+              "max": 3370,
+              "stddev": 161.49303390549093
+            },
+            "maxRssMb": {
+              "median": 508.671875,
+              "mean": 507.81875,
+              "min": 504.34375,
+              "max": 511.015625,
+              "stddev": 2.4728920947950805
+            }
+          },
+          {
+            "name": "generate",
+            "command": "node dist/generate-openapi.js",
+            "wallMs": {
+              "median": 484.330667,
+              "mean": 488.6170668,
+              "min": 429.678,
+              "max": 552.195667,
+              "stddev": 38.910656263567624
+            },
+            "cpuMs": {
+              "median": 480,
+              "mean": 480,
+              "min": 440.00000000000006,
+              "max": 520,
+              "stddev": 31.62277660168379
+            },
+            "maxRssMb": {
+              "median": 139.25,
+              "mean": 139.234375,
+              "min": 139.015625,
+              "max": 139.390625,
+              "stddev": 0.12616643273866468
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2741.98,
+            "mean": 2724.7818749999997,
+            "min": 2618.390667,
+            "max": 2815.364792,
+            "stddev": 64.71178194270155
+          },
+          "cpuMs": {
+            "median": 3650,
+            "mean": 3620,
+            "min": 3369.9999999999995,
+            "max": 3820,
+            "stddev": 162.72676485446405
+          },
+          "maxRssMb": {
+            "median": 508.671875,
+            "mean": 507.81875,
+            "min": 504.34375,
+            "max": 511.015625,
+            "stddev": 2.4728920947950805
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 86,
+            "missing": 14,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 14
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 198,
+            "missing": 8,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 8
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2915,
+          "missing": 22,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 22
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 31,
+        "warnings": 0,
+        "infos": 106,
+        "total": 137,
+        "byId": {
+          "response-property-type-generalized": 4,
+          "api-security-removed": 25,
+          "response-property-one-of-added": 1,
+          "response-body-one-of-added": 1,
+          "api-schema-removed": 8,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "api-tag-added": 29,
+          "api-security-added": 25,
+          "request-property-type-generalized": 6,
+          "request-property-max-items-unset": 2,
+          "request-parameter-type-generalized": 2,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 26,
+        "filesAdded": 2,
+        "linesAdded": 154,
+        "linesRemoved": 16,
+        "linesChanged": 170,
+        "sourceFilesTouched": 24,
+        "sourceLinesChanged": 157,
+        "configLinesChanged": 13,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "@nestjs/swagger"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 17.05078125,
+        "changes": [
+          {
+            "file": "nest-cli.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 11,
+            "removed": 1
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/interfaces/adoption-receipt.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/models/adoption.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dto/update-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/models/animal.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/cat.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/dog.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/app.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 1
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 11,
+            "removed": 1
+          },
+          {
+            "file": "src/books/dto/replace-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/core/auth/roles.decorator.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 2
+          },
+          {
+            "file": "src/core/interfaces/http-error.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/core/pagination/api-paginated-response.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 28,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/index.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination.interfaces.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/generate-openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 20,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/update-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/shelters/interfaces/shelter-stats.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/shelters/models/shelter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestoa",
+      "tool": "nestoa",
+      "versions": {
+        "@algoan/nestoa": "0.1.7"
+      },
+      "approach": "static",
+      "notes": [
+        "Published @algoan/nestoa 0.1.7 (latest on GitHub Packages), configured from its README (v0.1.7). The docs/ folder of the nestoa repository describes the unreleased main branch (security option, mapped-types helpers, @Header media types, DefaultValuePipe, HttpStatus members, --strict…), none of which 0.1.7 supports.",
+        "Global prefix not detected: setGlobalPrefix is called in src/setup.ts (not main.ts) with a constant imported from constants.ts, so basePath: /v1 is set in nestoa.config.json.",
+        "No return-type inference: the 3 handlers without an annotation (shelters/cats/adoptions findOne) produced a 200 without body; return types were added.",
+        "@HttpCode(HttpStatus.OK) is ignored (POST stays 201); replaced with @HttpCode(200) on approve/reject.",
+        "DefaultValuePipe does not make the query parameter optional: includeAdopted is documented as required (making the parameter optional in TypeScript breaks the type check of the service call, so it was left as is).",
+        "Classes extending @nestjs/mapped-types helpers (PartialType, OmitType) lose every inherited property: the PATCH shelters, PATCH cats and PUT books bodies only contain their own fields (84 core differences). Not fixable without rewriting the DTOs.",
+        "@PaginationParams() can only be aliased to 'ignore' (or to a body/query/param/header kind): the page/limit/filter/sort query parameters it reads cannot be declared, so they are missing on the 5 paginated routes. The PaginationBodyInterceptor generics are lowered correctly (resources/pagination envelope).",
+        "@Header('Content-Type', 'text/csv') is ignored: the CSV export is documented as application/json.",
+        "No security output at all in 0.1.7 (no securitySchemes, no per-operation security), although the global AuthGuard and @Unprotected() are understood for the 401 responses.",
+        "class-validator constraints (IsInt, MaxLength, Min, IsEmail…) are not read; numbers are never integer. The Error component types status as integer instead of number.",
+        "Errors thrown in services were declared with @throws JSDoc tags (400 for filter/sort parsing on paginated routes, 404/409 on books); 401/403/404 from guards, Roles and ParseObjectIdPipe, and 409 thrown in handlers, were detected without configuration.",
+        "The 0.1.7 CLI only has -c, -o and --print-config (no --strict, no --openapi-version)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node_modules/.bin/nestoa",
+            "wallMs": {
+              "median": 50.435333,
+              "mean": 51.8886916,
+              "min": 50.365292,
+              "max": 55.957292,
+              "stddev": 2.1611851209021977
+            },
+            "cpuMs": {
+              "median": 30,
+              "mean": 30,
+              "min": 30,
+              "max": 30,
+              "stddev": 0
+            },
+            "maxRssMb": {
+              "median": 46.015625,
+              "mean": 46.028125,
+              "min": 46,
+              "max": 46.09375,
+              "stddev": 0.03479852726768764
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 50.435333,
+            "mean": 51.8886916,
+            "min": 50.365292,
+            "max": 55.957292,
+            "stddev": 2.1611851209021977
+          },
+          "cpuMs": {
+            "median": 30,
+            "mean": 30,
+            "min": 30,
+            "max": 30,
+            "stddev": 0
+          },
+          "maxRssMb": {
+            "median": 46.015625,
+            "mean": 46.028125,
+            "min": 46,
+            "max": 46.09375,
+            "stddev": 0.03479852726768764
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 137,
+            "missing": 60,
+            "mismatch": 1,
+            "extra": 0,
+            "differences": 61
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 188,
+            "missing": 84,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 84
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1273,
+            "missing": 2,
+            "mismatch": 0,
+            "extra": 2,
+            "differences": 4
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 0,
+            "missing": 100,
+            "mismatch": 0,
+            "extra": 92,
+            "differences": 192
+          },
+          "security": {
+            "expected": 29,
+            "matched": 4,
+            "missing": 0,
+            "mismatch": 25,
+            "extra": 0,
+            "differences": 25
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 195,
+            "missing": 11,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 11
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1627,
+          "missing": 146,
+          "mismatch": 1,
+          "extra": 2,
+          "differences": 149
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2654,
+          "missing": 257,
+          "mismatch": 26,
+          "extra": 94,
+          "differences": 377
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 34,
+        "warnings": 48,
+        "infos": 181,
+        "total": 263,
+        "byId": {
+          "new-required-request-parameter": 2,
+          "response-property-max-unset": 4,
+          "response-property-min-unset": 4,
+          "response-property-type-generalized": 4,
+          "response-media-type-removed": 1,
+          "response-property-max-length-unset": 12,
+          "response-property-type-changed": 4,
+          "request-parameter-became-required": 1,
+          "response-property-one-of-added": 1,
+          "response-body-one-of-added": 1,
+          "request-parameter-removed": 26,
+          "request-property-removed": 22,
+          "api-schema-removed": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-tag-added": 29,
+          "response-property-type-specialized": 92,
+          "api-security-anonymous-access-added": 25,
+          "request-property-max-length-unset": 9,
+          "request-property-max-unset": 3,
+          "request-property-min-items-unset": 1,
+          "request-property-min-length-unset": 2,
+          "request-property-min-unset": 7,
+          "request-property-type-generalized": 5,
+          "response-media-type-added": 1,
+          "request-property-max-items-unset": 1,
+          "request-parameter-type-generalized": 1,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 8,
+        "filesAdded": 2,
+        "linesAdded": 22,
+        "linesRemoved": 5,
+        "linesChanged": 27,
+        "sourceFilesTouched": 5,
+        "sourceLinesChanged": 18,
+        "configLinesChanged": 9,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "@algoan/nestoa"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 6.5546875,
+        "changes": [
+          {
+            "file": ".npmrc",
+            "status": "added",
+            "kind": "config",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "nestoa.config.json",
+            "status": "added",
+            "kind": "config",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 3
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestoa-main",
+      "tool": "nestoa (unreleased main)",
+      "version": "main@46b4f83",
+      "versions": {},
+      "approach": "static",
+      "notes": [
+        "Unreleased: built from the main branch of algoan/nestoa (219 commits after v0.1.7) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.",
+        "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (ignore); the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
+        "Handler return types are not inferred: a handler without one is documented with an empty 200, without any warning even with --strict. 3 return types were added.",
+        "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines); the 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.",
+        "A custom param decorator can only be mapped to a known kind or ignored: the page/limit/filter/sort query params read by @PaginationParams() cannot be declared (60 core facts).",
+        "class-validator constraints are not read (no integer, minimum/maximum, min/maxLength, min/maxItems, email); the built-in Error component types status as integer while the app's HttpError declares number."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "../../.tools/bin/nestoa-main",
+            "wallMs": {
+              "median": 20.25325,
+              "mean": 20.6682748,
+              "min": 19.626416,
+              "max": 22.311666,
+              "stddev": 0.9293135149245166
+            },
+            "cpuMs": {
+              "median": 0,
+              "mean": 0,
+              "min": 0,
+              "max": 0,
+              "stddev": 0
+            },
+            "maxRssMb": {
+              "median": 7.75,
+              "mean": 7.790625,
+              "min": 7.75,
+              "max": 7.859375,
+              "stddev": 0.05
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 20.25325,
+            "mean": 20.6682748,
+            "min": 19.626416,
+            "max": 22.311666,
+            "stddev": 0.9293135149245166
+          },
+          "cpuMs": {
+            "median": 0,
+            "mean": 0,
+            "min": 0,
+            "max": 0,
+            "stddev": 0
+          },
+          "maxRssMb": {
+            "median": 7.75,
+            "mean": 7.790625,
+            "min": 7.75,
+            "max": 7.859375,
+            "stddev": 0.05
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 138,
+            "missing": 60,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 60
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 2,
+            "missing": 98,
+            "mismatch": 0,
+            "extra": 92,
+            "differences": 190
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 206,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1714,
+          "missing": 60,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 60
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2779,
+          "missing": 158,
+          "mismatch": 0,
+          "extra": 92,
+          "differences": 250
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 28,
+        "warnings": 20,
+        "infos": 202,
+        "total": 250,
+        "byId": {
+          "response-property-max-unset": 4,
+          "response-property-min-unset": 4,
+          "response-property-type-generalized": 4,
+          "response-property-max-length-unset": 12,
+          "response-property-type-changed": 4,
+          "request-parameter-removed": 20,
+          "api-schema-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "api-tag-added": 29,
+          "response-property-type-specialized": 92,
+          "request-property-max-length-unset": 13,
+          "request-property-max-unset": 6,
+          "request-property-min-items-unset": 2,
+          "request-property-min-length-unset": 3,
+          "request-property-min-unset": 12,
+          "request-property-type-generalized": 9,
+          "request-property-max-items-unset": 2,
+          "request-parameter-max-length-unset": 1,
+          "request-parameter-min-unset": 1,
+          "request-parameter-type-generalized": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 6,
+        "filesAdded": 1,
+        "linesAdded": 16,
+        "linesRemoved": 3,
+        "linesChanged": 19,
+        "sourceFilesTouched": 5,
+        "sourceLinesChanged": 14,
+        "configLinesChanged": 5,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 0,
+        "changes": [
+          {
+            "file": "nestoa.config.json",
+            "status": "added",
+            "kind": "config",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "ts-oas",
+      "tool": "ts-oas",
+      "versions": {
+        "ts-oas": "0.6.1"
+      },
+      "approach": "static",
+      "notes": [
+        "ts-oas 0.6.1 (latest) with the app's TypeScript 5.9.3, Node 24; generation runs on the sources, no build step.",
+        "Framework-agnostic: it reads nothing from the NestJS controllers. Every endpoint is re-declared by hand as a TypeScript type (`*.api.ts` beside the controllers: path with the hard-coded `v1` prefix, method, params, query, body, responses by status, security), reusing the app's DTO/model/interface types. Nothing keeps these declarations in sync with the controllers (routes, status codes, guards, pipes, interceptors).",
+        "Pagination (PaginationParams + PaginationBodyInterceptor), error responses (`HttpError` per status), bearer security (global `security` + `security: []` on @Unprotected routes) and handler JSDoc are all re-stated manually in the API types; shared helper types live in `src/core/openapi.ts`.",
+        "Intersection types (`A & { b: string }`) are not flattened for `params`/`query` (parameters silently disappear): named interfaces with `extends` must be used instead.",
+        "class-validator decorators are ignored: integers, formats and constraints are duplicated as JSDoc tags (`@type integer`, `@format email`, `@maxLength`…) on the DTOs/models; `@type` short-circuits the schema to the tag content.",
+        "`@internal` is not honoured: `@ignore` added on `Shelter.isDeleted`.",
+        "Mongo `ObjectId` is expanded as the bson class: a generic `schemaProcessor` in the generation script maps it to `{ type: string }`.",
+        "`requestBody.required` has no built-in annotation: enabled with `customKeywords: ['required']` + `customKeywordPrefix: ''` and `@body.required true` on each operation.",
+        "Request headers are not supported (README TODO): the optional `x-request-id` header of POST /adoptions cannot be documented.",
+        "Generic schemas get names like `PaginatedData<Shelter>` in components; operationIds are the type names."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node generate-openapi.mjs",
+            "wallMs": {
+              "median": 815.787333,
+              "mean": 821.8008581999999,
+              "min": 796.6655,
+              "max": 858.841791,
+              "stddev": 20.444927751380884
+            },
+            "cpuMs": {
+              "median": 1650,
+              "mean": 1654,
+              "min": 1609.9999999999998,
+              "max": 1720.0000000000002,
+              "stddev": 37.20215047547669
+            },
+            "maxRssMb": {
+              "median": 429.796875,
+              "mean": 429.984375,
+              "min": 429.625,
+              "max": 430.71875,
+              "stddev": 0.4009266609992406
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 815.787333,
+            "mean": 821.8008581999999,
+            "min": 796.6655,
+            "max": 858.841791,
+            "stddev": 20.444927751380884
+          },
+          "cpuMs": {
+            "median": 1650,
+            "mean": 1654,
+            "min": 1609.9999999999998,
+            "max": 1720.0000000000002,
+            "stddev": 37.20215047547669
+          },
+          "maxRssMb": {
+            "median": 429.796875,
+            "mean": 429.984375,
+            "min": 429.625,
+            "max": 430.71875,
+            "stddev": 0.4009266609992406
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 195,
+            "missing": 3,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 3
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 100,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 205,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1771,
+          "missing": 3,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 3
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2933,
+          "missing": 4,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 4
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 55,
+        "warnings": 1,
+        "infos": 59,
+        "total": 115,
+        "byId": {
+          "response-property-list-of-types-widened": 30,
+          "api-security-removed": 25,
+          "request-parameter-removed": 1,
+          "api-global-security-added": 1,
+          "api-schema-removed": 1,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "api-security-added": 25
+        }
+      },
+      "ease": {
+        "filesTouched": 18,
+        "filesAdded": 7,
+        "linesAdded": 514,
+        "linesRemoved": 1,
+        "linesChanged": 515,
+        "sourceFilesTouched": 16,
+        "sourceLinesChanged": 489,
+        "configLinesChanged": 26,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "ts-oas"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 1.046875,
+        "changes": [
+          {
+            "file": "generate-openapi.mjs",
+            "status": "added",
+            "kind": "config",
+            "added": 23,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.api.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 85,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/dto/create-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/dto/reject-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/models/adopter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.api.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 141,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/create-animal.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/search-animals.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/app.api.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 12,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.api.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 81,
+            "removed": 0
+          },
+          {
+            "file": "src/books/dto/create-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/author.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/core/openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 55,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/create-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/address.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/shelter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.api.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 81,
+            "removed": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "tsoa",
+      "tool": "tsoa",
+      "versions": {
+        "tsoa": "6.6.0"
+      },
+      "approach": "static",
+      "notes": [
+        "tsoa 6.6.0: latest stable release (npm `latest` is 7.0.0-alpha.0 and `next` is 6.0.0-rc.5, both prereleases). Works with TypeScript 5.9. Only `tsoa spec` is used (no generated express routes), OpenAPI 3.0 (no 3.1 support in 6.x).",
+        "tsoa matches decorators by identifier name and is not NestJS-aware. Nest's `@Get`/`@Post`/`@Body`/`@Query('x')` happen to be recognised. Every controller needs `@Route` beside `@Controller`, and every parameter tsoa must not document (`@User()`, `@PaginationParams()`, whole-object `@Query()`) needs `@Inject()`. Undecorated parameters, `@Param` included, are treated as path params named after the variable.",
+        "Query DTOs and pagination query params: tsoa forbids mixing `@Query` and `@Queries` in one method, so each paginated/search route gets one extra trailing tsoa-only `@Queries() _query?: XxxQuery` parameter (Nest injects undefined), backed by small `PaginationQuery` / `...Query extends ...` interfaces.",
+        "Pagination envelope: the interceptor is invisible and the success schema always comes from the return type (`DataToPaginate<T>`). A `@Response` with the same status code is overwritten, so the documented body comes from an extra trailing `@Res() _paginated?: TsoaResponse<200, PaginatedData<T>>` parameter (responses from `@Res` parameters are applied after the success response).",
+        "`@nestjs/mapped-types` classes (`extends PartialType(OmitType(...))`) crash the type resolver, so each mapped DTO gets a merged interface (`Partial<Omit<...>>`) marked `@tsoaModel`.",
+        "Mongo `ObjectId` fails because mongoose augments the bson interface, giving two declarations tsoa cannot merge. Fixed with a third augmentation marked `@tsoaModel` in `src/types/object-id.ts`, added to `controllerPathGlobs` (`.d.ts` files are ignored). ObjectId is then documented as string via its `toJSON`.",
+        "Handlers without a return type are inferred, but Mongoose `HydratedDocument` is unresolvable, so 3 handlers got an explicit `Promise<Model>`. POST creates need `@SuccessResponse(201)`, since tsoa defaults to 200 and does not read `@HttpCode`. The CSV route needs `@Produces('text/csv')`. Security uses `rootSecurity` and `@NoSecurity()` on `@Unprotected()` routes. Error bodies are listed by hand with `@Response<HttpError>(code)` on classes and methods. `@ignore` hides `isDeleted`.",
+        "class-validator constraints are not read: they are duplicated as JSDoc tags (`@maxLength`, `@minimum`, `@isInt`, `@format email`, `@minItems`…). tsoa always emits `format: double` / `int32` on numbers (no option to turn it off); the comparator ignores numeric formats.",
+        "`noImplicitAdditionalProperties: ignore`: the other modes emit `additionalProperties: false` on every model, which is wrong for responses."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node node_modules/tsoa/dist/cli.js spec",
+            "wallMs": {
+              "median": 792.149416,
+              "mean": 802.75375,
+              "min": 788.419667,
+              "max": 824.135917,
+              "stddev": 15.048372144663093
+            },
+            "cpuMs": {
+              "median": 1500,
+              "mean": 1500,
+              "min": 1460,
+              "max": 1549.9999999999998,
+              "stddev": 30.331501776206114
+            },
+            "maxRssMb": {
+              "median": 415.1875,
+              "mean": 414.965625,
+              "min": 414.125,
+              "max": 415.671875,
+              "stddev": 0.5392232550159535
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 792.149416,
+            "mean": 802.75375,
+            "min": 788.419667,
+            "max": 824.135917,
+            "stddev": 15.048372144663093
+          },
+          "cpuMs": {
+            "median": 1500,
+            "mean": 1500,
+            "min": 1460,
+            "max": 1549.9999999999998,
+            "stddev": 30.331501776206114
+          },
+          "maxRssMb": {
+            "median": 415.1875,
+            "mean": 414.965625,
+            "min": 414.125,
+            "max": 415.671875,
+            "stddev": 0.5392232550159535
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 100,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 206,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2937,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 49,
+        "warnings": 0,
+        "infos": 197,
+        "total": 246,
+        "byId": {
+          "request-parameter-type-changed": 12,
+          "api-security-removed": 25,
+          "request-property-type-changed": 12,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "response-property-type-specialized": 140,
+          "api-security-added": 25
+        }
+      },
+      "ease": {
+        "filesTouched": 24,
+        "filesAdded": 2,
+        "linesAdded": 259,
+        "linesRemoved": 41,
+        "linesChanged": 300,
+        "sourceFilesTouched": 22,
+        "sourceLinesChanged": 284,
+        "configLinesChanged": 16,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "tsoa"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 8.5546875,
+        "changes": [
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 35,
+            "removed": 12
+          },
+          {
+            "file": "src/adoptions/dto/create-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/dto/reject-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/models/adopter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 23,
+            "removed": 4
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 20,
+            "removed": 8
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 16,
+            "removed": 5
+          },
+          {
+            "file": "src/animals/dto/create-animal.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/search-animals.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/update-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/app.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 31,
+            "removed": 3
+          },
+          {
+            "file": "src/books/dto/create-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 0
+          },
+          {
+            "file": "src/books/dto/replace-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/author.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination.interfaces.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 26,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/create-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/update-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/address.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/shelter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 25,
+            "removed": 8
+          },
+          {
+            "file": "src/types/object-id.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 9,
+            "removed": 0
+          },
+          {
+            "file": "tsoa.json",
+            "status": "added",
+            "kind": "config",
+            "added": 13,
+            "removed": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "typoa",
+      "tool": "typoa",
+      "versions": {
+        "typoa": "1.0.0-alpha.70"
+      },
+      "approach": "static",
+      "notes": [
+        "typoa is not NestJS-aware and is used only for its spec generation (generate() from a small script); its mandatory express router is written to a temporary directory and discarded.",
+        "typoa matches decorators by name only (ts-morph getName), so the NestJS @Get/@Post/@Patch/@Put/@Delete, @Body and @Query() decorators are read as its own; import aliases are not recognised, so typoa decorators are used through a namespace import (`@typoa.Query`, `@typoa.Path`...) next to the NestJS ones.",
+        "Every handler parameter must carry a typoa parameter decorator: @typoa.Path beside @Param, @typoa.Query beside @Query('x', pipe) (typoa crashes on non-literal pipe arguments), @typoa.Header beside @Headers, and @typoa.Request() (the only 'ignore me' decorator) on @User() and @PaginationParams() parameters.",
+        "A generic post-processing step converts the express `:param` paths to `{param}`, adds a `servers: [{ url: '/v1' }]` entry for the global prefix, and removes the `additionalProperties: false` typoa puts on every object (the ValidationPipe strips unknown properties, it does not reject them).",
+        "The pagination query params (page, limit, filter, sort), invisible behind the custom @PaginationParams() decorator, are declared as extra unused @typoa.Query handler parameters; the envelope built by PaginationBodyInterceptor is declared with @typoa.Response<PaginatedData<T>>(200).",
+        "POST routes return 201 in NestJS but typoa defaults to 200: @typoa.Response<T>(201) on every create; bearer security via @typoa.Security (per method on the partly public books controller); error bodies via @typoa.Response<HttpError>(code) at controller and method level; explicit return types added where the handler returned an inferred mongoose document.",
+        "Remaining core difference: Shelter.isDeleted (hidden by a mongoose toJSON transform, marked @internal) is still documented: typoa has no JSDoc tag to hide a property.",
+        "Not done: class-validator constraints are ignored (typoa only reads JSDoc tags like @minLength/@maximum, duplicating them was not considered reasonable), and plain JSDoc comments are ignored (only @summary/@description tags are read), so operation summaries and property/param descriptions are missing.",
+        "Operation ids are the capitalised method names (`Create`, `FindAll`...), hence duplicated across controllers unless @OperationId is added everywhere."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node generate-openapi.js",
+            "wallMs": {
+              "median": 897.866334,
+              "mean": 905.6869586,
+              "min": 859.281125,
+              "max": 984.443333,
+              "stddev": 42.89344264576569
+            },
+            "cpuMs": {
+              "median": 1600,
+              "mean": 1598,
+              "min": 1569.9999999999998,
+              "max": 1630,
+              "stddev": 21.354156504062658
+            },
+            "maxRssMb": {
+              "median": 443.21875,
+              "mean": 443.121875,
+              "min": 439.8125,
+              "max": 447.109375,
+              "stddev": 2.615074240102946
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 897.866334,
+            "mean": 905.6869586,
+            "min": 859.281125,
+            "max": 984.443333,
+            "stddev": 42.89344264576569
+          },
+          "cpuMs": {
+            "median": 1600,
+            "mean": 1598,
+            "min": 1569.9999999999998,
+            "max": 1630,
+            "stddev": 21.354156504062658
+          },
+          "maxRssMb": {
+            "median": 443.21875,
+            "mean": 443.121875,
+            "min": 439.8125,
+            "max": 447.109375,
+            "stddev": 2.615074240102946
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 8,
+            "differences": 8
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 10,
+            "missing": 89,
+            "mismatch": 1,
+            "extra": 0,
+            "differences": 90
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 0,
+            "missing": 206,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 206
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 8,
+          "differences": 8
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2641,
+          "missing": 295,
+          "mismatch": 1,
+          "extra": 8,
+          "differences": 304
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 57,
+        "warnings": 6,
+        "infos": 122,
+        "total": 185,
+        "byId": {
+          "new-required-request-parameter": 2,
+          "response-property-max-unset": 4,
+          "response-property-min-unset": 4,
+          "response-property-type-generalized": 4,
+          "api-security-removed": 25,
+          "response-property-max-length-unset": 12,
+          "response-property-type-changed": 4,
+          "response-property-one-of-added": 1,
+          "response-body-one-of-added": 1,
+          "request-parameter-removed": 6,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "request-parameter-type-generalized": 11,
+          "api-security-added": 25,
+          "request-property-max-length-unset": 13,
+          "request-property-max-unset": 6,
+          "request-property-min-items-unset": 2,
+          "request-property-min-length-unset": 3,
+          "request-property-min-unset": 12,
+          "request-property-type-generalized": 9,
+          "response-optional-property-added": 4,
+          "request-property-max-items-unset": 2,
+          "request-parameter-default-value-removed": 1,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 9,
+        "filesAdded": 1,
+        "linesAdded": 214,
+        "linesRemoved": 69,
+        "linesChanged": 283,
+        "sourceFilesTouched": 7,
+        "sourceLinesChanged": 241,
+        "configLinesChanged": 42,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "typoa"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 22.02734375,
+        "changes": [
+          {
+            "file": "generate-openapi.js",
+            "status": "added",
+            "kind": "config",
+            "added": 39,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 39,
+            "removed": 21
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 14,
+            "removed": 6
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 32,
+            "removed": 16
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 24,
+            "removed": 9
+          },
+          {
+            "file": "src/app.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 31,
+            "removed": 5
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 31,
+            "removed": 11
+          }
+        ]
+      }
+    }
+  ]
+}

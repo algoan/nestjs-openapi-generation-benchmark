@@ -1,0 +1,1827 @@
+[
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/health#summary",
+    "expected": "Health check"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/health success application/json $.uptime#description",
+    "expected": "Process uptime, in seconds"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters#summary",
+    "expected": "List the shelters the caller has access to"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].country#description",
+    "expected": "ISO 3166-1 alpha-2 country code"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters#summary",
+    "expected": "Create a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.name#maxLength",
+    "expected": "100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.country#description",
+    "expected": "ISO 3166-1 alpha-2 country code"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#maximum",
+    "expected": "1000"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.country#description",
+    "expected": "ISO 3166-1 alpha-2 country code"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}#summary",
+    "expected": "Get a shelter by id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.country#description",
+    "expected": "ISO 3166-1 alpha-2 country code"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id}#summary",
+    "expected": "Delete a shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id}#summary",
+    "expected": "Update a shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.name#maxLength",
+    "expected": "100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#maximum",
+    "expected": "1000"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.name#description",
+    "expected": "Display name of the shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.country#description",
+    "expected": "ISO 3166-1 alpha-2 country code"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.address.complement#description",
+    "expected": "Building, floor, etc."
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.email#description",
+    "expected": "Contact email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.capacity#description",
+    "expected": "Maximum number of animals the shelter can host"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.metadata#description",
+    "expected": "Free-form data attached by the caller"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats#summary",
+    "expected": "Get the yearly statistics of a shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year#description",
+    "expected": "The year of the statistics"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats success application/json $.hostedAnimals#description",
+    "expected": "Number of animals currently hosted"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats success application/json $.occupancyRate#description",
+    "expected": "Hosted animals / capacity, between 0 and 1"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats#summary",
+    "expected": "List the cats of a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.resources[].weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.resources[].indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats#summary",
+    "expected": "Register a cat in a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats success application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats success application/json $.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId}#summary",
+    "expected": "Get a cat"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId}#summary",
+    "expected": "Remove a cat from a shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId}#summary",
+    "expected": "Update a cat"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs#summary",
+    "expected": "List the dogs of a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs#summary",
+    "expected": "Register a dog in a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs success application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId}#summary",
+    "expected": "Get a dog"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals#summary",
+    "expected": "Search the animals of a shelter"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:name#description",
+    "expected": "Case-insensitive prefix of the animal name"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:name $#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge#description",
+    "expected": "Minimum age, in years"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:includeAdopted#description",
+    "expected": "Include the animals already adopted"
+  },
+  {
+    "category": "constraints",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:includeAdopted $#default",
+    "expected": "false",
+    "actual": "null"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|0.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId}#summary",
+    "expected": "Get an animal, whatever its species"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.indoor#description",
+    "expected": "Whether the cat must live indoors"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.weightKg#description",
+    "expected": "Weight in kilograms"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions#summary",
+    "expected": "List the adoption requests of a shelter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:status#description",
+    "expected": "Only return the requests in this status"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].rejectionReason#description",
+    "expected": "Why the request was rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].decidedAt#description",
+    "expected": "When the request was approved or rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions#summary",
+    "expected": "File an adoption request"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#description",
+    "expected": "Correlation id, echoed in the logs"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#maxLength",
+    "expected": "500"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions success application/json $.expectedDecisionDate#description",
+    "expected": "When the shelter commits to answer"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId}#summary",
+    "expected": "Get an adoption request"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.rejectionReason#description",
+    "expected": "Why the request was rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.decidedAt#description",
+    "expected": "When the request was approved or rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId}#summary",
+    "expected": "Cancel an adoption request"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve#summary",
+    "expected": "Approve a pending adoption request"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.rejectionReason#description",
+    "expected": "Why the request was rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.decidedAt#description",
+    "expected": "When the request was approved or rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject#summary",
+    "expected": "Reject a pending adoption request"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#minLength",
+    "expected": "10"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#maxLength",
+    "expected": "500"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#description",
+    "expected": "Why the request is rejected, sent to the adopter"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.rejectionReason#description",
+    "expected": "Why the request was rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.decidedAt#description",
+    "expected": "When the request was approved or rejected"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books#summary",
+    "expected": "Search the catalogue"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books param query:search#description",
+    "expected": "Full-text search on the title and the authors"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books#summary",
+    "expected": "Add a book to the catalogue"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors#minItems",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.pageCount#minimum",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.language#minLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.language#maxLength",
+    "expected": "2"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.rating#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.rating#maximum",
+    "expected": "5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/export#summary",
+    "expected": "Export the whole catalogue as CSV"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn}#summary",
+    "expected": "Get a book by ISBN"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn}#summary",
+    "expected": "Replace a book"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors#minItems",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#minimum",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#minLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#maxLength",
+    "expected": "2"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#maximum",
+    "expected": "5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn}#summary",
+    "expected": "Remove a book from the catalogue"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters success application/json $.resources[].isDeleted#required",
+    "actual": "false"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters success application/json $.resources[].isDeleted#type",
+    "actual": "boolean"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "POST /v1/shelters success application/json $.isDeleted#required",
+    "actual": "false"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "POST /v1/shelters success application/json $.isDeleted#type",
+    "actual": "boolean"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{id} success application/json $.isDeleted#required",
+    "actual": "false"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{id} success application/json $.isDeleted#type",
+    "actual": "boolean"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} success application/json $.isDeleted#required",
+    "actual": "false"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} success application/json $.isDeleted#type",
+    "actual": "boolean"
+  }
+]

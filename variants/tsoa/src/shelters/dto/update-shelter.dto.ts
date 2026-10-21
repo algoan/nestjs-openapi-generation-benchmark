@@ -1,0 +1,21 @@
+import { OmitType, PartialType } from '@nestjs/mapped-types';
+import { IsEnum, IsOptional } from 'class-validator';
+import { ShelterStatus } from '../enums/shelter-status.enum';
+import { CreateShelterDto } from './create-shelter.dto';
+
+/**
+ * Update Shelter DTO: every field but the country can be updated
+ * @tsoaModel
+ */
+export interface UpdateShelterDto extends Partial<Omit<CreateShelterDto, 'country'>> {
+  status?: ShelterStatus;
+}
+
+/**
+ * Update Shelter DTO: every field but the country can be updated
+ */
+export class UpdateShelterDto extends PartialType(OmitType(CreateShelterDto, ['country'] as const)) {
+  @IsOptional()
+  @IsEnum(ShelterStatus)
+  public status?: ShelterStatus;
+}
