@@ -109,7 +109,7 @@ flattened into atomic **facts**: "`GET /v1/books/{isbn}` exists", "its success s
 "`$.title` of its `application/json` body is a `string`", "`$.title` is required", "`$.pageCount` has
 `minimum: 1`"… A **difference** is an expected fact missing or with another value in the generated
 document, or a generated fact the expected document does not have. Component names, `operationId`s,
-tags, examples and descriptions of error responses are ignored. A missing global prefix counts as a single
+tags, examples, response descriptions and numeric formats (`int32`, `int64`, `float`, `double`) are ignored. A missing global prefix counts as a single
 difference, and so does a wrong success status code.
 
 Facts are grouped in categories, so a tool is not judged on what it was never meant to do:

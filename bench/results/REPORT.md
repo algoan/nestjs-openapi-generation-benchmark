@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-21T18:24:14.776Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-21T18:25:43.522Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -14,8 +14,8 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#7) | 377 (#6) | – | – |
 | **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#5) | 250 (#4) | – | – |
 | **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#1) | – | – |
-| **tsoa** | 6.6.0 | static | 267 (#6) | 0 (#2) | 242 (#3) | – | – |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#7) | 8 (#4) | 304 (#5) | – | – |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 164 (#3) | – | – |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#6) | 8 (#4) | 304 (#5) | – | – |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -32,7 +32,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | -8 MB |
 | nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 6 | +17 −3 | – | – |
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 26 | +514 −1 | `ts-oas` | -14 MB |
-| tsoa | 15 | 2 | 13 / 75 | 251 | 16 | +226 −41 | `tsoa` | -6 MB |
+| tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | -6 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +7 MB |
 
 ## 2. Correctness
@@ -47,7 +47,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | nestoa | 0 | 61 | 84 | 4 | 0 | 192 | 25 | 11 | **149** | **377** | 90.4% |
 | nestoa (unreleased main) | 0 | 60 | 0 | 0 | 0 | 190 | 0 | 0 | **60** | **250** | 94.6% |
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
-| tsoa | 0 | 0 | 0 | 0 | 0 | 242 | 0 | 0 | **0** | **242** | 97.3% |
+| tsoa | 0 | 0 | 0 | 0 | 0 | 164 | 0 | 0 | **0** | **164** | 100.0% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
 
 Recall (share of the expected facts found) per category:
@@ -60,7 +60,7 @@ Recall (share of the expected facts found) per category:
 | nestoa | 100.0% | 69.2% | 69.1% | 99.8% | 100.0% | 0.0% | 13.8% | 94.7% |
 | nestoa (unreleased main) | 100.0% | 69.7% | 100.0% | 100.0% | 100.0% | 2.0% | 100.0% | 100.0% |
 | ts-oas | 100.0% | 98.5% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 99.5% |
-| tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 22.0% | 100.0% | 100.0% |
+| tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
 
 [oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one:
@@ -146,6 +146,16 @@ Differences: [`bench/results/nestoa-main/differences.md`](nestoa-main/difference
 Differences: [`bench/results/ts-oas/differences.md`](ts-oas/differences.md)
 
 ### tsoa (`variants/tsoa`)
+
+- tsoa 6.6.0: latest stable release (npm `latest` is 7.0.0-alpha.0 and `next` is 6.0.0-rc.5, both prereleases). Works with TypeScript 5.9. Only `tsoa spec` is used (no generated express routes), OpenAPI 3.0 (no 3.1 support in 6.x).
+- tsoa matches decorators by identifier name and is not NestJS-aware. Nest's `@Get`/`@Post`/`@Body`/`@Query('x')` happen to be recognised. Every controller needs `@Route` beside `@Controller`, and every parameter tsoa must not document (`@User()`, `@PaginationParams()`, whole-object `@Query()`) needs `@Inject()`. Undecorated parameters, `@Param` included, are treated as path params named after the variable.
+- Query DTOs and pagination query params: tsoa forbids mixing `@Query` and `@Queries` in one method, so each paginated/search route gets one extra trailing tsoa-only `@Queries() _query?: XxxQuery` parameter (Nest injects undefined), backed by small `PaginationQuery` / `...Query extends ...` interfaces.
+- Pagination envelope: the interceptor is invisible and the success schema always comes from the return type (`DataToPaginate<T>`). A `@Response` with the same status code is overwritten, so the documented body comes from an extra trailing `@Res() _paginated?: TsoaResponse<200, PaginatedData<T>>` parameter (responses from `@Res` parameters are applied after the success response).
+- `@nestjs/mapped-types` classes (`extends PartialType(OmitType(...))`) crash the type resolver, so each mapped DTO gets a merged interface (`Partial<Omit<...>>`) marked `@tsoaModel`.
+- Mongo `ObjectId` fails because mongoose augments the bson interface, giving two declarations tsoa cannot merge. Fixed with a third augmentation marked `@tsoaModel` in `src/types/object-id.ts`, added to `controllerPathGlobs` (`.d.ts` files are ignored). ObjectId is then documented as string via its `toJSON`.
+- Handlers without a return type are inferred, but Mongoose `HydratedDocument` is unresolvable, so 3 handlers got an explicit `Promise<Model>`. POST creates need `@SuccessResponse(201)`, since tsoa defaults to 200 and does not read `@HttpCode`. The CSV route needs `@Produces('text/csv')`. Security uses `rootSecurity` and `@NoSecurity()` on `@Unprotected()` routes. Error bodies are listed by hand with `@Response<HttpError>(code)` on classes and methods. `@ignore` hides `isDeleted`.
+- class-validator constraints are not read: they are duplicated as JSDoc tags (`@maxLength`, `@minimum`, `@isInt`, `@format email`, `@minItems`…). Every remaining difference is a `format` tsoa always emits (`double` for `number`, `int32` with `@isInt`), which it has no option to turn off.
+- `noImplicitAdditionalProperties: ignore`: the other modes emit `additionalProperties: false` on every model, which is wrong for responses.
 
 Differences: [`bench/results/tsoa/differences.md`](tsoa/differences.md)
 

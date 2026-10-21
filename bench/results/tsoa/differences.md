@@ -1,6 +1,6 @@
 # tsoa: differences with the expected document
 
-## constraints (242)
+## constraints (164)
 
 Most frequent:
 
@@ -8,98 +8,20 @@ Most frequent:
 - ×25 `extra 403 $.status#format`
 - ×23 `extra 404 $.status#format`
 - ×16 `extra 400 $.status#format`
-- ×5 `missing body $.name#maxLength`
 - ×5 `extra param query:page $#format`
 - ×5 `extra param query:limit $#format`
 - ×5 `extra success $.pagination.totalPages#format`
 - ×5 `extra success $.pagination.totalResources#format`
 - ×5 `extra success $.weightKg#format`
-- ×3 `missing success $.address.street#maxLength`
-- ×3 `missing body $.weightKg#minimum`
-- ×3 `missing success $.adopter.firstName#maxLength`
-- ×3 `missing success $.adopter.lastName#maxLength`
-- ×3 `missing success $.adopter.email#format`
+- ×3 `extra success $.capacity#format`
+- ×3 `extra success $.authors[].birthYear#format`
+- ×3 `extra success $.pageCount#format`
+- ×3 `extra success $.rating#format`
+- ×3 `extra 409 $.status#format`
+- ×3 `extra body $.weightKg#format`
 
 <details><summary>All</summary>
 
-- **missing** `GET /v1/shelters success application/json $.resources[].address.street#maxLength` — expected `120`
-- **missing** `POST /v1/shelters body application/json $.name#maxLength` — expected `100`
-- **missing** `POST /v1/shelters body application/json $.address.street#maxLength` — expected `120`
-- **missing** `POST /v1/shelters body application/json $.email#format` — expected `email`
-- **missing** `POST /v1/shelters body application/json $.capacity#integer` — expected `true`
-- **missing** `POST /v1/shelters body application/json $.capacity#minimum` — expected `0`
-- **missing** `POST /v1/shelters body application/json $.capacity#maximum` — expected `1000`
-- **missing** `POST /v1/shelters body application/json $.tags#maxItems` — expected `10`
-- **missing** `POST /v1/shelters success application/json $.address.street#maxLength` — expected `120`
-- **missing** `GET /v1/shelters/{id} success application/json $.address.street#maxLength` — expected `120`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.name#maxLength` — expected `100`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.address.street#maxLength` — expected `120`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.email#format` — expected `email`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#integer` — expected `true`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#minimum` — expected `0`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#maximum` — expected `1000`
-- **missing** `PATCH /v1/shelters/{id} body application/json $.tags#maxItems` — expected `10`
-- **missing** `PATCH /v1/shelters/{id} success application/json $.address.street#maxLength` — expected `120`
-- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength` — expected `50`
-- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum` — expected `0`
-- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength` — expected `50`
-- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum` — expected `0`
-- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength` — expected `50`
-- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum` — expected `0`
-- **missing** `GET /v1/shelters/{shelterId}/animals param query:name $#maxLength` — expected `50`
-- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge $#integer` — expected `true`
-- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge $#minimum` — expected `0`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.firstName#maxLength` — expected `80`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.lastName#maxLength` — expected `80`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.email#format` — expected `email`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.firstName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.lastName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.email#format` — expected `email`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#minimum` — expected `0`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#maxLength` — expected `500`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.firstName#maxLength` — expected `80`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.lastName#maxLength` — expected `80`
-- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.email#format` — expected `email`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.firstName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.lastName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.email#format` — expected `email`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#minLength` — expected `10`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#maxLength` — expected `500`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.firstName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.lastName#maxLength` — expected `80`
-- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.email#format` — expected `email`
-- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#integer` — expected `true`
-- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#minimum` — expected `1000`
-- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#maximum` — expected `2100`
-- **missing** `POST /v1/books body application/json $.authors#minItems` — expected `1`
-- **missing** `POST /v1/books body application/json $.authors[].birthYear#integer` — expected `true`
-- **missing** `POST /v1/books body application/json $.authors[].birthYear#minimum` — expected `1000`
-- **missing** `POST /v1/books body application/json $.authors[].birthYear#maximum` — expected `2100`
-- **missing** `POST /v1/books body application/json $.pageCount#integer` — expected `true`
-- **missing** `POST /v1/books body application/json $.pageCount#minimum` — expected `1`
-- **missing** `POST /v1/books body application/json $.language#minLength` — expected `2`
-- **missing** `POST /v1/books body application/json $.language#maxLength` — expected `2`
-- **missing** `POST /v1/books body application/json $.rating#minimum` — expected `0`
-- **missing** `POST /v1/books body application/json $.rating#maximum` — expected `5`
-- **missing** `POST /v1/books success application/json $.authors[].birthYear#integer` — expected `true`
-- **missing** `POST /v1/books success application/json $.authors[].birthYear#minimum` — expected `1000`
-- **missing** `POST /v1/books success application/json $.authors[].birthYear#maximum` — expected `2100`
-- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
-- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#minimum` — expected `1000`
-- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#maximum` — expected `2100`
-- **missing** `PUT /v1/books/{isbn} body application/json $.authors#minItems` — expected `1`
-- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer` — expected `true`
-- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#minimum` — expected `1000`
-- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#maximum` — expected `2100`
-- **missing** `PUT /v1/books/{isbn} body application/json $.pageCount#integer` — expected `true`
-- **missing** `PUT /v1/books/{isbn} body application/json $.pageCount#minimum` — expected `1`
-- **missing** `PUT /v1/books/{isbn} body application/json $.language#minLength` — expected `2`
-- **missing** `PUT /v1/books/{isbn} body application/json $.language#maxLength` — expected `2`
-- **missing** `PUT /v1/books/{isbn} body application/json $.rating#minimum` — expected `0`
-- **missing** `PUT /v1/books/{isbn} body application/json $.rating#maximum` — expected `5`
-- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
-- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#minimum` — expected `1000`
-- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#maximum` — expected `2100`
 - **extra** `GET /v1/health success application/json $.uptime#format` — got `double`
 - **extra** `GET /v1/shelters param query:page $#format` — got `int32`
 - **extra** `GET /v1/shelters param query:limit $#format` — got `int32`
@@ -109,7 +31,7 @@ Most frequent:
 - **extra** `GET /v1/shelters 400 application/json $.status#format` — got `double`
 - **extra** `GET /v1/shelters 401 application/json $.status#format` — got `double`
 - **extra** `GET /v1/shelters 403 application/json $.status#format` — got `double`
-- **extra** `POST /v1/shelters body application/json $.capacity#format` — got `double`
+- **extra** `POST /v1/shelters body application/json $.capacity#format` — got `int32`
 - **extra** `POST /v1/shelters success application/json $.capacity#format` — got `double`
 - **extra** `POST /v1/shelters 400 application/json $.status#format` — got `double`
 - **extra** `POST /v1/shelters 401 application/json $.status#format` — got `double`
@@ -121,7 +43,7 @@ Most frequent:
 - **extra** `DELETE /v1/shelters/{id} 401 application/json $.status#format` — got `double`
 - **extra** `DELETE /v1/shelters/{id} 403 application/json $.status#format` — got `double`
 - **extra** `DELETE /v1/shelters/{id} 404 application/json $.status#format` — got `double`
-- **extra** `PATCH /v1/shelters/{id} body application/json $.capacity#format` — got `double`
+- **extra** `PATCH /v1/shelters/{id} body application/json $.capacity#format` — got `int32`
 - **extra** `PATCH /v1/shelters/{id} success application/json $.capacity#format` — got `double`
 - **extra** `PATCH /v1/shelters/{id} 400 application/json $.status#format` — got `double`
 - **extra** `PATCH /v1/shelters/{id} 401 application/json $.status#format` — got `double`
@@ -140,30 +62,30 @@ Most frequent:
 - **extra** `GET /v1/shelters/{id}/stats 404 application/json $.status#format` — got `double`
 - **extra** `GET /v1/books param query:page $#format` — got `int32`
 - **extra** `GET /v1/books param query:limit $#format` — got `int32`
-- **extra** `GET /v1/books success application/json $.resources[].authors[].birthYear#format` — got `double`
+- **extra** `GET /v1/books success application/json $.resources[].authors[].birthYear#format` — got `int32`
 - **extra** `GET /v1/books success application/json $.resources[].pageCount#format` — got `double`
 - **extra** `GET /v1/books success application/json $.resources[].rating#format` — got `double`
 - **extra** `GET /v1/books success application/json $.pagination.totalPages#format` — got `double`
 - **extra** `GET /v1/books success application/json $.pagination.totalResources#format` — got `double`
 - **extra** `GET /v1/books 400 application/json $.status#format` — got `double`
-- **extra** `POST /v1/books body application/json $.authors[].birthYear#format` — got `double`
-- **extra** `POST /v1/books body application/json $.pageCount#format` — got `double`
+- **extra** `POST /v1/books body application/json $.authors[].birthYear#format` — got `int32`
+- **extra** `POST /v1/books body application/json $.pageCount#format` — got `int32`
 - **extra** `POST /v1/books body application/json $.rating#format` — got `double`
-- **extra** `POST /v1/books success application/json $.authors[].birthYear#format` — got `double`
+- **extra** `POST /v1/books success application/json $.authors[].birthYear#format` — got `int32`
 - **extra** `POST /v1/books success application/json $.pageCount#format` — got `double`
 - **extra** `POST /v1/books success application/json $.rating#format` — got `double`
 - **extra** `POST /v1/books 400 application/json $.status#format` — got `double`
 - **extra** `POST /v1/books 401 application/json $.status#format` — got `double`
 - **extra** `POST /v1/books 403 application/json $.status#format` — got `double`
 - **extra** `POST /v1/books 409 application/json $.status#format` — got `double`
-- **extra** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#format` — got `double`
+- **extra** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#format` — got `int32`
 - **extra** `GET /v1/books/{isbn} success application/json $.pageCount#format` — got `double`
 - **extra** `GET /v1/books/{isbn} success application/json $.rating#format` — got `double`
 - **extra** `GET /v1/books/{isbn} 404 application/json $.status#format` — got `double`
-- **extra** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#format` — got `double`
-- **extra** `PUT /v1/books/{isbn} body application/json $.pageCount#format` — got `double`
+- **extra** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#format` — got `int32`
+- **extra** `PUT /v1/books/{isbn} body application/json $.pageCount#format` — got `int32`
 - **extra** `PUT /v1/books/{isbn} body application/json $.rating#format` — got `double`
-- **extra** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#format` — got `double`
+- **extra** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#format` — got `int32`
 - **extra** `PUT /v1/books/{isbn} success application/json $.pageCount#format` — got `double`
 - **extra** `PUT /v1/books/{isbn} success application/json $.rating#format` — got `double`
 - **extra** `PUT /v1/books/{isbn} 400 application/json $.status#format` — got `double`
@@ -220,7 +142,7 @@ Most frequent:
 - **extra** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#format` — got `double`
 - **extra** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#format` — got `double`
 - **extra** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#format` — got `double`
-- **extra** `GET /v1/shelters/{shelterId}/animals param query:minAge $#format` — got `double`
+- **extra** `GET /v1/shelters/{shelterId}/animals param query:minAge $#format` — got `int32`
 - **extra** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#format` — got `double`
 - **extra** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#format` — got `double`
 - **extra** `GET /v1/shelters/{shelterId}/animals 400 application/json $.status#format` — got `double`

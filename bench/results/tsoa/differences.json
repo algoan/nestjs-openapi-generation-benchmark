@@ -1,474 +1,6 @@
 [
   {
     "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters success application/json $.resources[].address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.name#maxLength",
-    "expected": "100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.capacity#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.capacity#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.capacity#maximum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters body application/json $.tags#maxItems",
-    "expected": "10"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters success application/json $.address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{id} success application/json $.address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.name#maxLength",
-    "expected": "100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#maximum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} body application/json $.tags#maxItems",
-    "expected": "10"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{id} success application/json $.address.street#maxLength",
-    "expected": "120"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength",
-    "expected": "50"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength",
-    "expected": "50"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength",
-    "expected": "50"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/animals param query:name $#maxLength",
-    "expected": "50"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.firstName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.lastName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.firstName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.lastName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#maxLength",
-    "expected": "500"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.firstName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.lastName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.firstName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.lastName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#minLength",
-    "expected": "10"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#maxLength",
-    "expected": "500"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.firstName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.lastName#maxLength",
-    "expected": "80"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.email#format",
-    "expected": "email"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.authors#minItems",
-    "expected": "1"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.pageCount#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.pageCount#minimum",
-    "expected": "1"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.language#minLength",
-    "expected": "2"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.language#maxLength",
-    "expected": "2"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.rating#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books body application/json $.rating#maximum",
-    "expected": "5"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books success application/json $.authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books success application/json $.authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "POST /v1/books success application/json $.authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.authors#minItems",
-    "expected": "1"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#minimum",
-    "expected": "1"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.language#minLength",
-    "expected": "2"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.language#maxLength",
-    "expected": "2"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.rating#minimum",
-    "expected": "0"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} body application/json $.rating#maximum",
-    "expected": "5"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
-    "expected": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
-    "expected": "1000"
-  },
-  {
-    "category": "constraints",
-    "kind": "missing",
-    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
-    "expected": "2100"
-  },
-  {
-    "category": "constraints",
     "kind": "extra",
     "key": "GET /v1/health success application/json $.uptime#format",
     "actual": "double"
@@ -525,7 +57,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "POST /v1/shelters body application/json $.capacity#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -597,7 +129,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "PATCH /v1/shelters/{id} body application/json $.capacity#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -711,7 +243,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -747,13 +279,13 @@
     "category": "constraints",
     "kind": "extra",
     "key": "POST /v1/books body application/json $.authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
     "kind": "extra",
     "key": "POST /v1/books body application/json $.pageCount#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -765,7 +297,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "POST /v1/books success application/json $.authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -807,7 +339,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -831,13 +363,13 @@
     "category": "constraints",
     "kind": "extra",
     "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
     "kind": "extra",
     "key": "PUT /v1/books/{isbn} body application/json $.pageCount#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -849,7 +381,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",
@@ -1191,7 +723,7 @@
     "category": "constraints",
     "kind": "extra",
     "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#format",
-    "actual": "double"
+    "actual": "int32"
   },
   {
     "category": "constraints",

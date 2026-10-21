@@ -71,6 +71,8 @@ const CONSTRAINT_KEYWORDS: string[] = [
   'default',
 ];
 
+const NUMERIC_FORMATS: string[] = ['int32', 'int64', 'float', 'double'];
+
 const anySchema = (): Schema => ({ types: [], nullable: false, constraints: {} });
 
 export class Normalizer {
@@ -201,7 +203,8 @@ export class Normalizer {
     }
     out.types = [...new Set(types)].sort();
 
-    if (typeof node.format === 'string') {
+    // `int32`, `int64`, `float` and `double` only hint at the binary representation of a number
+    if (typeof node.format === 'string' && !NUMERIC_FORMATS.includes(node.format)) {
       out.format = node.format;
     }
     for (const keyword of CONSTRAINT_KEYWORDS) {
