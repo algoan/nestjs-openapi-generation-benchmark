@@ -20,6 +20,8 @@ export interface VariantConfig {
   tool: string;
   /** npm packages of the tool, their installed versions are reported */
   packages: string[];
+  /** Version to report when the tool is not installed from npm (e.g. built from a git commit) */
+  version?: string;
   /** How the tool gets the information: `runtime` (boots the app), `static` (reads the sources), `compiler` (TS transform) */
   approach: 'runtime' | 'static' | 'compiler';
   /** Generated document, relative to the variant directory */

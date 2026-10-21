@@ -8,6 +8,7 @@ import type { VariantConfig } from './variants.ts';
 export interface VariantResult {
   name: string;
   tool: string;
+  version?: string;
   versions: Record<string, string | undefined>;
   approach: VariantConfig['approach'];
   notes: string[];
@@ -47,10 +48,11 @@ const rankBy = (results: VariantResult[], value: (r: VariantResult) => number | 
 const medal = (rank: number | undefined): string => (rank === undefined ? '' : ` (#${rank})`);
 
 const version = (r: VariantResult): string =>
-  Object.values(r.versions)
+  r.version ??
+  (Object.values(r.versions)
     .filter((v?: string): boolean => v !== undefined)
     .slice(0, 1)
-    .join('') || '?';
+    .join('') || '?');
 
 export const renderReport = (bench: BenchResult): string => {
   const ok: VariantResult[] = bench.variants.filter((r: VariantResult): boolean => r.error === undefined);

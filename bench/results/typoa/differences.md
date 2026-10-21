@@ -1,0 +1,370 @@
+# typoa: differences with the expected document
+
+## responses (8)
+
+Most frequent:
+
+- ×3 `extra success $.isDeleted#required`
+- ×3 `extra success $.isDeleted#type`
+- ×1 `extra success $.resources[].isDeleted#required`
+- ×1 `extra success $.resources[].isDeleted#type`
+
+<details><summary>All</summary>
+
+- **extra** `GET /v1/shelters success application/json $.resources[].isDeleted#required` — got `false`
+- **extra** `GET /v1/shelters success application/json $.resources[].isDeleted#type` — got `boolean`
+- **extra** `POST /v1/shelters success application/json $.isDeleted#required` — got `false`
+- **extra** `POST /v1/shelters success application/json $.isDeleted#type` — got `boolean`
+- **extra** `GET /v1/shelters/{id} success application/json $.isDeleted#required` — got `false`
+- **extra** `GET /v1/shelters/{id} success application/json $.isDeleted#type` — got `boolean`
+- **extra** `PATCH /v1/shelters/{id} success application/json $.isDeleted#required` — got `false`
+- **extra** `PATCH /v1/shelters/{id} success application/json $.isDeleted#type` — got `boolean`
+
+</details>
+
+## constraints (90)
+
+Most frequent:
+
+- ×5 `missing param query:page $#integer`
+- ×5 `missing param query:limit $#integer`
+- ×5 `missing body $.name#maxLength`
+- ×3 `missing success $.address.street#maxLength`
+- ×3 `missing body $.weightKg#minimum`
+- ×3 `missing success $.adopter.firstName#maxLength`
+- ×3 `missing success $.adopter.lastName#maxLength`
+- ×3 `missing success $.adopter.email#format`
+- ×3 `missing success $.authors[].birthYear#integer`
+- ×3 `missing success $.authors[].birthYear#minimum`
+- ×3 `missing success $.authors[].birthYear#maximum`
+- ×2 `missing body $.address.street#maxLength`
+- ×2 `missing body $.email#format`
+- ×2 `missing body $.capacity#integer`
+- ×2 `missing body $.capacity#minimum`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/shelters param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.resources[].address.street#maxLength` — expected `120`
+- **missing** `POST /v1/shelters body application/json $.name#maxLength` — expected `100`
+- **missing** `POST /v1/shelters body application/json $.address.street#maxLength` — expected `120`
+- **missing** `POST /v1/shelters body application/json $.email#format` — expected `email`
+- **missing** `POST /v1/shelters body application/json $.capacity#integer` — expected `true`
+- **missing** `POST /v1/shelters body application/json $.capacity#minimum` — expected `0`
+- **missing** `POST /v1/shelters body application/json $.capacity#maximum` — expected `1000`
+- **missing** `POST /v1/shelters body application/json $.tags#maxItems` — expected `10`
+- **missing** `POST /v1/shelters success application/json $.address.street#maxLength` — expected `120`
+- **missing** `GET /v1/shelters/{id} success application/json $.address.street#maxLength` — expected `120`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#maxLength` — expected `100`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.street#maxLength` — expected `120`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#format` — expected `email`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#integer` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#minimum` — expected `0`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#maximum` — expected `1000`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.tags#maxItems` — expected `10`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.address.street#maxLength` — expected `120`
+- **missing** `GET /v1/shelters/{id}/stats param query:year $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit $#integer` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength` — expected `50`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum` — expected `0`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength` — expected `50`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum` — expected `0`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit $#integer` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength` — expected `50`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum` — expected `0`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:name $#maxLength` — expected `50`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge $#minimum` — expected `0`
+- **mismatch** `GET /v1/shelters/{shelterId}/animals param query:includeAdopted $#default` — expected `false`, got `null`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.firstName#maxLength` — expected `80`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.lastName#maxLength` — expected `80`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.email#format` — expected `email`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.firstName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.lastName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.email#format` — expected `email`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#minimum` — expected `0`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#maxLength` — expected `500`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.firstName#maxLength` — expected `80`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.lastName#maxLength` — expected `80`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.email#format` — expected `email`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.firstName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.lastName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.email#format` — expected `email`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#minLength` — expected `10`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#maxLength` — expected `500`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.firstName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.lastName#maxLength` — expected `80`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.email#format` — expected `email`
+- **missing** `GET /v1/books param query:page $#integer` — expected `true`
+- **missing** `GET /v1/books param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#integer` — expected `true`
+- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#minimum` — expected `1000`
+- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#maximum` — expected `2100`
+- **missing** `POST /v1/books body application/json $.authors#minItems` — expected `1`
+- **missing** `POST /v1/books body application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `POST /v1/books body application/json $.authors[].birthYear#minimum` — expected `1000`
+- **missing** `POST /v1/books body application/json $.authors[].birthYear#maximum` — expected `2100`
+- **missing** `POST /v1/books body application/json $.pageCount#integer` — expected `true`
+- **missing** `POST /v1/books body application/json $.pageCount#minimum` — expected `1`
+- **missing** `POST /v1/books body application/json $.language#minLength` — expected `2`
+- **missing** `POST /v1/books body application/json $.language#maxLength` — expected `2`
+- **missing** `POST /v1/books body application/json $.rating#minimum` — expected `0`
+- **missing** `POST /v1/books body application/json $.rating#maximum` — expected `5`
+- **missing** `POST /v1/books success application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `POST /v1/books success application/json $.authors[].birthYear#minimum` — expected `1000`
+- **missing** `POST /v1/books success application/json $.authors[].birthYear#maximum` — expected `2100`
+- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#minimum` — expected `1000`
+- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#maximum` — expected `2100`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors#minItems` — expected `1`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#minimum` — expected `1000`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#maximum` — expected `2100`
+- **missing** `PUT /v1/books/{isbn} body application/json $.pageCount#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} body application/json $.pageCount#minimum` — expected `1`
+- **missing** `PUT /v1/books/{isbn} body application/json $.language#minLength` — expected `2`
+- **missing** `PUT /v1/books/{isbn} body application/json $.language#maxLength` — expected `2`
+- **missing** `PUT /v1/books/{isbn} body application/json $.rating#minimum` — expected `0`
+- **missing** `PUT /v1/books/{isbn} body application/json $.rating#maximum` — expected `5`
+- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#minimum` — expected `1000`
+- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#maximum` — expected `2100`
+
+</details>
+
+## docs (206)
+
+Most frequent:
+
+- ×29 `missing `
+- ×14 `missing success $.createdAt#description`
+- ×14 `missing success $.updatedAt#description`
+- ×5 `missing success $.resources[].createdAt#description`
+- ×5 `missing success $.resources[].updatedAt#description`
+- ×5 `missing success $.vaccinations[].name#description`
+- ×5 `missing success $.weightKg#description`
+- ×4 `missing param path:id#description`
+- ×3 `missing success $.name#description`
+- ×3 `missing success $.country#description`
+- ×3 `missing success $.address.complement#description`
+- ×3 `missing success $.email#description`
+- ×3 `missing success $.capacity#description`
+- ×3 `missing success $.metadata#description`
+- ×3 `missing body $.vaccinations[].name#description`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/health#summary` — expected `Health check`
+- **missing** `GET /v1/health success application/json $.uptime#description` — expected `Process uptime, in seconds`
+- **missing** `GET /v1/shelters#summary` — expected `List the shelters the caller has access to`
+- **missing** `GET /v1/shelters success application/json $.resources[].name#description` — expected `Display name of the shelter`
+- **missing** `GET /v1/shelters success application/json $.resources[].country#description` — expected `ISO 3166-1 alpha-2 country code`
+- **missing** `GET /v1/shelters success application/json $.resources[].address.complement#description` — expected `Building, floor, etc.`
+- **missing** `GET /v1/shelters success application/json $.resources[].email#description` — expected `Contact email`
+- **missing** `GET /v1/shelters success application/json $.resources[].capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `GET /v1/shelters success application/json $.resources[].metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `GET /v1/shelters success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters#summary` — expected `Create a shelter`
+- **missing** `POST /v1/shelters body application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `POST /v1/shelters body application/json $.country#description` — expected `ISO 3166-1 alpha-2 country code`
+- **missing** `POST /v1/shelters body application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `POST /v1/shelters body application/json $.email#description` — expected `Contact email`
+- **missing** `POST /v1/shelters body application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `POST /v1/shelters body application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `POST /v1/shelters success application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `POST /v1/shelters success application/json $.country#description` — expected `ISO 3166-1 alpha-2 country code`
+- **missing** `POST /v1/shelters success application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `POST /v1/shelters success application/json $.email#description` — expected `Contact email`
+- **missing** `POST /v1/shelters success application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `POST /v1/shelters success application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `POST /v1/shelters success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{id}#summary` — expected `Get a shelter by id`
+- **missing** `GET /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `GET /v1/shelters/{id} success application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `GET /v1/shelters/{id} success application/json $.country#description` — expected `ISO 3166-1 alpha-2 country code`
+- **missing** `GET /v1/shelters/{id} success application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `GET /v1/shelters/{id} success application/json $.email#description` — expected `Contact email`
+- **missing** `GET /v1/shelters/{id} success application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `GET /v1/shelters/{id} success application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `GET /v1/shelters/{id} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{id} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `DELETE /v1/shelters/{id}#summary` — expected `Delete a shelter`
+- **missing** `DELETE /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `PATCH /v1/shelters/{id}#summary` — expected `Update a shelter`
+- **missing** `PATCH /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#description` — expected `Contact email`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.country#description` — expected `ISO 3166-1 alpha-2 country code`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.email#description` — expected `Contact email`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `PATCH /v1/shelters/{id} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{id}/stats#summary` — expected `Get the yearly statistics of a shelter`
+- **missing** `GET /v1/shelters/{id}/stats param path:id#description` — expected `The shelter id`
+- **missing** `GET /v1/shelters/{id}/stats param query:year#description` — expected `The year of the statistics`
+- **missing** `GET /v1/shelters/{id}/stats success application/json $.hostedAnimals#description` — expected `Number of animals currently hosted`
+- **missing** `GET /v1/shelters/{id}/stats success application/json $.occupancyRate#description` — expected `Hosted animals / capacity, between 0 and 1`
+- **missing** `GET /v1/shelters/{shelterId}/cats#summary` — expected `List the cats of a shelter`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `POST /v1/shelters/{shelterId}/cats#summary` — expected `Register a cat in a shelter`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId}#summary` — expected `Get a cat`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId}#summary` — expected `Remove a cat from a shelter`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId}#summary` — expected `Update a cat`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/dogs#summary` — expected `List the dogs of a shelter`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/dogs#summary` — expected `Register a dog in a shelter`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId}#summary` — expected `Get a dog`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals#summary` — expected `Search the animals of a shelter`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:name#description` — expected `Case-insensitive prefix of the animal name`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge#description` — expected `Minimum age, in years`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:includeAdopted#description` — expected `Include the animals already adopted`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId}#summary` — expected `Get an animal, whatever its species`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions#summary` — expected `List the adoption requests of a shelter`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status#description` — expected `Only return the requests in this status`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.phone#description` — expected `Phone number, in the E.164 format`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].fee#description` — expected `Adoption fee, in euros`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].rejectionReason#description` — expected `Why the request was rejected`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].decidedAt#description` — expected `When the request was approved or rejected`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions#summary` — expected `File an adoption request`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#description` — expected `Correlation id, echoed in the logs`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.phone#description` — expected `Phone number, in the E.164 format`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#description` — expected `Adoption fee, in euros`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions success application/json $.expectedDecisionDate#description` — expected `When the shelter commits to answer`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId}#summary` — expected `Get an adoption request`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.phone#description` — expected `Phone number, in the E.164 format`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.fee#description` — expected `Adoption fee, in euros`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.rejectionReason#description` — expected `Why the request was rejected`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.decidedAt#description` — expected `When the request was approved or rejected`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId}#summary` — expected `Cancel an adoption request`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve#summary` — expected `Approve a pending adoption request`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.phone#description` — expected `Phone number, in the E.164 format`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.fee#description` — expected `Adoption fee, in euros`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.rejectionReason#description` — expected `Why the request was rejected`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.decidedAt#description` — expected `When the request was approved or rejected`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject#summary` — expected `Reject a pending adoption request`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#description` — expected `Why the request is rejected, sent to the adopter`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.phone#description` — expected `Phone number, in the E.164 format`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.fee#description` — expected `Adoption fee, in euros`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.rejectionReason#description` — expected `Why the request was rejected`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.decidedAt#description` — expected `When the request was approved or rejected`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/books#summary` — expected `Search the catalogue`
+- **missing** `GET /v1/books param query:search#description` — expected `Full-text search on the title and the authors`
+- **missing** `GET /v1/books success application/json $.resources[].isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `GET /v1/books success application/json $.resources[].language#description` — expected `ISO 639-1 language code`
+- **missing** `GET /v1/books success application/json $.resources[].topics#description` — expected `Species the book is about`
+- **missing** `GET /v1/books success application/json $.resources[].rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `GET /v1/books success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/books success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/books#summary` — expected `Add a book to the catalogue`
+- **missing** `POST /v1/books body application/json $.isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `POST /v1/books body application/json $.language#description` — expected `ISO 639-1 language code`
+- **missing** `POST /v1/books body application/json $.topics#description` — expected `Species the book is about`
+- **missing** `POST /v1/books body application/json $.rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `POST /v1/books success application/json $.isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `POST /v1/books success application/json $.language#description` — expected `ISO 639-1 language code`
+- **missing** `POST /v1/books success application/json $.topics#description` — expected `Species the book is about`
+- **missing** `POST /v1/books success application/json $.rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `POST /v1/books success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/books success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/books/export#summary` — expected `Export the whole catalogue as CSV`
+- **missing** `GET /v1/books/{isbn}#summary` — expected `Get a book by ISBN`
+- **missing** `GET /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `GET /v1/books/{isbn} success application/json $.isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `GET /v1/books/{isbn} success application/json $.language#description` — expected `ISO 639-1 language code`
+- **missing** `GET /v1/books/{isbn} success application/json $.topics#description` — expected `Species the book is about`
+- **missing** `GET /v1/books/{isbn} success application/json $.rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `GET /v1/books/{isbn} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/books/{isbn} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `PUT /v1/books/{isbn}#summary` — expected `Replace a book`
+- **missing** `PUT /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `PUT /v1/books/{isbn} body application/json $.language#description` — expected `ISO 639-1 language code`
+- **missing** `PUT /v1/books/{isbn} body application/json $.topics#description` — expected `Species the book is about`
+- **missing** `PUT /v1/books/{isbn} body application/json $.rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `PUT /v1/books/{isbn} success application/json $.isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `PUT /v1/books/{isbn} success application/json $.language#description` — expected `ISO 639-1 language code`
+- **missing** `PUT /v1/books/{isbn} success application/json $.topics#description` — expected `Species the book is about`
+- **missing** `PUT /v1/books/{isbn} success application/json $.rating#description` — expected `Average reader rating, from 0 to 5`
+- **missing** `PUT /v1/books/{isbn} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `PUT /v1/books/{isbn} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `DELETE /v1/books/{isbn}#summary` — expected `Remove a book from the catalogue`
+- **missing** `DELETE /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+
+</details>
+

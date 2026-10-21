@@ -1,0 +1,26 @@
+[
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#required",
+    "expected": "false"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#description",
+    "expected": "Correlation id, echoed in the logs"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id $#type",
+    "expected": "string"
+  }
+]

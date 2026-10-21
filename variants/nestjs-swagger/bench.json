@@ -1,0 +1,32 @@
+{
+  "tool": "@nestjs/swagger",
+  "packages": [
+    "@nestjs/swagger"
+  ],
+  "approach": "runtime",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json",
+  "steps": [
+    {
+      "name": "build",
+      "command": "node node_modules/@nestjs/cli/bin/nest.js build"
+    },
+    {
+      "name": "generate",
+      "command": "node dist/generate-openapi.js"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "Uses @nestjs/swagger 11.4.7, the latest 11.x: 12.x requires NestJS 12.",
+    "Nest CLI plugin (classValidatorShim + introspectComments) with dtoFileNameSuffix extended to .model.ts / .interface.ts / .interfaces.ts, so Mongoose models and JSDoc are reflected without @ApiProperty; requires `nest build`.",
+    "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and reuses setupApp() for the v1 prefix.",
+    "The plugin only reads classes: the response interfaces (AdoptionReceipt, ShelterStats, PaginationLinks, HttpError) were turned into classes; HealthStatus lives in a controller file, so it needs manual @ApiProperty.",
+    "mongodb ObjectId properties make the plugin emit require(\"bson/bson\"), which crashes at runtime (package exports): each one needs @ApiProperty({ type: String }). ObjectId path params are reflected as a $ref to an empty ObjectId schema: the generation script overrides components.schemas.ObjectId with { type: string } (generic for any Mongo project).",
+    "@nestjs/mapped-types helpers are not reflected: PartialType/OmitType imported from @nestjs/swagger instead.",
+    "The pagination envelope (interceptor) and query params (custom param decorator) are invisible to reflection: reusable ApiPaginatedResponse(Model) composite decorator (ApiExtraModels + getSchemaPath + ApiQuery).",
+    "Handlers without return type infer Promise<HydratedDocument<T>> (documented as a bare object), unions (Cat | Dog) are not supported, Pipe-based optional query/header params are reflected as required: explicit @ApiOkResponse / oneOf / @ApiQuery / @ApiHeader needed.",
+    "Security and 401/403 come from composing the existing @Roles() decorator with ApiBearerAuth + error responses (applyDecorators); other error responses (400/404/409) need one decorator per route or controller, using HttpError as the shared schema.",
+    "Not fixed: the class-validator shim ignores @IsInt (no integer type) and @ArrayMaxSize; JSDoc @param descriptions are not read for path/query params (only method summaries and property comments)."
+  ]
+}

@@ -1,0 +1,6862 @@
+[
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:page $#default",
+    "expected": "1"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:limit $#default",
+    "expected": "10"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:filter",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:filter#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:filter $#type",
+    "expected": "string"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:sort",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:sort#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters param query:sort $#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.resources[].address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination#type",
+    "expected": "object"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.next#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.next#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.next#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.previous#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.previous#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.previous#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.first#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.first#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.first#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.last#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.last#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.last#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalPages#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalPages#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalPages#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalResources#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalResources#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters success application/json $.pagination.totalResources#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.name#maxLength",
+    "expected": "100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.capacity#maximum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{id}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "DELETE /v1/shelters/{id}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "PATCH /v1/shelters/{id}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.name#maxLength",
+    "expected": "100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#maximum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} body application/json $.tags#maxItems",
+    "expected": "10"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} success application/json $.address.street#maxLength",
+    "expected": "120"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{id}/stats#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/cats#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:page $#default",
+    "expected": "1"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:limit $#default",
+    "expected": "10"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:filter",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:filter#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:filter $#type",
+    "expected": "string"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:sort",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:sort#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats param query:sort $#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination#type",
+    "expected": "object"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/cats#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/cats 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/dogs#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:page $#default",
+    "expected": "1"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:limit $#default",
+    "expected": "10"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:filter",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:filter#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:filter $#type",
+    "expected": "string"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:sort",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:sort#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs param query:sort $#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination#type",
+    "expected": "object"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/dogs#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/dogs 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/animals#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:name $#maxLength",
+    "expected": "50"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "parameters",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:includeAdopted#required",
+    "expected": "false",
+    "actual": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals param query:includeAdopted $#default",
+    "expected": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/adoptions#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:page $#default",
+    "expected": "1"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:limit $#default",
+    "expected": "10"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:filter",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:filter#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:filter $#type",
+    "expected": "string"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:sort",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:sort#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions param query:sort $#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination#type",
+    "expected": "object"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/adoptions#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#required",
+    "expected": "false"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#description",
+    "expected": "Correlation id, echoed in the logs"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions param header:x-request-id $#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.fee#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#maxLength",
+    "expected": "500"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#minLength",
+    "expected": "10"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject body application/json $.reason#maxLength",
+    "expected": "500"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:page $#default",
+    "expected": "1"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit $#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books param query:limit $#default",
+    "expected": "10"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:filter",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:filter#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:filter $#type",
+    "expected": "string"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:sort",
+    "expected": "true"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:sort#required",
+    "expected": "false"
+  },
+  {
+    "category": "parameters",
+    "kind": "missing",
+    "key": "GET /v1/books param query:sort $#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination#type",
+    "expected": "object"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.next#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.next#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.next#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.previous#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.previous#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.previous#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.first#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.first#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.first#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.last#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.last#type",
+    "expected": "string"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.last#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalPages#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalPages#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalPages#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalResources#required",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalResources#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.pagination.totalResources#nullable",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "POST /v1/books#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors#minItems",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.pageCount#minimum",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.language#minLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.language#maxLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.rating#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books body application/json $.rating#maximum",
+    "expected": "5"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "POST /v1/books 409 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "GET /v1/books/export",
+    "expected": "true"
+  },
+  {
+    "category": "security",
+    "kind": "missing",
+    "key": "GET /v1/books/export#secured",
+    "expected": "false"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/export#summary",
+    "expected": "Export the whole catalogue as CSV"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books/export success#status",
+    "expected": "200"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books/export success",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books/export success text/csv",
+    "expected": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "missing",
+    "key": "GET /v1/books/export success text/csv $#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "PUT /v1/books/{isbn}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors#minItems",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#minimum",
+    "expected": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#minLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#maxLength",
+    "expected": "2"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#minimum",
+    "expected": "0"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#maximum",
+    "expected": "5"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 400 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "security",
+    "kind": "mismatch",
+    "key": "DELETE /v1/books/{isbn}#secured",
+    "expected": "true",
+    "actual": "false"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 401 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 403 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $#type",
+    "expected": "object"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.code#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.code#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.message#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.message#type",
+    "expected": "string"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "errors",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} 404 application/json $.status#type",
+    "expected": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters success application/json $.totalResources#required",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters success application/json $.totalResources#type",
+    "actual": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "DELETE /v1/shelters/{id} success application/json",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.totalResources#required",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/cats success application/json $.totalResources#type",
+    "actual": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "DELETE /v1/shelters/{shelterId}/cats/{catId} success application/json",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.totalResources#required",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/dogs success application/json $.totalResources#type",
+    "actual": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.totalResources#required",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/shelters/{shelterId}/adoptions success application/json $.totalResources#type",
+    "actual": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/books success application/json $.totalResources#required",
+    "actual": "true"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "GET /v1/books success application/json $.totalResources#type",
+    "actual": "number"
+  },
+  {
+    "category": "responses",
+    "kind": "extra",
+    "key": "DELETE /v1/books/{isbn} success application/json",
+    "actual": "true"
+  }
+]

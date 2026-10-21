@@ -56,6 +56,7 @@ const benchVariant = (variant: Variant, expected: unknown): VariantResult => {
   const result: VariantResult = {
     name: variant.name,
     tool: variant.config.tool,
+    version: variant.config.version,
     versions: Object.fromEntries(variant.config.packages.map((p: string) => [p, installedVersion(variant.dir, p)])),
     approach: variant.config.approach,
     notes: variant.config.notes ?? [],

@@ -1,0 +1,2479 @@
+{
+  "openapi": "3.1.0",
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local server"
+    }
+  ],
+  "info": {
+    "title": "Petstore API",
+    "version": "1.0.0",
+    "description": "Generic NestJS demo app reproducing the patterns of Algoan backend services"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    },
+    "schemas": {
+      "HealthStatus": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "const": "ok"
+          },
+          "uptime": {
+            "type": "number",
+            "description": "Process uptime, in seconds"
+          }
+        },
+        "required": [
+          "status",
+          "uptime"
+        ],
+        "description": "Health check response"
+      },
+      "Shelter": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the shelter"
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "Maximum number of animals the shelter can host"
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "OPEN"
+              },
+              {
+                "const": "FULL"
+              },
+              {
+                "const": "CLOSED"
+              }
+            ]
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Recordstringunknown",
+            "description": "Free-form data attached by the caller"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "country",
+          "capacity",
+          "status",
+          "tags",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "Shelter Model"
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "complement": {
+            "type": "string",
+            "description": "Building, floor, etc."
+          }
+        },
+        "required": [
+          "street",
+          "city",
+          "postalCode"
+        ],
+        "description": "Postal address"
+      },
+      "Recordstringunknown": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "description": "Construct a type with a set of properties K of type T",
+        "additionalProperties": {}
+      },
+      "CreateShelterDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name of the shelter"
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "Maximum number of animals the shelter can host"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Recordstringunknown",
+            "description": "Free-form data attached by the caller"
+          }
+        },
+        "required": [
+          "name",
+          "country",
+          "capacity"
+        ],
+        "description": "Create Shelter DTO"
+      },
+      "DataToPaginateShelter": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Shelter"
+            }
+          },
+          "totalResources": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "resources",
+          "totalResources"
+        ],
+        "description": "What a service returns for a paginated route, before the PaginationBodyInterceptor"
+      },
+      "UpdateShelterDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "oneOf": [
+              {
+                "const": "OPEN"
+              },
+              {
+                "const": "FULL"
+              },
+              {
+                "const": "CLOSED"
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the shelter"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "Maximum number of animals the shelter can host"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/Recordstringunknown",
+            "description": "Free-form data attached by the caller"
+          }
+        },
+        "required": [],
+        "description": "Update Shelter DTO: every field but the country can be updated"
+      },
+      "ShelterStats": {
+        "type": "object",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "hostedAnimals": {
+            "type": "number",
+            "description": "Number of animals currently hosted"
+          },
+          "adoptions": {
+            "type": "object",
+            "properties": {
+              "approved": {
+                "type": "number"
+              },
+              "rejected": {
+                "type": "number"
+              },
+              "pending": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "approved",
+              "rejected",
+              "pending"
+            ]
+          },
+          "occupancyRate": {
+            "type": "number",
+            "description": "Hosted animals / capacity, between 0 and 1"
+          }
+        },
+        "required": [
+          "shelterId",
+          "year",
+          "hostedAnimals",
+          "adoptions",
+          "occupancyRate"
+        ],
+        "description": "Yearly statistics of a shelter"
+      },
+      "Cat": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "const": "CAT"
+          },
+          "indoor": {
+            "type": "boolean",
+            "description": "Whether the cat must live indoors"
+          },
+          "coatPattern": {
+            "oneOf": [
+              {
+                "const": "SOLID"
+              },
+              {
+                "const": "TABBY"
+              },
+              {
+                "const": "TORTOISESHELL"
+              },
+              {
+                "const": "CALICO"
+              },
+              {
+                "const": "BICOLOR"
+              }
+            ]
+          },
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "oneOf": [
+              {
+                "const": "FEMALE"
+              },
+              {
+                "const": "MALE"
+              },
+              {
+                "const": "UNKNOWN"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "AVAILABLE"
+              },
+              {
+                "const": "RESERVED"
+              },
+              {
+                "const": "ADOPTED"
+              }
+            ]
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "type": "number",
+            "description": "Weight in kilograms"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "species",
+          "indoor",
+          "_id",
+          "shelterId",
+          "name",
+          "sex",
+          "status",
+          "vaccinations",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "Cat Model"
+      },
+      "Vaccination": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Vaccine name"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "name",
+          "date"
+        ],
+        "description": "A vaccine injection"
+      },
+      "CreateCatDto": {
+        "type": "object",
+        "properties": {
+          "indoor": {
+            "type": "boolean",
+            "description": "Whether the cat must live indoors"
+          },
+          "coatPattern": {
+            "oneOf": [
+              {
+                "const": "SOLID"
+              },
+              {
+                "const": "TABBY"
+              },
+              {
+                "const": "TORTOISESHELL"
+              },
+              {
+                "const": "CALICO"
+              },
+              {
+                "const": "BICOLOR"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "oneOf": [
+              {
+                "const": "FEMALE"
+              },
+              {
+                "const": "MALE"
+              },
+              {
+                "const": "UNKNOWN"
+              }
+            ]
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "type": "number",
+            "description": "Weight in kilograms"
+          }
+        },
+        "required": [
+          "indoor",
+          "name",
+          "sex"
+        ],
+        "description": "Create Cat DTO"
+      },
+      "DataToPaginateCat": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cat"
+            }
+          },
+          "totalResources": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "resources",
+          "totalResources"
+        ],
+        "description": "What a service returns for a paginated route, before the PaginationBodyInterceptor"
+      },
+      "UpdateCatDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "oneOf": [
+              {
+                "const": "AVAILABLE"
+              },
+              {
+                "const": "RESERVED"
+              },
+              {
+                "const": "ADOPTED"
+              }
+            ]
+          },
+          "indoor": {
+            "type": "boolean",
+            "description": "Whether the cat must live indoors"
+          },
+          "coatPattern": {
+            "oneOf": [
+              {
+                "const": "SOLID"
+              },
+              {
+                "const": "TABBY"
+              },
+              {
+                "const": "TORTOISESHELL"
+              },
+              {
+                "const": "CALICO"
+              },
+              {
+                "const": "BICOLOR"
+              }
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "oneOf": [
+              {
+                "const": "FEMALE"
+              },
+              {
+                "const": "MALE"
+              },
+              {
+                "const": "UNKNOWN"
+              }
+            ]
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "type": "number",
+            "description": "Weight in kilograms"
+          }
+        },
+        "required": [],
+        "description": "Update Cat DTO"
+      },
+      "Dog": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "const": "DOG"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "oneOf": [
+              {
+                "const": "SMALL"
+              },
+              {
+                "const": "MEDIUM"
+              },
+              {
+                "const": "LARGE"
+              }
+            ]
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          },
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "oneOf": [
+              {
+                "const": "FEMALE"
+              },
+              {
+                "const": "MALE"
+              },
+              {
+                "const": "UNKNOWN"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "AVAILABLE"
+              },
+              {
+                "const": "RESERVED"
+              },
+              {
+                "const": "ADOPTED"
+              }
+            ]
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "type": "number",
+            "description": "Weight in kilograms"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "species",
+          "breed",
+          "size",
+          "_id",
+          "shelterId",
+          "name",
+          "sex",
+          "status",
+          "vaccinations",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "Dog Model"
+      },
+      "CreateDogDto": {
+        "type": "object",
+        "properties": {
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "oneOf": [
+              {
+                "const": "SMALL"
+              },
+              {
+                "const": "MEDIUM"
+              },
+              {
+                "const": "LARGE"
+              }
+            ]
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sex": {
+            "oneOf": [
+              {
+                "const": "FEMALE"
+              },
+              {
+                "const": "MALE"
+              },
+              {
+                "const": "UNKNOWN"
+              }
+            ]
+          },
+          "vaccinations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Vaccination"
+            }
+          },
+          "weightKg": {
+            "type": "number",
+            "description": "Weight in kilograms"
+          }
+        },
+        "required": [
+          "breed",
+          "size",
+          "name",
+          "sex"
+        ],
+        "description": "Create Dog DTO"
+      },
+      "DataToPaginateDog": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Dog"
+            }
+          },
+          "totalResources": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "resources",
+          "totalResources"
+        ],
+        "description": "What a service returns for a paginated route, before the PaginationBodyInterceptor"
+      },
+      "SearchAnimalsDto": {
+        "type": "object",
+        "properties": {
+          "species": {
+            "oneOf": [
+              {
+                "const": "CAT"
+              },
+              {
+                "const": "DOG"
+              }
+            ]
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "AVAILABLE"
+              },
+              {
+                "const": "RESERVED"
+              },
+              {
+                "const": "ADOPTED"
+              }
+            ]
+          },
+          "name": {
+            "type": "string",
+            "description": "Case-insensitive prefix of the animal name"
+          },
+          "minAge": {
+            "type": "number",
+            "description": "Minimum age, in years"
+          }
+        },
+        "required": [],
+        "description": "Query parameters to search the animals of a shelter"
+      },
+      "AdoptionReceipt": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "PENDING"
+              },
+              {
+                "const": "APPROVED"
+              },
+              {
+                "const": "REJECTED"
+              }
+            ]
+          },
+          "expectedDecisionDate": {
+            "type": "string",
+            "description": "When the shelter commits to answer",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "status",
+          "expectedDecisionDate"
+        ],
+        "description": "Receipt returned when an adoption request is filed"
+      },
+      "CreateAdoptionDto": {
+        "type": "object",
+        "properties": {
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "oneOf": [
+              {
+                "const": "CAT"
+              },
+              {
+                "const": "DOG"
+              }
+            ]
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Adoption fee, in euros"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "animalId",
+          "species",
+          "adopter",
+          "fee"
+        ],
+        "description": "Create Adoption DTO"
+      },
+      "Adopter": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone number, in the E.164 format"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ],
+        "description": "Person adopting an animal"
+      },
+      "DataToPaginateAdoption": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Adoption"
+            }
+          },
+          "totalResources": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "resources",
+          "totalResources"
+        ],
+        "description": "What a service returns for a paginated route, before the PaginationBodyInterceptor"
+      },
+      "Adoption": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "oneOf": [
+              {
+                "const": "CAT"
+              },
+              {
+                "const": "DOG"
+              }
+            ]
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "status": {
+            "oneOf": [
+              {
+                "const": "PENDING"
+              },
+              {
+                "const": "APPROVED"
+              },
+              {
+                "const": "REJECTED"
+              }
+            ]
+          },
+          "fee": {
+            "type": "number",
+            "description": "Adoption fee, in euros"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "description": "Why the request was rejected"
+          },
+          "decidedAt": {
+            "type": "string",
+            "description": "When the request was approved or rejected",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "shelterId",
+          "animalId",
+          "species",
+          "adopter",
+          "status",
+          "fee",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "Adoption Model"
+      },
+      "RejectAdoptionDto": {
+        "type": "object",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "Why the request is rejected, sent to the adopter"
+          }
+        },
+        "required": [
+          "reason"
+        ],
+        "description": "Reject Adoption DTO"
+      },
+      "DataToPaginateBook": {
+        "type": "object",
+        "properties": {
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Book"
+            }
+          },
+          "totalResources": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "resources",
+          "totalResources"
+        ],
+        "description": "What a service returns for a paginated route, before the PaginationBodyInterceptor"
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "isbn": {
+            "type": "string",
+            "description": "ISBN-13, without dashes"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "oneOf": [
+              {
+                "const": "CARE_GUIDE"
+              },
+              {
+                "const": "TRAINING"
+              },
+              {
+                "const": "NOVEL"
+              },
+              {
+                "const": "CHILDREN"
+              }
+            ]
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "const": "CAT"
+                },
+                {
+                  "const": "DOG"
+                }
+              ]
+            },
+            "description": "Species the book is about"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Value added by mongoose",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "_id",
+          "isbn",
+          "title",
+          "authors",
+          "genre",
+          "language",
+          "topics",
+          "available",
+          "createdAt",
+          "updatedAt"
+        ],
+        "description": "A book of the pet-care catalogue"
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "birthYear": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "description": "Book author"
+      },
+      "SearchBooksDto": {
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string",
+            "description": "Full-text search on the title and the authors"
+          },
+          "genre": {
+            "oneOf": [
+              {
+                "const": "CARE_GUIDE"
+              },
+              {
+                "const": "TRAINING"
+              },
+              {
+                "const": "NOVEL"
+              },
+              {
+                "const": "CHILDREN"
+              }
+            ]
+          }
+        },
+        "required": [],
+        "description": "Query parameters to search the catalogue"
+      },
+      "CreateBookDto": {
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "string",
+            "description": "ISBN-13, without dashes"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "oneOf": [
+              {
+                "const": "CARE_GUIDE"
+              },
+              {
+                "const": "TRAINING"
+              },
+              {
+                "const": "NOVEL"
+              },
+              {
+                "const": "CHILDREN"
+              }
+            ]
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "const": "CAT"
+                },
+                {
+                  "const": "DOG"
+                }
+              ]
+            },
+            "description": "Species the book is about"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "isbn",
+          "title",
+          "authors",
+          "genre"
+        ],
+        "description": "Create Book DTO"
+      },
+      "ReplaceBookDto": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "oneOf": [
+              {
+                "const": "CARE_GUIDE"
+              },
+              {
+                "const": "TRAINING"
+              },
+              {
+                "const": "NOVEL"
+              },
+              {
+                "const": "CHILDREN"
+              }
+            ]
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "const": "CAT"
+                },
+                {
+                  "const": "DOG"
+                }
+              ]
+            },
+            "description": "Species the book is about"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5"
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "title",
+          "authors",
+          "genre"
+        ],
+        "description": "Replace Book DTO: the ISBN comes from the path"
+      }
+    }
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "description": "Health check",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "health",
+          "getHealth"
+        ],
+        "x-samchon-controller": "AppController"
+      }
+    },
+    "/v1/shelters": {
+      "post": {
+        "description": "Create a shelter",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateShelterDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "create"
+        ],
+        "x-samchon-controller": "SheltersController"
+      },
+      "get": {
+        "description": "List the shelters the caller has access to",
+        "tags": [],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataToPaginateShelter"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "findAll"
+        ],
+        "x-samchon-controller": "SheltersController"
+      }
+    },
+    "/v1/shelters/{id}": {
+      "get": {
+        "description": "Get a shelter by id",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The shelter id"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "findOne"
+        ],
+        "x-samchon-controller": "SheltersController"
+      },
+      "patch": {
+        "description": "Update a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The shelter id"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateShelterDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "update"
+        ],
+        "x-samchon-controller": "SheltersController"
+      },
+      "delete": {
+        "description": "Delete a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The shelter id"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "remove"
+        ],
+        "x-samchon-controller": "SheltersController"
+      }
+    },
+    "/v1/shelters/{id}/stats": {
+      "get": {
+        "description": "Get the yearly statistics of a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The shelter id"
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "description": "The year of the statistics",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShelterStats"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "stats",
+          "getStats"
+        ],
+        "x-samchon-controller": "SheltersController"
+      }
+    },
+    "/v1/shelters/{shelterId}/cats": {
+      "post": {
+        "description": "Register a cat in a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCatDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "cats",
+          "create"
+        ],
+        "x-samchon-controller": "CatsController"
+      },
+      "get": {
+        "description": "List the cats of a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataToPaginateCat"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "cats",
+          "findAll"
+        ],
+        "x-samchon-controller": "CatsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/cats/{catId}": {
+      "get": {
+        "description": "Get a cat",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "cats",
+          "findOne"
+        ],
+        "x-samchon-controller": "CatsController"
+      },
+      "patch": {
+        "description": "Update a cat",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCatDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "cats",
+          "update"
+        ],
+        "x-samchon-controller": "CatsController"
+      },
+      "delete": {
+        "description": "Remove a cat from a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "cats",
+          "remove"
+        ],
+        "x-samchon-controller": "CatsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/dogs": {
+      "post": {
+        "description": "Register a dog in a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDogDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "dogs",
+          "create"
+        ],
+        "x-samchon-controller": "DogsController"
+      },
+      "get": {
+        "description": "List the dogs of a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataToPaginateDog"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "dogs",
+          "findAll"
+        ],
+        "x-samchon-controller": "DogsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/dogs/{dogId}": {
+      "get": {
+        "description": "Get a dog",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "dogId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "dogs",
+          "findOne"
+        ],
+        "x-samchon-controller": "DogsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/animals": {
+      "get": {
+        "description": "Search the animals of a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "includeAdopted",
+            "in": "query",
+            "schema": {
+              "type": "boolean"
+            },
+            "description": "Include the animals already adopted",
+            "required": true
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "const": "CAT"
+                },
+                {
+                  "const": "DOG"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "const": "AVAILABLE"
+                },
+                {
+                  "const": "RESERVED"
+                },
+                {
+                  "const": "ADOPTED"
+                }
+              ]
+            },
+            "required": false
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Case-insensitive prefix of the animal name"
+          },
+          {
+            "name": "minAge",
+            "in": "query",
+            "schema": {
+              "type": "number"
+            },
+            "required": false,
+            "description": "Minimum age, in years"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/Cat"
+                      },
+                      {
+                        "$ref": "#/components/schemas/Dog"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "animals",
+          "search"
+        ],
+        "x-samchon-controller": "AnimalsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/animals/{animalId}": {
+      "get": {
+        "description": "Get an animal, whatever its species",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "animalId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/Cat"
+                    },
+                    {
+                      "$ref": "#/components/schemas/Dog"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "animals",
+          "findOne"
+        ],
+        "x-samchon-controller": "AnimalsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions": {
+      "post": {
+        "description": "File an adoption request",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAdoptionDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdoptionReceipt"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "create"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      },
+      "get": {
+        "description": "List the adoption requests of a shelter",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "const": "PENDING"
+                },
+                {
+                  "const": "APPROVED"
+                },
+                {
+                  "const": "REJECTED"
+                }
+              ]
+            },
+            "description": "Only return the requests in this status",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataToPaginateAdoption"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "findAll"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}": {
+      "get": {
+        "description": "Get an adoption request",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "findOne"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      },
+      "delete": {
+        "description": "Cancel an adoption request",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "remove"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}/approve": {
+      "post": {
+        "description": "Approve a pending adoption request",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "approve"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      }
+    },
+    "/v1/shelters/{shelterId}/adoptions/{adoptionId}/reject": {
+      "post": {
+        "description": "Reject a pending adoption request",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectAdoptionDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "shelters",
+          "adoptions",
+          "reject"
+        ],
+        "x-samchon-controller": "AdoptionsController"
+      }
+    },
+    "/v1/books": {
+      "get": {
+        "description": "Search the catalogue",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false,
+            "description": "Full-text search on the title and the authors"
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "schema": {
+              "oneOf": [
+                {
+                  "const": "CARE_GUIDE"
+                },
+                {
+                  "const": "TRAINING"
+                },
+                {
+                  "const": "NOVEL"
+                },
+                {
+                  "const": "CHILDREN"
+                }
+              ]
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataToPaginateBook"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "books",
+          "findAll"
+        ],
+        "x-samchon-controller": "BooksController"
+      },
+      "post": {
+        "description": "Add a book to the catalogue",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "books",
+          "create"
+        ],
+        "x-samchon-controller": "BooksController"
+      }
+    },
+    "/v1/books/{isbn}": {
+      "get": {
+        "description": "Get a book by ISBN",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ISBN-13, without dashes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "books",
+          "findOne"
+        ],
+        "x-samchon-controller": "BooksController"
+      },
+      "put": {
+        "description": "Replace a book",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ISBN-13, without dashes"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBookDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "books",
+          "replace"
+        ],
+        "x-samchon-controller": "BooksController"
+      },
+      "delete": {
+        "description": "Remove a book from the catalogue",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ISBN-13, without dashes"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "",
+            "content": {
+              "application/json": {}
+            }
+          }
+        },
+        "x-samchon-accessor": [
+          "v1",
+          "books",
+          "remove"
+        ],
+        "x-samchon-controller": "BooksController"
+      }
+    }
+  },
+  "tags": []
+}
