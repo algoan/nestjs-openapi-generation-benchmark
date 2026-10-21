@@ -46,6 +46,10 @@ jobs:
       NESTOA_VERSION: ${{ github.event.client_payload.version || inputs.version || 'latest' }}
     steps:
       - uses: actions/checkout@v7
+        with:
+          # Keep the token out of .git/config, where the builds and install scripts below could read it;
+          # create-pull-request authenticates by itself
+          persist-credentials: false
 
       - uses: actions/setup-node@v7
         with:
@@ -93,8 +97,11 @@ jobs:
         working-directory: variants/nestoa
         env:
           GITHUB_PACKAGES_TOKEN: ${{ github.token }}
+        # Install scripts never see the token: they are skipped while it is set, then only nestoa's own
+        # (which makes its binary executable) runs, with a placeholder for the .npmrc variable
         run: |
-          npm install --no-audit --no-fund --save-exact "@algoan/nestoa@$NESTOA_VERSION"
+          npm install --no-audit --no-fund --ignore-scripts --save-exact "@algoan/nestoa@$NESTOA_VERSION"
+          GITHUB_PACKAGES_TOKEN=unused npm rebuild --ignore-scripts=false @algoan/nestoa
           echo "NESTOA_LABEL=$(node -p 'require("@algoan/nestoa/package.json").version')" >> "$GITHUB_ENV"
 
       - name: Run the benchmark (ease and correctness)
@@ -104,7 +111,7 @@ jobs:
           node -e '
             const { variants } = require("./bench/results/results.json");
             const result = variants.find((v) => v.name === process.argv[1]);
-            const error = result === undefined ? "no result" : result.error ?? (result.oasdiff?.available ? undefined : result.oasdiff?.error);
+            const error = result === undefined ? "no result" : result.error ?? result.oasdiff?.error ?? (result.oasdiff?.available ? undefined : "oasdiff did not run");
             if (error !== undefined) {
               console.error(`::error::${process.argv[1]}: ${error}`);
               process.exit(1);
