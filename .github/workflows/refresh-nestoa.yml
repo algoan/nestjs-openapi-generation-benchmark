@@ -42,8 +42,10 @@ jobs:
     env:
       OASDIFF_VERSION: 1.34.0 # the version of the published results
       VARIANT: ${{ github.event_name == 'workflow_dispatch' && inputs.variant || (github.event.action == 'nestoa-release' && 'nestoa' || 'nestoa-main') }}
-      NESTOA_REF: ${{ github.event.client_payload.sha || inputs.ref || 'main' }}
-      NESTOA_VERSION: ${{ github.event.client_payload.version || inputs.version || 'latest' }}
+      # A dispatch only triggers the refresh: dispatches may arrive out of order, so an automatic run
+      # always takes the latest main commit or release, never the one in its payload
+      NESTOA_REF: ${{ inputs.ref || 'main' }}
+      NESTOA_VERSION: ${{ inputs.version || 'latest' }}
     steps:
       - uses: actions/checkout@v7
         with:

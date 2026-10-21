@@ -203,7 +203,7 @@ any category gets more differences.
 
 When a commit is merged on nestoa's main branch, or a version is released, nestoa dispatches the
 [refresh workflow](.github/workflows/refresh-nestoa.yml) here. It re-runs the ease and correctness of
-`nestoa-main` (pinned to the merged commit) or `nestoa` (bumped to the released version) and opens a pull
+`nestoa-main` (pinned to the latest main commit) or `nestoa` (bumped to the latest version) and opens a pull
 request with the new results. Speed and memory are kept from the last local run, measured on one machine
 for every tool; the notes and the README table are updated by hand in that pull request.
 
