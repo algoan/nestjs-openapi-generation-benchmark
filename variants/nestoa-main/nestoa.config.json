@@ -1,6 +1,5 @@
 {
   "output": "openapi.yaml",
   "info": { "title": "Petstore API", "version": "1.0.0" },
-  "basePath": "/v1",
   "decoratorAliases": { "User": "user", "PaginationParams": "ignore" }
 }

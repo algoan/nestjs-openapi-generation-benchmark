@@ -5,11 +5,16 @@
   "approach": "static",
   "output": "openapi.yaml",
   "clean": "rm -f openapi.yaml",
-  "steps": [{ "name": "generate", "command": "../../.tools/bin/nestoa-main" }],
+  "steps": [
+    {
+      "name": "generate",
+      "command": "../../.tools/bin/nestoa-main"
+    }
+  ],
   "generated": [],
   "notes": [
     "Unreleased: built from the main branch of algoan/nestoa (219 commits after v0.1.7) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.",
-    "Configuration only, plus JSDoc: nestoa.config.json sets basePath (the prefix is set in src/setup.ts from an imported constant, while detectGlobalPrefix only reads main.ts) and decoratorAliases for @User (user) and @PaginationParams (ignore).",
+    "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (ignore); the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
     "Handler return types are not inferred: a handler without one is documented with an empty 200, without any warning even with --strict. 3 return types were added.",
     "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines); the 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.",
     "A custom param decorator can only be mapped to a known kind or ignored: the page/limit/filter/sort query params read by @PaginationParams() cannot be declared (60 core facts).",

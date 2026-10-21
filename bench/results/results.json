@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-21T18:34:20.384Z",
+  "date": "2026-10-21T18:43:49.481Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1308,7 +1308,7 @@
       "approach": "static",
       "notes": [
         "Unreleased: built from the main branch of algoan/nestoa (219 commits after v0.1.7) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.",
-        "Configuration only, plus JSDoc: nestoa.config.json sets basePath (the prefix is set in src/setup.ts from an imported constant, while detectGlobalPrefix only reads main.ts) and decoratorAliases for @User (user) and @PaginationParams (ignore).",
+        "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (ignore); the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
         "Handler return types are not inferred: a handler without one is documented with an empty 200, without any warning even with --strict. 3 return types were added.",
         "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines); the 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.",
         "A custom param decorator can only be mapped to a known kind or ignored: the page/limit/filter/sort query params read by @PaginationParams() cannot be declared (60 core facts).",
@@ -1321,49 +1321,49 @@
             "name": "generate",
             "command": "../../.tools/bin/nestoa-main",
             "wallMs": {
-              "median": 19.313875,
-              "mean": 22.0821084,
-              "min": 17.625667,
-              "max": 36.034084,
-              "stddev": 7.00913660959173
+              "median": 26.242041,
+              "mean": 29.1787668,
+              "min": 21.561667,
+              "max": 45.553584,
+              "stddev": 8.548847537818004
             },
             "cpuMs": {
-              "median": 0,
-              "mean": 0,
+              "median": 10,
+              "mean": 8,
               "min": 0,
-              "max": 0,
-              "stddev": 0
+              "max": 10,
+              "stddev": 4
             },
             "maxRssMb": {
               "median": 7.8125,
               "mean": 7.815625,
               "min": 7.765625,
-              "max": 7.859375,
-              "stddev": 0.03336586953759785
+              "max": 7.875,
+              "stddev": 0.040019526483955306
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 19.313875,
-            "mean": 22.0821084,
-            "min": 17.625667,
-            "max": 36.034084,
-            "stddev": 7.00913660959173
+            "median": 26.242041,
+            "mean": 29.1787668,
+            "min": 21.561667,
+            "max": 45.553584,
+            "stddev": 8.548847537818004
           },
           "cpuMs": {
-            "median": 0,
-            "mean": 0,
+            "median": 10,
+            "mean": 8,
             "min": 0,
-            "max": 0,
-            "stddev": 0
+            "max": 10,
+            "stddev": 4
           },
           "maxRssMb": {
             "median": 7.8125,
             "mean": 7.815625,
             "min": 7.765625,
-            "max": 7.859375,
-            "stddev": 0.03336586953759785
+            "max": 7.875,
+            "stddev": 0.040019526483955306
           }
         }
       },
@@ -1484,12 +1484,12 @@
       "ease": {
         "filesTouched": 6,
         "filesAdded": 1,
-        "linesAdded": 17,
+        "linesAdded": 16,
         "linesRemoved": 3,
-        "linesChanged": 20,
+        "linesChanged": 19,
         "sourceFilesTouched": 5,
         "sourceLinesChanged": 14,
-        "configLinesChanged": 6,
+        "configLinesChanged": 5,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
@@ -1498,7 +1498,7 @@
             "file": "nestoa.config.json",
             "status": "added",
             "kind": "config",
-            "added": 6,
+            "added": 5,
             "removed": 0
           },
           {

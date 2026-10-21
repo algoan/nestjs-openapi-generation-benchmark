@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-21T18:34:20.384Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-21T18:43:49.481Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -12,7 +12,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#5) | 92 (#4) | 2.80 s (#8) | 690 MB (#8) |
 | **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#3) | 2.69 s (#7) | 512 MB (#7) |
 | **nestoa** | 0.1.7 | static | 27 (#2) | 149 (#7) | 377 (#7) | 48 ms (#2) | 46 MB (#2) |
-| **nestoa (unreleased main)** | main@46b4f83 | static | 20 (#1) | 60 (#6) | 250 (#5) | 19 ms (#1) | 8 MB (#1) |
+| **nestoa (unreleased main)** | main@46b4f83 | static | 19 (#1) | 60 (#6) | 250 (#5) | 26 ms (#1) | 8 MB (#1) |
 | **ts-oas** | 0.6.1 | static | 515 (#8) | 3 (#3) | 4 (#2) | 824 ms (#4) | 430 MB (#4) |
 | **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#2) | 0 (#1) | 812 ms (#3) | 415 MB (#3) |
 | **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#4) | 304 (#6) | 891 ms (#5) | 442 MB (#6) |
@@ -30,7 +30,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +47 MB |
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +2 MB |
 | nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | -8 MB |
-| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 6 | +17 −3 | – | – |
+| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 5 | +16 −3 | – | – |
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 26 | +514 −1 | `ts-oas` | -14 MB |
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | -6 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +7 MB |
@@ -86,7 +86,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | `generate` | 483 ms | 390 ms – 536 ms | 500 ms | 139 MB |
 | @nestjs/swagger | **total** | **2.69 s** |  | 3.83 s | 512 MB |
 | nestoa | `generate` | 48 ms | 48 ms – 50 ms | 30 ms | 46 MB |
-| nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 36 ms | 0 ms | 8 MB |
+| nestoa (unreleased main) | `generate` | 26 ms | 22 ms – 46 ms | 10 ms | 8 MB |
 | ts-oas | `generate` | 824 ms | 808 ms – 865 ms | 1.66 s | 430 MB |
 | tsoa | `generate` | 812 ms | 806 ms – 833 ms | 1.52 s | 415 MB |
 | typoa | `generate` | 891 ms | 867 ms – 916 ms | 1.61 s | 442 MB |
@@ -157,7 +157,7 @@ Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 ### nestoa (unreleased main) (`variants/nestoa-main`)
 
 - Unreleased: built from the main branch of algoan/nestoa (219 commits after v0.1.7) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.
-- Configuration only, plus JSDoc: nestoa.config.json sets basePath (the prefix is set in src/setup.ts from an imported constant, while detectGlobalPrefix only reads main.ts) and decoratorAliases for @User (user) and @PaginationParams (ignore).
+- Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (ignore); the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.
 - Handler return types are not inferred: a handler without one is documented with an empty 200, without any warning even with --strict. 3 return types were added.
 - Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines); the 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
 - A custom param decorator can only be mapped to a known kind or ignored: the page/limit/filter/sort query params read by @PaginationParams() cannot be declared (60 core facts).

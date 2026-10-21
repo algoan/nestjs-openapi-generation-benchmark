@@ -25,7 +25,7 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| nestoa (unreleased main) | main@46b4f83 | **20** | 60 | 250 | **19 ms** | **8 MB** |
+| nestoa (unreleased main) | main@46b4f83 | **19** | 60 | 250 | **26 ms** | **8 MB** |
 | nestoa | 0.1.7 | 27 | 149 | 377 | 48 ms | 46 MB |
 | nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.39 s | 434 MB |
 | @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.69 s | 512 MB |
@@ -39,7 +39,7 @@ What the numbers say:
 - **There is a clear trade-off between effort and correctness.** The tools that reach (near) zero differences —
   tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time (decorators, JSDoc
   tags, or hand-written endpoint types: 170 to 515 lines). Every one of those lines can drift from the code.
-- **nestoa needs the fewest changes by far** (20–27 lines, no source annotation besides 3 return types and
+- **nestoa needs the fewest changes by far** (19–27 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **two orders of magnitude faster and lighter** than every Node-based tool.
   Its remaining core gap is a single pattern: the query parameters read by a custom param decorator
   (`@PaginationParams()`), which it can only ignore. It does not read class-validator constraints at all.

@@ -1,5 +1,5 @@
 {
-  "name": "nest-openapi-generation-benchmark",
+  "name": "nestjs-openapi-generation-benchmark",
   "private": true,
   "description": "Benchmark of the OpenAPI generators for NestJS on an Algoan-like codebase",
   "scripts": {
