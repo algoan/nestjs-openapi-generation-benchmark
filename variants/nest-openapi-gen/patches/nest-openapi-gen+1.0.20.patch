@@ -1,0 +1,49 @@
+diff --git a/node_modules/nest-openapi-gen/utils/openapi.js b/node_modules/nest-openapi-gen/utils/openapi.js
+index ab9a4ca..2f3c3e9 100644
+--- a/node_modules/nest-openapi-gen/utils/openapi.js
++++ b/node_modules/nest-openapi-gen/utils/openapi.js
+@@ -144,7 +144,9 @@ const getObjectSchema = (type) => {
+         const isGetter = prop.hasFlags(ts_morph_1.SymbolFlags.GetAccessor);
+         if (isGetter)
+             return;
+-        const valueDeclaration = prop.getValueDeclarationOrThrow();
++        const valueDeclaration = prop.getValueDeclaration() || prop.getDeclarations()[0];
++        if (!valueDeclaration)
++            return;
+         const schemaProperties = schema.properties;
+         const key = prop.getName();
+         schemaProperties[key] = getParamSchema(valueDeclaration) || {};
+@@ -206,18 +208,8 @@ const getParamSchema = (typeOrProperty, useRef = true) => {
+         case "object":
+             return (0, lodash_1.merge)(getObjectSchema(nonNullableType), schema);
+         case "enumLiteral": {
+-            const name = prop.getName();
+-            const enumMembers = prop
+-                .getValueDeclarationOrThrow()
+-                .getSourceFile()
+-                .getEnum((e) => e.getName() === nonNullableType.getText())
+-                .getMembers();
+-            const enumSchema = {};
+-            enumSchema.enum = enumMembers.map((m) => m.getName());
+-            enumSchema["x-enumNames"] = enumMembers.map((m) => m.getValue());
+-            enumSchema.type = typeof enumSchema.enum[0];
+-            exports.definitions[name] = enumSchema;
+-            return Object.assign({ $ref: "#/components/schemas/" + name }, schema);
++            const value = nonNullableType.getLiteralValue();
++            return Object.assign({ type: typeof value, enum: [value] }, schema);
+         }
+         case "enum": {
+             const name = (0, lodash_1.last)(nonNullableType.getText().split("."));
+diff --git a/node_modules/nest-openapi-gen/utils/typescript.js b/node_modules/nest-openapi-gen/utils/typescript.js
+index 937ffcb..d14c092 100644
+--- a/node_modules/nest-openapi-gen/utils/typescript.js
++++ b/node_modules/nest-openapi-gen/utils/typescript.js
+@@ -20,7 +20,7 @@ function getControllers(tsConfigFilePath = process.cwd() + "/tsconfig.json") {
+ exports.getControllers = getControllers;
+ function getMethodDetails(method) {
+     var _a, _b;
+-    const validRequestTypes = ["Post", "Get", "Delete", "Put", "Path", "Options", "Head"];
++    const validRequestTypes = ["Post", "Get", "Delete", "Put", "Patch", "Options", "Head"];
+     const methodTypeDecorator = method.getDecorators().find((decorator) => validRequestTypes.includes(decorator.getName()));
+     if (!methodTypeDecorator)
+         return;
