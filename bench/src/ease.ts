@@ -125,8 +125,11 @@ const productionSizeMb = (dir: string): number | undefined => {
   if (!existsSync(join(dir, 'node_modules'))) {
     return undefined;
   }
-  // npm ls exits with 1 on extraneous or invalid packages, the list is still printed
+  // A missing or invalid package makes npm ls fail while still printing a partial list
   const res = spawnSync('npm', ['ls', '--omit=dev', '--all', '--parseable'], { cwd: dir, encoding: 'utf8' });
+  if (res.error !== undefined || res.status !== 0) {
+    return undefined;
+  }
   const packages: string[] = [...new Set(res.stdout.trim().split('\n'))].filter(
     (p: string): boolean => p !== '' && p !== dir && existsSync(p),
   );
