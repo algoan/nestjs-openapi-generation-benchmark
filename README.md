@@ -25,14 +25,14 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| nestoa (unreleased main) | main@46b4f83 | **19** | 60 | 250 | **26 ms** | **8 MB** |
-| nestoa | 0.1.7 | 27 | 149 | 377 | 48 ms | 46 MB |
-| nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.39 s | 434 MB |
-| @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.69 s | 512 MB |
-| typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 891 ms | 442 MB |
-| @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.80 s | 690 MB |
-| tsoa | 6.6.0 | 300 | **0** | **0** | 812 ms | 415 MB |
-| ts-oas | 0.6.1 | 515 | 3 | 4 | 824 ms | 430 MB |
+| nestoa (unreleased main) | main@46b4f83 | **19** | 60 | 250 | **20 ms** | **8 MB** |
+| nestoa | 0.1.7 | 27 | 149 | 377 | 50 ms | 46 MB |
+| nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.51 s | 424 MB |
+| @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.74 s | 509 MB |
+| typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
+| @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.94 s | 674 MB |
+| tsoa | 6.6.0 | 300 | **0** | **0** | 792 ms | 415 MB |
+| ts-oas | 0.6.1 | 515 | 3 | 4 | 816 ms | 430 MB |
 
 What the numbers say:
 
