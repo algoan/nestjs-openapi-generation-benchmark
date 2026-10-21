@@ -2,12 +2,15 @@
  * node bench/src/cli.ts install [--only a,b]             install every variant
  * node bench/src/cli.ts run [--only a,b] [--runs 5] [--warmup 1] [--skip-perf]
  * node bench/src/cli.ts compare <generated-openapi-file>  compare one document with the expected one
+ * node bench/src/cli.ts check <candidate> [--baseline <file>] [--summary <file.md>]
+ *                                                       fail when the candidate has more differences than the baseline
  */
-import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { appendFileSync, copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { arch, cpus, platform } from 'node:os';
 import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { parse } from 'yaml';
+import { checkRegression } from './check.ts';
 import { compareDocuments } from './correctness/compare.ts';
 import type { Comparison } from './correctness/compare.ts';
 import { measureEase } from './ease.ts';
@@ -26,6 +29,8 @@ const { values, positionals } = parseArgs({
     runs: { type: 'string', default: '5' },
     warmup: { type: 'string', default: '1' },
     'skip-perf': { type: 'boolean', default: false },
+    baseline: { type: 'string' },
+    summary: { type: 'string' },
   },
 });
 
@@ -53,7 +58,8 @@ const generateOnce = (variant: Variant): void => {
   }
 };
 
-const benchVariant = (variant: Variant, expected: unknown): VariantResult => {
+/** `previous`: the last result of the variant, whose speed and memory are kept with --skip-perf */
+const benchVariant = (variant: Variant, expected: unknown, previous?: VariantResult): VariantResult => {
   const result: VariantResult = {
     name: variant.name,
     tool: variant.config.tool,
@@ -69,6 +75,7 @@ const benchVariant = (variant: Variant, expected: unknown): VariantResult => {
     if (values['skip-perf']) {
       log('  generating');
       generateOnce(variant);
+      result.perf = previous?.perf;
     } else {
       log('  measuring speed and memory');
       result.perf = measurePerf(variant, Number(values.runs), Number(values.warmup), (m: string) => log(`    ${m}`));
@@ -113,6 +120,24 @@ const main = (): void => {
     return;
   }
 
+  if (command === 'check') {
+    const baseline: Comparison | undefined = values.baseline === undefined ? undefined : compareDocuments(expected, readDocument(values.baseline));
+    const { regressed, markdown } = checkRegression(compareDocuments(expected, readDocument(arg)), baseline);
+    const verdict: string = regressed
+      ? 'More differences with the expected document than the baseline.'
+      : baseline === undefined
+        ? 'No baseline: differences with the expected document.'
+        : 'No regression against the baseline.';
+    const report: string = `## NestJS OpenAPI generation benchmark\n\n${verdict}\n\n${markdown}\n`;
+    console.log(report);
+    if (values.summary !== undefined) {
+      appendFileSync(values.summary, report);
+    }
+    process.exitCode = regressed ? 1 : 0;
+
+    return;
+  }
+
   const variants: Variant[] = loadVariants(only);
   if (variants.length === 0) {
     throw new Error('No variant found in variants/');
@@ -135,21 +160,26 @@ const main = (): void => {
     throw new Error(`Unknown command "${command}" (install, run or compare)`);
   }
 
+  const resultsFile: string = join(RESULTS_DIR, 'results.json');
+  const last: BenchResult | undefined = existsSync(resultsFile) ? (JSON.parse(readFileSync(resultsFile, 'utf8')) as BenchResult) : undefined;
+  const previous: VariantResult[] = last?.variants ?? [];
   const bench: BenchResult = {
     date: new Date().toISOString(),
-    machine: { platform: platform(), arch: arch(), cpus: `${cpus().length} × ${cpus()[0]?.model}`, node: process.version },
+    // Without perf, the speed and memory kept from the last run were measured on its machine
+    machine:
+      values['skip-perf'] && last !== undefined
+        ? last.machine
+        : { platform: platform(), arch: arch(), cpus: `${cpus().length} × ${cpus()[0]?.model}`, node: process.version },
     variants: [],
   };
   // Keep the results of the variants that are not re-run
-  const resultsFile: string = join(RESULTS_DIR, 'results.json');
-  if (only !== undefined && existsSync(resultsFile)) {
-    const previous: BenchResult = JSON.parse(readFileSync(resultsFile, 'utf8'));
-    bench.variants = previous.variants.filter((r: VariantResult): boolean => !only.includes(r.name));
+  if (only !== undefined) {
+    bench.variants = previous.filter((r: VariantResult): boolean => !only.includes(r.name));
   }
 
   for (const variant of variants) {
     log(`${variant.name} (${variant.config.tool})`);
-    bench.variants.push(benchVariant(variant, expected));
+    bench.variants.push(benchVariant(variant, expected, previous.find((r: VariantResult): boolean => r.name === variant.name)));
   }
   bench.variants.sort((a: VariantResult, b: VariantResult): number => a.name.localeCompare(b.name));
 

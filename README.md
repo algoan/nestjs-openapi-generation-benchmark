@@ -87,6 +87,7 @@ npm run bench              # all three grades, every tool → bench/results/REPO
 npm run bench:correctness  # ease + correctness only (no timing)
 node bench/src/cli.ts run --only nestoa,tsoa --runs 10
 node bench/src/cli.ts compare path/to/openapi.json   # compare any document with the expected one
+node bench/src/cli.ts check new.yaml --baseline old.yaml  # fail when new.yaml has more differences than old.yaml
 ```
 
 ## The app
@@ -193,6 +194,18 @@ tree), 5 times by default after a warm-up run. Tools are called directly, not th
 - `nestoa (unreleased main)` is built from source by `bench/scripts/build-nestoa-main.sh` and is not an
   installable release: it is listed to show where the tool is going, not as a peer of the published tools.
 - Timings vary between sessions (up to ~2× for the slowest Node tools); the ranking does not change.
+
+## Keeping nestoa up to date
+
+nestoa is checked against this benchmark on every pull request: its CI builds the pull request and its
+base branch, generates the document of `variants/nestoa-main` with both, and runs `check`, which fails when
+any category gets more differences.
+
+When a commit is merged on nestoa's main branch, or a version is released, nestoa dispatches the
+[refresh workflow](.github/workflows/refresh-nestoa.yml) here. It re-runs the ease and correctness of
+`nestoa-main` (pinned to the merged commit) or `nestoa` (bumped to the released version) and opens a pull
+request with the new results. Speed and memory are kept from the last local run, measured on one machine
+for every tool; the notes and the README table are updated by hand in that pull request.
 
 ## Adding a tool
 
