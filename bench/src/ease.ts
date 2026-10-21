@@ -108,7 +108,7 @@ const folderSizeMb = (dir: string): number | undefined => {
 
 /** Disk usage of a directory (like `du`), without its nested node_modules */
 const packageSizeBytes = (dir: string): number => {
-  let bytes: number = 0;
+  let bytes: number = lstatSync(dir).blocks * 512;
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
     if (entry.name === 'node_modules') {
       continue;
