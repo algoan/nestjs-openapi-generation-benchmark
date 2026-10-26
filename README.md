@@ -41,7 +41,8 @@ What the numbers say:
   (decorators, JSDoc tags, or hand-written endpoint types: 170 to 513 lines). Every one of those lines can
   drift from the code.
 - **nestoa needs the fewest changes by far** (30–33 lines, no source annotation besides 3 return types and
-  a few `@throws` tags) and is **two orders of magnitude faster and lighter** than every Node-based tool.
+  a few `@throws` tags) and is **one to two orders of magnitude faster and lighter** than every Node-based
+  tool: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84× lighter for main.
   It matches the expected document exactly: the query parameters read by
   `@PaginationParams()` and the error body are declared in its configuration, and class-validator
   constraints are read from the DTOs.
