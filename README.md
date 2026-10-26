@@ -54,7 +54,9 @@ What the numbers say:
   security, `@nestjs/mapped-types` helpers, `text/csv`, `HttpStatus.*` members, custom decorators' query
   parameters and class-validator constraints, missing from 0.1.7 (149 core differences), are all supported.
   It generates the same document as main; its 3 extra lines are the dependency and the `.npmrc` of
-  GitHub Packages.
+  GitHub Packages. It is only slower and heavier because `node_modules/.bin/nestoa` is a Node launcher
+  that spawns the native binary: Node accounts for about 30 ms and 38 MB, the binary alone measures like
+  main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
