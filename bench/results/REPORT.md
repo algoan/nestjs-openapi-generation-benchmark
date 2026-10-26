@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-26T10:59:12.447Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-26T13:25:07.051Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -12,7 +12,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#6) | 92 (#5) | 2.94 s (#8) | 674 MB (#8) |
 | **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#4) | 2.74 s (#7) | 509 MB (#7) |
 | **nestoa** | 0.1.7 | static | 27 (#1) | 149 (#7) | 377 (#7) | 50 ms (#2) | 46 MB (#2) |
-| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#2) | 0 (#2) | 0 (#1) | 20 ms (#1) | 8 MB (#1) |
+| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#2) | 0 (#2) | 0 (#1) | 19 ms (#1) | 8 MB (#1) |
 | **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#4) | 4 (#3) | 816 ms (#4) | 430 MB (#5) |
 | **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#3) | 0 (#2) | 792 ms (#3) | 415 MB (#3) |
 | **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#5) | 304 (#6) | 898 ms (#5) | 443 MB (#6) |
@@ -89,7 +89,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | `generate` | 484 ms | 430 ms – 552 ms | 480 ms | 139 MB |
 | @nestjs/swagger | **total** | **2.74 s** |  | 3.65 s | 509 MB |
 | nestoa | `generate` | 50 ms | 50 ms – 56 ms | 30 ms | 46 MB |
-| nestoa (unreleased main) | `generate` | 20 ms | 20 ms – 22 ms | 0 ms | 8 MB |
+| nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 21 ms | 0 ms | 8 MB |
 | ts-oas | `generate` | 816 ms | 797 ms – 859 ms | 1.65 s | 430 MB |
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
 | typoa | `generate` | 898 ms | 859 ms – 984 ms | 1.60 s | 443 MB |

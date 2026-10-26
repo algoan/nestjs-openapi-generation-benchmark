@@ -26,7 +26,7 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | nestoa | 0.1.7 | **27** | 149 | 377 | 50 ms | 46 MB |
-| nestoa (unreleased main) | main@00c0442 | 30 | **0** | **0** | **20 ms** | **8 MB** |
+| nestoa (unreleased main) | main@00c0442 | 30 | **0** | **0** | **19 ms** | **8 MB** |
 | nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.51 s | 424 MB |
 | @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.74 s | 509 MB |
 | typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
