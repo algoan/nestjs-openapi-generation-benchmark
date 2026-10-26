@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-26T15:09:13.010Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-26T15:38:44.886Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -147,6 +147,7 @@ Differences: [`bench/results/nestjs-swagger/differences.md`](nestjs-swagger/diff
 - Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.
 - Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
 - Compared with nestoa-main, the only extra lines are the dependency and the .npmrc pointing @algoan at GitHub Packages.
+- Measured through node_modules/.bin/nestoa, the entry point users run: it is a Node launcher (bin/nestoa.js) that spawns the native binary, and the peak RSS reported is that of the Node process. Node accounts for about 30 ms and 38 MB of the gap with nestoa-main: run directly with /usr/bin/time -l on the Apple M4, the launcher takes 40–50 ms and 46.6 MB, the 0.2.1 native binary 10–20 ms and 7.9 MB, and nestoa-main 10 ms and 8.0 MB (0.1.7 had the same overhead).
 
 Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 
