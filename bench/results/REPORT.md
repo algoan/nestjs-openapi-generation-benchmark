@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-26T13:25:07.051Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-26T15:09:13.010Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -9,13 +9,13 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#8) | 2394 (#8) | 2.51 s (#6) | 424 MB (#4) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#6) | 92 (#5) | 2.94 s (#8) | 674 MB (#8) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#4) | 2.74 s (#7) | 509 MB (#7) |
-| **nestoa** | 0.1.7 | static | 27 (#1) | 149 (#7) | 377 (#7) | 50 ms (#2) | 46 MB (#2) |
-| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#2) | 0 (#2) | 0 (#1) | 19 ms (#1) | 8 MB (#1) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#4) | 4 (#3) | 816 ms (#4) | 430 MB (#5) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#3) | 0 (#2) | 792 ms (#3) | 415 MB (#3) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#5) | 304 (#6) | 898 ms (#5) | 443 MB (#6) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#7) | 92 (#6) | 2.94 s (#8) | 674 MB (#8) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#5) | 2.74 s (#7) | 509 MB (#7) |
+| **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
+| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#5) | 4 (#4) | 816 ms (#4) | 430 MB (#5) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#4) | 0 (#3) | 792 ms (#3) | 415 MB (#3) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#6) | 304 (#7) | 898 ms (#5) | 443 MB (#6) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -29,8 +29,8 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB | 0 MB |
 | @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +61 MB | +71 MB |
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
-| nestoa | 8 | 2 | 5 / 75 | 18 | 9 | +22 −5 | `@algoan/nestoa` | +7 MB | 0 MB |
-| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 16 | +27 −3 | – | 0 MB | 0 MB |
+| nestoa | 8 | 2 | 5 / 75 | 14 | 19 | +30 −3 | `@algoan/nestoa` | +8 MB | 0 MB |
+| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 16 | +27 −3 | – | – | – |
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
@@ -47,7 +47,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | nest-openapi-gen | 0 | 407 | 16 | 823 | 828 | 89 | 25 | 206 | **1246** | **2394** | 46.7% |
 | @nestia/sdk | 1 | 1 | 0 | 8 | 0 | 80 | 1 | 1 | **10** | **92** | 97.0% |
 | @nestjs/swagger | 0 | 0 | 0 | 0 | 0 | 14 | 0 | 8 | **0** | **22** | 99.3% |
-| nestoa | 0 | 61 | 84 | 4 | 0 | 192 | 25 | 11 | **149** | **377** | 90.4% |
+| nestoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | nestoa (unreleased main) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
 | tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
@@ -60,7 +60,7 @@ Recall (share of the expected facts found) per category:
 | nest-openapi-gen | 100.0% | 84.8% | 94.1% | 70.8% | 0.0% | 11.0% | 13.8% | 0.0% |
 | @nestia/sdk | 96.6% | 99.5% | 100.0% | 99.7% | 100.0% | 20.0% | 96.6% | 99.5% |
 | @nestjs/swagger | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 86.0% | 100.0% | 96.1% |
-| nestoa | 100.0% | 69.2% | 69.1% | 99.8% | 100.0% | 0.0% | 13.8% | 94.7% |
+| nestoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | nestoa (unreleased main) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | ts-oas | 100.0% | 98.5% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 99.5% |
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
@@ -73,7 +73,7 @@ Recall (share of the expected facts found) per category:
 | nest-openapi-gen | 146 | 0 | 388 | 534 |
 | @nestia/sdk | 233 | 0 | 269 | 502 |
 | @nestjs/swagger | 31 | 0 | 106 | 137 |
-| nestoa | 34 | 48 | 181 | 263 |
+| nestoa | 0 | 0 | 58 | 58 |
 | nestoa (unreleased main) | 0 | 0 | 58 | 58 |
 | ts-oas | 55 | 1 | 59 | 115 |
 | tsoa | 49 | 0 | 197 | 246 |
@@ -88,7 +88,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | `build` | 2.26 s | 2.13 s – 2.31 s | 3.17 s | 509 MB |
 | @nestjs/swagger | `generate` | 484 ms | 430 ms – 552 ms | 480 ms | 139 MB |
 | @nestjs/swagger | **total** | **2.74 s** |  | 3.65 s | 509 MB |
-| nestoa | `generate` | 50 ms | 50 ms – 56 ms | 30 ms | 46 MB |
+| nestoa | `generate` | 48 ms | 45 ms – 50 ms | 30 ms | 47 MB |
 | nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 21 ms | 0 ms | 8 MB |
 | ts-oas | `generate` | 816 ms | 797 ms – 859 ms | 1.65 s | 430 MB |
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
@@ -142,24 +142,17 @@ Differences: [`bench/results/nestjs-swagger/differences.md`](nestjs-swagger/diff
 
 ### nestoa (`variants/nestoa`)
 
-- Published @algoan/nestoa 0.1.7 (latest on GitHub Packages), configured from its README (v0.1.7). The docs/ folder of the nestoa repository describes the unreleased main branch (security option, mapped-types helpers, @Header media types, DefaultValuePipe, HttpStatus members, --strict…), none of which 0.1.7 supports.
-- Global prefix not detected: setGlobalPrefix is called in src/setup.ts (not main.ts) with a constant imported from constants.ts, so basePath: /v1 is set in nestoa.config.json.
-- No return-type inference: the 3 handlers without an annotation (shelters/cats/adoptions findOne) produced a 200 without body; return types were added.
-- @HttpCode(HttpStatus.OK) is ignored (POST stays 201); replaced with @HttpCode(200) on approve/reject.
-- DefaultValuePipe does not make the query parameter optional: includeAdopted is documented as required (making the parameter optional in TypeScript breaks the type check of the service call, so it was left as is).
-- Classes extending @nestjs/mapped-types helpers (PartialType, OmitType) lose every inherited property: the PATCH shelters, PATCH cats and PUT books bodies only contain their own fields (84 core differences). Not fixable without rewriting the DTOs.
-- @PaginationParams() can only be aliased to 'ignore' (or to a body/query/param/header kind): the page/limit/filter/sort query parameters it reads cannot be declared, so they are missing on the 5 paginated routes. The PaginationBodyInterceptor generics are lowered correctly (resources/pagination envelope).
-- @Header('Content-Type', 'text/csv') is ignored: the CSV export is documented as application/json.
-- No security output at all in 0.1.7 (no securitySchemes, no per-operation security), although the global AuthGuard and @Unprotected() are understood for the 401 responses.
-- class-validator constraints (IsInt, MaxLength, Min, IsEmail…) are not read; numbers are never integer. The Error component types status as integer instead of number.
-- Errors thrown in services were declared with @throws JSDoc tags (400 for filter/sort parsing on paginated routes, 404/409 on books); 401/403/404 from guards, Roles and ParseObjectIdPipe, and 409 thrown in handlers, were detected without configuration.
-- The 0.1.7 CLI only has -c, -o and --print-config (no --strict, no --openapi-version).
+- Published @algoan/nestoa 0.2.1 (latest on GitHub Packages), configured from its documentation. It is the commit benchmarked by the nestoa-main variant, which this variant now matches: same configuration, annotations and document.
+- Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.
+- Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.
+- Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
+- Compared with nestoa-main, the only extra lines are the dependency and the .npmrc pointing @algoan at GitHub Packages.
 
 Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 
 ### nestoa (unreleased main) (`variants/nestoa-main`)
 
-- Unreleased: built from the main branch of algoan/nestoa (15 commits after v0.2.0) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.
+- Unreleased: built from the main branch of algoan/nestoa by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release (main@00c0442 is the v0.2.1 release).
 - Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.
 - Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.
 - Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
