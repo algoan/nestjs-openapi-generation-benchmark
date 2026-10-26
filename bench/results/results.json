@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-26T13:25:07.051Z",
+  "date": "2026-10-26T15:09:13.010Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1036,22 +1036,15 @@
       "name": "nestoa",
       "tool": "nestoa",
       "versions": {
-        "@algoan/nestoa": "0.1.7"
+        "@algoan/nestoa": "0.2.1"
       },
       "approach": "static",
       "notes": [
-        "Published @algoan/nestoa 0.1.7 (latest on GitHub Packages), configured from its README (v0.1.7). The docs/ folder of the nestoa repository describes the unreleased main branch (security option, mapped-types helpers, @Header media types, DefaultValuePipe, HttpStatus members, --strict…), none of which 0.1.7 supports.",
-        "Global prefix not detected: setGlobalPrefix is called in src/setup.ts (not main.ts) with a constant imported from constants.ts, so basePath: /v1 is set in nestoa.config.json.",
-        "No return-type inference: the 3 handlers without an annotation (shelters/cats/adoptions findOne) produced a 200 without body; return types were added.",
-        "@HttpCode(HttpStatus.OK) is ignored (POST stays 201); replaced with @HttpCode(200) on approve/reject.",
-        "DefaultValuePipe does not make the query parameter optional: includeAdopted is documented as required (making the parameter optional in TypeScript breaks the type check of the service call, so it was left as is).",
-        "Classes extending @nestjs/mapped-types helpers (PartialType, OmitType) lose every inherited property: the PATCH shelters, PATCH cats and PUT books bodies only contain their own fields (84 core differences). Not fixable without rewriting the DTOs.",
-        "@PaginationParams() can only be aliased to 'ignore' (or to a body/query/param/header kind): the page/limit/filter/sort query parameters it reads cannot be declared, so they are missing on the 5 paginated routes. The PaginationBodyInterceptor generics are lowered correctly (resources/pagination envelope).",
-        "@Header('Content-Type', 'text/csv') is ignored: the CSV export is documented as application/json.",
-        "No security output at all in 0.1.7 (no securitySchemes, no per-operation security), although the global AuthGuard and @Unprotected() are understood for the 401 responses.",
-        "class-validator constraints (IsInt, MaxLength, Min, IsEmail…) are not read; numbers are never integer. The Error component types status as integer instead of number.",
-        "Errors thrown in services were declared with @throws JSDoc tags (400 for filter/sort parsing on paginated routes, 404/409 on books); 401/403/404 from guards, Roles and ParseObjectIdPipe, and 409 thrown in handlers, were detected without configuration.",
-        "The 0.1.7 CLI only has -c, -o and --print-config (no --strict, no --openapi-version)."
+        "Published @algoan/nestoa 0.2.1 (latest on GitHub Packages), configured from its documentation. It is the commit benchmarked by the nestoa-main variant, which this variant now matches: same configuration, annotations and document.",
+        "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
+        "Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.",
+        "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.",
+        "Compared with nestoa-main, the only extra lines are the dependency and the .npmrc pointing @algoan at GitHub Packages."
       ],
       "perf": {
         "runs": 5,
@@ -1060,11 +1053,11 @@
             "name": "generate",
             "command": "node_modules/.bin/nestoa",
             "wallMs": {
-              "median": 50.435333,
-              "mean": 51.8886916,
-              "min": 50.365292,
-              "max": 55.957292,
-              "stddev": 2.1611851209021977
+              "median": 47.963625,
+              "mean": 47.5131834,
+              "min": 45.296125,
+              "max": 49.931334,
+              "stddev": 1.6609226579836394
             },
             "cpuMs": {
               "median": 30,
@@ -1074,21 +1067,21 @@
               "stddev": 0
             },
             "maxRssMb": {
-              "median": 46.015625,
-              "mean": 46.028125,
-              "min": 46,
-              "max": 46.09375,
-              "stddev": 0.03479852726768764
+              "median": 46.59375,
+              "mean": 46.596875,
+              "min": 46.53125,
+              "max": 46.6875,
+              "stddev": 0.05077524002897475
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 50.435333,
-            "mean": 51.8886916,
-            "min": 50.365292,
-            "max": 55.957292,
-            "stddev": 2.1611851209021977
+            "median": 47.963625,
+            "mean": 47.5131834,
+            "min": 45.296125,
+            "max": 49.931334,
+            "stddev": 1.6609226579836394
           },
           "cpuMs": {
             "median": 30,
@@ -1098,11 +1091,11 @@
             "stddev": 0
           },
           "maxRssMb": {
-            "median": 46.015625,
-            "mean": 46.028125,
-            "min": 46,
-            "max": 46.09375,
-            "stddev": 0.03479852726768764
+            "median": 46.59375,
+            "mean": 46.596875,
+            "min": 46.53125,
+            "max": 46.6875,
+            "stddev": 0.05077524002897475
           }
         }
       },
@@ -1118,27 +1111,27 @@
           },
           "parameters": {
             "expected": 198,
-            "matched": 137,
-            "missing": 60,
-            "mismatch": 1,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
             "extra": 0,
-            "differences": 61
+            "differences": 0
           },
           "requestBody": {
             "expected": 272,
-            "matched": 188,
-            "missing": 84,
+            "matched": 272,
+            "missing": 0,
             "mismatch": 0,
             "extra": 0,
-            "differences": 84
+            "differences": 0
           },
           "responses": {
             "expected": 1275,
-            "matched": 1273,
-            "missing": 2,
+            "matched": 1275,
+            "missing": 0,
             "mismatch": 0,
-            "extra": 2,
-            "differences": 4
+            "extra": 0,
+            "differences": 0
           },
           "errors": {
             "expected": 828,
@@ -1150,99 +1143,72 @@
           },
           "constraints": {
             "expected": 100,
-            "matched": 0,
-            "missing": 100,
+            "matched": 100,
+            "missing": 0,
             "mismatch": 0,
-            "extra": 92,
-            "differences": 192
+            "extra": 0,
+            "differences": 0
           },
           "security": {
             "expected": 29,
-            "matched": 4,
+            "matched": 29,
             "missing": 0,
-            "mismatch": 25,
+            "mismatch": 0,
             "extra": 0,
-            "differences": 25
+            "differences": 0
           },
           "docs": {
             "expected": 206,
-            "matched": 195,
-            "missing": 11,
+            "matched": 206,
+            "missing": 0,
             "mismatch": 0,
             "extra": 0,
-            "differences": 11
+            "differences": 0
           }
         },
         "core": {
           "expected": 1774,
-          "matched": 1627,
-          "missing": 146,
-          "mismatch": 1,
-          "extra": 2,
-          "differences": 149
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
         },
         "total": {
           "expected": 2937,
-          "matched": 2654,
-          "missing": 257,
-          "mismatch": 26,
-          "extra": 94,
-          "differences": 377
+          "matched": 2937,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
         }
       },
       "oasdiff": {
         "available": true,
-        "errors": 34,
-        "warnings": 48,
-        "infos": 181,
-        "total": 263,
+        "errors": 0,
+        "warnings": 0,
+        "infos": 58,
+        "total": 58,
         "byId": {
-          "new-required-request-parameter": 2,
-          "response-property-max-unset": 4,
-          "response-property-min-unset": 4,
-          "response-property-type-generalized": 4,
-          "response-media-type-removed": 1,
-          "response-property-max-length-unset": 12,
-          "response-property-type-changed": 4,
-          "request-parameter-became-required": 1,
-          "response-property-one-of-added": 1,
-          "response-body-one-of-added": 1,
-          "request-parameter-removed": 26,
-          "request-property-removed": 22,
-          "api-schema-removed": 1,
-          "api-security-component-removed": 1,
-          "api-version-not-bumped": 1,
-          "api-tag-added": 29,
-          "response-property-type-specialized": 92,
-          "api-security-anonymous-access-added": 25,
-          "request-property-max-length-unset": 9,
-          "request-property-max-unset": 3,
-          "request-property-min-items-unset": 1,
-          "request-property-min-length-unset": 2,
-          "request-property-min-unset": 7,
-          "request-property-type-generalized": 5,
-          "response-media-type-added": 1,
-          "request-property-max-items-unset": 1,
-          "request-parameter-type-generalized": 1,
-          "response-property-any-of-removed": 1,
-          "response-body-any-of-removed": 1
+          "api-operation-id-added": 29,
+          "api-tag-added": 29
         }
       },
       "ease": {
         "filesTouched": 8,
         "filesAdded": 2,
-        "linesAdded": 22,
-        "linesRemoved": 5,
-        "linesChanged": 27,
+        "linesAdded": 30,
+        "linesRemoved": 3,
+        "linesChanged": 33,
         "sourceFilesTouched": 5,
-        "sourceLinesChanged": 18,
-        "configLinesChanged": 9,
+        "sourceLinesChanged": 14,
+        "configLinesChanged": 19,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [
           "@algoan/nestoa"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 6.5546875,
+        "installFootprintMb": 7.83984375,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -1256,7 +1222,7 @@
             "file": "nestoa.config.json",
             "status": "added",
             "kind": "config",
-            "added": 6,
+            "added": 16,
             "removed": 0
           },
           {
@@ -1270,8 +1236,8 @@
             "file": "src/adoptions/adoptions.controller.ts",
             "status": "modified",
             "kind": "source",
-            "added": 3,
-            "removed": 3
+            "added": 1,
+            "removed": 1
           },
           {
             "file": "src/animals/cats.controller.ts",
@@ -1311,7 +1277,7 @@
       "versions": {},
       "approach": "static",
       "notes": [
-        "Unreleased: built from the main branch of algoan/nestoa (15 commits after v0.2.0) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.",
+        "Unreleased: built from the main branch of algoan/nestoa by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release (main@00c0442 is the v0.2.1 release).",
         "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
         "Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.",
         "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically."
@@ -1476,8 +1442,6 @@
         "sourceFilesTotal": 75,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
-        "installFootprintMb": 0,
-        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "nestoa.config.json",

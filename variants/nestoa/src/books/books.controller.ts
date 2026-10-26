@@ -55,8 +55,8 @@ export class BooksController {
 
   /**
    * Get a book by ISBN
+   * @throws 404 The book does not exist
    * @param isbn ISBN-13, without dashes
-   * @throws 404 The book has not been found
    */
   @Get(':isbn')
   @Unprotected()
@@ -66,7 +66,7 @@ export class BooksController {
 
   /**
    * Add a book to the catalogue
-   * @throws 409 The book already exists
+   * @throws 409 A book with this ISBN already exists
    */
   @Post()
   @Roles({ roles: [BookAuthRoles.LIBRARIAN] })
@@ -76,8 +76,8 @@ export class BooksController {
 
   /**
    * Replace a book
+   * @throws 404 The book does not exist
    * @param isbn ISBN-13, without dashes
-   * @throws 404 The book has not been found
    */
   @Put(':isbn')
   @Roles({ roles: [BookAuthRoles.LIBRARIAN] })
@@ -87,8 +87,8 @@ export class BooksController {
 
   /**
    * Remove a book from the catalogue
+   * @throws 404 The book does not exist
    * @param isbn ISBN-13, without dashes
-   * @throws 404 The book has not been found
    */
   @Delete(':isbn')
   @HttpCode(HttpStatus.NO_CONTENT)
