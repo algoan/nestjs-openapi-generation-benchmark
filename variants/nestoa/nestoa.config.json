@@ -1,6 +1,16 @@
 {
   "output": "openapi.yaml",
   "info": { "title": "Petstore API", "version": "1.0.0" },
-  "basePath": "/v1",
-  "decoratorAliases": { "User": "user", "PaginationParams": "ignore" }
+  "decoratorAliases": {
+    "User": "user",
+    "PaginationParams": {
+      "query": {
+        "page": { "nameFrom": "pageName", "schema": { "type": "integer", "default": 1 } },
+        "per_page": { "nameFrom": "perPageName", "schema": { "type": "integer", "default": 10 } },
+        "filter": { "schema": { "type": "string" } },
+        "sort": { "schema": { "type": "string" } }
+      }
+    }
+  },
+  "errorResponses": { "schema": "HttpError" }
 }

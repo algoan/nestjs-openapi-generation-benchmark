@@ -14,17 +14,10 @@
   ],
   "generated": [],
   "notes": [
-    "Published @algoan/nestoa 0.1.7 (latest on GitHub Packages), configured from its README (v0.1.7). The docs/ folder of the nestoa repository describes the unreleased main branch (security option, mapped-types helpers, @Header media types, DefaultValuePipe, HttpStatus members, --strict\u2026), none of which 0.1.7 supports.",
-    "Global prefix not detected: setGlobalPrefix is called in src/setup.ts (not main.ts) with a constant imported from constants.ts, so basePath: /v1 is set in nestoa.config.json.",
-    "No return-type inference: the 3 handlers without an annotation (shelters/cats/adoptions findOne) produced a 200 without body; return types were added.",
-    "@HttpCode(HttpStatus.OK) is ignored (POST stays 201); replaced with @HttpCode(200) on approve/reject.",
-    "DefaultValuePipe does not make the query parameter optional: includeAdopted is documented as required (making the parameter optional in TypeScript breaks the type check of the service call, so it was left as is).",
-    "Classes extending @nestjs/mapped-types helpers (PartialType, OmitType) lose every inherited property: the PATCH shelters, PATCH cats and PUT books bodies only contain their own fields (84 core differences). Not fixable without rewriting the DTOs.",
-    "@PaginationParams() can only be aliased to 'ignore' (or to a body/query/param/header kind): the page/limit/filter/sort query parameters it reads cannot be declared, so they are missing on the 5 paginated routes. The PaginationBodyInterceptor generics are lowered correctly (resources/pagination envelope).",
-    "@Header('Content-Type', 'text/csv') is ignored: the CSV export is documented as application/json.",
-    "No security output at all in 0.1.7 (no securitySchemes, no per-operation security), although the global AuthGuard and @Unprotected() are understood for the 401 responses.",
-    "class-validator constraints (IsInt, MaxLength, Min, IsEmail\u2026) are not read; numbers are never integer. The Error component types status as integer instead of number.",
-    "Errors thrown in services were declared with @throws JSDoc tags (400 for filter/sort parsing on paginated routes, 404/409 on books); 401/403/404 from guards, Roles and ParseObjectIdPipe, and 409 thrown in handlers, were detected without configuration.",
-    "The 0.1.7 CLI only has -c, -o and --print-config (no --strict, no --openapi-version)."
+    "Published @algoan/nestoa 0.2.1 (latest on GitHub Packages), configured from its documentation. It is the commit benchmarked by the nestoa-main variant, which this variant now matches: same configuration, annotations and document.",
+    "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
+    "Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.",
+    "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.",
+    "Compared with nestoa-main, the only extra lines are the dependency and the .npmrc pointing @algoan at GitHub Packages."
   ]
 }

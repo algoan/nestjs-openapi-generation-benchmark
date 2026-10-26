@@ -90,7 +90,7 @@ export class AdoptionsController {
    * Approve a pending adoption request
    */
   @Post(':adoptionId/approve')
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Roles({ roles: [AdoptionAuthRoles.ADOPTION_REVIEWER] })
   public async approve(
     @User() identifier: Identifier,
@@ -113,7 +113,7 @@ export class AdoptionsController {
    * Reject a pending adoption request
    */
   @Post(':adoptionId/reject')
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   @Roles({ roles: [AdoptionAuthRoles.ADOPTION_REVIEWER] })
   public async reject(
     @User() identifier: Identifier,

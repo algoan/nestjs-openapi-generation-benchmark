@@ -13,7 +13,7 @@
   ],
   "generated": [],
   "notes": [
-    "Unreleased: built from the main branch of algoan/nestoa (15 commits after v0.2.0) by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release.",
+    "Unreleased: built from the main branch of algoan/nestoa by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release (main@00c0442 is the v0.2.1 release).",
     "Configuration only, plus JSDoc: nestoa.config.json sets decoratorAliases for @User (user) and @PaginationParams (the page/limit/filter/sort query params it reads, limit named by its perPageName option), and errorResponses.schema to the app's HttpError; the v1 global prefix is detected by itself, although setGlobalPrefix is called in src/setup.ts with an imported constant.",
     "Handler return types are not inferred: a handler without one is documented with an empty 200, with a warning under --strict. 3 return types were added.",
     "Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically."
