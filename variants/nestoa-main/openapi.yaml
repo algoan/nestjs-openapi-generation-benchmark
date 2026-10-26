@@ -21,6 +21,28 @@ paths:
         required: false
         schema:
           $ref: '#/components/schemas/BookGenre'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: OK
@@ -44,7 +66,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security: []
     post:
       summary: Add a book to the catalogue
@@ -69,25 +91,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '409':
           description: A book with this ISBN already exists
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/books/export:
@@ -125,19 +147,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: The book does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     get:
@@ -164,7 +186,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security: []
     put:
       summary: Replace a book
@@ -196,25 +218,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: The book does not exist
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/health:
@@ -237,6 +259,29 @@ paths:
       operationId: SheltersController_findAll
       tags:
       - Shelters
+      parameters:
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: OK
@@ -260,19 +305,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     post:
@@ -298,19 +343,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{id}:
@@ -334,19 +379,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     get:
@@ -373,19 +418,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     patch:
@@ -418,25 +463,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{id}/stats:
@@ -470,25 +515,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/adoptions:
@@ -509,6 +554,28 @@ paths:
         description: Only return the requests in this status
         schema:
           $ref: '#/components/schemas/AdoptionRequestStatus'
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
       responses:
         '200':
           description: OK
@@ -532,25 +599,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     post:
@@ -588,25 +655,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/adoptions/{adoptionId}:
@@ -634,19 +701,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     get:
@@ -677,19 +744,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve:
@@ -721,25 +788,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '409':
           description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject:
@@ -777,31 +844,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '409':
           description: Conflict
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/animals:
@@ -832,12 +899,14 @@ paths:
         description: Case-insensitive prefix of the animal name
         schema:
           type: string
+          maxLength: 50
       - name: minAge
         in: query
         required: false
         description: Minimum age, in years
         schema:
-          type: number
+          type: integer
+          minimum: 0
       - name: includeAdopted
         in: query
         required: false
@@ -861,25 +930,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/animals/{animalId}:
@@ -913,19 +982,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/cats:
@@ -938,6 +1007,28 @@ paths:
       - name: shelterId
         in: path
         required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
         schema:
           type: string
       responses:
@@ -963,25 +1054,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     post:
@@ -1013,25 +1104,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/cats/{catId}:
@@ -1059,19 +1150,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     get:
@@ -1102,19 +1193,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     patch:
@@ -1151,25 +1242,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/dogs:
@@ -1182,6 +1273,28 @@ paths:
       - name: shelterId
         in: path
         required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sort
+        in: query
+        required: false
         schema:
           type: string
       responses:
@@ -1207,25 +1320,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
     post:
@@ -1257,25 +1370,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '401':
           description: Authentication required
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
   /v1/shelters/{shelterId}/dogs/{dogId}:
@@ -1307,19 +1420,19 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '403':
           description: Insufficient permissions
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
         '404':
           description: Not Found
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Error'
+                $ref: '#/components/schemas/HttpError'
       security:
       - bearerAuth: []
 components:
@@ -1329,6 +1442,7 @@ components:
       properties:
         street:
           type: string
+          maxLength: 120
         city:
           type: string
         postalCode:
@@ -1346,10 +1460,13 @@ components:
       properties:
         firstName:
           type: string
+          maxLength: 80
         lastName:
           type: string
+          maxLength: 80
         email:
           type: string
+          format: email
         phone:
           type: string
           description: Phone number, in the E.164 format
@@ -1484,7 +1601,9 @@ components:
         name:
           type: string
         birthYear:
-          type: number
+          type: integer
+          minimum: 1000
+          maximum: 2100
       required:
       - name
       description: Book author
@@ -1586,9 +1705,11 @@ components:
           $ref: '#/components/schemas/Adopter'
         fee:
           type: number
+          minimum: 0
           description: Adoption fee, in euros
         notes:
           type: string
+          maxLength: 500
       required:
       - animalId
       - species
@@ -1600,6 +1721,7 @@ components:
       properties:
         name:
           type: string
+          maxLength: 50
         birthDate:
           type: string
           format: date-time
@@ -1611,6 +1733,7 @@ components:
             $ref: '#/components/schemas/Vaccination'
         weightKg:
           type: number
+          minimum: 0
           description: Weight in kilograms
       required:
       - name
@@ -1628,15 +1751,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Author'
+          minItems: 1
         genre:
           $ref: '#/components/schemas/BookGenre'
         publishedOn:
           type: string
           format: date-time
         pageCount:
-          type: number
+          type: integer
+          minimum: 1
         language:
           type: string
+          minLength: 2
+          maxLength: 2
           description: ISO 639-1 language code
         topics:
           type: array
@@ -1645,6 +1772,8 @@ components:
           description: Species the book is about
         rating:
           type: number
+          minimum: 0
+          maximum: 5
           description: Average reader rating, from 0 to 5
         available:
           type: boolean
@@ -1687,6 +1816,7 @@ components:
       properties:
         name:
           type: string
+          maxLength: 100
           description: Display name of the shelter
         country:
           type: string
@@ -1695,14 +1825,18 @@ components:
           $ref: '#/components/schemas/Address'
         email:
           type: string
+          format: email
           description: Contact email
         capacity:
-          type: number
+          type: integer
+          minimum: 0
+          maximum: 1000
           description: Maximum number of animals the shelter can host
         tags:
           type: array
           items:
             type: string
+          maxItems: 10
         metadata:
           type: object
           additionalProperties: {}
@@ -1738,20 +1872,6 @@ components:
       - SMALL
       - MEDIUM
       - LARGE
-    Error:
-      type: object
-      description: Error response emitted by the global HttpExceptionFilter.
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-      required:
-      - code
-      - message
-      - status
     HealthStatus:
       type: object
       properties:
@@ -1766,6 +1886,20 @@ components:
       - status
       - uptime
       description: Health check response
+    HttpError:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        status:
+          type: number
+      required:
+      - code
+      - message
+      - status
+      description: Body sent by the global HttpExceptionFilter
     PaginationLinks:
       type: object
       properties:
@@ -1806,6 +1940,8 @@ components:
       properties:
         reason:
           type: string
+          minLength: 10
+          maxLength: 500
           description: Why the request is rejected, sent to the adopter
       required:
       - reason
@@ -1820,15 +1956,19 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/Author'
+            minItems: 1
           genre:
             $ref: '#/components/schemas/BookGenre'
           publishedOn:
             type: string
             format: date-time
           pageCount:
-            type: number
+            type: integer
+            minimum: 1
           language:
             type: string
+            minLength: 2
+            maxLength: 2
             description: ISO 639-1 language code
           topics:
             type: array
@@ -1837,6 +1977,8 @@ components:
             description: Species the book is about
           rating:
             type: number
+            minimum: 0
+            maximum: 5
             description: Average reader rating, from 0 to 5
           available:
             type: boolean
@@ -1954,6 +2096,7 @@ components:
         properties:
           name:
             type: string
+            maxLength: 50
           birthDate:
             type: string
             format: date-time
@@ -1965,6 +2108,7 @@ components:
               $ref: '#/components/schemas/Vaccination'
           weightKg:
             type: number
+            minimum: 0
             description: Weight in kilograms
           indoor:
             type: boolean
@@ -1982,19 +2126,24 @@ components:
         properties:
           name:
             type: string
+            maxLength: 100
             description: Display name of the shelter
           address:
             $ref: '#/components/schemas/Address'
           email:
             type: string
+            format: email
             description: Contact email
           capacity:
-            type: number
+            type: integer
+            minimum: 0
+            maximum: 1000
             description: Maximum number of animals the shelter can host
           tags:
             type: array
             items:
               type: string
+            maxItems: 10
           metadata:
             type: object
             additionalProperties: {}

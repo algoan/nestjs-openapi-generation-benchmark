@@ -25,8 +25,8 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| nestoa (unreleased main) | main@46b4f83 | **19** | 60 | 250 | **20 ms** | **8 MB** |
-| nestoa | 0.1.7 | 27 | 149 | 377 | 50 ms | 46 MB |
+| nestoa | 0.1.7 | **27** | 149 | 377 | 50 ms | 46 MB |
+| nestoa (unreleased main) | main@00c0442 | 30 | **0** | **0** | **19 ms** | **8 MB** |
 | nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.51 s | 424 MB |
 | @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.74 s | 509 MB |
 | typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
@@ -36,19 +36,22 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 
 What the numbers say:
 
-- **There is a clear trade-off between effort and correctness.** The tools that reach (near) zero differences —
-  tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time (decorators, JSDoc
-  tags, or hand-written endpoint types: 170 to 513 lines). Every one of those lines can drift from the code.
-- **nestoa needs the fewest changes by far** (19–27 lines, no source annotation besides 3 return types and
+- **There is a clear trade-off between effort and correctness.** The published tools that reach (near) zero
+  differences — tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time
+  (decorators, JSDoc tags, or hand-written endpoint types: 170 to 513 lines). Every one of those lines can
+  drift from the code.
+- **nestoa needs the fewest changes by far** (27–30 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **two orders of magnitude faster and lighter** than every Node-based tool.
-  Its remaining core gap is a single pattern: the query parameters read by a custom param decorator
-  (`@PaginationParams()`), which it can only ignore. It does not read class-validator constraints at all.
+  Its unreleased main branch matches the expected document exactly: the query parameters read by
+  `@PaginationParams()` and the error body are declared in its configuration, and class-validator
+  constraints are read from the DTOs.
 - **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen and ts-oas are dev
   dependencies (nestoa main is a standalone binary): 0 MB in the service's production install. The tools whose
   decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB for typoa, +44 MB for tsoa,
   +71 MB for nestia (tsoa and nestia pull `typescript` into the production dependencies).
 - **The published nestoa 0.1.7 lags its main branch**: security, `@nestjs/mapped-types` helpers, `text/csv`,
-  `HttpStatus.*` members were added since; releasing main roughly halves its core differences.
+  `HttpStatus.*` members, custom decorators' query parameters and class-validator constraints were added
+  since: main has no difference left, against 149 core differences for 0.1.7.
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
