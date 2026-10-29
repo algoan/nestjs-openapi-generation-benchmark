@@ -1,0 +1,65 @@
+/**
+ * What a service returns for a paginated route, before the PaginationBodyInterceptor
+ */
+export interface DataToPaginate<T> {
+  resources: T[];
+  totalResources: number;
+}
+
+/**
+ * Pagination links of a paginated response
+ * @openapi
+ * components:
+ *   schemas:
+ *     PaginationLinks:
+ *       type: object
+ *       required: [next, previous, first, last, totalPages, totalResources]
+ *       properties:
+ *         next:
+ *           type: [string, 'null']
+ *         previous:
+ *           type: [string, 'null']
+ *         first:
+ *           type: [string, 'null']
+ *         last:
+ *           type: [string, 'null']
+ *         totalPages:
+ *           type: [number, 'null']
+ *         totalResources:
+ *           type: [number, 'null']
+ */
+export interface PaginationLinks {
+  next: string | null;
+  previous: string | null;
+  first: string | null;
+  last: string | null;
+  totalPages: number | null;
+  totalResources: number | null;
+}
+
+/**
+ * Body of a paginated response, built by the PaginationBodyInterceptor
+ */
+export interface PaginatedData<T> {
+  resources: T[];
+  pagination: PaginationLinks;
+}
+
+/**
+ * Mongo query built from the pagination query parameters
+ */
+export interface MongoPagination {
+  filter: Record<string, unknown>;
+  limit: number;
+  skip: number;
+  sort?: Record<string, 1 | -1>;
+}
+
+/**
+ * Options shared by the pagination decorator and interceptor
+ */
+export interface PaginationOptions {
+  pageName?: string;
+  perPageName?: string;
+  defaultLimit?: number;
+}
