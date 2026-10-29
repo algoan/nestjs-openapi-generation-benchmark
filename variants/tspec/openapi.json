@@ -1,0 +1,2755 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Petstore",
+    "version": "1.0.0",
+    "description": ""
+  },
+  "servers": [
+    {
+      "url": "/v1"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "AppController_getHealth",
+        "description": "Health check",
+        "tags": [
+          "App"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters": {
+      "post": {
+        "operationId": "SheltersController_create",
+        "description": "Create a shelter",
+        "tags": [
+          "Shelters"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateShelterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Response 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "SheltersController_findAll",
+        "description": "List the shelters the caller has access to",
+        "tags": [
+          "Shelters"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Shelter"
+                      }
+                    },
+                    "totalResources": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "resources",
+                    "totalResources"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{id}": {
+      "get": {
+        "operationId": "SheltersController_findOne",
+        "description": "Get a shelter by id",
+        "tags": [
+          "Shelters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "SheltersController_update",
+        "description": "Update a shelter",
+        "tags": [
+          "Shelters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateShelterDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Shelter"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "SheltersController_remove",
+        "description": "Delete a shelter",
+        "tags": [
+          "Shelters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{id}/stats": {
+      "get": {
+        "operationId": "SheltersController_getStats",
+        "description": "Get the yearly statistics of a shelter",
+        "tags": [
+          "Shelters"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "year",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShelterStats"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books": {
+      "get": {
+        "operationId": "BooksController_findAll",
+        "description": "Search the catalogue",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Full-text search on the title and the authors"
+            },
+            "description": "Full-text search on the title and the authors"
+          },
+          {
+            "name": "genre",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Book"
+                      }
+                    },
+                    "totalResources": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "resources",
+                    "totalResources"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "BooksController_create",
+        "description": "Add a book to the catalogue",
+        "tags": [
+          "Books"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Response 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Response 409",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/export": {
+      "get": {
+        "operationId": "BooksController_export",
+        "description": "Export the whole catalogue as CSV",
+        "tags": [
+          "Books"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/books/{isbn}": {
+      "get": {
+        "operationId": "BooksController_findOne",
+        "description": "Get a book by ISBN",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "operationId": "BooksController_replace",
+        "description": "Replace a book",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplaceBookDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Book"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "BooksController_remove",
+        "description": "Remove a book from the catalogue",
+        "tags": [
+          "Books"
+        ],
+        "parameters": [
+          {
+            "name": "isbn",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/dogs": {
+      "post": {
+        "operationId": "DogsController_create",
+        "description": "Register a dog in a shelter",
+        "tags": [
+          "Dogs"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDogDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Response 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "DogsController_findAll",
+        "description": "List the dogs of a shelter",
+        "tags": [
+          "Dogs"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Dog"
+                      }
+                    },
+                    "totalResources": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "resources",
+                    "totalResources"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/dogs/{dogId}": {
+      "get": {
+        "operationId": "DogsController_findOne",
+        "description": "Get a dog",
+        "tags": [
+          "Dogs"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "dogId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Dog"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/cats": {
+      "post": {
+        "operationId": "CatsController_create",
+        "description": "Register a cat in a shelter",
+        "tags": [
+          "Cats"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCatDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Response 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "CatsController_findAll",
+        "description": "List the cats of a shelter",
+        "tags": [
+          "Cats"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Cat"
+                      }
+                    },
+                    "totalResources": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "resources",
+                    "totalResources"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/cats/{catId}": {
+      "get": {
+        "operationId": "CatsController_findOne",
+        "description": "Get a cat",
+        "tags": [
+          "Cats"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "operationId": "CatsController_update",
+        "description": "Update a cat",
+        "tags": [
+          "Cats"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCatDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "CatsController_remove",
+        "description": "Remove a cat from a shelter",
+        "tags": [
+          "Cats"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "catId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/animals": {
+      "get": {
+        "operationId": "AnimalsController_search",
+        "description": "Search the animals of a shelter",
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "species",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Case-insensitive prefix of the animal name",
+              "maxLength": 50
+            },
+            "description": "Case-insensitive prefix of the animal name"
+          },
+          {
+            "name": "minAge",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "description": "Minimum age, in years",
+              "minimum": 0
+            },
+            "description": "Minimum age, in years"
+          },
+          {
+            "name": "includeAdopted",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cat_or_Dog"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/animals/{animalId}": {
+      "get": {
+        "operationId": "AnimalsController_findOne",
+        "description": "Get an animal, whatever its species",
+        "tags": [
+          "Animals"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "animalId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cat_or_Dog"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/adoptions": {
+      "post": {
+        "operationId": "AdoptionsController_create",
+        "description": "File an adoption request",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "x-request-id",
+            "in": "headers",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAdoptionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Response 201",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdoptionReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "operationId": "AdoptionsController_findAll",
+        "description": "List the adoption requests of a shelter",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "resources": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Adoption"
+                      }
+                    },
+                    "totalResources": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "resources",
+                    "totalResources"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}": {
+      "get": {
+        "operationId": "AdoptionsController_findOne",
+        "description": "Get an adoption request",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "AdoptionsController_remove",
+        "description": "Cancel an adoption request",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}/approve": {
+      "post": {
+        "operationId": "AdoptionsController_approve",
+        "description": "Approve a pending adoption request",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Response 409",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/shelters/{shelterId}/adoptions/{adoptionId}/reject": {
+      "post": {
+        "operationId": "AdoptionsController_reject",
+        "description": "Reject a pending adoption request",
+        "tags": [
+          "Adoptions"
+        ],
+        "parameters": [
+          {
+            "name": "shelterId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          },
+          {
+            "name": "adoptionId",
+            "in": "path",
+            "required": true,
+            "schema": {}
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RejectAdoptionDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Adoption"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Response 400",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Response 401",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Response 403",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Response 404",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Response 409",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HttpError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthStatus": {
+        "type": "object",
+        "description": "Health check response",
+        "properties": {
+          "status": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "uptime": {
+            "type": "number",
+            "description": "Process uptime, in seconds"
+          }
+        },
+        "required": [
+          "status",
+          "uptime"
+        ]
+      },
+      "Address": {
+        "type": "object",
+        "description": "Postal address",
+        "properties": {
+          "street": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "city": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "complement": {
+            "type": "string",
+            "description": "Building, floor, etc."
+          }
+        },
+        "required": [
+          "street",
+          "city",
+          "postalCode"
+        ]
+      },
+      "unknown": {
+        "type": "object",
+        "description": "Schema for unknown"
+      },
+      "CreateShelterDto": {
+        "type": "object",
+        "description": "Create Shelter DTO",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Display name of the shelter",
+            "maxLength": 100
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email",
+            "format": "email"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "Maximum number of animals the shelter can host",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Free-form data attached by the caller"
+          }
+        },
+        "required": [
+          "name",
+          "country",
+          "capacity"
+        ]
+      },
+      "ObjectId": {
+        "description": "A class representation of the BSON ObjectId type.",
+        "type": "object",
+        "properties": {
+          "_bsontype": {
+            "type": "string",
+            "enum": [
+              "ObjectId"
+            ]
+          },
+          "id": {
+            "description": "The ObjectId bytes",
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          },
+          "_id": {
+            "$ref": "#/components/schemas/ObjectId",
+            "description": "Mongoose automatically adds a conveniency \"_id\" getter on the base ObjectId class"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "_bsontype",
+          "_id",
+          "id"
+        ]
+      },
+      "ShelterStatus": {
+        "type": "string",
+        "enum": [
+          "OPEN",
+          "FULL",
+          "CLOSED"
+        ],
+        "description": "Whether a shelter currently welcomes new animals"
+      },
+      "Shelter": {
+        "type": "object",
+        "description": "Shelter Model",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the shelter"
+          },
+          "country": {
+            "type": "string",
+            "description": "ISO 3166-1 alpha-2 country code"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "email": {
+            "type": "string",
+            "description": "Contact email"
+          },
+          "capacity": {
+            "type": "number",
+            "description": "Maximum number of animals the shelter can host"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ShelterStatus"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Free-form data attached by the caller"
+          },
+          "isDeleted": {
+            "type": "boolean",
+            "description": "Soft-delete flag, removed from the responses"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          }
+        },
+        "required": [
+          "_id",
+          "name",
+          "country",
+          "capacity",
+          "status",
+          "tags",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "HttpError": {
+        "type": "object",
+        "description": "Schema for HttpError"
+      },
+      "UpdateShelterDto": {
+        "type": "object",
+        "description": "Update Shelter DTO: every field but the country can be updated",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/ShelterStatus"
+          }
+        }
+      },
+      "ShelterStats": {
+        "type": "object",
+        "description": "Yearly statistics of a shelter",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          },
+          "year": {
+            "type": "number"
+          },
+          "hostedAnimals": {
+            "type": "number",
+            "description": "Number of animals currently hosted"
+          },
+          "adoptions": {
+            "type": "object",
+            "properties": {
+              "approved": {
+                "type": "number"
+              },
+              "rejected": {
+                "type": "number"
+              },
+              "pending": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "approved",
+              "rejected",
+              "pending"
+            ]
+          },
+          "occupancyRate": {
+            "type": "number",
+            "description": "Hosted animals / capacity, between 0 and 1"
+          }
+        },
+        "required": [
+          "shelterId",
+          "year",
+          "hostedAnimals",
+          "adoptions",
+          "occupancyRate"
+        ]
+      },
+      "BookGenre": {
+        "type": "string",
+        "enum": [
+          "CARE_GUIDE",
+          "TRAINING",
+          "NOVEL",
+          "CHILDREN"
+        ]
+      },
+      "Author": {
+        "type": "object",
+        "description": "Book author",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "birthYear": {
+            "type": "number",
+            "minimum": 1000,
+            "maximum": 2100
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Species": {
+        "type": "string",
+        "enum": [
+          "CAT",
+          "DOG"
+        ],
+        "description": "Animal species hosted by the shelters"
+      },
+      "Book": {
+        "type": "object",
+        "description": "A book of the pet-care catalogue",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "isbn": {
+            "type": "string",
+            "description": "ISBN-13, without dashes"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            },
+            "description": "Species the book is about"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          }
+        },
+        "required": [
+          "_id",
+          "isbn",
+          "title",
+          "authors",
+          "genre",
+          "language",
+          "topics",
+          "available",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CreateBookDto": {
+        "type": "object",
+        "description": "Create Book DTO",
+        "properties": {
+          "isbn": {
+            "type": "string",
+            "description": "ISBN-13, without dashes"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "type": "number",
+            "minimum": 1
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code",
+            "minLength": 2,
+            "maxLength": 2
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            },
+            "description": "Species the book is about"
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5",
+            "minimum": 0,
+            "maximum": 5
+          },
+          "available": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "isbn",
+          "title",
+          "authors",
+          "genre"
+        ]
+      },
+      "ReplaceBookDto": {
+        "description": "Replace Book DTO: the ISBN comes from the path",
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "language": {
+            "description": "ISO 639-1 language code",
+            "minLength": 2,
+            "maxLength": 2,
+            "type": "string"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "$ref": "#/components/schemas/BookGenre"
+          },
+          "publishedOn": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pageCount": {
+            "minimum": 1,
+            "type": "number"
+          },
+          "topics": {
+            "description": "Species the book is about",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Species"
+            }
+          },
+          "rating": {
+            "description": "Average reader rating, from 0 to 5",
+            "minimum": 0,
+            "maximum": 5,
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "authors",
+          "genre",
+          "title"
+        ]
+      },
+      "DogSize": {
+        "type": "string",
+        "enum": [
+          "SMALL",
+          "MEDIUM",
+          "LARGE"
+        ]
+      },
+      "CreateDogDto": {
+        "type": "object",
+        "description": "Create Dog DTO",
+        "properties": {
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "$ref": "#/components/schemas/DogSize"
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "breed",
+          "size"
+        ]
+      },
+      "SpeciesDOG": {
+        "type": "object",
+        "description": "Schema for Species.DOG"
+      },
+      "Dog": {
+        "type": "object",
+        "description": "Dog Model",
+        "properties": {
+          "species": {
+            "$ref": "#/components/schemas/SpeciesDOG"
+          },
+          "breed": {
+            "type": "string"
+          },
+          "size": {
+            "$ref": "#/components/schemas/DogSize"
+          },
+          "goodWithKids": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "species",
+          "breed",
+          "size"
+        ]
+      },
+      "CoatPattern": {
+        "type": "string",
+        "enum": [
+          "SOLID",
+          "TABBY",
+          "TORTOISESHELL",
+          "CALICO",
+          "BICOLOR"
+        ]
+      },
+      "CreateCatDto": {
+        "type": "object",
+        "description": "Create Cat DTO",
+        "properties": {
+          "indoor": {
+            "type": "boolean",
+            "description": "Whether the cat must live indoors"
+          },
+          "coatPattern": {
+            "$ref": "#/components/schemas/CoatPattern"
+          }
+        },
+        "required": [
+          "indoor"
+        ]
+      },
+      "SpeciesCAT": {
+        "type": "object",
+        "description": "Schema for Species.CAT"
+      },
+      "Cat": {
+        "type": "object",
+        "description": "Cat Model",
+        "properties": {
+          "species": {
+            "$ref": "#/components/schemas/SpeciesCAT"
+          },
+          "indoor": {
+            "type": "boolean",
+            "description": "Whether the cat must live indoors"
+          },
+          "coatPattern": {
+            "$ref": "#/components/schemas/CoatPattern"
+          }
+        },
+        "required": [
+          "species",
+          "indoor"
+        ]
+      },
+      "AdoptionStatus": {
+        "type": "string",
+        "enum": [
+          "AVAILABLE",
+          "RESERVED",
+          "ADOPTED"
+        ],
+        "description": "Adoption status of an animal"
+      },
+      "UpdateCatDto": {
+        "type": "object",
+        "description": "Update Cat DTO",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/AdoptionStatus"
+          }
+        }
+      },
+      "Cat_or_Dog": {
+        "type": "object",
+        "description": "Schema for Cat | Dog"
+      },
+      "Adopter": {
+        "type": "object",
+        "description": "Person adopting an animal",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "lastName": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone number, in the E.164 format"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ]
+      },
+      "CreateAdoptionDto": {
+        "type": "object",
+        "description": "Create Adoption DTO",
+        "properties": {
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Adoption fee, in euros",
+            "minimum": 0
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "animalId",
+          "species",
+          "adopter",
+          "fee"
+        ]
+      },
+      "AdoptionRequestStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "APPROVED",
+          "REJECTED"
+        ],
+        "description": "Lifecycle of an adoption request"
+      },
+      "AdoptionReceipt": {
+        "type": "object",
+        "description": "Receipt returned when an adoption request is filed",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "expectedDecisionDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the shelter commits to answer"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "status",
+          "expectedDecisionDate"
+        ]
+      },
+      "Adoption": {
+        "type": "object",
+        "description": "Adoption Model",
+        "properties": {
+          "_id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "shelterId": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "animalId": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "species": {
+            "$ref": "#/components/schemas/Species"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AdoptionRequestStatus"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Adoption fee, in euros"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "description": "Why the request was rejected"
+          },
+          "decidedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the request was approved or rejected"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Value added by mongoose"
+          }
+        },
+        "required": [
+          "_id",
+          "shelterId",
+          "animalId",
+          "species",
+          "adopter",
+          "status",
+          "fee",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "RejectAdoptionDto": {
+        "type": "object",
+        "description": "Reject Adoption DTO",
+        "properties": {
+          "reason": {
+            "type": "string",
+            "description": "Why the request is rejected, sent to the adopter",
+            "minLength": 10,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "reason"
+        ]
+      }
+    }
+  }
+}
