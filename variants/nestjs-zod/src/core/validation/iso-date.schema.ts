@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 const toIsoString = (value: unknown): unknown => {
-  if (typeof value === 'string' || value === undefined || value === null || Array.isArray(value)) {
+  if (typeof value !== 'number' && typeof value !== 'boolean') {
     return value;
   }
-  const date: Date = new Date(value as number);
+  const date: Date = new Date(Number(value));
 
   return Number.isFinite(date.getTime()) ? date.toISOString() : value;
 };
