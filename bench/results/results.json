@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T11:29:36.424Z",
+  "date": "2026-10-29T11:46:21.705Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -3180,6 +3180,251 @@
             "status": "added",
             "kind": "source",
             "added": 98,
+            "removed": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "zod-to-openapi",
+      "tool": "@asteasolutions/zod-to-openapi",
+      "versions": {
+        "@asteasolutions/zod-to-openapi": "9.1.0",
+        "zod": "4.6.7"
+      },
+      "approach": "runtime",
+      "notes": [
+        "@asteasolutions/zod-to-openapi 9.1.0 (latest) with zod 4.6.7, both dev dependencies: the Zod schemas are only imported by the generation script, the app keeps validating with class-validator. The script (`src/generate-openapi.ts`) runs through ts-node (transpile-only), no build step: Node's own type stripping handles neither the app's TypeScript enums nor extensionless imports.",
+        "Framework-agnostic: it reads nothing from the NestJS controllers, the DTO classes or their JSDoc. Every route is re-declared with `registry.registerPath` in a `*.openapi.ts` file per module (method, path relative to a `servers: [{ url: '/v1' }]` entry built from `GLOBAL_PREFIX`, params, query, headers, body, responses by status, summary), and every DTO, model and interface is mirrored as a Zod schema there, reusing the app's enums. Nothing keeps them in sync with the controllers or the classes.",
+        "Zod covers what the class-validator decorators with a JSON-schema equivalent express (`.int()`, `.min()`, `.max()`, `.length()`, `z.email()`, array `.min()`/`.max()`), `.optional()`/`.default()`, `.nullable()`, literals and unions; descriptions are copied from the JSDoc with `.describe()`. The mapped types have direct equivalents (`.partial()`, `.omit()`, `.extend()`), and so has the inheritance (`Animal.extend`).",
+        "Shared pieces live in `src/core/openapi.ts`: the registry and its bearer security scheme (required by default, `security: []` on the @Unprotected routes), the pagination query parameters of the custom @PaginationParams() decorator, the pagination envelope of the interceptor, and the `{ code, message, status }` error responses spread into each operation.",
+        "Unlike the other tools describing the API a second time, nothing was out of reach: the optional `x-request-id` header, the `text/csv` export and the 204 responses are plain `registerPath` options. Mongo ObjectIds and Dates are declared as strings (`z.string()`, `z.iso.datetime()`) and the `@internal` `isDeleted` field is simply left out of the response schema."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node -r ts-node/register/transpile-only src/generate-openapi.ts",
+            "wallMs": {
+              "median": 203.732584,
+              "mean": 204.7835168,
+              "min": 202.565292,
+              "max": 207.768333,
+              "stddev": 1.9815280611145998
+            },
+            "cpuMs": {
+              "median": 250,
+              "mean": 254,
+              "min": 250,
+              "max": 260,
+              "stddev": 4.898979485566356
+            },
+            "maxRssMb": {
+              "median": 152.53125,
+              "mean": 152.528125,
+              "min": 152.140625,
+              "max": 152.796875,
+              "stddev": 0.2186160304049088
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 203.732584,
+            "mean": 204.7835168,
+            "min": 202.565292,
+            "max": 207.768333,
+            "stddev": 1.9815280611145998
+          },
+          "cpuMs": {
+            "median": 250,
+            "mean": 254,
+            "min": 250,
+            "max": 260,
+            "stddev": 4.898979485566356
+          },
+          "maxRssMb": {
+            "median": 152.53125,
+            "mean": 152.528125,
+            "min": 152.140625,
+            "max": 152.796875,
+            "stddev": 0.2186160304049088
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 100,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 206,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2937,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 25,
+        "warnings": 0,
+        "infos": 37,
+        "total": 62,
+        "byId": {
+          "api-security-removed": 25,
+          "api-global-security-added": 1,
+          "api-schema-removed": 8,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-security-added": 25
+        }
+      },
+      "ease": {
+        "filesTouched": 8,
+        "filesAdded": 7,
+        "linesAdded": 609,
+        "linesRemoved": 1,
+        "linesChanged": 610,
+        "sourceFilesTouched": 7,
+        "sourceLinesChanged": 606,
+        "configLinesChanged": 4,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "@asteasolutions/zod-to-openapi",
+          "zod"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 8.76171875,
+        "productionFootprintMb": 0,
+        "changes": [
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 3,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 125,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 164,
+            "removed": 0
+          },
+          {
+            "file": "src/app.openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 12,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 114,
+            "removed": 0
+          },
+          {
+            "file": "src/core/openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 56,
+            "removed": 0
+          },
+          {
+            "file": "src/generate-openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 18,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 117,
             "removed": 0
           }
         ]
