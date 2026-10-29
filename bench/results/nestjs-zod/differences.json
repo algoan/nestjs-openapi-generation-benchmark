@@ -1,0 +1,389 @@
+[
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PATCH /v1/shelters/{id} param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param path:id#description",
+    "expected": "The shelter id"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year#description",
+    "expected": "The year of the statistics"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/shelters/{id}/stats param query:year $#integer",
+    "expected": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "mismatch",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.goodWithKids#type",
+    "expected": "boolean",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books success application/json $.resources[].authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "mismatch",
+    "key": "POST /v1/books body application/json $.available#type",
+    "expected": "boolean",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "POST /v1/books success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "requestBody",
+    "kind": "mismatch",
+    "key": "PUT /v1/books/{isbn} body application/json $.available#type",
+    "expected": "boolean",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "DELETE /v1/books/{isbn} param path:isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters body application/json $.address#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters body application/json $.address.complement#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters body application/json $.email#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters body application/json $.tags#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters body application/json $.metadata#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.name#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.address#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.address.complement#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.email#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.capacity#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.tags#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.metadata#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{id} body application/json $.status#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.birthDate#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].expiresAt#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/cats body application/json $.coatPattern#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.birthDate#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].expiresAt#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.status#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.birthDate#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].expiresAt#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/dogs body application/json $.goodWithKids[]#type",
+    "actual": "boolean"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.phone#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.notes#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.authors[].birthYear#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.publishedOn#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.pageCount#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.language#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.topics#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.rating#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "POST /v1/books body application/json $.available[]#type",
+    "actual": "boolean"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.authors[].birthYear#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.publishedOn#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.language#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.topics#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.rating#nullable",
+    "actual": "true"
+  },
+  {
+    "category": "requestBody",
+    "kind": "extra",
+    "key": "PUT /v1/books/{isbn} body application/json $.available[]#type",
+    "actual": "boolean"
+  }
+]
