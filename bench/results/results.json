@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T11:53:35.007Z",
+  "date": "2026-10-29T12:52:50.795Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1007,6 +1007,492 @@
             "kind": "source",
             "added": 1,
             "removed": 1
+          },
+          {
+            "file": "src/shelters/interfaces/shelter-stats.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/shelters/models/shelter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestjs-zod",
+      "tool": "nestjs-zod",
+      "versions": {
+        "nestjs-zod": "5.5.0",
+        "zod": "4.6.7",
+        "@nestjs/swagger": "11.4.7"
+      },
+      "approach": "runtime",
+      "notes": [
+        "nestjs-zod 5.5.0 with zod 4.6.7, on top of @nestjs/swagger 11.4.7 (it generates the document through SwaggerModule): the setup of the @nestjs/swagger variant is reused (CLI plugin, preview boot, ApiPaginatedResponse, Roles + ApiBearerAuth, error responses, explicit @ApiOkResponse), and the document goes through cleanupOpenApiDoc().",
+        "The 11 class-validator DTOs are rewritten as zod schemas wrapped in createZodDto, and ValidationPipe is replaced by ZodValidationPipe in setupApp(): this rewrite is most of the lines changed. Inheritance and mapped types become .extend() / .omit() / .partial(), JSDoc becomes .describe(); zod gets integer types, maxItems and nested schemas right where the class-validator shim did not.",
+        "Responses keep the Mongoose model classes, reflected by the CLI plugin: @ZodResponse + ZodSerializerInterceptor would need a second zod schema per model (ObjectId and Date codecs) and would change the response pipeline. The class-validator decorators of the 4 sub-document models are left in place: nothing validates with them anymore, the plugin still reads them for the response schemas.",
+        "zod has no ISBN, ISO 3166 country, phone number or Mongo id validator: class-validator's standalone isISBN / isISO31661Alpha2 / isPhoneNumber / isMongoId are kept in .refine() to validate exactly as before (refinements are not documented). Emails use isEmail + .meta({ format: 'email' }) too: z.email() validates with a different regex and documents it as a pattern.",
+        "z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()).",
+        "Behaviour differences the contract test does not see: optional fields reject null (@IsOptional accepted it), and 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).",
+        "Not fixed: z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "build",
+            "command": "node node_modules/@nestjs/cli/bin/nest.js build",
+            "wallMs": {
+              "median": 1956.261084,
+              "mean": 2003.3307252,
+              "min": 1944.392,
+              "max": 2113.677625,
+              "stddev": 67.70139768593987
+            },
+            "cpuMs": {
+              "median": 2679.9999999999995,
+              "mean": 2670,
+              "min": 2570,
+              "max": 2770,
+              "stddev": 65.42170893518448
+            },
+            "maxRssMb": {
+              "median": 534.65625,
+              "mean": 529.825,
+              "min": 511.125,
+              "max": 534.84375,
+              "stddev": 9.357250906716674
+            }
+          },
+          {
+            "name": "generate",
+            "command": "node dist/generate-openapi.js",
+            "wallMs": {
+              "median": 478.872,
+              "mean": 483.47765819999995,
+              "min": 448.344958,
+              "max": 511.717917,
+              "stddev": 24.510103828596165
+            },
+            "cpuMs": {
+              "median": 420.00000000000006,
+              "mean": 428,
+              "min": 400,
+              "max": 459.99999999999994,
+              "stddev": 23.151673805580423
+            },
+            "maxRssMb": {
+              "median": 144.09375,
+              "mean": 144,
+              "min": 143.640625,
+              "max": 144.296875,
+              "stddev": 0.2538762001448738
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2467.979001,
+            "mean": 2486.8083834,
+            "min": 2399.29575,
+            "max": 2592.5496249999997,
+            "stddev": 77.8474469951856
+          },
+          "cpuMs": {
+            "median": 3100,
+            "mean": 3098,
+            "min": 2990,
+            "max": 3230,
+            "stddev": 81.8290901819151
+          },
+          "maxRssMb": {
+            "median": 534.65625,
+            "mean": 529.825,
+            "min": 511.125,
+            "max": 534.84375,
+            "stddev": 9.357250906716674
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 95,
+            "missing": 5,
+            "mismatch": 0,
+            "extra": 3,
+            "differences": 8
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 198,
+            "missing": 8,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 8
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2924,
+          "missing": 13,
+          "mismatch": 0,
+          "extra": 3,
+          "differences": 16
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 34,
+        "warnings": 0,
+        "infos": 97,
+        "total": 131,
+        "byId": {
+          "response-property-type-generalized": 4,
+          "api-security-removed": 25,
+          "request-property-max-set": 2,
+          "request-parameter-max-set": 1,
+          "response-property-one-of-added": 1,
+          "response-body-one-of-added": 1,
+          "api-schema-removed": 8,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-operation-id-added": 29,
+          "api-tag-added": 29,
+          "api-security-added": 25,
+          "request-parameter-type-generalized": 1,
+          "response-property-any-of-removed": 1,
+          "response-body-any-of-removed": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 37,
+        "filesAdded": 3,
+        "linesAdded": 321,
+        "linesRemoved": 310,
+        "linesChanged": 631,
+        "sourceFilesTouched": 35,
+        "sourceLinesChanged": 614,
+        "configLinesChanged": 17,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "@nestjs/swagger",
+          "nestjs-zod",
+          "zod"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 26.27734375,
+        "productionFootprintMb": 31.3671875,
+        "changes": [
+          {
+            "file": "nest-cli.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 11,
+            "removed": 1
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 4,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/dto/create-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 24,
+            "removed": 27
+          },
+          {
+            "file": "src/adoptions/dto/reject-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 7,
+            "removed": 10
+          },
+          {
+            "file": "src/adoptions/interfaces/adoption-receipt.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/models/adoption.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 1
+          },
+          {
+            "file": "src/animals/dto/create-animal.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 17,
+            "removed": 30
+          },
+          {
+            "file": "src/animals/dto/create-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 13
+          },
+          {
+            "file": "src/animals/dto/create-dog.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 10,
+            "removed": 13
+          },
+          {
+            "file": "src/animals/dto/search-animals.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 10,
+            "removed": 28
+          },
+          {
+            "file": "src/animals/dto/update-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 8
+          },
+          {
+            "file": "src/animals/models/animal.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/cat.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/dog.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/app.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 1
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 11,
+            "removed": 1
+          },
+          {
+            "file": "src/books/dto/create-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 30,
+            "removed": 75
+          },
+          {
+            "file": "src/books/dto/replace-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 3
+          },
+          {
+            "file": "src/books/dto/search-books.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 13
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/core/auth/roles.decorator.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 2
+          },
+          {
+            "file": "src/core/interfaces/http-error.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/core/pagination/api-paginated-response.decorator.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 28,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/index.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination.interfaces.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/core/validation/iso-date.schema.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/generate-openapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 21,
+            "removed": 0
+          },
+          {
+            "file": "src/setup.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 7
+          },
+          {
+            "file": "src/shelters/dto/create-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 26,
+            "removed": 61
+          },
+          {
+            "file": "src/shelters/dto/update-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 9,
+            "removed": 8
           },
           {
             "file": "src/shelters/interfaces/shelter-stats.interface.ts",
