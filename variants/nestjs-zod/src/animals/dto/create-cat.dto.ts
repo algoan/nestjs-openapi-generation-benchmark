@@ -5,7 +5,7 @@ import { createAnimalSchema } from './create-animal.dto';
 
 export const createCatSchema = createAnimalSchema.extend({
   indoor: z.boolean().describe('Whether the cat must live indoors'),
-  coatPattern: z.enum(CoatPattern).optional(),
+  coatPattern: z.enum(CoatPattern).nullish(),
 });
 
 /**

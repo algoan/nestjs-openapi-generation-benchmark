@@ -10,6 +10,6 @@ export class CreateDogDto extends createZodDto(
   createAnimalSchema.extend({
     breed: z.string(),
     size: z.enum(DogSize),
-    goodWithKids: z.boolean().optional(),
+    goodWithKids: z.boolean().nullish(),
   }),
 ) {}

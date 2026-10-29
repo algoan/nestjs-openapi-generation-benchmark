@@ -19,17 +19,17 @@ export const createBookSchema = z.object({
     .array(
       z.object({
         name: z.string(),
-        birthYear: z.number().int().min(MIN_BIRTH_YEAR).max(MAX_BIRTH_YEAR).optional(),
+        birthYear: z.number().int().min(MIN_BIRTH_YEAR).max(MAX_BIRTH_YEAR).nullish(),
       }),
     )
     .min(1),
   genre: z.enum(BookGenre),
-  publishedOn: isoDate.optional(),
-  pageCount: z.number().int().min(1).optional(),
-  language: z.string().length(2).optional().describe('ISO 639-1 language code'),
-  topics: z.array(z.enum(Species)).optional().describe('Species the book is about'),
-  rating: z.number().min(0).max(MAX_RATING).optional().describe('Average reader rating, from 0 to 5'),
-  available: z.boolean().optional(),
+  publishedOn: isoDate.nullish(),
+  pageCount: z.number().int().min(1).nullish(),
+  language: z.string().length(2).nullish().describe('ISO 639-1 language code'),
+  topics: z.array(z.enum(Species)).nullish().describe('Species the book is about'),
+  rating: z.number().min(0).max(MAX_RATING).nullish().describe('Average reader rating, from 0 to 5'),
+  available: z.boolean().nullish(),
 });
 
 /**

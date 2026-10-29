@@ -15,17 +15,17 @@ export const createShelterSchema = z.object({
       street: z.string().max(MAX_LINE_LENGTH),
       city: z.string(),
       postalCode: z.string(),
-      complement: z.string().optional().describe('Building, floor, etc.'),
+      complement: z.string().nullish().describe('Building, floor, etc.'),
     })
-    .optional(),
+    .nullish(),
   email: z
     .string()
     .refine((email: string) => isEmail(email))
     .meta({ format: 'email' })
-    .optional().describe('Contact email'),
+    .nullish().describe('Contact email'),
   capacity: z.number().int().min(0).max(MAX_CAPACITY).describe('Maximum number of animals the shelter can host'),
-  tags: z.array(z.string()).max(MAX_TAGS).optional(),
-  metadata: z.record(z.string(), z.unknown()).optional().describe('Free-form data attached by the caller'),
+  tags: z.array(z.string()).max(MAX_TAGS).nullish(),
+  metadata: z.record(z.string(), z.unknown()).nullish().describe('Free-form data attached by the caller'),
 });
 
 /**

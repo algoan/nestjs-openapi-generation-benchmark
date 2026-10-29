@@ -9,16 +9,16 @@ const MAX_NAME_LENGTH: number = 50;
  */
 export const createAnimalSchema = z.object({
   name: z.string().max(MAX_NAME_LENGTH),
-  birthDate: isoDate.optional(),
+  birthDate: isoDate.nullish(),
   sex: z.enum(Sex),
   vaccinations: z
     .array(
       z.object({
         name: z.string().describe('Vaccine name'),
         date: isoDate,
-        expiresAt: isoDate.optional(),
+        expiresAt: isoDate.nullish(),
       }),
     )
-    .optional(),
-  weightKg: z.number().min(0).optional().describe('Weight in kilograms'),
+    .nullish(),
+  weightKg: z.number().min(0).nullish().describe('Weight in kilograms'),
 });

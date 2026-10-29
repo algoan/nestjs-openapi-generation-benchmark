@@ -13,7 +13,7 @@ const adopterSchema = z.object({
   phone: z
     .string()
     .refine((phone: string) => isPhoneNumber(phone))
-    .optional()
+    .nullish()
     .describe('Phone number, in the E.164 format'),
 });
 
@@ -26,6 +26,6 @@ export class CreateAdoptionDto extends createZodDto(
     species: z.enum(Species),
     adopter: adopterSchema,
     fee: z.number().min(0).describe('Adoption fee, in euros'),
-    notes: z.string().max(MAX_NOTES_LENGTH).optional(),
+    notes: z.string().max(MAX_NOTES_LENGTH).nullish(),
   }),
 ) {}
