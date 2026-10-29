@@ -1,6 +1,7 @@
 import { isISBN } from 'class-validator';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
+import { codePointString } from '../../core/validation/code-point-string.schema';
 import { Species } from '../../animals/enums/species.enum';
 import { isoDate } from '../../core/validation/iso-date.schema';
 import { BookGenre } from '../enums/book-genre.enum';
@@ -26,8 +27,11 @@ export const createBookSchema = z.object({
   genre: z.enum(BookGenre),
   publishedOn: isoDate.nullish(),
   pageCount: z.number().int().min(1).nullish(),
-  language: z.string().length(2).nullish().describe('ISO 639-1 language code'),
-  topics: z.array(z.enum(Species)).nullish().describe('Species the book is about'),
+  language: codePointString({ min: 2, max: 2 }).nullish().describe('ISO 639-1 language code'),
+  topics: z
+    .preprocess((topics: unknown) => (typeof topics === 'string' ? [topics] : topics), z.array(z.enum(Species)))
+    .nullish()
+    .describe('Species the book is about'),
   rating: z.number().min(0).max(MAX_RATING).nullish().describe('Average reader rating, from 0 to 5'),
   available: z.boolean().nullish(),
 });

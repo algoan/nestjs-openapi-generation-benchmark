@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { codePointString } from '../../core/validation/code-point-string.schema';
 import { isoDate } from '../../core/validation/iso-date.schema';
 import { Sex } from '../enums/sex.enum';
 
@@ -8,7 +9,7 @@ const MAX_NAME_LENGTH: number = 50;
  * Fields shared by every animal creation
  */
 export const createAnimalSchema = z.object({
-  name: z.string().max(MAX_NAME_LENGTH),
+  name: codePointString({ max: MAX_NAME_LENGTH }),
   birthDate: isoDate.nullish(),
   sex: z.enum(Sex),
   vaccinations: z

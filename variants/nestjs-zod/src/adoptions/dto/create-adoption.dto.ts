@@ -1,14 +1,15 @@
 import { isEmail, isMongoId, isPhoneNumber } from 'class-validator';
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
+import { codePointString } from '../../core/validation/code-point-string.schema';
 import { Species } from '../../animals/enums/species.enum';
 
 const MAX_NAME_LENGTH: number = 80;
 const MAX_NOTES_LENGTH: number = 500;
 
 const adopterSchema = z.object({
-  firstName: z.string().max(MAX_NAME_LENGTH),
-  lastName: z.string().max(MAX_NAME_LENGTH),
+  firstName: codePointString({ max: MAX_NAME_LENGTH }),
+  lastName: codePointString({ max: MAX_NAME_LENGTH }),
   email: z.string().refine((email: string) => isEmail(email)).meta({ format: 'email' }),
   phone: z
     .string()
@@ -26,6 +27,6 @@ export class CreateAdoptionDto extends createZodDto(
     species: z.enum(Species),
     adopter: adopterSchema,
     fee: z.number().min(0).describe('Adoption fee, in euros'),
-    notes: z.string().max(MAX_NOTES_LENGTH).nullish(),
+    notes: codePointString({ max: MAX_NOTES_LENGTH }).nullish(),
   }),
 ) {}
