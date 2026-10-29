@@ -2,7 +2,7 @@ import { length } from 'class-validator';
 import { z } from 'zod';
 
 /**
- * String whose length is counted in code points, like @Length / @MinLength / @MaxLength (zod counts UTF-16 units)
+ * String whose length is counted like @Length / @MinLength / @MaxLength: zod also counts the variation selectors
  */
 export const codePointString = ({ min = 0, max }: { min?: number; max?: number }) =>
   z
