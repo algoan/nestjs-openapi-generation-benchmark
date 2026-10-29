@@ -101,7 +101,7 @@ What the numbers say:
   enums, the `x-request-id` header) and the compiler checks the definitions, but not against the controllers,
   and the class-validator DTOs still validate the requests: each DTO exists twice.
 - **@asteasolutions/zod-to-openapi** works the same way, through a registry: every DTO and model is mirrored as a
-  Zod schema and every route re-declared with `registry.registerPath` (610 lines). Same exact document, same
+  Zod schema and every route re-declared with `registry.registerPath` (610 lines). Same zero differences, same
   speed and memory, same drift: nothing ties the Zod schemas to the DTOs they mirror.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
   Mongo `ObjectId`s into objects; not a realistic option.
