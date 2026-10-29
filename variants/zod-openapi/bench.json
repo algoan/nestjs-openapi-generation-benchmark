@@ -1,0 +1,25 @@
+{
+  "tool": "zod-openapi",
+  "packages": [
+    "zod-openapi",
+    "zod"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -rf dist openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node -r ts-node/register/transpile-only src/generate-openapi.ts"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "zod-openapi 6.0.2 (latest) with zod 4.6.7, Node 24. The definitions are TypeScript run by ts-node in transpile-only mode (already a dev dependency of the app, it resolves the app's extensionless imports and enums): no build step.",
+    "Framework-agnostic: it reads neither the NestJS controllers nor the class-validator DTOs. Every DTO, model and interface is re-declared as a Zod schema, and every operation (path with the hard-coded `v1` prefix, path/query/header parameters, request body, status codes, error responses, `security: []` on the @Unprotected routes) in a `*.openapi.ts` file per module beside the controllers; the error body, error responses, pagination query parameters and envelope are shared in `src/core/openapi.ts`. Nothing ties these declarations to the controllers or the DTOs.",
+    "The Zod schemas only describe the API: the app keeps validating with class-validator, so each DTO exists twice. Validating with the Zod schemas instead would mean replacing the ValidationPipe and rewriting the DTOs, which the guide forbids.",
+    "Zod covers the patterns of the app without workarounds: `.omit()`, `.partial()` and `.extend()` for PartialType/OmitType and model inheritance, `z.enum()` on the app's TypeScript enums, constraints (`.max()`, `.int()`, `z.email()`…), the optional `x-request-id` header. Descriptions are copied from the JSDoc into `.describe()`.",
+    "Dates and ObjectIds are declared in their JSON form (`z.iso.datetime()`, `z.string()`): `z.date()` renders a plain string without `format`.",
+    "A generic `override` in the generation script removes what Zod adds by itself: the safe-integer `minimum`/`maximum` of `.int()`, the regex `pattern` of `z.email()` and `z.iso.datetime()`, and `additionalProperties: false` on response objects."
+  ]
+}
