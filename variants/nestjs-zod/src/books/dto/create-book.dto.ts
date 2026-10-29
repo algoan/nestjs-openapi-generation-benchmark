@@ -3,6 +3,7 @@ import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 import { codePointString } from '../../core/validation/code-point-string.schema';
 import { Species } from '../../animals/enums/species.enum';
+import { integer } from '../../core/validation/integer.schema';
 import { isoDate } from '../../core/validation/iso-date.schema';
 import { BookGenre } from '../enums/book-genre.enum';
 
@@ -20,13 +21,13 @@ export const createBookSchema = z.object({
     .array(
       z.object({
         name: z.string(),
-        birthYear: z.number().int().min(MIN_BIRTH_YEAR).max(MAX_BIRTH_YEAR).nullish(),
+        birthYear: integer().min(MIN_BIRTH_YEAR).max(MAX_BIRTH_YEAR).nullish(),
       }),
     )
     .min(1),
   genre: z.enum(BookGenre),
   publishedOn: isoDate.nullish(),
-  pageCount: z.number().int().min(1).nullish(),
+  pageCount: integer().min(1).nullish(),
   language: codePointString({ min: 2, max: 2 }).nullish().describe('ISO 639-1 language code'),
   topics: z
     .preprocess((topics: unknown) => (typeof topics === 'string' ? [topics] : topics), z.array(z.enum(Species)))
