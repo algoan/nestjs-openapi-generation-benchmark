@@ -45,11 +45,10 @@ What the numbers say:
 - **nestoa needs the fewest changes by far** (30–33 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **one to two orders of magnitude faster and lighter** than every Node-based
   tool that reads the TypeScript code: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84×
-  lighter for main. swagger-jsdoc, which reads only comments, is 2× slower and 1.7× heavier than 0.2.1 (5× and
-  10× for main).
-  It matches the expected document exactly: the query parameters read by
+  lighter for main. It matches the expected document exactly: the query parameters read by
   `@PaginationParams()` and the error body are declared in its configuration, and class-validator
-  constraints are read from the DTOs.
+  constraints are read from the DTOs. swagger-jsdoc, which reads only comments, is 2× slower and 1.7× heavier
+  than nestoa 0.2.1 (5× and 10× than main).
 - **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen, ts-oas and swagger-jsdoc are
   dev dependencies (nestoa main is a standalone binary): 0 MB in the service's production install. The tools whose
   decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB for typoa, +44 MB for tsoa,
