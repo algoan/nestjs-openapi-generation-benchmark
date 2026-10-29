@@ -149,7 +149,7 @@ jobs:
             echo
             echo "Speed and memory are the ones of the last local run. Before merging, update by hand:"
             echo
-            echo "- the notes of \`variants/$VARIANT/bench.json\` and the \"Results at a glance\" table of the README;"
+            echo "- the notes of \`variants/$VARIANT/bench.json\`, the \"Results at a glance\" table of the README and the comments of \`docs/results.md\`;"
             echo "- for a release, the annotations of \`variants/nestoa\` that the new version no longer needs (see \`variants/nestoa-main\`)."
             echo
             cat "$RUNNER_TEMP/check.md"
