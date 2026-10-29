@@ -1,0 +1,9 @@
+{
+  "specPathGlobs": ["src/**/*.controller.ts"],
+  "outputPath": "openapi.json",
+  "openapi": {
+    "title": "Petstore",
+    "version": "1.0.0",
+    "servers": [{ "url": "/v1" }]
+  }
+}

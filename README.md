@@ -19,6 +19,7 @@ the main candidates on one realistic codebase, on three grades:
 | [`swagger-jsdoc`](https://github.com/Surnet/swagger-jsdoc) | static: the document written by hand as YAML in `@openapi` JSDoc blocks |
 | [`zod-openapi`](https://github.com/samchungy/zod-openapi) | static: operations and Zod schemas declared in TypeScript, run as a script |
 | [`@asteasolutions/zod-to-openapi`](https://github.com/asteasolutions/zod-to-openapi) | static: routes and Zod schemas declared in a registry, run by a script |
+| [`tspec`](https://github.com/ts-spec/tspec) | static: TypeScript compiler API over the controllers (`--nestjs`) + typescript-json-schema |
 | [`nestoa`](https://github.com/algoan/nestoa) | static: Rust parser of the TypeScript sources |
 
 **Results: [`bench/results/REPORT.md`](bench/results/REPORT.md)** (and the charts in `bench/results/report.html`).
@@ -54,6 +55,7 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | nestoa (unreleased main) | main@00c0442 | **30** | **0** | **0** | **19 ms** | **8 MB** |
 | nestoa | 0.2.1 | 33 | **0** | **0** | 48 ms | 47 MB |
 | nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.51 s | 424 MB |
+| tspec | 0.2.11 | 153 | 1023 | 1717 | 10.84 s | 705 MB |
 | @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.74 s | 509 MB |
 | typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
 | @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.94 s | 674 MB |
@@ -72,17 +74,17 @@ What the numbers say:
   170 to 1505 lines). Every one of those lines can drift from the code.
 - **nestoa needs the fewest changes by far** (30–33 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **one to two orders of magnitude faster and lighter** than every Node-based
-  tool that reads the TypeScript code: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84×
-  lighter for main. It matches the expected document exactly: the query parameters read by
+  tool that reads the TypeScript code: 16–226× faster and 9–15× lighter for 0.2.1, 41–580× faster and 52–88×
+  lighter for main (the upper bounds are tspec's). It matches the expected document exactly: the query parameters read by
   `@PaginationParams()` and the error body are declared in its configuration, and class-validator
   constraints are read from the DTOs. swagger-jsdoc, which reads only comments, is 2× slower and 1.7× heavier
   than nestoa 0.2.1 (5× and 10× than main); zod-openapi and zod-to-openapi, which only transpile and run their
   definitions, are 4× slower and 3× heavier (11× and 19× than main).
 - **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen, ts-oas, swagger-jsdoc,
   zod-openapi and zod-to-openapi are dev dependencies (nestoa main is a standalone binary): 0 MB in the service's
-  production install. The tools whose decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB
-  for typoa, +31 MB for nestjs-zod, +44 MB for tsoa, +71 MB for nestia (tsoa and nestia pull `typescript` into the
-  production dependencies).
+  production install. The tools whose decorators run with the app add to it: +22 MB for @nestjs/swagger (and for
+  tspec, which reads its `@ApiResponse`), +29 MB for typoa, +31 MB for nestjs-zod, +44 MB for tsoa, +71 MB for
+  nestia (tsoa and nestia pull `typescript` into the production dependencies).
 - **The published nestoa 0.2.1 has caught up with its main branch** (main@00c0442 is the v0.2.1 release):
   security, `@nestjs/mapped-types` helpers, `text/csv`, `HttpStatus.*` members, custom decorators' query
   parameters and class-validator constraints, missing from 0.1.7 (149 core differences), are all supported.
@@ -91,7 +93,7 @@ What the numbers say:
   that spawns the native binary: Node accounts for about 30 ms and 38 MB, the binary alone measures like
   main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
-  (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
+  (`nest build`) and boots the app, which makes it, with nestia, the slowest pipeline after tspec.
 - **nestjs-zod** is @nestjs/swagger with Zod request DTOs: it keeps the whole setup of the @nestjs/swagger
   variant and rewrites the 11 class-validator DTOs as Zod schemas (`createZodDto`, `ZodValidationPipe`), for
   519 more lines (689). Zod gets the integer types, `maxItems` and nested schemas of the request bodies right,
@@ -114,6 +116,12 @@ What the numbers say:
 - **@asteasolutions/zod-to-openapi** works the same way, through a registry: every DTO and model is mirrored as a
   Zod schema and every route re-declared with `registry.registerPath` (610 lines). Same zero differences, same
   speed and memory, same drift: nothing ties the Zod schemas to the DTOs they mirror.
+- **tspec** reads the NestJS controllers itself (`--nestjs`), but only the standard decorators and the own
+  properties of classes: inheritance, mapped types, `Cat | Dog`, `ObjectId`s, `@HttpCode`, the parameters of
+  `@PaginationParams()`, security and the pagination envelope are out of reach, and an `@ApiResponse` type is
+  only resolved when a handler signature already uses it (the error body comes out empty). With 153 lines
+  (`@ApiResponse` status codes, JSDoc constraint tags) it still has 1023 core differences, and it is the
+  slowest tool: 11 s and 705 MB, as it builds two TypeScript programs.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
   Mongo `ObjectId`s into objects; not a realistic option.
 - **nestia** latest (12–14) requires TypeScript 7; 11.3.4 was used, with ts-patch.

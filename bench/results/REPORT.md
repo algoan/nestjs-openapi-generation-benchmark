@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T13:25:11.942Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T13:41:50.332Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,18 +8,19 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#12) | 2394 (#12) | 2.51 s (#10) | 424 MB (#7) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#10) | 92 (#10) | 2.94 s (#12) | 674 MB (#12) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#8) | 2.74 s (#11) | 509 MB (#10) |
-| **nestjs-zod** | 5.5.0 | runtime | 689 (#11) | 51 (#11) | 64 (#9) | 2.38 s (#9) | 538 MB (#11) |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#13) | 2394 (#13) | 2.51 s (#10) | 424 MB (#7) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#7) | 10 (#10) | 92 (#10) | 2.94 s (#12) | 674 MB (#12) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#5) | 0 (#1) | 22 (#8) | 2.74 s (#11) | 509 MB (#10) |
+| **nestjs-zod** | 5.5.0 | runtime | 689 (#12) | 51 (#11) | 64 (#9) | 2.38 s (#9) | 538 MB (#11) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
 | **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
-| **swagger-jsdoc** | 6.3.0 | static | 1505 (#12) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#8) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#9) | 304 (#11) | 898 ms (#8) | 443 MB (#9) |
-| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
-| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#10) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
+| **swagger-jsdoc** | 6.3.0 | static | 1505 (#13) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
+| **ts-oas** | 0.6.1 | static | 513 (#9) | 3 (#8) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
+| **tsoa** | 6.6.0 | static | 300 (#8) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
+| **tspec** | 0.2.11 | static | 153 (#4) | 1023 (#12) | 1717 (#12) | 10.84 s (#13) | 705 MB (#13) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#6) | 8 (#9) | 304 (#11) | 898 ms (#8) | 443 MB (#9) |
+| **zod-openapi** | 6.0.2 | static | 574 (#10) | 0 (#6) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
+| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#11) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -39,6 +40,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | swagger-jsdoc | 43 | 1 | 41 / 75 | 1429 | 76 | +1505 −0 | `swagger-jsdoc` | +4 MB | 0 MB |
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
+| tspec | 18 | 1 | 16 / 75 | 142 | 11 | +148 −5 | `@nestjs/swagger`, `tspec` | +61 MB | +22 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
 | zod-openapi | 8 | 7 | 7 / 75 | 570 | 4 | +573 −1 | `zod`, `zod-openapi` | – | – |
 | @asteasolutions/zod-to-openapi | 8 | 7 | 7 / 75 | 606 | 4 | +609 −1 | `@asteasolutions/zod-to-openapi`, `zod` | +9 MB | 0 MB |
@@ -61,6 +63,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | swagger-jsdoc | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
 | tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
+| tspec | 0 | 112 | 100 | 811 | 552 | 48 | 25 | 69 | **1023** | **1717** | 48.6% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
 | zod-openapi | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | @asteasolutions/zod-to-openapi | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
@@ -78,6 +81,7 @@ Recall (share of the expected facts found) per category:
 | swagger-jsdoc | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | ts-oas | 100.0% | 98.5% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 99.5% |
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| tspec | 100.0% | 44.9% | 63.6% | 52.3% | 33.3% | 52.0% | 13.8% | 66.5% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
 | zod-openapi | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | @asteasolutions/zod-to-openapi | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
@@ -95,6 +99,7 @@ Recall (share of the expected facts found) per category:
 | swagger-jsdoc | 26 | 5 | 30 | 61 |
 | ts-oas | 55 | 1 | 59 | 115 |
 | tsoa | 49 | 0 | 197 | 246 |
+| tspec | 379 | 44 | 224 | 647 |
 | typoa | 57 | 6 | 122 | 185 |
 | zod-openapi | 27 | 0 | 65 | 92 |
 | @asteasolutions/zod-to-openapi | 25 | 0 | 37 | 62 |
@@ -116,6 +121,7 @@ Recall (share of the expected facts found) per category:
 | swagger-jsdoc | `generate` | 94 ms | 93 ms – 95 ms | 100 ms | 78 MB |
 | ts-oas | `generate` | 816 ms | 797 ms – 859 ms | 1.65 s | 430 MB |
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
+| tspec | `generate` | 10.84 s | 10.76 s – 11.32 s | 13.24 s | 705 MB |
 | typoa | `generate` | 898 ms | 859 ms – 984 ms | 1.60 s | 443 MB |
 | zod-openapi | `generate` | 205 ms | 185 ms – 302 ms | 240 ms | 155 MB |
 | @asteasolutions/zod-to-openapi | `generate` | 204 ms | 203 ms – 208 ms | 250 ms | 153 MB |
@@ -239,6 +245,19 @@ Differences: [`bench/results/ts-oas/differences.md`](ts-oas/differences.md)
 - `noImplicitAdditionalProperties: ignore`: the other modes emit `additionalProperties: false` on every model, which is wrong for responses.
 
 Differences: [`bench/results/tsoa/differences.md`](tsoa/differences.md)
+
+### tspec (`variants/tspec`)
+
+- tspec 0.2.11 (latest), `tspec generate --nestjs` on the controllers (`specPathGlobs` and the `/v1` server of the global prefix in `tspec.config.json`); no build step, but over 10 s: it builds two TypeScript programs, one for its own parser and one for typescript-json-schema.
+- The CLI writes nothing in NestJS mode when `--outputPath` is left to its default `openapi.json` (the default is turned into `undefined`, exit code 0): the output path is set in `tspec.config.json` instead.
+- Success status codes come from the return type only (`void` → 204, anything else → 200): `@HttpCode` is ignored, `@ApiResponse({ status: 201, type })` from @nestjs/swagger (a runtime dependency) is added on the 5 creation routes. `status` must be a numeric literal (`HttpStatus.CREATED` is skipped) and `type` a value, so the `HttpError` and `AdoptionReceipt` interfaces became classes. Handlers without a return type are typed as mongoose `Document<…>`: 3 explicit return types added.
+- Error responses are declared with one `@ApiResponse({ status, type: HttpError })` per status and operation (no shared or composed decorator is read), but a type only referenced from `@ApiResponse` is never resolved: the error body is an empty object. For the same reason the pagination envelope cannot be declared (a page class per resource stays empty): paginated routes are documented as the `DataToPaginate<T>` returned by the handler (`resources` + `totalResources`), not the `{ resources, pagination }` built by PaginationBodyInterceptor.
+- Only the own properties of a class are read: inheritance (`Cat extends Animal`, `CreateCatDto extends CreateAnimalDto`) and mapped types with extra properties (`UpdateShelterDto`, `UpdateCatDto`) lose the inherited ones. A class without own members (`ReplaceBookDto`) falls back to typescript-json-schema, which resolves it fully. Union return types (`Cat | Dog`) become an empty object, the `'ok'` literal an object.
+- Mongo `ObjectId` is expanded as the bson class in bodies, and path/query parameters typed with a class or an enum (`ObjectId` with ParseObjectIdPipe, enums with ParseEnumPipe) get an empty schema. `@Headers('x-request-id')` is emitted with the invalid `in: headers`. `DefaultValuePipe` is not read (`includeAdopted` is required, without default).
+- Not expressible: the query parameters read by the custom @PaginationParams() decorator (only @Param/@Query/@Body/@Headers are read), security (no global or per-operation `security`, guards and @Unprotected are ignored), the `text/csv` response of GET /books/export (always `application/json`), and `@param` descriptions.
+- class-validator decorators are not read: `@minimum`, `@maximum`, `@minLength`, `@maxLength` and `@format email` JSDoc tags restate them on the DTOs and models. There is no tag for `integer`, `minItems` or `maxItems`, and the tags on inherited properties are lost with them.
+
+Differences: [`bench/results/tspec/differences.md`](tspec/differences.md)
 
 ### typoa (`variants/typoa`)
 

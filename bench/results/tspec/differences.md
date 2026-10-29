@@ -1,0 +1,1880 @@
+# tspec: differences with the expected document
+
+## parameters (112)
+
+Most frequent:
+
+- ×16 `missing param path:shelterId $#type`
+- ×5 `missing param query:page`
+- ×5 `missing param query:page#required`
+- ×5 `missing param query:page $#type`
+- ×5 `missing param query:limit`
+- ×5 `missing param query:limit#required`
+- ×5 `missing param query:limit $#type`
+- ×5 `missing param query:filter`
+- ×5 `missing param query:filter#required`
+- ×5 `missing param query:filter $#type`
+- ×5 `missing param query:sort`
+- ×5 `missing param query:sort#required`
+- ×5 `missing param query:sort $#type`
+- ×4 `missing param path:id $#type`
+- ×4 `missing param path:adoptionId $#type`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/shelters param query:page` — expected `true`
+- **missing** `GET /v1/shelters param query:page#required` — expected `false`
+- **missing** `GET /v1/shelters param query:page $#type` — expected `number`
+- **missing** `GET /v1/shelters param query:limit` — expected `true`
+- **missing** `GET /v1/shelters param query:limit#required` — expected `false`
+- **missing** `GET /v1/shelters param query:limit $#type` — expected `number`
+- **missing** `GET /v1/shelters param query:filter` — expected `true`
+- **missing** `GET /v1/shelters param query:filter#required` — expected `false`
+- **missing** `GET /v1/shelters param query:filter $#type` — expected `string`
+- **missing** `GET /v1/shelters param query:sort` — expected `true`
+- **missing** `GET /v1/shelters param query:sort#required` — expected `false`
+- **missing** `GET /v1/shelters param query:sort $#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} param path:id $#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} param path:id $#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} param path:id $#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats param path:id $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:filter` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:filter#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:filter $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:sort` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:sort#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:sort $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} param path:catId $#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} param path:shelterId $#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} param path:catId $#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} param path:shelterId $#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} param path:catId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:filter` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:filter#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:filter $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:sort` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:sort#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:sort $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} param path:dogId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:species $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:species $#enum="CAT"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:species $#enum="DOG"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:status $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:status $#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:status $#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:status $#enum="ADOPTED"` — expected `true`
+- **mismatch** `GET /v1/shelters/{shelterId}/animals param query:includeAdopted#required` — expected `false`, got `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} param path:animalId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit $#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:filter` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:filter#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:filter $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:sort` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:sort#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:sort $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status $#enum="PENDING"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status $#enum="APPROVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status $#enum="REJECTED"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param path:shelterId $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param header:x-request-id` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param header:x-request-id $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} param path:shelterId $#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} param path:adoptionId $#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} param path:shelterId $#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} param path:adoptionId $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve param path:shelterId $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve param path:adoptionId $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject param path:shelterId $#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject param path:adoptionId $#type` — expected `string`
+- **missing** `GET /v1/books param query:genre $#type` — expected `string`
+- **missing** `GET /v1/books param query:genre $#enum="CARE_GUIDE"` — expected `true`
+- **missing** `GET /v1/books param query:genre $#enum="TRAINING"` — expected `true`
+- **missing** `GET /v1/books param query:genre $#enum="NOVEL"` — expected `true`
+- **missing** `GET /v1/books param query:genre $#enum="CHILDREN"` — expected `true`
+- **missing** `GET /v1/books param query:page` — expected `true`
+- **missing** `GET /v1/books param query:page#required` — expected `false`
+- **missing** `GET /v1/books param query:page $#type` — expected `number`
+- **missing** `GET /v1/books param query:limit` — expected `true`
+- **missing** `GET /v1/books param query:limit#required` — expected `false`
+- **missing** `GET /v1/books param query:limit $#type` — expected `number`
+- **missing** `GET /v1/books param query:filter` — expected `true`
+- **missing** `GET /v1/books param query:filter#required` — expected `false`
+- **missing** `GET /v1/books param query:filter $#type` — expected `string`
+- **missing** `GET /v1/books param query:sort` — expected `true`
+- **missing** `GET /v1/books param query:sort#required` — expected `false`
+- **missing** `GET /v1/books param query:sort $#type` — expected `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions param headers:x-request-id` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions param headers:x-request-id#required` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions param headers:x-request-id $#type` — got `string`
+
+</details>
+
+## requestBody (100)
+
+Most frequent:
+
+- ×4 `missing body $.name#required`
+- ×4 `missing body $.name#type`
+- ×3 `missing body $.birthDate#required`
+- ×3 `missing body $.birthDate#type`
+- ×3 `missing body $.birthDate#format`
+- ×3 `missing body $.sex#required`
+- ×3 `missing body $.sex#type`
+- ×3 `missing body $.sex#enum="FEMALE"`
+- ×3 `missing body $.sex#enum="MALE"`
+- ×3 `missing body $.sex#enum="UNKNOWN"`
+- ×3 `missing body $.vaccinations#required`
+- ×3 `missing body $.vaccinations#type`
+- ×3 `missing body $.vaccinations[]#type`
+- ×3 `missing body $.vaccinations[].name#required`
+- ×3 `missing body $.vaccinations[].name#type`
+
+<details><summary>All</summary>
+
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address#type` — expected `object`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.street#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.street#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.city#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.city#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.postalCode#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.postalCode#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.complement#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.complement#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.tags#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.tags#type` — expected `array`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.tags[]#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.metadata#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.metadata#type` — expected `object`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.birthDate#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.birthDate#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.birthDate#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.sex#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.sex#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations#type` — expected `array`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[]#type` — expected `object`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.birthDate#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.birthDate#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.birthDate#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations#type` — expected `array`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[]#type` — expected `object`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#type` — expected `boolean`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#enum="SOLID"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#enum="TABBY"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#enum="TORTOISESHELL"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#enum="CALICO"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.coatPattern#enum="BICOLOR"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.birthDate#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.birthDate#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.birthDate#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.sex#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.sex#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations#type` — expected `array`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[]#type` — expected `object`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#type` — expected `number`
+- **extra** `PUT /v1/books/{isbn} body application/json ${*}#unresolved` — got `false`
+
+</details>
+
+## responses (811)
+
+Most frequent:
+
+- ×9 `mismatch success $._id#type`
+- ×9 `extra success $._id._bsontype#required`
+- ×9 `extra success $._id._bsontype#type`
+- ×9 `extra success $._id._bsontype#enum="ObjectId"`
+- ×9 `extra success $._id.id#required`
+- ×9 `extra success $._id.id#type`
+- ×9 `extra success $._id.id[]#type`
+- ×9 `extra success $._id._id#required`
+- ×9 `extra success $._id._id#unresolved`
+- ×9 `extra success $._id{*}#unresolved`
+- ×5 `missing success $.pagination#required`
+- ×5 `missing success $.pagination#type`
+- ×5 `missing success $.pagination.next#required`
+- ×5 `missing success $.pagination.next#type`
+- ×5 `missing success $.pagination.next#nullable`
+
+<details><summary>All</summary>
+
+- **mismatch** `GET /v1/health success application/json $.status#type` — expected `string`, got `object`
+- **missing** `GET /v1/health success application/json $.status#enum="ok"` — expected `true`
+- **mismatch** `GET /v1/shelters success application/json $.resources[]._id#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters success application/json $.pagination#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination#type` — expected `object`
+- **missing** `GET /v1/shelters success application/json $.pagination.next#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.next#type` — expected `string`
+- **missing** `GET /v1/shelters success application/json $.pagination.next#nullable` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.previous#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.previous#type` — expected `string`
+- **missing** `GET /v1/shelters success application/json $.pagination.previous#nullable` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.first#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.first#type` — expected `string`
+- **missing** `GET /v1/shelters success application/json $.pagination.first#nullable` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.last#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.last#type` — expected `string`
+- **missing** `GET /v1/shelters success application/json $.pagination.last#nullable` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalPages#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalPages#type` — expected `number`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalPages#nullable` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalResources#required` — expected `true`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalResources#type` — expected `number`
+- **missing** `GET /v1/shelters success application/json $.pagination.totalResources#nullable` — expected `true`
+- **mismatch** `POST /v1/shelters success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/shelters/{id} success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `PATCH /v1/shelters/{id} success application/json $._id#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[]._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[]._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].shelterId#type` — expected `string`
+- **mismatch** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].species#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].species#enum="CAT"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.next#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.previous#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.first#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.last#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalPages#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.pagination.totalResources#nullable` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $._id#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $._id#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.shelterId#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.shelterId#type` — expected `string`
+- **mismatch** `POST /v1/shelters/{shelterId}/cats success application/json $.species#type` — expected `string`, got `object`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.species#enum="CAT"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.birthDate#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.birthDate#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.birthDate#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.sex#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.sex#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.status#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.status#enum="AVAILABLE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.status#enum="RESERVED"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.status#enum="ADOPTED"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations#type` — expected `array`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[]#type` — expected `object`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.weightKg#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.weightKg#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.shelterId#type` — expected `string`
+- **mismatch** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.species#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.species#enum="CAT"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $._id#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $._id#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.shelterId#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.shelterId#type` — expected `string`
+- **mismatch** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.species#type` — expected `string`, got `object`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.species#enum="CAT"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.name#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.name#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.birthDate#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="AVAILABLE"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="RESERVED"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.status#enum="ADOPTED"` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations#type` — expected `array`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[]#type` — expected `object`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#required` — expected `false`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#format` — expected `date-time`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[]._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[]._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].shelterId#type` — expected `string`
+- **mismatch** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].species#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].species#enum="DOG"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.next#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.previous#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.first#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.last#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalPages#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.pagination.totalResources#nullable` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $._id#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $._id#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.shelterId#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.shelterId#type` — expected `string`
+- **mismatch** `POST /v1/shelters/{shelterId}/dogs success application/json $.species#type` — expected `string`, got `object`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.species#enum="DOG"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.birthDate#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.birthDate#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.birthDate#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.sex#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.sex#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.status#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.status#enum="AVAILABLE"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.status#enum="RESERVED"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.status#enum="ADOPTED"` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations#type` — expected `array`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[]#type` — expected `object`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.weightKg#required` — expected `false`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.weightKg#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#format` — expected `date-time`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.shelterId#type` — expected `string`
+- **mismatch** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.species#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.species#enum="DOG"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.shelterId#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.species#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.species#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.species#enum="CAT"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.indoor#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.indoor#type` — expected `boolean`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#enum="SOLID"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#enum="TABBY"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#enum="TORTOISESHELL"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#enum="CALICO"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.coatPattern#enum="BICOLOR"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.shelterId#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.species#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.species#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.species#enum="DOG"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.breed#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.breed#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.size#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.size#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.size#enum="SMALL"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.size#enum="MEDIUM"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.size#enum="LARGE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.goodWithKids#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.goodWithKids#type` — expected `boolean`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.shelterId#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.species#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.species#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.species#enum="CAT"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.indoor#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.indoor#type` — expected `boolean`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#enum="SOLID"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#enum="TABBY"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#enum="TORTOISESHELL"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#enum="CALICO"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.coatPattern#enum="BICOLOR"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1._id#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1._id#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.shelterId#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.shelterId#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.species#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.species#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.species#enum="DOG"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.birthDate#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.birthDate#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.birthDate#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.sex#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.sex#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.sex#enum="FEMALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.sex#enum="MALE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.sex#enum="UNKNOWN"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.status#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.status#enum="AVAILABLE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.status#enum="RESERVED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.status#enum="ADOPTED"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations#type` — expected `array`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[]#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].name#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].name#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].date#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].date#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].date#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].expiresAt#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].expiresAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].expiresAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.weightKg#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.weightKg#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#format` — expected `date-time`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.breed#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.breed#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.size#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.size#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.size#enum="SMALL"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.size#enum="MEDIUM"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.size#enum="LARGE"` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.goodWithKids#required` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.goodWithKids#type` — expected `boolean`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId#type` — expected `string`, got `object`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination#type` — expected `object`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.next#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.previous#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.first#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.last#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalPages#nullable` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions success application/json $.pagination.totalResources#nullable` — expected `true`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId#type` — expected `string`, got `object`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId#type` — expected `string`, got `object`
+- **mismatch** `GET /v1/books success application/json $.resources[]._id#type` — expected `string`, got `object`
+- **missing** `GET /v1/books success application/json $.pagination#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination#type` — expected `object`
+- **missing** `GET /v1/books success application/json $.pagination.next#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.next#type` — expected `string`
+- **missing** `GET /v1/books success application/json $.pagination.next#nullable` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.previous#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.previous#type` — expected `string`
+- **missing** `GET /v1/books success application/json $.pagination.previous#nullable` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.first#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.first#type` — expected `string`
+- **missing** `GET /v1/books success application/json $.pagination.first#nullable` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.last#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.last#type` — expected `string`
+- **missing** `GET /v1/books success application/json $.pagination.last#nullable` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.totalPages#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.totalPages#type` — expected `number`
+- **missing** `GET /v1/books success application/json $.pagination.totalPages#nullable` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.totalResources#required` — expected `true`
+- **missing** `GET /v1/books success application/json $.pagination.totalResources#type` — expected `number`
+- **missing** `GET /v1/books success application/json $.pagination.totalResources#nullable` — expected `true`
+- **mismatch** `POST /v1/books success application/json $._id#type` — expected `string`, got `object`
+- **missing** `GET /v1/books/export success text/csv` — expected `true`
+- **missing** `GET /v1/books/export success text/csv $#type` — expected `string`
+- **mismatch** `GET /v1/books/{isbn} success application/json $._id#type` — expected `string`, got `object`
+- **mismatch** `PUT /v1/books/{isbn} success application/json $._id#type` — expected `string`, got `object`
+- **extra** `GET /v1/health success application/json $.status{*}#type` — got `string`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id.id#required` — got `true`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id.id#type` — got `array`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id.id[]#type` — got `number`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id._id#required` — got `true`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters success application/json $.resources[]._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters success application/json $.resources[].isDeleted#required` — got `false`
+- **extra** `GET /v1/shelters success application/json $.resources[].isDeleted#type` — got `boolean`
+- **extra** `GET /v1/shelters success application/json $.totalResources#required` — got `true`
+- **extra** `GET /v1/shelters success application/json $.totalResources#type` — got `number`
+- **extra** `POST /v1/shelters success application/json $._id._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters success application/json $._id._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters success application/json $._id.id#required` — got `true`
+- **extra** `POST /v1/shelters success application/json $._id.id#type` — got `array`
+- **extra** `POST /v1/shelters success application/json $._id.id[]#type` — got `number`
+- **extra** `POST /v1/shelters success application/json $._id._id#required` — got `true`
+- **extra** `POST /v1/shelters success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters success application/json $._id{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters success application/json $.isDeleted#required` — got `false`
+- **extra** `POST /v1/shelters success application/json $.isDeleted#type` — got `boolean`
+- **extra** `GET /v1/shelters/{id} success application/json $._id._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{id} success application/json $._id._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{id} success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{id} success application/json $._id.id#required` — got `true`
+- **extra** `GET /v1/shelters/{id} success application/json $._id.id#type` — got `array`
+- **extra** `GET /v1/shelters/{id} success application/json $._id.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{id} success application/json $._id._id#required` — got `true`
+- **extra** `GET /v1/shelters/{id} success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{id} success application/json $._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{id} success application/json $.isDeleted#required` — got `false`
+- **extra** `GET /v1/shelters/{id} success application/json $.isDeleted#type` — got `boolean`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id._bsontype#required` — got `true`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id._bsontype#type` — got `string`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id.id#required` — got `true`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id.id#type` — got `array`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id.id[]#type` — got `number`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id._id#required` — got `true`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `PATCH /v1/shelters/{id} success application/json $._id{*}#unresolved` — got `false`
+- **extra** `PATCH /v1/shelters/{id} success application/json $.isDeleted#required` — got `false`
+- **extra** `PATCH /v1/shelters/{id} success application/json $.isDeleted#type` — got `boolean`
+- **extra** `GET /v1/books success application/json $.resources[]._id._bsontype#required` — got `true`
+- **extra** `GET /v1/books success application/json $.resources[]._id._bsontype#type` — got `string`
+- **extra** `GET /v1/books success application/json $.resources[]._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/books success application/json $.resources[]._id.id#required` — got `true`
+- **extra** `GET /v1/books success application/json $.resources[]._id.id#type` — got `array`
+- **extra** `GET /v1/books success application/json $.resources[]._id.id[]#type` — got `number`
+- **extra** `GET /v1/books success application/json $.resources[]._id._id#required` — got `true`
+- **extra** `GET /v1/books success application/json $.resources[]._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/books success application/json $.resources[]._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/books success application/json $.totalResources#required` — got `true`
+- **extra** `GET /v1/books success application/json $.totalResources#type` — got `number`
+- **extra** `POST /v1/books success application/json $._id._bsontype#required` — got `true`
+- **extra** `POST /v1/books success application/json $._id._bsontype#type` — got `string`
+- **extra** `POST /v1/books success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/books success application/json $._id.id#required` — got `true`
+- **extra** `POST /v1/books success application/json $._id.id#type` — got `array`
+- **extra** `POST /v1/books success application/json $._id.id[]#type` — got `number`
+- **extra** `POST /v1/books success application/json $._id._id#required` — got `true`
+- **extra** `POST /v1/books success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/books success application/json $._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/books/export success application/json` — got `true`
+- **extra** `GET /v1/books/export success application/json $#type` — got `string`
+- **extra** `GET /v1/books/{isbn} success application/json $._id._bsontype#required` — got `true`
+- **extra** `GET /v1/books/{isbn} success application/json $._id._bsontype#type` — got `string`
+- **extra** `GET /v1/books/{isbn} success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/books/{isbn} success application/json $._id.id#required` — got `true`
+- **extra** `GET /v1/books/{isbn} success application/json $._id.id#type` — got `array`
+- **extra** `GET /v1/books/{isbn} success application/json $._id.id[]#type` — got `number`
+- **extra** `GET /v1/books/{isbn} success application/json $._id._id#required` — got `true`
+- **extra** `GET /v1/books/{isbn} success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/books/{isbn} success application/json $._id{*}#unresolved` — got `false`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id._bsontype#required` — got `true`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id._bsontype#type` — got `string`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id.id#required` — got `true`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id.id#type` — got `array`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id.id[]#type` — got `number`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id._id#required` — got `true`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `PUT /v1/books/{isbn} success application/json $._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/dogs success application/json $.totalResources#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/dogs success application/json $.totalResources#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/cats success application/json $.totalResources#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/cats success application/json $.totalResources#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/animals success application/json $[]#type` — got `object`
+- **extra** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $#type` — got `object`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[]._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].shelterId{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.resources[].animalId{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.totalResources#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions success application/json $.totalResources#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $._id{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.shelterId{*}#unresolved` — got `false`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId._bsontype#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId._bsontype#type` — got `string`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId.id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId.id#type` — got `array`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId.id[]#type` — got `number`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId._id#required` — got `true`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} success application/json $.animalId{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $._id{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.shelterId{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve success application/json $.animalId{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $._id{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.shelterId{*}#unresolved` — got `false`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId._bsontype#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId._bsontype#type` — got `string`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId._bsontype#enum="ObjectId"` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId.id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId.id#type` — got `array`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId.id[]#type` — got `number`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId._id#required` — got `true`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId._id#unresolved` — got `cycle:#/components/schemas/ObjectId`
+- **extra** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject success application/json $.animalId{*}#unresolved` — got `false`
+
+</details>
+
+## errors (552)
+
+Most frequent:
+
+- ×25 `missing 401 $.code#required`
+- ×25 `missing 401 $.code#type`
+- ×25 `missing 401 $.message#required`
+- ×25 `missing 401 $.message#type`
+- ×25 `missing 401 $.status#required`
+- ×25 `missing 401 $.status#type`
+- ×25 `missing 403 $.code#required`
+- ×25 `missing 403 $.code#type`
+- ×25 `missing 403 $.message#required`
+- ×25 `missing 403 $.message#type`
+- ×25 `missing 403 $.status#required`
+- ×25 `missing 403 $.status#type`
+- ×23 `missing 404 $.code#required`
+- ×23 `missing 404 $.code#type`
+- ×23 `missing 404 $.message#required`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/shelters 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id} 404 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 401 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 403 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{id} 404 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 400 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 401 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 403 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{id}/stats 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/cats 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 400 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 401 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 403 application/json $.status#type` — expected `number`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.code#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.message#type` — expected `string`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#required` — expected `true`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/dogs 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 400 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions 404 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 401 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 403 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId} 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve 409 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 404 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject 409 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/books 400 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/books 400 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/books 400 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/books 400 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/books 400 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/books 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/books 400 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/books 400 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/books 400 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/books 400 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/books 400 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/books 400 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/books 401 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/books 401 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/books 401 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/books 401 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/books 401 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/books 401 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/books 403 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/books 403 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/books 403 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/books 403 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/books 403 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/books 403 application/json $.status#type` — expected `number`
+- **missing** `POST /v1/books 409 application/json $.code#required` — expected `true`
+- **missing** `POST /v1/books 409 application/json $.code#type` — expected `string`
+- **missing** `POST /v1/books 409 application/json $.message#required` — expected `true`
+- **missing** `POST /v1/books 409 application/json $.message#type` — expected `string`
+- **missing** `POST /v1/books 409 application/json $.status#required` — expected `true`
+- **missing** `POST /v1/books 409 application/json $.status#type` — expected `number`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.code#required` — expected `true`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.code#type` — expected `string`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.message#required` — expected `true`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.message#type` — expected `string`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.status#required` — expected `true`
+- **missing** `GET /v1/books/{isbn} 404 application/json $.status#type` — expected `number`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.code#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.code#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.message#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.message#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.status#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 400 application/json $.status#type` — expected `number`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.code#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.code#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.message#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.message#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.status#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 401 application/json $.status#type` — expected `number`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.code#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.code#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.message#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.message#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.status#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 403 application/json $.status#type` — expected `number`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.code#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.code#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.message#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.message#type` — expected `string`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.status#required` — expected `true`
+- **missing** `PUT /v1/books/{isbn} 404 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 401 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 403 application/json $.status#type` — expected `number`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.code#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.code#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.message#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.message#type` — expected `string`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.status#required` — expected `true`
+- **missing** `DELETE /v1/books/{isbn} 404 application/json $.status#type` — expected `number`
+
+</details>
+
+## constraints (48)
+
+Most frequent:
+
+- ×5 `missing param query:page $#integer`
+- ×5 `missing param query:page $#default`
+- ×5 `missing param query:limit $#integer`
+- ×5 `missing param query:limit $#default`
+- ×4 `missing body $.name#maxLength`
+- ×3 `missing body $.weightKg#minimum`
+- ×3 `missing success $.authors[].birthYear#integer`
+- ×2 `missing body $.capacity#integer`
+- ×2 `missing body $.tags#maxItems`
+- ×2 `missing body $.authors#minItems`
+- ×2 `missing body $.authors[].birthYear#integer`
+- ×2 `missing body $.pageCount#integer`
+- ×1 `missing body $.address.street#maxLength`
+- ×1 `missing body $.email#format`
+- ×1 `missing body $.capacity#minimum`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/shelters param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters param query:page $#default` — expected `1`
+- **missing** `GET /v1/shelters param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters param query:limit $#default` — expected `10`
+- **missing** `POST /v1/shelters body application/json $.capacity#integer` — expected `true`
+- **missing** `POST /v1/shelters body application/json $.tags#maxItems` — expected `10`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#maxLength` — expected `100`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.street#maxLength` — expected `120`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#format` — expected `email`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#integer` — expected `true`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#minimum` — expected `0`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#maximum` — expected `1000`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.tags#maxItems` — expected `10`
+- **missing** `GET /v1/shelters/{id}/stats param query:year $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:page $#default` — expected `1`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/cats param query:limit $#default` — expected `10`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.name#maxLength` — expected `50`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#minimum` — expected `0`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.name#maxLength` — expected `50`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#minimum` — expected `0`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:page $#default` — expected `1`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/dogs param query:limit $#default` — expected `10`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.name#maxLength` — expected `50`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#minimum` — expected `0`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:minAge $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:includeAdopted $#default` — expected `false`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:page $#default` — expected `1`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:limit $#default` — expected `10`
+- **missing** `GET /v1/books param query:page $#integer` — expected `true`
+- **missing** `GET /v1/books param query:page $#default` — expected `1`
+- **missing** `GET /v1/books param query:limit $#integer` — expected `true`
+- **missing** `GET /v1/books param query:limit $#default` — expected `10`
+- **missing** `GET /v1/books success application/json $.resources[].authors[].birthYear#integer` — expected `true`
+- **missing** `POST /v1/books body application/json $.authors#minItems` — expected `1`
+- **missing** `POST /v1/books body application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `POST /v1/books body application/json $.pageCount#integer` — expected `true`
+- **missing** `POST /v1/books success application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `GET /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors#minItems` — expected `1`
+- **missing** `PUT /v1/books/{isbn} body application/json $.authors[].birthYear#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} body application/json $.pageCount#integer` — expected `true`
+- **missing** `PUT /v1/books/{isbn} success application/json $.authors[].birthYear#integer` — expected `true`
+
+</details>
+
+## security (25)
+
+Most frequent:
+
+- ×25 `mismatch `
+
+<details><summary>All</summary>
+
+- **mismatch** `GET /v1/shelters#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{id}#secured` — expected `true`, got `false`
+- **mismatch** `DELETE /v1/shelters/{id}#secured` — expected `true`, got `false`
+- **mismatch** `PATCH /v1/shelters/{id}#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{id}/stats#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/cats#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters/{shelterId}/cats#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/cats/{catId}#secured` — expected `true`, got `false`
+- **mismatch** `DELETE /v1/shelters/{shelterId}/cats/{catId}#secured` — expected `true`, got `false`
+- **mismatch** `PATCH /v1/shelters/{shelterId}/cats/{catId}#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/dogs#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters/{shelterId}/dogs#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/dogs/{dogId}#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/animals#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/animals/{animalId}#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions#secured` — expected `true`, got `false`
+- **mismatch** `GET /v1/shelters/{shelterId}/adoptions/{adoptionId}#secured` — expected `true`, got `false`
+- **mismatch** `DELETE /v1/shelters/{shelterId}/adoptions/{adoptionId}#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/approve#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/shelters/{shelterId}/adoptions/{adoptionId}/reject#secured` — expected `true`, got `false`
+- **mismatch** `POST /v1/books#secured` — expected `true`, got `false`
+- **mismatch** `PUT /v1/books/{isbn}#secured` — expected `true`, got `false`
+- **mismatch** `DELETE /v1/books/{isbn}#secured` — expected `true`, got `false`
+
+</details>
+
+## docs (69)
+
+Most frequent:
+
+- ×5 `missing success $.vaccinations[].name#description`
+- ×5 `missing success $.weightKg#description`
+- ×5 `missing success $.createdAt#description`
+- ×5 `missing success $.updatedAt#description`
+- ×4 `missing param path:id#description`
+- ×3 `missing body $.vaccinations[].name#description`
+- ×3 `missing body $.weightKg#description`
+- ×3 `missing param path:isbn#description`
+- ×2 `missing success $.resources[].vaccinations[].name#description`
+- ×2 `missing success $.resources[].weightKg#description`
+- ×2 `missing success $.resources[].createdAt#description`
+- ×2 `missing success $.resources[].updatedAt#description`
+- ×1 `missing body $.name#description`
+- ×1 `missing body $.address.complement#description`
+- ×1 `missing body $.email#description`
+
+<details><summary>All</summary>
+
+- **missing** `GET /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `DELETE /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `PATCH /v1/shelters/{id} param path:id#description` — expected `The shelter id`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.name#description` — expected `Display name of the shelter`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.address.complement#description` — expected `Building, floor, etc.`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.email#description` — expected `Contact email`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.capacity#description` — expected `Maximum number of animals the shelter can host`
+- **missing** `PATCH /v1/shelters/{id} body application/json $.metadata#description` — expected `Free-form data attached by the caller`
+- **missing** `GET /v1/shelters/{id}/stats param path:id#description` — expected `The shelter id`
+- **missing** `GET /v1/shelters/{id}/stats param query:year#description` — expected `The year of the statistics`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/cats body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/cats success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} body application/json $.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `PATCH /v1/shelters/{shelterId}/cats/{catId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs success application/json $.resources[].updatedAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/dogs body application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `POST /v1/shelters/{shelterId}/dogs success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/dogs/{dogId} success application/json $.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals param query:includeAdopted#description` — expected `Include the animals already adopted`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|0.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals success application/json $[]|1.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|0.indoor#description` — expected `Whether the cat must live indoors`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.vaccinations[].name#description` — expected `Vaccine name`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.weightKg#description` — expected `Weight in kilograms`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.createdAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/animals/{animalId} success application/json $|1.updatedAt#description` — expected `Value added by mongoose`
+- **missing** `GET /v1/shelters/{shelterId}/adoptions param query:status#description` — expected `Only return the requests in this status`
+- **missing** `POST /v1/shelters/{shelterId}/adoptions param header:x-request-id#description` — expected `Correlation id, echoed in the logs`
+- **missing** `GET /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `PUT /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+- **missing** `DELETE /v1/books/{isbn} param path:isbn#description` — expected `ISBN-13, without dashes`
+
+</details>
+
