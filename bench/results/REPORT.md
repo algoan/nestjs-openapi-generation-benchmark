@@ -2,7 +2,7 @@
 
 Generated on 2026-10-29T13:41:50.332Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
-Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
+Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodology.md for the methodology.
 
 ## Summary
 

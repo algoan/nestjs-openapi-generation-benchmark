@@ -69,7 +69,7 @@ export const renderReport = (bench: BenchResult): string => {
   lines.push(
     `Generated on ${bench.date} — ${bench.machine.cpus}, ${bench.machine.platform}/${bench.machine.arch}, Node ${bench.machine.node}.`,
     '',
-    'Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.',
+    'Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodology.md for the methodology.',
     '',
   );
 
