@@ -93,7 +93,7 @@ What the numbers say:
   that spawns the native binary: Node accounts for about 30 ms and 38 MB, the binary alone measures like
   main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
-  (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
+  (`nest build`) and boots the app, which makes it, with nestia, the slowest pipeline after tspec.
 - **nestjs-zod** is @nestjs/swagger with Zod request DTOs: it keeps the whole setup of the @nestjs/swagger
   variant and rewrites the 11 class-validator DTOs as Zod schemas (`createZodDto`, `ZodValidationPipe`), for
   519 more lines (689). Zod gets the integer types, `maxItems` and nested schemas of the request bodies right,
