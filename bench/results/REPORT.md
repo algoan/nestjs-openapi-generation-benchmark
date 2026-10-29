@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T10:31:03.525Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T11:29:36.424Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,15 +8,16 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#9) | 2394 (#9) | 2.51 s (#7) | 424 MB (#5) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#8) | 92 (#7) | 2.94 s (#9) | 674 MB (#9) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#6) | 2.74 s (#8) | 509 MB (#8) |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#10) | 2394 (#10) | 2.51 s (#8) | 424 MB (#6) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#9) | 92 (#8) | 2.94 s (#10) | 674 MB (#10) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#7) | 2.74 s (#9) | 509 MB (#9) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
 | **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
-| **swagger-jsdoc** | 6.3.0 | static | 1505 (#9) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#6) | 4 (#5) | 816 ms (#5) | 430 MB (#6) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#4) | 415 MB (#4) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#7) | 304 (#8) | 898 ms (#6) | 443 MB (#7) |
+| **swagger-jsdoc** | 6.3.0 | static | 1505 (#10) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#7) | 4 (#6) | 816 ms (#6) | 430 MB (#7) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#5) | 415 MB (#5) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#8) | 304 (#9) | 898 ms (#7) | 443 MB (#8) |
+| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#4) | 155 MB (#4) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -36,6 +37,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
+| zod-openapi | 8 | 7 | 7 / 75 | 570 | 4 | +573 −1 | `zod`, `zod-openapi` | – | – |
 
 - **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
 - **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).
@@ -55,6 +57,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
 | tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
+| zod-openapi | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 
 Recall (share of the expected facts found) per category:
 
@@ -69,6 +72,7 @@ Recall (share of the expected facts found) per category:
 | ts-oas | 100.0% | 98.5% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 99.5% |
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
+| zod-openapi | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 
 [oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one. It is a second opinion, not used for the ranking: it compares representations, so it also counts renamed security schemes, added `operationId`s, `format: double`, or enums written as `oneOf` of constants.
 
@@ -83,6 +87,7 @@ Recall (share of the expected facts found) per category:
 | ts-oas | 55 | 1 | 59 | 115 |
 | tsoa | 49 | 0 | 197 | 246 |
 | typoa | 57 | 6 | 122 | 185 |
+| zod-openapi | 27 | 0 | 65 | 92 |
 
 ## 3. Speed and memory
 
@@ -99,6 +104,7 @@ Recall (share of the expected facts found) per category:
 | ts-oas | `generate` | 816 ms | 797 ms – 859 ms | 1.65 s | 430 MB |
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
 | typoa | `generate` | 898 ms | 859 ms – 984 ms | 1.60 s | 443 MB |
+| zod-openapi | `generate` | 205 ms | 185 ms – 302 ms | 240 ms | 155 MB |
 
 5 measured runs per tool, after one warm-up run.
 
@@ -220,4 +226,15 @@ Differences: [`bench/results/tsoa/differences.md`](tsoa/differences.md)
 - Operation ids are the capitalised method names (`Create`, `FindAll`...), hence duplicated across controllers unless @OperationId is added everywhere.
 
 Differences: [`bench/results/typoa/differences.md`](typoa/differences.md)
+
+### zod-openapi (`variants/zod-openapi`)
+
+- zod-openapi 6.0.2 (latest) with zod 4.6.7, Node 24. The definitions are TypeScript run by ts-node in transpile-only mode (already a dev dependency of the app, it resolves the app's extensionless imports and enums): no build step.
+- Framework-agnostic: it reads neither the NestJS controllers nor the class-validator DTOs. Every DTO, model and interface is re-declared as a Zod schema, and every operation (path with the hard-coded `v1` prefix, path/query/header parameters, request body, status codes, error responses, `security: []` on the @Unprotected routes) in a `*.openapi.ts` file per module beside the controllers; the error body, error responses, pagination query parameters and envelope are shared in `src/core/openapi.ts`. Nothing ties these declarations to the controllers or the DTOs.
+- The Zod schemas only describe the API: the app keeps validating with class-validator, so each DTO exists twice. Validating with the Zod schemas instead would mean replacing the ValidationPipe and rewriting the DTOs, which the guide forbids.
+- Zod covers the patterns of the app without workarounds: `.omit()`, `.partial()` and `.extend()` for PartialType/OmitType and model inheritance, `z.enum()` on the app's TypeScript enums, constraints (`.max()`, `.int()`, `z.email()`…), the optional `x-request-id` header. Descriptions are copied from the JSDoc into `.describe()`.
+- Dates and ObjectIds are declared in their JSON form (`z.iso.datetime()`, `z.string()`): `z.date()` renders a plain string without `format`.
+- A generic `override` in the generation script removes what Zod adds by itself: the safe-integer `minimum`/`maximum` of `.int()`, the regex `pattern` of `z.email()` and `z.iso.datetime()`, and `additionalProperties: false` on response objects.
+
+Differences: [`bench/results/zod-openapi/differences.md`](zod-openapi/differences.md)
 
