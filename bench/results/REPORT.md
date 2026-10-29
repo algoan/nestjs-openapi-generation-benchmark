@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T00:44:07.588Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T10:31:03.525Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -173,7 +173,8 @@ Differences: [`bench/results/nestoa-main/differences.md`](nestoa-main/difference
 - Shared pieces live in `openapi.definition.yaml`: the bearer security scheme required by default (`security: []` on the @Unprotected routes), the `shelterId` path parameter, the pagination query parameters of the custom @PaginationParams() decorator, and the `{ code, message, status }` error responses referenced by each operation.
 - No equivalent of the mapped types: UpdateShelterDto and UpdateCatDto re-list every property (PartialType), CreateBookDto is ReplaceBookDto plus `isbn` through `allOf` (OmitType inverted); Cat and Dog extend Animal through `allOf`. The @Query() DTOs are documented as one exploded object query parameter.
 - The existing JSDoc is not read: operation summaries and property descriptions are copied into the YAML, and class-validator constraints, integers and `email` formats are restated by hand.
-- Nothing ties the YAML to the code: a renamed property, a new route or a changed status code is not detected. An invalid YAML fragment is skipped with a message on stderr (the CLI still exits 0) and dangling `$ref`s are not reported.
+- Nothing ties the YAML to the code: a renamed property, a new route or a changed status code is not detected. An invalid YAML fragment is skipped with a message on stderr (the CLI still exits 0: `failOnErrors` is only an option of the Node API) and dangling `$ref`s are not reported.
+- YAML anchors, documented to share a fragment between blocks, lose content without any message (exit code 0): an anchor defined and used in the same JSDoc block drops the whole block, and an anchor defined in one block and aliased in another keeps the aliasing block but drops the defining one. Fragments can only be shared through `$ref`.
 
 Differences: [`bench/results/swagger-jsdoc/differences.md`](swagger-jsdoc/differences.md)
 
