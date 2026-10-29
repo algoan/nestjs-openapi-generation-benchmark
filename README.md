@@ -61,7 +61,7 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | ts-oas | 0.6.1 | 513 | 3 | 4 | 816 ms | 430 MB |
 | zod-openapi | 6.0.2 | 574 | **0** | **0** | 205 ms | 155 MB |
 | @asteasolutions/zod-to-openapi | 9.1.0 | 610 | **0** | **0** | 204 ms | 153 MB |
-| nestjs-zod | 5.5.0 | 649 | 51 | 67 | 2.56 s | 520 MB |
+| nestjs-zod | 5.5.0 | 669 | 51 | 67 | 2.62 s | 538 MB |
 | swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 94 ms | 78 MB |
 
 What the numbers say:
@@ -94,11 +94,12 @@ What the numbers say:
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
 - **nestjs-zod** is @nestjs/swagger with Zod request DTOs: it keeps the whole setup of the @nestjs/swagger
   variant and rewrites the 11 class-validator DTOs as Zod schemas (`createZodDto`, `ZodValidationPipe`), for
-  479 more lines (649). Zod gets the integer types, `maxItems` and nested schemas of the request bodies right,
+  499 more lines (669). Zod gets the integer types, `maxItems` and nested schemas of the request bodies right,
   but keeping the app's validation costs correctness: Zod cannot accept `null` (which `@IsOptional()` lets
   through) without documenting every optional field as nullable, and a nullable boolean comes out as an array
-  (51 core differences, 45 of them `nullable`). Zod has no ISBN, country or phone validator and cannot document
-  `z.date()`: class-validator's functions stay in `.refine()` calls. Same build-and-boot pipeline, same speed.
+  (51 core differences, 45 of them `nullable`). Zod has no ISBN, country or phone validator, counts string
+  lengths in UTF-16 units and cannot document `z.date()`: class-validator's functions stay in `.refine()` calls.
+  Same build-and-boot pipeline, same speed.
 - **swagger-jsdoc** reads only the `@openapi` comments of the sources, neither the decorators nor the types:
   the whole document is written by hand as YAML, the 29
   operations and every DTO and model in JSDoc comments, the shared security, parameters and error responses in
