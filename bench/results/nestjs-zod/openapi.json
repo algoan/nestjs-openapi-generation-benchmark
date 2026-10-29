@@ -2449,19 +2449,24 @@
               },
               "complement": {
                 "description": "Building, floor, etc.",
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             },
             "required": [
               "street",
               "city",
               "postalCode"
-            ]
+            ],
+            "nullable": true
           },
           "email": {
             "type": "string",
+            "format": "email",
             "description": "Contact email",
-            "format": "email"
+            "nullable": true
           },
           "capacity": {
             "type": "integer",
@@ -2470,16 +2475,21 @@
             "description": "Maximum number of animals the shelter can host"
           },
           "tags": {
-            "type": "array",
             "maxItems": 10,
+            "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "metadata": {
             "type": "object",
+            "propertyNames": {
+              "type": "string"
+            },
+            "additionalProperties": {},
             "description": "Free-form data attached by the caller",
-            "additionalProperties": {}
+            "nullable": true
           }
         },
         "required": [
@@ -2643,62 +2653,101 @@
           "name": {
             "type": "string",
             "maxLength": 100,
-            "description": "Display name of the shelter"
+            "description": "Display name of the shelter",
+            "nullable": true
           },
           "address": {
-            "type": "object",
-            "properties": {
-              "street": {
-                "type": "string",
-                "maxLength": 120
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "maxLength": 120
+                  },
+                  "city": {
+                    "type": "string"
+                  },
+                  "postalCode": {
+                    "type": "string"
+                  },
+                  "complement": {
+                    "description": "Building, floor, etc.",
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "street",
+                  "city",
+                  "postalCode"
+                ]
               },
-              "city": {
-                "type": "string"
-              },
-              "postalCode": {
-                "type": "string"
-              },
-              "complement": {
-                "description": "Building, floor, etc.",
-                "type": "string"
+              {
+                "type": "null"
               }
-            },
-            "required": [
-              "street",
-              "city",
-              "postalCode"
-            ]
+            ],
+            "nullable": true
           },
           "email": {
-            "type": "string",
             "description": "Contact email",
-            "format": "email"
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "email"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "capacity": {
             "type": "integer",
             "minimum": 0,
             "maximum": 1000,
-            "description": "Maximum number of animals the shelter can host"
+            "description": "Maximum number of animals the shelter can host",
+            "nullable": true
           },
           "tags": {
-            "type": "array",
-            "maxItems": 10,
-            "items": {
-              "type": "string"
-            }
+            "anyOf": [
+              {
+                "maxItems": 10,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "metadata": {
-            "type": "object",
             "description": "Free-form data attached by the caller",
-            "additionalProperties": {}
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": {}
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "status": {
             "type": "string",
             "enum": [
               "OPEN",
               "FULL",
-              "CLOSED"
-            ]
+              "CLOSED",
+              null
+            ],
+            "nullable": true
           }
         }
       },
@@ -2756,7 +2805,8 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "sex": {
             "type": "string",
@@ -2781,19 +2831,22 @@
                 },
                 "expiresAt": {
                   "type": "string",
-                  "format": "date-time"
+                  "format": "date-time",
+                  "nullable": true
                 }
               },
               "required": [
                 "name",
                 "date"
               ]
-            }
+            },
+            "nullable": true
           },
           "weightKg": {
             "type": "number",
+            "minimum": 0,
             "description": "Weight in kilograms",
-            "minimum": 0
+            "nullable": true
           },
           "indoor": {
             "type": "boolean",
@@ -2806,8 +2859,10 @@
               "TABBY",
               "TORTOISESHELL",
               "CALICO",
-              "BICOLOR"
-            ]
+              "BICOLOR",
+              null
+            ],
+            "nullable": true
           }
         },
         "required": [
@@ -2928,70 +2983,109 @@
         "properties": {
           "name": {
             "type": "string",
-            "maxLength": 50
+            "maxLength": 50,
+            "nullable": true
           },
           "birthDate": {
-            "type": "string",
-            "format": "date-time"
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "sex": {
             "type": "string",
             "enum": [
               "FEMALE",
               "MALE",
-              "UNKNOWN"
-            ]
+              "UNKNOWN",
+              null
+            ],
+            "nullable": true
           },
           "vaccinations": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "type": "string",
-                  "description": "Vaccine name"
-                },
-                "date": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "expiresAt": {
-                  "type": "string",
-                  "format": "date-time"
+            "anyOf": [
+              {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "Vaccine name"
+                    },
+                    "date": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time",
+                      "nullable": true
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "date"
+                  ]
                 }
               },
-              "required": [
-                "name",
-                "date"
-              ]
-            }
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "weightKg": {
-            "type": "number",
             "description": "Weight in kilograms",
-            "minimum": 0
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "indoor": {
             "type": "boolean",
-            "description": "Whether the cat must live indoors"
+            "description": "Whether the cat must live indoors",
+            "nullable": true
           },
           "coatPattern": {
-            "type": "string",
-            "enum": [
-              "SOLID",
-              "TABBY",
-              "TORTOISESHELL",
-              "CALICO",
-              "BICOLOR"
-            ]
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "SOLID",
+                  "TABBY",
+                  "TORTOISESHELL",
+                  "CALICO",
+                  "BICOLOR"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "nullable": true
           },
           "status": {
             "type": "string",
             "enum": [
               "AVAILABLE",
               "RESERVED",
-              "ADOPTED"
-            ]
+              "ADOPTED",
+              null
+            ],
+            "nullable": true
           }
         }
       },
@@ -3004,7 +3098,8 @@
           },
           "birthDate": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "sex": {
             "type": "string",
@@ -3029,19 +3124,22 @@
                 },
                 "expiresAt": {
                   "type": "string",
-                  "format": "date-time"
+                  "format": "date-time",
+                  "nullable": true
                 }
               },
               "required": [
                 "name",
                 "date"
               ]
-            }
+            },
+            "nullable": true
           },
           "weightKg": {
             "type": "number",
+            "minimum": 0,
             "description": "Weight in kilograms",
-            "minimum": 0
+            "nullable": true
           },
           "breed": {
             "type": "string"
@@ -3055,7 +3153,10 @@
             ]
           },
           "goodWithKids": {
-            "type": "boolean"
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
           }
         },
         "required": [
@@ -3182,7 +3283,10 @@
               },
               "phone": {
                 "description": "Phone number, in the E.164 format",
-                "type": "string"
+                "type": [
+                  "string",
+                  "null"
+                ]
               }
             },
             "required": [
@@ -3198,7 +3302,8 @@
           },
           "notes": {
             "type": "string",
-            "maxLength": 500
+            "maxLength": 500,
+            "nullable": true
           }
         },
         "required": [
@@ -3462,7 +3567,8 @@
                 "birthYear": {
                   "type": "integer",
                   "minimum": 1000,
-                  "maximum": 2100
+                  "maximum": 2100,
+                  "nullable": true
                 }
               },
               "required": [
@@ -3481,38 +3587,46 @@
           },
           "publishedOn": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "pageCount": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "nullable": true
           },
           "language": {
             "type": "string",
-            "description": "ISO 639-1 language code",
             "minLength": 2,
-            "maxLength": 2
+            "maxLength": 2,
+            "description": "ISO 639-1 language code",
+            "nullable": true
           },
           "topics": {
             "type": "array",
-            "description": "Species the book is about",
             "items": {
               "type": "string",
               "enum": [
                 "CAT",
                 "DOG"
               ]
-            }
+            },
+            "description": "Species the book is about",
+            "nullable": true
           },
           "rating": {
             "type": "number",
-            "description": "Average reader rating, from 0 to 5",
             "minimum": 0,
-            "maximum": 5
+            "maximum": 5,
+            "description": "Average reader rating, from 0 to 5",
+            "nullable": true
           },
           "available": {
-            "type": "boolean"
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
           }
         },
         "required": [
@@ -3540,7 +3654,8 @@
                 "birthYear": {
                   "type": "integer",
                   "minimum": 1000,
-                  "maximum": 2100
+                  "maximum": 2100,
+                  "nullable": true
                 }
               },
               "required": [
@@ -3559,38 +3674,46 @@
           },
           "publishedOn": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "pageCount": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 9007199254740991
+            "maximum": 9007199254740991,
+            "nullable": true
           },
           "language": {
             "type": "string",
-            "description": "ISO 639-1 language code",
             "minLength": 2,
-            "maxLength": 2
+            "maxLength": 2,
+            "description": "ISO 639-1 language code",
+            "nullable": true
           },
           "topics": {
             "type": "array",
-            "description": "Species the book is about",
             "items": {
               "type": "string",
               "enum": [
                 "CAT",
                 "DOG"
               ]
-            }
+            },
+            "description": "Species the book is about",
+            "nullable": true
           },
           "rating": {
             "type": "number",
-            "description": "Average reader rating, from 0 to 5",
             "minimum": 0,
-            "maximum": 5
+            "maximum": 5,
+            "description": "Average reader rating, from 0 to 5",
+            "nullable": true
           },
           "available": {
-            "type": "boolean"
+            "type": "array",
+            "items": {
+              "type": "boolean"
+            }
           }
         },
         "required": [

@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T12:52:50.795Z",
+  "date": "2026-10-29T12:53:23.825Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1046,9 +1046,9 @@
         "The 11 class-validator DTOs are rewritten as zod schemas wrapped in createZodDto, and ValidationPipe is replaced by ZodValidationPipe in setupApp(): this rewrite is most of the lines changed. Inheritance and mapped types become .extend() / .omit() / .partial(), JSDoc becomes .describe(); zod gets integer types, maxItems and nested schemas right where the class-validator shim did not.",
         "Responses keep the Mongoose model classes, reflected by the CLI plugin: @ZodResponse + ZodSerializerInterceptor would need a second zod schema per model (ObjectId and Date codecs) and would change the response pipeline. The class-validator decorators of the 4 sub-document models are left in place: nothing validates with them anymore, the plugin still reads them for the response schemas.",
         "zod has no ISBN, ISO 3166 country, phone number or Mongo id validator: class-validator's standalone isISBN / isISO31661Alpha2 / isPhoneNumber / isMongoId are kept in .refine() to validate exactly as before (refinements are not documented). Emails use isEmail + .meta({ format: 'email' }) too: z.email() validates with a different regex and documents it as a pattern.",
-        "z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()).",
-        "Behaviour differences the contract test does not see: optional fields reject null (@IsOptional accepted it), and 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).",
-        "Not fixed: z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer)."
+        "z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.preprocess() turning millisecond timestamps into ISO strings, then z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()), accepting what @Type(() => Date) + @IsDate() accepted; it needs .nonoptional(), or z.preprocess is documented as an optional property.",
+        "Optional fields accept null as @IsOptional() does: .nullish() instead of .optional(), and a partialNullish() helper instead of .partial() for the PartialType DTOs. zod cannot accept null without documenting it, so every optional body field is documented as nullable (the 45 extra `nullable` facts; the expected document leaves null out). 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).",
+        "Not fixed: zod writes a nullable boolean as type: ['boolean', 'null'], which nestjs-zod passes to @nestjs/swagger as is and which comes out as an array of booleans (goodWithKids, available); z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer)."
       ],
       "perf": {
         "runs": 5,
@@ -1057,74 +1057,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1956.261084,
-              "mean": 2003.3307252,
-              "min": 1944.392,
-              "max": 2113.677625,
-              "stddev": 67.70139768593987
+              "median": 2132.808583,
+              "mean": 2106.7502166,
+              "min": 1987.967125,
+              "max": 2235.486667,
+              "stddev": 96.35827256889587
             },
             "cpuMs": {
-              "median": 2679.9999999999995,
-              "mean": 2670,
-              "min": 2570,
-              "max": 2770,
-              "stddev": 65.42170893518448
+              "median": 2840,
+              "mean": 2814,
+              "min": 2680,
+              "max": 2909.9999999999995,
+              "stddev": 93.93614852653876
             },
             "maxRssMb": {
-              "median": 534.65625,
-              "mean": 529.825,
-              "min": 511.125,
-              "max": 534.84375,
-              "stddev": 9.357250906716674
+              "median": 520,
+              "mean": 524.89375,
+              "min": 515.53125,
+              "max": 536.734375,
+              "stddev": 8.962407382715316
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-openapi.js",
             "wallMs": {
-              "median": 478.872,
-              "mean": 483.47765819999995,
-              "min": 448.344958,
-              "max": 511.717917,
-              "stddev": 24.510103828596165
+              "median": 485.106541,
+              "mean": 491.2570998000001,
+              "min": 430.601125,
+              "max": 564.931416,
+              "stddev": 44.125335643837204
             },
             "cpuMs": {
-              "median": 420.00000000000006,
-              "mean": 428,
-              "min": 400,
-              "max": 459.99999999999994,
-              "stddev": 23.151673805580423
+              "median": 430.00000000000006,
+              "mean": 462,
+              "min": 410.00000000000006,
+              "max": 550,
+              "stddev": 54.18486873657624
             },
             "maxRssMb": {
-              "median": 144.09375,
-              "mean": 144,
-              "min": 143.640625,
-              "max": 144.296875,
-              "stddev": 0.2538762001448738
+              "median": 144.359375,
+              "mean": 144.7,
+              "min": 143.84375,
+              "max": 146.203125,
+              "stddev": 0.8081252416859654
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2467.979001,
-            "mean": 2486.8083834,
-            "min": 2399.29575,
-            "max": 2592.5496249999997,
-            "stddev": 77.8474469951856
+            "median": 2563.409708,
+            "mean": 2598.0073164,
+            "min": 2473.073666,
+            "max": 2738.571666,
+            "stddev": 106.15060489401975
           },
           "cpuMs": {
-            "median": 3100,
-            "mean": 3098,
-            "min": 2990,
-            "max": 3230,
-            "stddev": 81.8290901819151
+            "median": 3319.9999999999995,
+            "mean": 3276,
+            "min": 3110,
+            "max": 3390,
+            "stddev": 97.48846085563139
           },
           "maxRssMb": {
-            "median": 534.65625,
-            "mean": 529.825,
-            "min": 511.125,
-            "max": 534.84375,
-            "stddev": 9.357250906716674
+            "median": 520,
+            "mean": 524.89375,
+            "min": 515.53125,
+            "max": 536.734375,
+            "stddev": 8.962407382715316
           }
         }
       },
@@ -1148,11 +1148,11 @@
           },
           "requestBody": {
             "expected": 272,
-            "matched": 272,
+            "matched": 269,
             "missing": 0,
-            "mismatch": 0,
-            "extra": 0,
-            "differences": 0
+            "mismatch": 3,
+            "extra": 48,
+            "differences": 51
           },
           "responses": {
             "expected": 1275,
@@ -1197,34 +1197,38 @@
         },
         "core": {
           "expected": 1774,
-          "matched": 1774,
+          "matched": 1771,
           "missing": 0,
-          "mismatch": 0,
-          "extra": 0,
-          "differences": 0
+          "mismatch": 3,
+          "extra": 48,
+          "differences": 51
         },
         "total": {
           "expected": 2937,
-          "matched": 2924,
+          "matched": 2921,
           "missing": 13,
-          "mismatch": 0,
-          "extra": 3,
-          "differences": 16
+          "mismatch": 3,
+          "extra": 51,
+          "differences": 67
         }
       },
       "oasdiff": {
         "available": true,
-        "errors": 34,
-        "warnings": 0,
-        "infos": 97,
-        "total": 131,
+        "errors": 43,
+        "warnings": 4,
+        "infos": 147,
+        "total": 194,
         "byId": {
           "response-property-type-generalized": 4,
           "api-security-removed": 25,
           "request-property-max-set": 2,
+          "request-property-type-changed": 3,
+          "request-property-property-names-added": 1,
           "request-parameter-max-set": 1,
           "response-property-one-of-added": 1,
           "response-body-one-of-added": 1,
+          "request-property-enum-value-removed": 5,
+          "request-property-removed": 4,
           "api-schema-removed": 8,
           "api-security-component-added": 1,
           "api-security-component-removed": 1,
@@ -1232,19 +1236,26 @@
           "api-operation-id-added": 29,
           "api-tag-added": 29,
           "api-security-added": 25,
+          "request-property-became-nullable": 35,
+          "request-property-any-of-added": 1,
+          "request-property-enum-value-added": 4,
+          "request-property-list-of-types-widened": 7,
+          "request-property-max-items-unset": 1,
+          "request-property-type-generalized": 1,
           "request-parameter-type-generalized": 1,
           "response-property-any-of-removed": 1,
-          "response-body-any-of-removed": 1
+          "response-body-any-of-removed": 1,
+          "request-property-min-unset": 1
         }
       },
       "ease": {
-        "filesTouched": 37,
-        "filesAdded": 3,
-        "linesAdded": 321,
+        "filesTouched": 38,
+        "filesAdded": 4,
+        "linesAdded": 339,
         "linesRemoved": 310,
-        "linesChanged": 631,
-        "sourceFilesTouched": 35,
-        "sourceLinesChanged": 614,
+        "linesChanged": 649,
+        "sourceFilesTouched": 36,
+        "sourceLinesChanged": 632,
         "configLinesChanged": 17,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [
@@ -1358,7 +1369,7 @@
             "file": "src/animals/dto/update-cat.dto.ts",
             "status": "modified",
             "kind": "source",
-            "added": 4,
+            "added": 5,
             "removed": 8
           },
           {
@@ -1463,7 +1474,14 @@
             "file": "src/core/validation/iso-date.schema.ts",
             "status": "added",
             "kind": "source",
-            "added": 6,
+            "added": 13,
+            "removed": 0
+          },
+          {
+            "file": "src/core/validation/partial-nullish.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 12,
             "removed": 0
           },
           {
@@ -1491,7 +1509,7 @@
             "file": "src/shelters/dto/update-shelter.dto.ts",
             "status": "modified",
             "kind": "source",
-            "added": 9,
+            "added": 7,
             "removed": 8
           },
           {

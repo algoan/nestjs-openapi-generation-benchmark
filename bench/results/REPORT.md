@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T12:52:50.795Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T12:53:23.825Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,18 +8,18 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#12) | 2394 (#12) | 2.51 s (#10) | 424 MB (#7) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#11) | 92 (#10) | 2.94 s (#12) | 674 MB (#12) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#9) | 2.74 s (#11) | 509 MB (#10) |
-| **nestjs-zod** | 5.5.0 | runtime | 631 (#11) | 0 (#2) | 16 (#8) | 2.47 s (#9) | 535 MB (#11) |
-| **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#3) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
-| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#4) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
-| **swagger-jsdoc** | 6.3.0 | static | 1505 (#12) | 0 (#5) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#9) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#6) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#10) | 304 (#11) | 898 ms (#8) | 443 MB (#9) |
-| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#7) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
-| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#10) | 0 (#8) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#12) | 2394 (#12) | 2.51 s (#9) | 424 MB (#7) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#10) | 92 (#10) | 2.94 s (#12) | 674 MB (#12) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#8) | 2.74 s (#11) | 509 MB (#10) |
+| **nestjs-zod** | 5.5.0 | runtime | 649 (#11) | 51 (#11) | 67 (#9) | 2.56 s (#10) | 520 MB (#11) |
+| **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
+| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
+| **swagger-jsdoc** | 6.3.0 | static | 1505 (#12) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#8) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#9) | 304 (#11) | 898 ms (#8) | 443 MB (#9) |
+| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
+| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#10) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -33,7 +33,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB | 0 MB |
 | @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +61 MB | +71 MB |
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
-| nestjs-zod | 37 | 3 | 35 / 75 | 614 | 17 | +321 −310 | `@nestjs/swagger`, `nestjs-zod`, `zod` | +26 MB | +31 MB |
+| nestjs-zod | 38 | 4 | 36 / 75 | 632 | 17 | +339 −310 | `@nestjs/swagger`, `nestjs-zod`, `zod` | +26 MB | +31 MB |
 | nestoa | 8 | 2 | 5 / 75 | 14 | 19 | +30 −3 | `@algoan/nestoa` | +8 MB | 0 MB |
 | nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 16 | +27 −3 | – | – | – |
 | swagger-jsdoc | 43 | 1 | 41 / 75 | 1429 | 76 | +1505 −0 | `swagger-jsdoc` | +4 MB | 0 MB |
@@ -55,7 +55,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | nest-openapi-gen | 0 | 407 | 16 | 823 | 828 | 89 | 25 | 206 | **1246** | **2394** | 46.7% |
 | @nestia/sdk | 1 | 1 | 0 | 8 | 0 | 80 | 1 | 1 | **10** | **92** | 97.0% |
 | @nestjs/swagger | 0 | 0 | 0 | 0 | 0 | 14 | 0 | 8 | **0** | **22** | 99.3% |
-| nestjs-zod | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 8 | **0** | **16** | 99.6% |
+| nestjs-zod | 0 | 0 | 51 | 0 | 0 | 8 | 0 | 8 | **51** | **67** | 99.5% |
 | nestoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | nestoa (unreleased main) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | swagger-jsdoc | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
@@ -72,7 +72,7 @@ Recall (share of the expected facts found) per category:
 | nest-openapi-gen | 100.0% | 84.8% | 94.1% | 70.8% | 0.0% | 11.0% | 13.8% | 0.0% |
 | @nestia/sdk | 96.6% | 99.5% | 100.0% | 99.7% | 100.0% | 20.0% | 96.6% | 99.5% |
 | @nestjs/swagger | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 86.0% | 100.0% | 96.1% |
-| nestjs-zod | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 95.0% | 100.0% | 96.1% |
+| nestjs-zod | 100.0% | 100.0% | 98.9% | 100.0% | 100.0% | 95.0% | 100.0% | 96.1% |
 | nestoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | nestoa (unreleased main) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | swagger-jsdoc | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
@@ -89,7 +89,7 @@ Recall (share of the expected facts found) per category:
 | nest-openapi-gen | 146 | 0 | 388 | 534 |
 | @nestia/sdk | 233 | 0 | 269 | 502 |
 | @nestjs/swagger | 31 | 0 | 106 | 137 |
-| nestjs-zod | 34 | 0 | 97 | 131 |
+| nestjs-zod | 43 | 4 | 147 | 194 |
 | nestoa | 0 | 0 | 58 | 58 |
 | nestoa (unreleased main) | 0 | 0 | 58 | 58 |
 | swagger-jsdoc | 26 | 5 | 30 | 61 |
@@ -108,9 +108,9 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | `build` | 2.26 s | 2.13 s – 2.31 s | 3.17 s | 509 MB |
 | @nestjs/swagger | `generate` | 484 ms | 430 ms – 552 ms | 480 ms | 139 MB |
 | @nestjs/swagger | **total** | **2.74 s** |  | 3.65 s | 509 MB |
-| nestjs-zod | `build` | 1.96 s | 1.94 s – 2.11 s | 2.68 s | 535 MB |
-| nestjs-zod | `generate` | 479 ms | 448 ms – 512 ms | 420 ms | 144 MB |
-| nestjs-zod | **total** | **2.47 s** |  | 3.10 s | 535 MB |
+| nestjs-zod | `build` | 2.13 s | 1.99 s – 2.24 s | 2.84 s | 520 MB |
+| nestjs-zod | `generate` | 485 ms | 431 ms – 565 ms | 430 ms | 144 MB |
+| nestjs-zod | **total** | **2.56 s** |  | 3.32 s | 520 MB |
 | nestoa | `generate` | 48 ms | 45 ms – 50 ms | 30 ms | 47 MB |
 | nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 21 ms | 0 ms | 8 MB |
 | swagger-jsdoc | `generate` | 94 ms | 93 ms – 95 ms | 100 ms | 78 MB |
@@ -172,9 +172,9 @@ Differences: [`bench/results/nestjs-swagger/differences.md`](nestjs-swagger/diff
 - The 11 class-validator DTOs are rewritten as zod schemas wrapped in createZodDto, and ValidationPipe is replaced by ZodValidationPipe in setupApp(): this rewrite is most of the lines changed. Inheritance and mapped types become .extend() / .omit() / .partial(), JSDoc becomes .describe(); zod gets integer types, maxItems and nested schemas right where the class-validator shim did not.
 - Responses keep the Mongoose model classes, reflected by the CLI plugin: @ZodResponse + ZodSerializerInterceptor would need a second zod schema per model (ObjectId and Date codecs) and would change the response pipeline. The class-validator decorators of the 4 sub-document models are left in place: nothing validates with them anymore, the plugin still reads them for the response schemas.
 - zod has no ISBN, ISO 3166 country, phone number or Mongo id validator: class-validator's standalone isISBN / isISO31661Alpha2 / isPhoneNumber / isMongoId are kept in .refine() to validate exactly as before (refinements are not documented). Emails use isEmail + .meta({ format: 'email' }) too: z.email() validates with a different regex and documents it as a pattern.
-- z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()).
-- Behaviour differences the contract test does not see: optional fields reject null (@IsOptional accepted it), and 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).
-- Not fixed: z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer).
+- z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.preprocess() turning millisecond timestamps into ISO strings, then z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()), accepting what @Type(() => Date) + @IsDate() accepted; it needs .nonoptional(), or z.preprocess is documented as an optional property.
+- Optional fields accept null as @IsOptional() does: .nullish() instead of .optional(), and a partialNullish() helper instead of .partial() for the PartialType DTOs. zod cannot accept null without documenting it, so every optional body field is documented as nullable (the 45 extra `nullable` facts; the expected document leaves null out). 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).
+- Not fixed: zod writes a nullable boolean as type: ['boolean', 'null'], which nestjs-zod passes to @nestjs/swagger as is and which comes out as an array of booleans (goodWithKids, available); z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer).
 
 Differences: [`bench/results/nestjs-zod/differences.md`](nestjs-zod/differences.md)
 
