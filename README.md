@@ -10,6 +10,7 @@ the main candidates on one realistic codebase, on three grades:
 | Tool | Approach |
 | --- | --- |
 | [`@nestjs/swagger`](https://docs.nestjs.com/openapi/introduction) | runtime: reflection metadata + CLI plugin, the app is booted |
+| [`nestjs-zod`](https://github.com/BenLorantfy/nestjs-zod) | runtime: Zod DTOs, documented through `@nestjs/swagger`, the app is booted |
 | [`nest-openapi-gen`](https://github.com/yantrab/nest-openapi-gen) | static: ts-morph over the controllers |
 | [`@nestia/sdk`](https://nestia.io/docs/swagger/) | static: TypeScript compiler API |
 | [`tsoa`](https://tsoa-community.github.io/docs/) | static: its own decorators + TypeScript compiler API |
@@ -60,6 +61,7 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | ts-oas | 0.6.1 | 513 | 3 | 4 | 816 ms | 430 MB |
 | zod-openapi | 6.0.2 | 574 | **0** | **0** | 205 ms | 155 MB |
 | @asteasolutions/zod-to-openapi | 9.1.0 | 610 | **0** | **0** | 204 ms | 153 MB |
+| nestjs-zod | 5.5.0 | 631 | **0** | 16 | 2.47 s | 535 MB |
 | swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 94 ms | 78 MB |
 
 What the numbers say:
@@ -78,8 +80,9 @@ What the numbers say:
   definitions, are 4× slower and 3× heavier (11× and 19× than main).
 - **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen, ts-oas, swagger-jsdoc,
   zod-openapi and zod-to-openapi are dev dependencies (nestoa main is a standalone binary): 0 MB in the service's
-  production install. The tools whose decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB for typoa, +44 MB for tsoa,
-  +71 MB for nestia (tsoa and nestia pull `typescript` into the production dependencies).
+  production install. The tools whose decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB
+  for typoa, +31 MB for nestjs-zod, +44 MB for tsoa, +71 MB for nestia (tsoa and nestia pull `typescript` into the
+  production dependencies).
 - **The published nestoa 0.2.1 has caught up with its main branch** (main@00c0442 is the v0.2.1 release):
   security, `@nestjs/mapped-types` helpers, `text/csv`, `HttpStatus.*` members, custom decorators' query
   parameters and class-validator constraints, missing from 0.1.7 (149 core differences), are all supported.
@@ -89,6 +92,12 @@ What the numbers say:
   main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
+- **nestjs-zod** is @nestjs/swagger with Zod request DTOs: it keeps the whole setup of the @nestjs/swagger
+  variant and rewrites the 11 class-validator DTOs as Zod schemas (`createZodDto`, `ZodValidationPipe`). That
+  costs 461 more lines (631) for 6 fewer differences (16): Zod gets the integer types, `maxItems` and nested
+  schemas of the request bodies right, while the responses stay on the Mongoose models read by the CLI plugin.
+  Zod has no ISBN, country or phone validator and cannot document `z.date()`: class-validator's functions stay in
+  `.refine()` calls so that the app validates as before. Same build-and-boot pipeline, same speed.
 - **swagger-jsdoc** reads only the `@openapi` comments of the sources, neither the decorators nor the types:
   the whole document is written by hand as YAML, the 29
   operations and every DTO and model in JSDoc comments, the shared security, parameters and error responses in
