@@ -97,8 +97,8 @@ What the numbers say:
   519 more lines (689). Zod gets the integer types, `maxItems` and nested schemas of the request bodies right,
   but keeping the app's validation costs correctness: Zod cannot accept `null` (which `@IsOptional()` lets
   through) without documenting every optional field as nullable, and a nullable boolean comes out as an array
-  (51 core differences, 45 of them `nullable`). Zod has no ISBN, country or phone validator, counts string
-  lengths in UTF-16 units, rejects unsafe integers and cannot document `z.date()`: class-validator's functions
+  (51 core differences, 45 of them `nullable`). Zod has no ISBN, country or phone validator, counts variation
+  selectors in string lengths, rejects unsafe integers and cannot document `z.date()`: class-validator's functions
   and `Number.isInteger` stay in `.refine()` calls. Same build-and-boot pipeline, same speed.
 - **swagger-jsdoc** reads only the `@openapi` comments of the sources, neither the decorators nor the types:
   the whole document is written by hand as YAML, the 29
