@@ -291,12 +291,6 @@
     "actual": "boolean"
   },
   {
-    "category": "constraints",
-    "kind": "extra",
-    "key": "GET /v1/shelters/{shelterId}/animals param query:minAge $#maximum",
-    "actual": "9007199254740991"
-  },
-  {
     "category": "requestBody",
     "kind": "extra",
     "key": "POST /v1/shelters/{shelterId}/adoptions body application/json $.adopter.phone#nullable",
@@ -325,12 +319,6 @@
     "kind": "extra",
     "key": "POST /v1/books body application/json $.pageCount#nullable",
     "actual": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "extra",
-    "key": "POST /v1/books body application/json $.pageCount#maximum",
-    "actual": "9007199254740991"
   },
   {
     "category": "requestBody",
@@ -373,12 +361,6 @@
     "kind": "extra",
     "key": "PUT /v1/books/{isbn} body application/json $.pageCount#nullable",
     "actual": "true"
-  },
-  {
-    "category": "constraints",
-    "kind": "extra",
-    "key": "PUT /v1/books/{isbn} body application/json $.pageCount#maximum",
-    "actual": "9007199254740991"
   },
   {
     "category": "requestBody",

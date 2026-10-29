@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T12:53:49.606Z",
+  "date": "2026-10-29T13:06:59.490Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1046,10 +1046,10 @@
         "The 11 class-validator DTOs are rewritten as zod schemas wrapped in createZodDto, and ValidationPipe is replaced by ZodValidationPipe in setupApp(): this rewrite is most of the lines changed. Inheritance and mapped types become .extend() / .omit() / .partial(), JSDoc becomes .describe(); zod gets integer types, maxItems and nested schemas right where the class-validator shim did not.",
         "Responses keep the Mongoose model classes, reflected by the CLI plugin: @ZodResponse + ZodSerializerInterceptor would need a second zod schema per model (ObjectId and Date codecs) and would change the response pipeline. The class-validator decorators of the 4 sub-document models are left in place: nothing validates with them anymore, the plugin still reads them for the response schemas.",
         "zod has no ISBN, ISO 3166 country, phone number or Mongo id validator: class-validator's standalone isISBN / isISO31661Alpha2 / isPhoneNumber / isMongoId are kept in .refine() to validate exactly as before (refinements are not documented). Emails use isEmail + .meta({ format: 'email' }) too: z.email() validates with a different regex and documents it as a pattern.",
-        "Zod's .min() / .max() count UTF-16 code units, class-validator's length decorators count code points: a codePointString() helper validates with class-validator's length() and documents minLength / maxLength with .meta(). @IsEnum(Species, { each: true }) without @IsArray() also accepted a single value: topics wraps a string into an array in a z.preprocess().",
+        "Zod's .min() / .max() count UTF-16 code units, class-validator's length decorators count code points: a codePointString() helper validates with class-validator's length() and documents minLength / maxLength with .meta(). @IsEnum(Species, { each: true }) without @IsArray() also accepted a single value: topics wraps a string into an array in a z.preprocess(). z.int() rejects integers outside the safe range (@IsInt() does not) and documents the safe-integer bounds as minimum / maximum: integers are z.number().refine(Number.isInteger).meta({ type: 'integer' }).",
         "z.date() / z.coerce.date() cannot be converted to JSON Schema (generation crashes); z.iso.datetime() is stricter than @IsDate() and documents a regex pattern. Dates are a shared z.preprocess() turning millisecond timestamps into ISO strings, then z.string().meta({ format: 'date-time' }).pipe(z.coerce.date()), accepting what @Type(() => Date) + @IsDate() accepted; it needs .nonoptional(), or z.preprocess is documented as an optional property.",
         "Optional fields accept null as @IsOptional() does: .nullish() instead of .optional(), and a partialNullish() helper instead of .partial() for the PartialType DTOs. zod cannot accept null without documenting it, so every optional body field is documented as nullable (the 45 extra `nullable` facts; the expected document leaves null out). 400 bodies carry 'Validation failed' instead of class-validator's first message (same { code, message, status } shape).",
-        "Not fixed: zod writes a nullable boolean as type: ['boolean', 'null'], which nestjs-zod passes to @nestjs/swagger as is and which comes out as an array of booleans (goodWithKids, available); z.int() documents the safe-integer bound as maximum (9007199254740991) when only a minimum is set; the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer)."
+        "Not fixed: zod writes a nullable boolean as type: ['boolean', 'null'], which nestjs-zod passes to @nestjs/swagger as is and which comes out as an array of booleans (goodWithKids, available); the response-side gaps of @nestjs/swagger remain (Author.birthYear not an integer, JSDoc @param descriptions of path/query params not read, ParseIntPipe query param not an integer)."
       ],
       "perf": {
         "runs": 5,
@@ -1058,74 +1058,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 2050.414,
-              "mean": 2074.2313166,
-              "min": 2003.030708,
-              "max": 2142.22425,
-              "stddev": 56.83758002884312
+              "median": 1965.223583,
+              "mean": 2008.4391332,
+              "min": 1954.671917,
+              "max": 2163.210416,
+              "stddev": 79.3541430832699
             },
             "cpuMs": {
-              "median": 2810,
-              "mean": 2840,
-              "min": 2670,
-              "max": 3010,
-              "stddev": 130.843417870369
+              "median": 2679.9999999999995,
+              "mean": 2718,
+              "min": 2660,
+              "max": 2900,
+              "stddev": 91.73875952943773
             },
             "maxRssMb": {
-              "median": 538.390625,
-              "mean": 537.040625,
-              "min": 531.265625,
-              "max": 539.546875,
-              "stddev": 3.0656488913442126
+              "median": 536.59375,
+              "mean": 530.746875,
+              "min": 503.890625,
+              "max": 539.078125,
+              "stddev": 13.461517054412925
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-openapi.js",
             "wallMs": {
-              "median": 486.989375,
-              "mean": 503.2746,
-              "min": 438.572625,
-              "max": 621.136208,
-              "stddev": 61.73458582784982
+              "median": 465.114209,
+              "mean": 465.73908359999996,
+              "min": 450.905958,
+              "max": 479.713042,
+              "stddev": 10.579893818984614
             },
             "cpuMs": {
-              "median": 510,
-              "mean": 494,
-              "min": 420.00000000000006,
-              "max": 540,
-              "stddev": 47.159304490206374
+              "median": 420.00000000000006,
+              "mean": 418.0000000000001,
+              "min": 410.00000000000006,
+              "max": 430.00000000000006,
+              "stddev": 7.483314773547883
             },
             "maxRssMb": {
-              "median": 145.875,
-              "mean": 145.6125,
-              "min": 144.234375,
-              "max": 146.25,
-              "stddev": 0.7459133453357703
+              "median": 144.296875,
+              "mean": 144.30625,
+              "min": 143.859375,
+              "max": 144.71875,
+              "stddev": 0.2752129857038
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2622.998292,
-            "mean": 2577.5059166,
-            "min": 2488.9866250000005,
-            "max": 2656.308416,
-            "stddev": 71.99718198981833
+            "median": 2440.157083,
+            "mean": 2474.1782168,
+            "min": 2419.786126,
+            "max": 2614.1163739999997,
+            "stddev": 71.19784571932706
           },
           "cpuMs": {
-            "median": 3350,
-            "mean": 3334,
-            "min": 3090,
-            "max": 3520,
-            "stddev": 169.30445948054646
+            "median": 3089.9999999999995,
+            "mean": 3136,
+            "min": 3080,
+            "max": 3310,
+            "stddev": 88.22698000045114
           },
           "maxRssMb": {
-            "median": 538.390625,
-            "mean": 537.040625,
-            "min": 531.265625,
-            "max": 539.546875,
-            "stddev": 3.0656488913442126
+            "median": 536.59375,
+            "mean": 530.746875,
+            "min": 503.890625,
+            "max": 539.078125,
+            "stddev": 13.461517054412925
           }
         }
       },
@@ -1176,8 +1176,8 @@
             "matched": 95,
             "missing": 5,
             "mismatch": 0,
-            "extra": 3,
-            "differences": 8
+            "extra": 0,
+            "differences": 5
           },
           "security": {
             "expected": 29,
@@ -1209,23 +1209,21 @@
           "matched": 2921,
           "missing": 13,
           "mismatch": 3,
-          "extra": 51,
-          "differences": 67
+          "extra": 48,
+          "differences": 64
         }
       },
       "oasdiff": {
         "available": true,
-        "errors": 43,
+        "errors": 40,
         "warnings": 4,
         "infos": 147,
-        "total": 194,
+        "total": 191,
         "byId": {
           "response-property-type-generalized": 4,
           "api-security-removed": 25,
-          "request-property-max-set": 2,
           "request-property-type-changed": 3,
           "request-property-property-names-added": 1,
-          "request-parameter-max-set": 1,
           "response-property-one-of-added": 1,
           "response-body-one-of-added": 1,
           "request-property-enum-value-removed": 5,
@@ -1250,13 +1248,13 @@
         }
       },
       "ease": {
-        "filesTouched": 39,
-        "filesAdded": 5,
-        "linesAdded": 359,
+        "filesTouched": 40,
+        "filesAdded": 6,
+        "linesAdded": 373,
         "linesRemoved": 310,
-        "linesChanged": 669,
-        "sourceFilesTouched": 37,
-        "sourceLinesChanged": 652,
+        "linesChanged": 683,
+        "sourceFilesTouched": 38,
+        "sourceLinesChanged": 666,
         "configLinesChanged": 17,
         "sourceFilesTotal": 75,
         "dependenciesAdded": [
@@ -1363,7 +1361,7 @@
             "file": "src/animals/dto/search-animals.dto.ts",
             "status": "modified",
             "kind": "source",
-            "added": 11,
+            "added": 17,
             "removed": 28
           },
           {
@@ -1412,7 +1410,7 @@
             "file": "src/books/dto/create-book.dto.ts",
             "status": "modified",
             "kind": "source",
-            "added": 34,
+            "added": 35,
             "removed": 75
           },
           {
@@ -1479,6 +1477,13 @@
             "removed": 0
           },
           {
+            "file": "src/core/validation/integer.schema.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
             "file": "src/core/validation/iso-date.schema.ts",
             "status": "added",
             "kind": "source",
@@ -1510,7 +1515,7 @@
             "file": "src/shelters/dto/create-shelter.dto.ts",
             "status": "modified",
             "kind": "source",
-            "added": 27,
+            "added": 28,
             "removed": 61
           },
           {
