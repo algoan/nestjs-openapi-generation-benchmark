@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const toIsoString = (value: unknown): unknown => {
-  if (typeof value === 'string' || value === undefined) {
+  if (typeof value === 'string' || value === undefined || value === null || Array.isArray(value)) {
     return value;
   }
   const date: Date = new Date(value as number);
