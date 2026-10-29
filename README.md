@@ -62,8 +62,9 @@ What the numbers say:
   main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
-- **swagger-jsdoc** reads nothing from the code: the whole document (29 operations, every DTO and model) is
-  written by hand as YAML in JSDoc comments. It gets exactly what it is given, for 3 to 9 times the lines of the
+- **swagger-jsdoc** reads nothing from the code: the whole document is written by hand as YAML, the 29
+  operations and every DTO and model in JSDoc comments, the shared security, parameters and error responses in
+  a definition file. It gets exactly what it is given, for 3 to 9 times the lines of the
   other tools describing the API a second time, and nothing catches the YAML drifting from the code. It is fast
   because it only scans comments.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
