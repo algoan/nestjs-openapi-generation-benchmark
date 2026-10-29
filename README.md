@@ -17,7 +17,7 @@ the main candidates on one realistic codebase, on three grades:
 | [`ts-oas`](https://github.com/ts-oas/ts-oas) | static: endpoint descriptions written as TypeScript types |
 | [`swagger-jsdoc`](https://github.com/Surnet/swagger-jsdoc) | static: the document written by hand as YAML in `@openapi` JSDoc blocks |
 | [`zod-openapi`](https://github.com/samchungy/zod-openapi) | static: operations and Zod schemas declared in TypeScript, run as a script |
-| [`@asteasolutions/zod-to-openapi`](https://github.com/asteasolutions/zod-to-openapi) | runtime: routes and Zod schemas declared in a registry, run by a script |
+| [`@asteasolutions/zod-to-openapi`](https://github.com/asteasolutions/zod-to-openapi) | static: routes and Zod schemas declared in a registry, run by a script |
 | [`nestoa`](https://github.com/algoan/nestoa) | static: Rust parser of the TypeScript sources |
 
 **Results: [`bench/results/REPORT.md`](bench/results/REPORT.md)** (and the charts in `bench/results/report.html`).

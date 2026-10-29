@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T11:46:21.705Z",
+  "date": "2026-10-29T11:53:35.007Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -3192,7 +3192,7 @@
         "@asteasolutions/zod-to-openapi": "9.1.0",
         "zod": "4.6.7"
       },
-      "approach": "runtime",
+      "approach": "static",
       "notes": [
         "@asteasolutions/zod-to-openapi 9.1.0 (latest) with zod 4.6.7, both dev dependencies: the Zod schemas are only imported by the generation script, the app keeps validating with class-validator. The script (`src/generate-openapi.ts`) runs through ts-node (transpile-only), no build step: Node's own type stripping handles neither the app's TypeScript enums nor extensionless imports.",
         "Framework-agnostic: it reads nothing from the NestJS controllers, the DTO classes or their JSDoc. Every route is re-declared with `registry.registerPath` in a `*.openapi.ts` file per module (method, path relative to a `servers: [{ url: '/v1' }]` entry built from `GLOBAL_PREFIX`, params, query, headers, body, responses by status, summary), and every DTO, model and interface is mirrored as a Zod schema there, reusing the app's enums. Nothing keeps them in sync with the controllers or the classes.",

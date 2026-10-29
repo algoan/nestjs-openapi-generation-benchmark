@@ -4,7 +4,7 @@
     "@asteasolutions/zod-to-openapi",
     "zod"
   ],
-  "approach": "runtime",
+  "approach": "static",
   "output": "openapi.json",
   "clean": "rm -f openapi.json",
   "steps": [

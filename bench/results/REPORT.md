@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T11:46:21.705Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T11:53:35.007Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -18,7 +18,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
 | **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#9) | 304 (#10) | 898 ms (#8) | 443 MB (#9) |
 | **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
-| **@asteasolutions/zod-to-openapi** | 9.1.0 | runtime | 610 (#10) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
+| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#10) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
