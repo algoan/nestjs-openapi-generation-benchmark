@@ -74,8 +74,8 @@ What the numbers say:
   170 to 1505 lines). Every one of those lines can drift from the code.
 - **nestoa needs the fewest changes by far** (30–33 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **one to two orders of magnitude faster and lighter** than every Node-based
-  tool that reads the TypeScript code: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84×
-  lighter for main. It matches the expected document exactly: the query parameters read by
+  tool that reads the TypeScript code: 16–226× faster and 9–15× lighter for 0.2.1, 41–580× faster and 52–88×
+  lighter for main (the upper bounds are tspec's). It matches the expected document exactly: the query parameters read by
   `@PaginationParams()` and the error body are declared in its configuration, and class-validator
   constraints are read from the DTOs. swagger-jsdoc, which reads only comments, is 2× slower and 1.7× heavier
   than nestoa 0.2.1 (5× and 10× than main); zod-openapi and zod-to-openapi, which only transpile and run their
