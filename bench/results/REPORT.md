@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-26T15:38:44.886Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T00:44:07.588Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,14 +8,15 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#8) | 2394 (#8) | 2.51 s (#6) | 424 MB (#4) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#7) | 92 (#6) | 2.94 s (#8) | 674 MB (#8) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#5) | 2.74 s (#7) | 509 MB (#7) |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#9) | 2394 (#9) | 2.51 s (#7) | 424 MB (#5) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#8) | 92 (#7) | 2.94 s (#9) | 674 MB (#9) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#6) | 2.74 s (#8) | 509 MB (#8) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
 | **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#5) | 4 (#4) | 816 ms (#4) | 430 MB (#5) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#4) | 0 (#3) | 792 ms (#3) | 415 MB (#3) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#6) | 304 (#7) | 898 ms (#5) | 443 MB (#6) |
+| **swagger-jsdoc** | 6.3.0 | static | 1505 (#9) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#6) | 4 (#5) | 816 ms (#5) | 430 MB (#6) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#4) | 415 MB (#4) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#7) | 304 (#8) | 898 ms (#6) | 443 MB (#7) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -31,6 +32,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
 | nestoa | 8 | 2 | 5 / 75 | 14 | 19 | +30 −3 | `@algoan/nestoa` | +8 MB | 0 MB |
 | nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 16 | +27 −3 | – | – | – |
+| swagger-jsdoc | 43 | 1 | 41 / 75 | 1429 | 76 | +1505 −0 | `swagger-jsdoc` | +4 MB | 0 MB |
 | ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
@@ -49,6 +51,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | @nestjs/swagger | 0 | 0 | 0 | 0 | 0 | 14 | 0 | 8 | **0** | **22** | 99.3% |
 | nestoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | nestoa (unreleased main) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
+| swagger-jsdoc | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | ts-oas | 0 | 3 | 0 | 0 | 0 | 0 | 0 | 1 | **3** | **4** | 99.9% |
 | tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
@@ -62,6 +65,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 86.0% | 100.0% | 96.1% |
 | nestoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | nestoa (unreleased main) | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| swagger-jsdoc | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | ts-oas | 100.0% | 98.5% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 99.5% |
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
@@ -75,6 +79,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | 31 | 0 | 106 | 137 |
 | nestoa | 0 | 0 | 58 | 58 |
 | nestoa (unreleased main) | 0 | 0 | 58 | 58 |
+| swagger-jsdoc | 26 | 5 | 30 | 61 |
 | ts-oas | 55 | 1 | 59 | 115 |
 | tsoa | 49 | 0 | 197 | 246 |
 | typoa | 57 | 6 | 122 | 185 |
@@ -90,6 +95,7 @@ Recall (share of the expected facts found) per category:
 | @nestjs/swagger | **total** | **2.74 s** |  | 3.65 s | 509 MB |
 | nestoa | `generate` | 48 ms | 45 ms – 50 ms | 30 ms | 47 MB |
 | nestoa (unreleased main) | `generate` | 19 ms | 18 ms – 21 ms | 0 ms | 8 MB |
+| swagger-jsdoc | `generate` | 94 ms | 93 ms – 95 ms | 100 ms | 78 MB |
 | ts-oas | `generate` | 816 ms | 797 ms – 859 ms | 1.65 s | 430 MB |
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
 | typoa | `generate` | 898 ms | 859 ms – 984 ms | 1.60 s | 443 MB |
@@ -159,6 +165,17 @@ Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 - Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
 
 Differences: [`bench/results/nestoa-main/differences.md`](nestoa-main/differences.md)
+
+### swagger-jsdoc (`variants/swagger-jsdoc`)
+
+- swagger-jsdoc 6.3.0 (latest), called through its CLI on `src/**/*.ts`; no build step. Framework-agnostic: it reads neither the NestJS decorators nor the TypeScript types, it only merges the YAML written after `@openapi` JSDoc tags into `openapi.definition.yaml`.
+- The whole document is written by hand, in YAML, beside the code it describes: every operation in the JSDoc of its handler (path relative to a `servers: [{ url: '/v1' }]` entry for the global prefix, parameters, request body, status codes), every DTO, model, interface and enum as a component in the JSDoc of its class. That is most of the 1500 lines.
+- Shared pieces live in `openapi.definition.yaml`: the bearer security scheme required by default (`security: []` on the @Unprotected routes), the `shelterId` path parameter, the pagination query parameters of the custom @PaginationParams() decorator, and the `{ code, message, status }` error responses referenced by each operation.
+- No equivalent of the mapped types: UpdateShelterDto and UpdateCatDto re-list every property (PartialType), CreateBookDto is ReplaceBookDto plus `isbn` through `allOf` (OmitType inverted); Cat and Dog extend Animal through `allOf`. The @Query() DTOs are documented as one exploded object query parameter.
+- The existing JSDoc is not read: operation summaries and property descriptions are copied into the YAML, and class-validator constraints, integers and `email` formats are restated by hand.
+- Nothing ties the YAML to the code: a renamed property, a new route or a changed status code is not detected. An invalid YAML fragment is skipped with a message on stderr (the CLI still exits 0) and dangling `$ref`s are not reported.
+
+Differences: [`bench/results/swagger-jsdoc/differences.md`](swagger-jsdoc/differences.md)
 
 ### ts-oas (`variants/ts-oas`)
 

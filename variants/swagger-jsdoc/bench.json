@@ -1,0 +1,24 @@
+{
+  "tool": "swagger-jsdoc",
+  "packages": [
+    "swagger-jsdoc"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -f openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node node_modules/swagger-jsdoc/bin/swagger-jsdoc.js -d openapi.definition.yaml -o openapi.json 'src/**/*.ts'"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "swagger-jsdoc 6.3.0 (latest), called through its CLI on `src/**/*.ts`; no build step. Framework-agnostic: it reads neither the NestJS decorators nor the TypeScript types, it only merges the YAML written after `@openapi` JSDoc tags into `openapi.definition.yaml`.",
+    "The whole document is written by hand, in YAML, beside the code it describes: every operation in the JSDoc of its handler (path relative to a `servers: [{ url: '/v1' }]` entry for the global prefix, parameters, request body, status codes), every DTO, model, interface and enum as a component in the JSDoc of its class. That is most of the 1500 lines.",
+    "Shared pieces live in `openapi.definition.yaml`: the bearer security scheme required by default (`security: []` on the @Unprotected routes), the `shelterId` path parameter, the pagination query parameters of the custom @PaginationParams() decorator, and the `{ code, message, status }` error responses referenced by each operation.",
+    "No equivalent of the mapped types: UpdateShelterDto and UpdateCatDto re-list every property (PartialType), CreateBookDto is ReplaceBookDto plus `isbn` through `allOf` (OmitType inverted); Cat and Dog extend Animal through `allOf`. The @Query() DTOs are documented as one exploded object query parameter.",
+    "The existing JSDoc is not read: operation summaries and property descriptions are copied into the YAML, and class-validator constraints, integers and `email` formats are restated by hand.",
+    "Nothing ties the YAML to the code: a renamed property, a new route or a changed status code is not detected. An invalid YAML fragment is skipped with a message on stderr (the CLI still exits 0) and dangling `$ref`s are not reported."
+  ]
+}

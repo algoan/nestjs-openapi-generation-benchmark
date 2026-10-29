@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-26T15:38:44.886Z",
+  "date": "2026-10-29T00:44:07.588Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1485,6 +1485,497 @@
             "kind": "source",
             "added": 2,
             "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "swagger-jsdoc",
+      "tool": "swagger-jsdoc",
+      "versions": {
+        "swagger-jsdoc": "6.3.0"
+      },
+      "approach": "static",
+      "notes": [
+        "swagger-jsdoc 6.3.0 (latest), called through its CLI on `src/**/*.ts`; no build step. Framework-agnostic: it reads neither the NestJS decorators nor the TypeScript types, it only merges the YAML written after `@openapi` JSDoc tags into `openapi.definition.yaml`.",
+        "The whole document is written by hand, in YAML, beside the code it describes: every operation in the JSDoc of its handler (path relative to a `servers: [{ url: '/v1' }]` entry for the global prefix, parameters, request body, status codes), every DTO, model, interface and enum as a component in the JSDoc of its class. That is most of the 1500 lines.",
+        "Shared pieces live in `openapi.definition.yaml`: the bearer security scheme required by default (`security: []` on the @Unprotected routes), the `shelterId` path parameter, the pagination query parameters of the custom @PaginationParams() decorator, and the `{ code, message, status }` error responses referenced by each operation.",
+        "No equivalent of the mapped types: UpdateShelterDto and UpdateCatDto re-list every property (PartialType), CreateBookDto is ReplaceBookDto plus `isbn` through `allOf` (OmitType inverted); Cat and Dog extend Animal through `allOf`. The @Query() DTOs are documented as one exploded object query parameter.",
+        "The existing JSDoc is not read: operation summaries and property descriptions are copied into the YAML, and class-validator constraints, integers and `email` formats are restated by hand.",
+        "Nothing ties the YAML to the code: a renamed property, a new route or a changed status code is not detected. An invalid YAML fragment is skipped with a message on stderr (the CLI still exits 0) and dangling `$ref`s are not reported."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node node_modules/swagger-jsdoc/bin/swagger-jsdoc.js -d openapi.definition.yaml -o openapi.json 'src/**/*.ts'",
+            "wallMs": {
+              "median": 93.531667,
+              "mean": 93.747075,
+              "min": 92.657,
+              "max": 95.155125,
+              "stddev": 0.8886890890895437
+            },
+            "cpuMs": {
+              "median": 99.99999999999999,
+              "mean": 104,
+              "min": 99.99999999999999,
+              "max": 110,
+              "stddev": 4.898979485566363
+            },
+            "maxRssMb": {
+              "median": 77.546875,
+              "mean": 77.553125,
+              "min": 77.5,
+              "max": 77.625,
+              "stddev": 0.04485218779502289
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 93.531667,
+            "mean": 93.747075,
+            "min": 92.657,
+            "max": 95.155125,
+            "stddev": 0.8886890890895437
+          },
+          "cpuMs": {
+            "median": 99.99999999999999,
+            "mean": 104,
+            "min": 99.99999999999999,
+            "max": 110,
+            "stddev": 4.898979485566363
+          },
+          "maxRssMb": {
+            "median": 77.546875,
+            "mean": 77.553125,
+            "min": 77.5,
+            "max": 77.625,
+            "stddev": 0.04485218779502289
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "parameters": {
+            "expected": 198,
+            "matched": 198,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "requestBody": {
+            "expected": 272,
+            "matched": 272,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "responses": {
+            "expected": 1275,
+            "matched": 1275,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "errors": {
+            "expected": 828,
+            "matched": 828,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 100,
+            "matched": 100,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "security": {
+            "expected": 29,
+            "matched": 29,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 206,
+            "matched": 206,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 1774,
+          "matched": 1774,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 2937,
+          "matched": 2937,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        }
+      },
+      "oasdiff": {
+        "available": true,
+        "errors": 26,
+        "warnings": 5,
+        "infos": 30,
+        "total": 61,
+        "byId": {
+          "request-parameter-type-changed": 1,
+          "api-security-removed": 25,
+          "request-parameter-removed": 5,
+          "api-global-security-added": 1,
+          "api-security-component-added": 1,
+          "api-security-component-removed": 1,
+          "api-version-not-bumped": 1,
+          "api-security-added": 25,
+          "new-optional-request-parameter": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 43,
+        "filesAdded": 1,
+        "linesAdded": 1505,
+        "linesRemoved": 0,
+        "linesChanged": 1505,
+        "sourceFilesTouched": 41,
+        "sourceLinesChanged": 1429,
+        "configLinesChanged": 76,
+        "sourceFilesTotal": 75,
+        "dependenciesAdded": [
+          "swagger-jsdoc"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 4.26171875,
+        "productionFootprintMb": 0,
+        "changes": [
+          {
+            "file": "openapi.definition.yaml",
+            "status": "added",
+            "kind": "config",
+            "added": 75,
+            "removed": 0
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 174,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/dto/create-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 20,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/dto/reject-adoption.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/enums/adoption-request-status.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/interfaces/adoption-receipt.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 15,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/models/adopter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 19,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/models/adoption.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 39,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/animals.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 61,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/cats.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 136,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dogs.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 84,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/create-animal.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 23,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/create-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 14,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/create-dog.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 15,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/search-animals.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 18,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/dto/update-cat.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 29,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/enums/adoption-status.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/enums/coat-pattern.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/enums/dog-size.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/enums/sex.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/enums/species.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/animal.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 35,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/cat.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 17,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/dog.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 18,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/vaccination.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 16,
+            "removed": 0
+          },
+          {
+            "file": "src/app.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 25,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 141,
+            "removed": 0
+          },
+          {
+            "file": "src/books/dto/create-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 12,
+            "removed": 0
+          },
+          {
+            "file": "src/books/dto/replace-book.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 39,
+            "removed": 0
+          },
+          {
+            "file": "src/books/dto/search-books.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 11,
+            "removed": 0
+          },
+          {
+            "file": "src/books/enums/book-genre.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/author.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 13,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 46,
+            "removed": 0
+          },
+          {
+            "file": "src/core/interfaces/http-error.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 13,
+            "removed": 0
+          },
+          {
+            "file": "src/core/pagination/pagination.interfaces.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 19,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/create-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 33,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/dto/update-shelter.dto.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 31,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/enums/shelter-status.enum.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 6,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/interfaces/shelter-stats.interface.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 27,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/address.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 17,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/models/shelter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 40,
+            "removed": 0
+          },
+          {
+            "file": "src/shelters/shelters.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 161,
+            "removed": 0
           }
         ]
       }
