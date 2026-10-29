@@ -1,0 +1,24 @@
+{
+  "tool": "@asteasolutions/zod-to-openapi",
+  "packages": [
+    "@asteasolutions/zod-to-openapi",
+    "zod"
+  ],
+  "approach": "static",
+  "output": "openapi.json",
+  "clean": "rm -f openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node -r ts-node/register/transpile-only src/generate-openapi.ts"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "@asteasolutions/zod-to-openapi 9.1.0 (latest) with zod 4.6.7, both dev dependencies: the Zod schemas are only imported by the generation script, the app keeps validating with class-validator. The script (`src/generate-openapi.ts`) runs through ts-node (transpile-only), no build step: Node's own type stripping handles neither the app's TypeScript enums nor extensionless imports.",
+    "Framework-agnostic: it reads nothing from the NestJS controllers, the DTO classes or their JSDoc. Every route is re-declared with `registry.registerPath` in a `*.openapi.ts` file per module (method, path relative to a `servers: [{ url: '/v1' }]` entry built from `GLOBAL_PREFIX`, params, query, headers, body, responses by status, summary), and every DTO, model and interface is mirrored as a Zod schema there, reusing the app's enums. Nothing keeps them in sync with the controllers or the classes.",
+    "Zod covers what the class-validator decorators with a JSON-schema equivalent express (`.int()`, `.min()`, `.max()`, `.length()`, `z.email()`, array `.min()`/`.max()`), `.optional()`/`.default()`, `.nullable()`, literals and unions; descriptions are copied from the JSDoc with `.describe()`. The mapped types have direct equivalents (`.partial()`, `.omit()`, `.extend()`), and so has the inheritance (`Animal.extend`).",
+    "Shared pieces live in `src/core/openapi.ts`: the registry and its bearer security scheme (required by default, `security: []` on the @Unprotected routes), the pagination query parameters of the custom @PaginationParams() decorator, the pagination envelope of the interceptor, and the `{ code, message, status }` error responses spread into each operation.",
+    "Unlike the other tools describing the API a second time, nothing was out of reach: the optional `x-request-id` header, the `text/csv` export and the 204 responses are plain `registerPath` options. Mongo ObjectIds and Dates are declared as strings (`z.string()`, `z.iso.datetime()`) and the `@internal` `isDeleted` field is simply left out of the response schema."
+  ]
+}

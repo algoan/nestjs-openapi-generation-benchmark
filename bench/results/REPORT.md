@@ -1,6 +1,6 @@
 # NestJS OpenAPI generators benchmark
 
-Generated on 2026-10-29T11:29:36.424Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-29T11:53:35.007Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools. See the README for the methodology.
 
@@ -8,16 +8,17 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#10) | 2394 (#10) | 2.51 s (#8) | 424 MB (#6) |
-| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#9) | 92 (#8) | 2.94 s (#10) | 674 MB (#10) |
-| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#7) | 2.74 s (#9) | 509 MB (#9) |
+| **nest-openapi-gen** | 1.0.20 | static | 92 (#3) | 1246 (#11) | 2394 (#11) | 2.51 s (#9) | 424 MB (#7) |
+| **@nestia/sdk** | 11.3.4 | compiler | 291 (#6) | 10 (#10) | 92 (#9) | 2.94 s (#11) | 674 MB (#11) |
+| **@nestjs/swagger** | 11.4.7 | runtime | 170 (#4) | 0 (#1) | 22 (#8) | 2.74 s (#10) | 509 MB (#10) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
 | **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
-| **swagger-jsdoc** | 6.3.0 | static | 1505 (#10) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
-| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#7) | 4 (#6) | 816 ms (#6) | 430 MB (#7) |
-| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#5) | 415 MB (#5) |
-| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#8) | 304 (#9) | 898 ms (#7) | 443 MB (#8) |
-| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#4) | 155 MB (#4) |
+| **swagger-jsdoc** | 6.3.0 | static | 1505 (#11) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
+| **ts-oas** | 0.6.1 | static | 513 (#8) | 3 (#8) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
+| **tsoa** | 6.6.0 | static | 300 (#7) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
+| **typoa** | 1.0.0-alpha.70 | static | 283 (#5) | 8 (#9) | 304 (#10) | 898 ms (#8) | 443 MB (#9) |
+| **zod-openapi** | 6.0.2 | static | 574 (#9) | 0 (#6) | 0 (#5) | 205 ms (#5) | 155 MB (#5) |
+| **@asteasolutions/zod-to-openapi** | 9.1.0 | static | 610 (#10) | 0 (#7) | 0 (#6) | 204 ms (#4) | 153 MB (#4) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
 - **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).
@@ -38,6 +39,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See the README f
 | tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
 | typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
 | zod-openapi | 8 | 7 | 7 / 75 | 570 | 4 | +573 −1 | `zod`, `zod-openapi` | – | – |
+| @asteasolutions/zod-to-openapi | 8 | 7 | 7 / 75 | 606 | 4 | +609 −1 | `@asteasolutions/zod-to-openapi`, `zod` | +9 MB | 0 MB |
 
 - **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
 - **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).
@@ -58,6 +60,7 @@ Differences (missing + mismatching + extra facts) per category, against `expecte
 | tsoa | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 | typoa | 0 | 0 | 0 | 8 | 0 | 90 | 0 | 206 | **8** | **304** | 89.9% |
 | zod-openapi | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
+| @asteasolutions/zod-to-openapi | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
 
 Recall (share of the expected facts found) per category:
 
@@ -73,6 +76,7 @@ Recall (share of the expected facts found) per category:
 | tsoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 | typoa | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 10.0% | 100.0% | 0.0% |
 | zod-openapi | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
+| @asteasolutions/zod-to-openapi | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% | 100.0% |
 
 [oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated one. It is a second opinion, not used for the ranking: it compares representations, so it also counts renamed security schemes, added `operationId`s, `format: double`, or enums written as `oneOf` of constants.
 
@@ -88,6 +92,7 @@ Recall (share of the expected facts found) per category:
 | tsoa | 49 | 0 | 197 | 246 |
 | typoa | 57 | 6 | 122 | 185 |
 | zod-openapi | 27 | 0 | 65 | 92 |
+| @asteasolutions/zod-to-openapi | 25 | 0 | 37 | 62 |
 
 ## 3. Speed and memory
 
@@ -105,6 +110,7 @@ Recall (share of the expected facts found) per category:
 | tsoa | `generate` | 792 ms | 788 ms – 824 ms | 1.50 s | 415 MB |
 | typoa | `generate` | 898 ms | 859 ms – 984 ms | 1.60 s | 443 MB |
 | zod-openapi | `generate` | 205 ms | 185 ms – 302 ms | 240 ms | 155 MB |
+| @asteasolutions/zod-to-openapi | `generate` | 204 ms | 203 ms – 208 ms | 250 ms | 153 MB |
 
 5 measured runs per tool, after one warm-up run.
 
@@ -237,4 +243,14 @@ Differences: [`bench/results/typoa/differences.md`](typoa/differences.md)
 - A generic `override` in the generation script removes what Zod adds by itself: the safe-integer `minimum`/`maximum` of `.int()`, the regex `pattern` of `z.email()` and `z.iso.datetime()`, and `additionalProperties: false` on response objects.
 
 Differences: [`bench/results/zod-openapi/differences.md`](zod-openapi/differences.md)
+
+### @asteasolutions/zod-to-openapi (`variants/zod-to-openapi`)
+
+- @asteasolutions/zod-to-openapi 9.1.0 (latest) with zod 4.6.7, both dev dependencies: the Zod schemas are only imported by the generation script, the app keeps validating with class-validator. The script (`src/generate-openapi.ts`) runs through ts-node (transpile-only), no build step: Node's own type stripping handles neither the app's TypeScript enums nor extensionless imports.
+- Framework-agnostic: it reads nothing from the NestJS controllers, the DTO classes or their JSDoc. Every route is re-declared with `registry.registerPath` in a `*.openapi.ts` file per module (method, path relative to a `servers: [{ url: '/v1' }]` entry built from `GLOBAL_PREFIX`, params, query, headers, body, responses by status, summary), and every DTO, model and interface is mirrored as a Zod schema there, reusing the app's enums. Nothing keeps them in sync with the controllers or the classes.
+- Zod covers what the class-validator decorators with a JSON-schema equivalent express (`.int()`, `.min()`, `.max()`, `.length()`, `z.email()`, array `.min()`/`.max()`), `.optional()`/`.default()`, `.nullable()`, literals and unions; descriptions are copied from the JSDoc with `.describe()`. The mapped types have direct equivalents (`.partial()`, `.omit()`, `.extend()`), and so has the inheritance (`Animal.extend`).
+- Shared pieces live in `src/core/openapi.ts`: the registry and its bearer security scheme (required by default, `security: []` on the @Unprotected routes), the pagination query parameters of the custom @PaginationParams() decorator, the pagination envelope of the interceptor, and the `{ code, message, status }` error responses spread into each operation.
+- Unlike the other tools describing the API a second time, nothing was out of reach: the optional `x-request-id` header, the `text/csv` export and the 204 responses are plain `registerPath` options. Mongo ObjectIds and Dates are declared as strings (`z.string()`, `z.iso.datetime()`) and the `@internal` `isDeleted` field is simply left out of the response schema.
+
+Differences: [`bench/results/zod-to-openapi/differences.md`](zod-to-openapi/differences.md)
 
