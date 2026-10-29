@@ -20,6 +20,29 @@ the main candidates on one realistic codebase, on three grades:
 
 **Results: [`bench/results/REPORT.md`](bench/results/REPORT.md)** (and the charts in `bench/results/report.html`).
 
+## Skipped tools
+
+Every TypeScript tool we looked at that could plausibly produce the OpenAPI document of a NestJS service
+is either benchmarked above or listed here with the reason it was not. Tools that are not for TypeScript
+(e.g. utoipa for Rust) and tools that only consume an existing OpenAPI document (oasdiff, Spectral, Redoc,
+openapi-generator…) are left out on purpose. Versions and dates are the latest npm releases, checked in
+October 2026.
+
+| Tool | What it is | Status | Reason |
+| --- | --- | --- | --- |
+| [`ts-to-openapi`](https://github.com/grantila/ts-to-openapi) 1.3.0 (Feb. 2021) | converts TypeScript types into OpenAPI schema components | skipped | Schemas only: no paths, operations or parameters, and the [guide](bench/VARIANT_GUIDE.md) forbids writing those by hand. Its README says it is not heavily maintained and will be replaced by typeconv; no release since 1.3.0. |
+| [`typeconv`](https://github.com/grantila/typeconv) 2.3.1 (June 2023) | converts types between TypeScript, JSON Schema, OpenAPI, GraphQL and SureType | skipped | Same problem: schemas only, no operations. No commit or release since 2.3.1. |
+| [`next-swagger-doc`](https://github.com/jellydn/next-swagger-doc) 0.5.0 (Aug. 2026) | swagger-jsdoc wrapper for Next.js API routes | skipped | Adds nothing over swagger-jsdoc, which is benchmarked, for a NestJS app: same `@openapi` JSDoc parsing, scoped to a Next.js `apiFolder`. |
+| [`nest-sdk-generator`](https://github.com/lonestone/nest-sdk-generator) (Lonestone) 1.1.3 (Nov. 2022) | generates a typed client SDK from NestJS controllers | skipped | Generates a client SDK, not an OpenAPI document (its README: it "doesn't generate a documentation by itself"). Last commit November 2022. |
+| [`@matchbook-lab/nest-sdk-generator`](https://github.com/MatchbookLab/nest-sdk-generator) 0.2.1 (Oct. 2019) | generates an Angular client service from NestJS controllers | skipped | Generates a client, not an OpenAPI document. Last commit March 2020. |
+| [`@compodoc/compodoc`](https://github.com/compodoc/compodoc) 2.0.0 (June 2026) | HTML documentation of Angular, NestJS and Stencil code | skipped | Documents the code structure (modules, classes, routes) as HTML; it has no OpenAPI output. |
+| [`nestjs-asyncapi`](https://github.com/flamewow/nestjs-asyncapi) 2.0.1 (May 2026) | AsyncAPI 3.0 document from `@AsyncApi*` decorators, DTOs read through `@nestjs/swagger` | skipped | Generates AsyncAPI for event-driven services, not OpenAPI: out of scope for the HTTP document. It could describe the app's `@EventPattern` controller in a separate AsyncAPI document. |
+| [`openapi3-ts`](https://github.com/metadevpro/openapi3-ts) 4.6.2 (Oct. 2026) | typed model and builder of OpenAPI 3.0/3.1/3.2 documents | skipped | Writing the document by hand in TypeScript, which the guide forbids: there is nothing to generate. |
+| [`zod-openapi`](https://github.com/samchungy/zod-openapi) 6.0.2 (Aug. 2026), [`@asteasolutions/zod-to-openapi`](https://github.com/asteasolutions/zod-to-openapi) 9.1.0 (July 2026) | build an OpenAPI document from Zod schemas | skipped | Paths and operations are declared by hand (`createDocument({ paths })`, `registry.registerPath()`), which the guide forbids, and the app's DTOs are class-validator classes, not Zod schemas. |
+| [`ts-rest`](https://github.com/ts-rest/ts-rest) 3.52.1 (March 2025) | contract-first typed REST client and server, with `@ts-rest/nest` and `@ts-rest/open-api` | skipped | No longer maintained: its README says so and the repository was archived in October 2026. |
+| [`@typespec/compiler`](https://github.com/microsoft/typespec) 1.17.0 (Oct. 2026) | API description language compiled to OpenAPI | skipped | The API is described by hand in `.tsp` files, separate from the code: design-first, the same as writing the document by hand. |
+| [LoopBack 4](https://github.com/loopbackio/loopback-next) (`@loopback/rest` 16.0.0, Oct. 2026), [tRPC](https://github.com/trpc/trpc) (`@trpc/server` 11.22.1 + [`trpc-to-openapi`](https://github.com/mcampa/trpc-to-openapi) 3.3.3, Oct. 2026), [`@hono/zod-openapi`](https://github.com/honojs/middleware/tree/main/packages/zod-openapi) 1.6.3 (Sept. 2026), [`express-zod-api`](https://github.com/RobinTail/express-zod-api) 29.8.2 (Sept. 2026) | web frameworks that generate (or, with a plugin, can generate) an OpenAPI document | skipped | Only for apps written with their own framework: using them means rewriting the app, which the guide forbids. |
+
 ## Results at a glance
 
 Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better everywhere.
