@@ -15,6 +15,7 @@ the main candidates on one realistic codebase, on three grades:
 | [`tsoa`](https://tsoa-community.github.io/docs/) | static: its own decorators + TypeScript compiler API |
 | [`typoa`](https://github.com/Eywek/typoa) | static: its own decorators + ts-morph |
 | [`ts-oas`](https://github.com/ts-oas/ts-oas) | static: endpoint descriptions written as TypeScript types |
+| [`swagger-jsdoc`](https://github.com/Surnet/swagger-jsdoc) | static: the document written by hand as YAML in `@openapi` JSDoc blocks |
 | [`nestoa`](https://github.com/algoan/nestoa) | static: Rust parser of the TypeScript sources |
 
 **Results: [`bench/results/REPORT.md`](bench/results/REPORT.md)** (and the charts in `bench/results/report.html`).
@@ -33,21 +34,24 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.94 s | 674 MB |
 | tsoa | 6.6.0 | 300 | **0** | **0** | 792 ms | 415 MB |
 | ts-oas | 0.6.1 | 513 | 3 | 4 | 816 ms | 430 MB |
+| swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 94 ms | 78 MB |
 
 What the numbers say:
 
 - **There is a clear trade-off between effort and correctness.** The published tools that reach (near) zero
-  differences — tsoa, ts-oas, @nestjs/swagger, nestia — get there by describing the API a second time
-  (decorators, JSDoc tags, or hand-written endpoint types: 170 to 513 lines). Every one of those lines can
-  drift from the code.
+  differences — tsoa, ts-oas, @nestjs/swagger, nestia, swagger-jsdoc — get there by describing the API a second
+  time (decorators, JSDoc tags, hand-written endpoint types or YAML: 170 to 1505 lines). Every one of those lines
+  can drift from the code.
 - **nestoa needs the fewest changes by far** (30–33 lines, no source annotation besides 3 return types and
   a few `@throws` tags) and is **one to two orders of magnitude faster and lighter** than every Node-based
-  tool: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84× lighter for main.
+  tool that reads the TypeScript code: 16–61× faster and 9–14× lighter for 0.2.1, 41–155× faster and 52–84×
+  lighter for main. swagger-jsdoc, which reads only comments, is 2× slower and 1.7× heavier than 0.2.1 (5× and
+  10× for main).
   It matches the expected document exactly: the query parameters read by
   `@PaginationParams()` and the error body are declared in its configuration, and class-validator
   constraints are read from the DTOs.
-- **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen and ts-oas are dev
-  dependencies (nestoa main is a standalone binary): 0 MB in the service's production install. The tools whose
+- **Generation-only tools ship nothing to production.** nestoa, nest-openapi-gen, ts-oas and swagger-jsdoc are
+  dev dependencies (nestoa main is a standalone binary): 0 MB in the service's production install. The tools whose
   decorators run with the app add to it: +22 MB for @nestjs/swagger, +29 MB for typoa, +44 MB for tsoa,
   +71 MB for nestia (tsoa and nestia pull `typescript` into the production dependencies).
 - **The published nestoa 0.2.1 has caught up with its main branch** (main@00c0442 is the v0.2.1 release):
@@ -59,6 +63,10 @@ What the numbers say:
   main (10–20 ms, 8 MB).
 - **@nestjs/swagger** is the most correct with moderate effort, thanks to its CLI plugin, but needs a build
   (`nest build`) and boots the app, which makes it the slowest pipeline together with nestia.
+- **swagger-jsdoc** reads nothing from the code: the whole document (29 operations, every DTO and model) is
+  written by hand as YAML in JSDoc comments. It gets exactly what it is given, for 3 to 9 times the lines of the
+  other tools describing the API a second time, and nothing catches the YAML drifting from the code. It is fast
+  because it only scans comments.
 - **nest-openapi-gen** (unmaintained since 2024) crashes on this codebase without patching and lowers
   Mongo `ObjectId`s into objects; not a realistic option.
 - **nestia** latest (12–14) requires TypeScript 7; 11.3.4 was used, with ts-patch.
