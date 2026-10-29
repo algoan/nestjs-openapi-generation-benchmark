@@ -1,13 +1,19 @@
 import { z } from 'zod';
 
-const timestampToIsoString = (value: unknown): unknown =>
-  typeof value === 'number' && Number.isFinite(new Date(value).getTime()) ? new Date(value).toISOString() : value;
+const toIsoString = (value: unknown): unknown => {
+  if (typeof value === 'string' || value === undefined) {
+    return value;
+  }
+  const date: Date = new Date(value as number);
+
+  return Number.isFinite(date.getTime()) ? date.toISOString() : value;
+};
 
 /**
- * Date-time string or millisecond timestamp, parsed into a Date
+ * Anything @Type(() => Date) + @IsDate() accepts (strings, timestamps, booleans…), parsed into a Date
  * (nonoptional: z.preprocess alone is documented as an optional property)
  */
 export const isoDate = z
-  .preprocess(timestampToIsoString, z.string().meta({ format: 'date-time' }))
+  .preprocess(toIsoString, z.string().meta({ format: 'date-time' }))
   .pipe(z.coerce.date())
   .nonoptional();
