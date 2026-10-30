@@ -1,8 +1,11 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { InjectModel } from '@nestjs/mongoose';
 import { FilterQuery, Model } from 'mongoose';
 import { ErrorCodes } from '../core/enums/error-codes.enum';
 import { DataToPaginate, MongoPagination } from '../core/pagination';
+import { PUBSUB_CLIENT } from '../core/pubsub/pubsub.constants';
+import { EventName } from '../events/enums/event-name.enum';
 import { CreateBookDto } from './dto/create-book.dto';
 import { ReplaceBookDto } from './dto/replace-book.dto';
 import { SearchBooksDto } from './dto/search-books.dto';
@@ -16,11 +19,15 @@ const DUPLICATE_KEY_ERROR: number = 11000;
  */
 @Injectable()
 export class BooksService {
-  constructor(@InjectModel(Book.name) private readonly bookModel: Model<Book>) {}
+  constructor(
+    @InjectModel(Book.name) private readonly bookModel: Model<Book>,
+    @Inject(PUBSUB_CLIENT) private readonly pubSubClient: ClientProxy,
+  ) {}
 
   public async create(dto: CreateBookDto): Promise<BookDocument> {
+    let book: BookDocument;
     try {
-      return await this.bookModel.create(dto);
+      book = await this.bookModel.create(dto);
     } catch (err) {
       if ((err as { code?: number }).code === DUPLICATE_KEY_ERROR) {
         throw new ConflictException({
@@ -31,6 +38,9 @@ export class BooksService {
       }
       throw err;
     }
+    this.pubSubClient.emit(EventName.BOOK_PUBLISHED, book);
+
+    return book;
   }
 
   public async findAll(search: SearchBooksDto, pagination: MongoPagination): Promise<DataToPaginate<BookDocument>> {
