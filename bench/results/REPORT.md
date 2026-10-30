@@ -1,6 +1,6 @@
 # NestJS OpenAPI and AsyncAPI generators benchmark
 
-Generated on 2026-10-30T17:50:05.114Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-30T17:53:34.607Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools of a specification. See docs/methodology.md for the methodology.
 
@@ -137,9 +137,9 @@ Recall (share of the expected facts found) per category:
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | **asyncapi-decorators** | 1.1.3 | runtime | 103 (#4) | 33 (#4) | 33 (#4) | 408 ms (#3) | 226 MB (#3) |
-| **nestjs-asyncapi** | 2.0.1 | runtime | 79 (#3) | 0 (#1) | 1 (#2) | 3.04 s (#5) | 517 MB (#5) |
+| **nestjs-asyncapi** | 2.0.1 | runtime | 82 (#3) | 0 (#1) | 1 (#2) | 2.82 s (#5) | 517 MB (#4) |
 | **nestoa (unreleased AsyncAPI)** | pr-76@f79b1a0 | static | 6 (#1) | 0 (#2) | 0 (#1) | 17 ms (#1) | 8 MB (#1) |
-| **@nmime/nestjs-asyncapi** | 2.0.9 | runtime | 78 (#2) | 0 (#3) | 1 (#3) | 2.36 s (#4) | 517 MB (#4) |
+| **@nmime/nestjs-asyncapi** | 2.0.9 | runtime | 80 (#2) | 0 (#3) | 1 (#3) | 2.39 s (#4) | 517 MB (#5) |
 | **zod-sockets** | 7.0.1 | static | 117 (#5) | 131 (#5) | 165 (#5) | 239 ms (#2) | 157 MB (#2) |
 
 - **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
@@ -152,9 +152,9 @@ Recall (share of the expected facts found) per category:
 | Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ | Production Δ |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | asyncapi-decorators | 14 | 2 | 13 / 83 | 102 | 1 | +99 −4 | `asyncapi-decorators` | +1 MB | +1 MB |
-| nestjs-asyncapi | 12 | 2 | 10 / 83 | 68 | 11 | +73 −6 | `@nestjs/swagger`, `nestjs-asyncapi` | +388 MB | +448 MB |
+| nestjs-asyncapi | 12 | 2 | 10 / 83 | 68 | 14 | +76 −6 | `@nestjs/swagger`, `nestjs-asyncapi` | +392 MB | +452 MB |
 | nestoa (unreleased AsyncAPI) | 2 | 1 | 1 / 83 | 2 | 4 | +5 −1 | – | 0 MB | 0 MB |
-| @nmime/nestjs-asyncapi | 12 | 2 | 10 / 83 | 64 | 14 | +73 −5 | `@nestjs/swagger`, `@nmime/nestjs-asyncapi` | +430 MB | +487 MB |
+| @nmime/nestjs-asyncapi | 12 | 2 | 10 / 83 | 64 | 16 | +75 −5 | `@nestjs/swagger`, `@nmime/nestjs-asyncapi` | +433 MB | +489 MB |
 | zod-sockets | 5 | 4 | 4 / 83 | 112 | 5 | +116 −1 | `socket.io`, `zod`, `zod-sockets` | +14 MB | 0 MB |
 
 - **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
@@ -187,13 +187,13 @@ Recall (share of the expected facts found) per category:
 | Tool | Step | Wall (median) | Wall (min–max) | CPU (median) | Peak RSS (median) |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | asyncapi-decorators | `generate` | 408 ms | 395 ms – 467 ms | 470 ms | 226 MB |
-| nestjs-asyncapi | `build` | 2.20 s | 2.09 s – 2.23 s | 3.06 s | 517 MB |
-| nestjs-asyncapi | `generate` | 910 ms | 832 ms – 923 ms | 800 ms | 191 MB |
-| nestjs-asyncapi | **total** | **3.04 s** |  | 3.80 s | 517 MB |
+| nestjs-asyncapi | `build` | 1.97 s | 1.95 s – 1.99 s | 2.67 s | 517 MB |
+| nestjs-asyncapi | `generate` | 849 ms | 841 ms – 891 ms | 730 ms | 191 MB |
+| nestjs-asyncapi | **total** | **2.82 s** |  | 3.40 s | 517 MB |
 | nestoa (unreleased AsyncAPI) | `generate` | 17 ms | 16 ms – 19 ms | 0 ms | 8 MB |
-| @nmime/nestjs-asyncapi | `build` | 1.96 s | 1.91 s – 2.09 s | 2.70 s | 517 MB |
-| @nmime/nestjs-asyncapi | `generate` | 406 ms | 386 ms – 474 ms | 380 ms | 137 MB |
-| @nmime/nestjs-asyncapi | **total** | **2.36 s** |  | 3.07 s | 517 MB |
+| @nmime/nestjs-asyncapi | `build` | 2.00 s | 1.98 s – 2.07 s | 2.75 s | 517 MB |
+| @nmime/nestjs-asyncapi | `generate` | 374 ms | 370 ms – 414 ms | 360 ms | 137 MB |
+| @nmime/nestjs-asyncapi | **total** | **2.39 s** |  | 3.14 s | 517 MB |
 | zod-sockets | `generate` | 239 ms | 234 ms – 241 ms | 260 ms | 157 MB |
 
 5 measured runs per tool, after one warm-up run.
@@ -248,7 +248,7 @@ Differences: [`bench/results/nestia/differences.md`](nestia/differences.md)
 - @EventPattern and ClientProxy.emit are not read: each handler gets an @AsyncApiReceive and each emitting service method an @AsyncApiSend, repeating the topic and the payload class; the services also need the class decorator, exported as @AsyncApi() (the README calls it @AsyncApiService(), which does not exist in 2.0.1). The multi-topic handler takes one option per topic in a single @AsyncApiReceive.
 - Payloads must be classes introspected by @nestjs/swagger: the 4 event interfaces became classes, read through the @nestjs/swagger CLI plugin (dtoFileNameSuffix `.event.ts` / `.model.ts`, introspectComments, class-validator shim), so models and property JSDoc need no @ApiProperty; requires `nest build`. The `@Payload('isbn')` / `@Payload('stock')` handler has no payload type: a BookStockChangedEvent class was added. Book._id (mongodb ObjectId) needs @ApiProperty({ type: String }), otherwise the plugin emits require("bson/bson"), which crashes at runtime.
 - The handlers' JSDoc is not read: it is copied into the decorators' `summary` option. Not fixed: the class-validator shim ignores @IsInt (Author.birthYear is a number, not an integer).
-- @asyncapi/generator, a production dependency of the tool, depends on simple-git 3.36.0 and @simple-git/argv-parser 1.1.1, which have critical CVEs (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c): npm `overrides` pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (4 lines), and the generation is unchanged.
+- Dependencies of @asyncapi/generator and @asyncapi/html-template, production dependencies of the tool, have critical and high CVEs flagged by Socket: npm `overrides` (7 lines) pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c), js-yaml 4.3.2, markdown-it 14.3.3 (nunjucks-filters) and zod 4.6.6 (Puppeteer's chromium-bidi). The HTML renderer and Puppeteer are never called to generate the JSON document, which is unchanged.
 
 Differences: [`bench/results/nestjs-asyncapi/differences.md`](nestjs-asyncapi/differences.md)
 
@@ -317,7 +317,7 @@ Differences: [`bench/results/nestoa-main/differences.md`](nestoa-main/difference
 - The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require("bson/bson"), which crashes at runtime: @ApiProperty({ type: String }) needed.
 - Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.
 - Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number).
-- @asyncapi/generator, a production dependency of the tool, depends on simple-git 3.36.0 and @simple-git/argv-parser 1.1.1, which have critical CVEs (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c): npm `overrides` pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (4 lines), and the generation is unchanged.
+- Dependencies of @asyncapi/generator and @asyncapi/html-template, production dependencies of the tool, have critical and high CVEs flagged by Socket: npm `overrides` (6 lines) pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c), js-yaml 4.3.2 and zod 4.6.6 (Puppeteer's chromium-bidi). The HTML renderer and Puppeteer are never called to generate the JSON document, which is unchanged.
 
 Differences: [`bench/results/nmime-nestjs-asyncapi/differences.md`](nmime-nestjs-asyncapi/differences.md)
 

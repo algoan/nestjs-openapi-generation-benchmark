@@ -39,8 +39,8 @@ The Pub/Sub events of the same app: 4 `@EventPattern` topics received, 3 topics 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
 | nestoa (unreleased AsyncAPI) | pr-76@f79b1a0 | **6** | **0** | **0** | **17 ms** | **8 MB** |
-| @nmime/nestjs-asyncapi | 2.0.9 | 78 | **0** | 1 | 2.36 s | 517 MB |
-| nestjs-asyncapi | 2.0.1 | 79 | **0** | 1 | 3.04 s | 517 MB |
+| @nmime/nestjs-asyncapi | 2.0.9 | 80 | **0** | 1 | 2.39 s | 517 MB |
+| nestjs-asyncapi | 2.0.1 | 82 | **0** | 1 | 2.82 s | 517 MB |
 | asyncapi-decorators | 1.1.3 | 103 | 33 | 33 | 408 ms | 226 MB |
 | zod-sockets | 7.0.1 | 117 | 131 | 165 | 239 ms | 157 MB |
 
