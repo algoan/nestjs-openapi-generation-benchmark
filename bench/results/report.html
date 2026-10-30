@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NestJS OpenAPI generators benchmark</title>
+<title>NestJS OpenAPI and AsyncAPI generators benchmark</title>
 <style>
 .viz-root { color-scheme: light; --surface-1: #fcfcfb; --surface-2: #f3f2ef; --text-primary: #0b0b0b; --text-secondary: #52514e; --grid: #d9d8d3; --series-1: #2a78d6; }
 @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; } }
 :root[data-theme="dark"] .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; }
 body { margin: 0; }
 .viz-root { background: var(--surface-1); color: var(--text-primary); font: 14px/1.4 system-ui, sans-serif; padding: 24px; box-sizing: border-box; }
-h1 { font-size: 20px; margin: 0 0 4px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
+h1 { font-size: 20px; margin: 0 0 4px; } .spec { font-size: 17px; margin: 28px 0 12px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 16px; }
 .card { background: var(--surface-2); border-radius: 8px; padding: 16px; margin: 0; }
 .card h2 { font-size: 15px; margin: 0; } .card p { color: var(--text-secondary); margin: 2px 0 8px; font-size: 12px; }
@@ -20,8 +20,10 @@ table { border-collapse: collapse; margin-top: 24px; width: 100%; } th, td { pad
 thead th { color: var(--text-secondary); font-weight: 600; }
 </style></head>
 <body><main class="viz-root">
-<h1>NestJS OpenAPI generators benchmark</h1>
-<p class="meta">2026-11-05 · 10 × Apple M4 · Node v24.21.0 · one bar per tool, sorted best first</p>
+<h1>NestJS OpenAPI and AsyncAPI generators benchmark</h1>
+<p class="meta">2026-10-30 · 10 × Apple M4 · Node v24.21.0 · one bar per tool, sorted best first</p>
+<section>
+<h2 class="spec">OpenAPI</h2>
 <div class="grid">
 <figure class="card">
 <figcaption><h2>Ease of use</h2><p>Lines changed in the app · lower is better</p></figcaption>
@@ -108,7 +110,7 @@ thead th { color: var(--text-secondary); font-weight: 600; }
 </svg>
 </figure>
 <figure class="card">
-<figcaption><h2>Correctness — core</h2><p>Differences: operations, parameters, bodies, success responses · lower is better</p></figcaption>
+<figcaption><h2>Correctness — core</h2><p>Differences: operations, parameters, request bodies and success responses (what a generated client relies on) · lower is better</p></figcaption>
 <svg viewBox="0 0 700 346" role="img" aria-label="Correctness — core">
 <line class="axis" x1="190" x2="190" y1="0" y2="346"/>
 <g class="row" tabindex="0" aria-label="@nestjs/swagger: 0" data-tip="@nestjs/swagger: 0">
@@ -192,7 +194,7 @@ thead th { color: var(--text-secondary); font-weight: 600; }
 </svg>
 </figure>
 <figure class="card">
-<figcaption><h2>Correctness — all</h2><p>Differences incl. errors, constraints, security, docs · lower is better</p></figcaption>
+<figcaption><h2>Correctness — all</h2><p>Differences: core + error responses, validation constraints, security and documentation · lower is better</p></figcaption>
 <svg viewBox="0 0 700 346" role="img" aria-label="Correctness — all">
 <line class="axis" x1="190" x2="190" y1="0" y2="346"/>
 <g class="row" tabindex="0" aria-label="nestoa: 0" data-tip="nestoa: 0">
@@ -459,6 +461,199 @@ thead th { color: var(--text-secondary); font-weight: 600; }
 <tr><th scope="row">typoa</th><td>283</td><td>8</td><td>304</td><td>898 ms</td><td>443 MB</td></tr>
 <tr><th scope="row">zod-openapi</th><td>574</td><td>0</td><td>0</td><td>205 ms</td><td>155 MB</td></tr>
 <tr><th scope="row">@asteasolutions/zod-to-openapi</th><td>610</td><td>0</td><td>0</td><td>204 ms</td><td>153 MB</td></tr></tbody></table>
+</section>
+<section>
+<h2 class="spec">AsyncAPI</h2>
+<div class="grid">
+<figure class="card">
+<figcaption><h2>Ease of use</h2><p>Lines changed in the app · lower is better</p></figcaption>
+<svg viewBox="0 0 700 138" role="img" aria-label="Ease of use">
+<line class="axis" x1="190" x2="190" y1="0" y2="138"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased AsyncAPI): 6" data-tip="nestoa (unreleased AsyncAPI): 6">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased AsyncAPI)</text>
+  <rect class="bar" x="190" y="8" width="21.5" height="14" rx="4"/>
+  <text class="value" x="217.53846153846155" y="19">6</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nmime/nestjs-asyncapi: 74" data-tip="@nmime/nestjs-asyncapi: 74">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">@nmime/nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="34" width="265.6" height="14" rx="4"/>
+  <text class="value" x="461.64102564102564" y="45">74</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestjs-asyncapi: 75" data-tip="nestjs-asyncapi: 75">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="60" width="269.2" height="14" rx="4"/>
+  <text class="value" x="465.2307692307692" y="71">75</text>
+</g>
+<g class="row" tabindex="0" aria-label="asyncapi-decorators: 103" data-tip="asyncapi-decorators: 103">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">asyncapi-decorators</text>
+  <rect class="bar" x="190" y="86" width="369.7" height="14" rx="4"/>
+  <text class="value" x="565.7435897435897" y="97">103</text>
+</g>
+<g class="row" tabindex="0" aria-label="zod-sockets: 117" data-tip="zod-sockets: 117">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">zod-sockets</text>
+  <rect class="bar" x="190" y="112" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="123">117</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Correctness — core</h2><p>Differences: operations (action and channel) and message payloads (what a generated consumer or producer relies on) · lower is better</p></figcaption>
+<svg viewBox="0 0 700 138" role="img" aria-label="Correctness — core">
+<line class="axis" x1="190" x2="190" y1="0" y2="138"/>
+<g class="row" tabindex="0" aria-label="nestjs-asyncapi: 0" data-tip="nestjs-asyncapi: 0">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="8" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="19">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased AsyncAPI): 0" data-tip="nestoa (unreleased AsyncAPI): 0">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">nestoa (unreleased AsyncAPI)</text>
+  <rect class="bar" x="190" y="34" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="45">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nmime/nestjs-asyncapi: 0" data-tip="@nmime/nestjs-asyncapi: 0">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">@nmime/nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="60" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="71">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="asyncapi-decorators: 33" data-tip="asyncapi-decorators: 33">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">asyncapi-decorators</text>
+  <rect class="bar" x="190" y="86" width="105.8" height="14" rx="4"/>
+  <text class="value" x="301.80152671755724" y="97">33</text>
+</g>
+<g class="row" tabindex="0" aria-label="zod-sockets: 131" data-tip="zod-sockets: 131">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">zod-sockets</text>
+  <rect class="bar" x="190" y="112" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="123">131</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Correctness — all</h2><p>Differences: core + validation constraints and documentation · lower is better</p></figcaption>
+<svg viewBox="0 0 700 138" role="img" aria-label="Correctness — all">
+<line class="axis" x1="190" x2="190" y1="0" y2="138"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased AsyncAPI): 0" data-tip="nestoa (unreleased AsyncAPI): 0">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased AsyncAPI)</text>
+  <rect class="bar" x="190" y="8" width="2.0" height="14" rx="4"/>
+  <text class="value" x="198" y="19">0</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestjs-asyncapi: 1" data-tip="nestjs-asyncapi: 1">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="34" width="2.5" height="14" rx="4"/>
+  <text class="value" x="198.54545454545453" y="45">1</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nmime/nestjs-asyncapi: 1" data-tip="@nmime/nestjs-asyncapi: 1">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">@nmime/nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="60" width="2.5" height="14" rx="4"/>
+  <text class="value" x="198.54545454545453" y="71">1</text>
+</g>
+<g class="row" tabindex="0" aria-label="asyncapi-decorators: 33" data-tip="asyncapi-decorators: 33">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">asyncapi-decorators</text>
+  <rect class="bar" x="190" y="86" width="84.0" height="14" rx="4"/>
+  <text class="value" x="280" y="97">33</text>
+</g>
+<g class="row" tabindex="0" aria-label="zod-sockets: 165" data-tip="zod-sockets: 165">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">zod-sockets</text>
+  <rect class="bar" x="190" y="112" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="123">165</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Speed</h2><p>Median wall time, sources → document · lower is better</p></figcaption>
+<svg viewBox="0 0 700 138" role="img" aria-label="Speed">
+<line class="axis" x1="190" x2="190" y1="0" y2="138"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased AsyncAPI): 17 ms" data-tip="nestoa (unreleased AsyncAPI): 17 ms">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased AsyncAPI)</text>
+  <rect class="bar" x="190" y="8" width="2.6" height="14" rx="4"/>
+  <text class="value" x="198.5641358715792" y="19">17 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="zod-sockets: 239 ms" data-tip="zod-sockets: 239 ms">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">zod-sockets</text>
+  <rect class="bar" x="190" y="34" width="35.8" height="14" rx="4"/>
+  <text class="value" x="231.78755648357455" y="45">239 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="asyncapi-decorators: 408 ms" data-tip="asyncapi-decorators: 408 ms">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">asyncapi-decorators</text>
+  <rect class="bar" x="190" y="60" width="61.2" height="14" rx="4"/>
+  <text class="value" x="257.1626971352872" y="71">408 ms</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nmime/nestjs-asyncapi: 2.30 s" data-tip="@nmime/nestjs-asyncapi: 2.30 s">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">@nmime/nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="86" width="344.5" height="14" rx="4"/>
+  <text class="value" x="540.5120416043721" y="97">2.30 s</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestjs-asyncapi: 2.80 s" data-tip="nestjs-asyncapi: 2.80 s">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="112" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="123">2.80 s</text>
+</g>
+</svg>
+</figure>
+<figure class="card">
+<figcaption><h2>Memory</h2><p>Median peak RSS · lower is better</p></figcaption>
+<svg viewBox="0 0 700 138" role="img" aria-label="Memory">
+<line class="axis" x1="190" x2="190" y1="0" y2="138"/>
+<g class="row" tabindex="0" aria-label="nestoa (unreleased AsyncAPI): 8 MB" data-tip="nestoa (unreleased AsyncAPI): 8 MB">
+  <rect class="hit" x="0" y="2" width="690" height="26"/>
+  <text class="label" x="180" y="19" text-anchor="end">nestoa (unreleased AsyncAPI)</text>
+  <rect class="bar" x="190" y="8" width="6.9" height="14" rx="4"/>
+  <text class="value" x="202.87443377423446" y="19">8 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="zod-sockets: 157 MB" data-tip="zod-sockets: 157 MB">
+  <rect class="hit" x="0" y="28" width="690" height="26"/>
+  <text class="label" x="180" y="45" text-anchor="end">zod-sockets</text>
+  <rect class="bar" x="190" y="34" width="127.7" height="14" rx="4"/>
+  <text class="value" x="323.65899619496287" y="45">157 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="asyncapi-decorators: 226 MB" data-tip="asyncapi-decorators: 226 MB">
+  <rect class="hit" x="0" y="54" width="690" height="26"/>
+  <text class="label" x="180" y="71" text-anchor="end">asyncapi-decorators</text>
+  <rect class="bar" x="190" y="60" width="183.6" height="14" rx="4"/>
+  <text class="value" x="379.60572567494114" y="71">226 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="nestjs-asyncapi: 517 MB" data-tip="nestjs-asyncapi: 517 MB">
+  <rect class="hit" x="0" y="80" width="690" height="26"/>
+  <text class="label" x="180" y="97" text-anchor="end">nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="86" width="419.8" height="14" rx="4"/>
+  <text class="value" x="615.8477985142235" y="97">517 MB</text>
+</g>
+<g class="row" tabindex="0" aria-label="@nmime/nestjs-asyncapi: 517 MB" data-tip="@nmime/nestjs-asyncapi: 517 MB">
+  <rect class="hit" x="0" y="106" width="690" height="26"/>
+  <text class="label" x="180" y="123" text-anchor="end">@nmime/nestjs-asyncapi</text>
+  <rect class="bar" x="190" y="112" width="420.0" height="14" rx="4"/>
+  <text class="value" x="616" y="123">517 MB</text>
+</g>
+</svg>
+</figure>
+</div>
+<table><caption style="text-align:left;color:var(--text-secondary)">Table view</caption>
+<thead><tr><th>Tool</th><th>Ease of use</th><th>Correctness — core</th><th>Correctness — all</th><th>Speed</th><th>Memory</th></tr></thead>
+<tbody><tr><th scope="row">asyncapi-decorators</th><td>103</td><td>33</td><td>33</td><td>408 ms</td><td>226 MB</td></tr>
+<tr><th scope="row">nestjs-asyncapi</th><td>75</td><td>0</td><td>1</td><td>2.80 s</td><td>517 MB</td></tr>
+<tr><th scope="row">nestoa (unreleased AsyncAPI)</th><td>6</td><td>0</td><td>0</td><td>17 ms</td><td>8 MB</td></tr>
+<tr><th scope="row">@nmime/nestjs-asyncapi</th><td>74</td><td>0</td><td>1</td><td>2.30 s</td><td>517 MB</td></tr>
+<tr><th scope="row">zod-sockets</th><td>117</td><td>131</td><td>165</td><td>239 ms</td><td>157 MB</td></tr></tbody></table>
+</section>
 <div id="tip" role="tooltip"></div>
 </main>
 <script>

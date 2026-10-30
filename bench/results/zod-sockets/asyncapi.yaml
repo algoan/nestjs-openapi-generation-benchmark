@@ -1,0 +1,386 @@
+asyncapi: 3.0.0
+info:
+  title: Petstore events
+  version: 1.0.0
+defaultContentType: text/plain
+servers: {}
+channels:
+  Root:
+    address: /
+    title: Namespace /
+    bindings:
+      ws:
+        bindingVersion: 0.1.0
+        method: GET
+        headers:
+          type: object
+          properties:
+            connection:
+              type: string
+              const: Upgrade
+            upgrade:
+              type: string
+              const: websocket
+        query:
+          type: object
+          properties:
+            EIO:
+              type: string
+              const: "4"
+              description: The version of the protocol
+            transport:
+              type: string
+              enum:
+                - polling
+                - websocket
+              description: The name of the transport
+            sid:
+              description: The session identifier
+              type: string
+          required:
+            - EIO
+            - transport
+          externalDocs:
+            description: Engine.IO Protocol
+            url: https://socket.io/docs/v4/engine-io-protocol/
+    messages:
+      rootOutgoingAdoptionRequested:
+        name: adoption_requested
+        title: adoption_requested
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                adoptionId:
+                  type: string
+                shelterId:
+                  type: string
+                animalId:
+                  type: string
+                species:
+                  type: string
+                  enum:
+                    - CAT
+                    - DOG
+                adopter:
+                  type: object
+                  properties:
+                    firstName:
+                      type: string
+                      maxLength: 80
+                    lastName:
+                      type: string
+                      maxLength: 80
+                    email:
+                      type: string
+                      format: email
+                      pattern: ^(?:[A-Za-z0-9_'+\-]+\.)*[A-Za-z0-9_'+\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$
+                    phone:
+                      description: Phone number, in the E.164 format
+                      type: string
+                  required:
+                    - firstName
+                    - lastName
+                    - email
+                  additionalProperties: false
+                  description: Person adopting an animal
+                fee:
+                  type: number
+                  description: Adoption fee, in euros
+              required:
+                - adoptionId
+                - shelterId
+                - animalId
+                - species
+                - adopter
+                - fee
+              additionalProperties: false
+              description: Payload of the `adoption_requested` Pub/Sub event
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootOutgoingAdoptionDecided:
+        name: adoption_decided
+        title: adoption_decided
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                adoptionId:
+                  type: string
+                shelterId:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                    - PENDING
+                    - APPROVED
+                    - REJECTED
+                rejectionReason:
+                  description: Why the request was rejected
+                  type: string
+                decidedAt:
+                  type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+              required:
+                - adoptionId
+                - shelterId
+                - status
+                - decidedAt
+              additionalProperties: false
+              description: Payload of the `adoption_decided` Pub/Sub event
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootOutgoingBookPublished:
+        name: book_published
+        title: book_published
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                _id:
+                  type: string
+                isbn:
+                  type: string
+                  description: ISBN-13, without dashes
+                title:
+                  type: string
+                authors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      birthYear:
+                        type: integer
+                        minimum: 1000
+                        maximum: 2100
+                    required:
+                      - name
+                    additionalProperties: false
+                    description: Book author
+                genre:
+                  type: string
+                  enum:
+                    - CARE_GUIDE
+                    - TRAINING
+                    - NOVEL
+                    - CHILDREN
+                publishedOn:
+                  type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+                pageCount:
+                  type: number
+                language:
+                  type: string
+                  description: ISO 639-1 language code
+                topics:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - CAT
+                      - DOG
+                  description: Species the book is about
+                rating:
+                  description: Average reader rating, from 0 to 5
+                  type: number
+                available:
+                  type: boolean
+                createdAt:
+                  type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+                  description: Value added by mongoose
+                updatedAt:
+                  type: string
+                  format: date-time
+                  pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+                  description: Value added by mongoose
+              required:
+                - _id
+                - isbn
+                - title
+                - authors
+                - genre
+                - language
+                - topics
+                - available
+                - createdAt
+                - updatedAt
+              additionalProperties: false
+              description: A book of the pet-care catalogue
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootIncomingAdoptionCompleted:
+        name: adoption_completed
+        title: adoption_completed
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                adoptionId:
+                  type: string
+                shelterId:
+                  type: string
+              required:
+                - adoptionId
+                - shelterId
+              description: Payload of the `adoption_completed` Pub/Sub event
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootIncomingVaccinationRecorded:
+        name: vaccination_recorded
+        title: vaccination_recorded
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                shelterId:
+                  type: string
+                animalId:
+                  type: string
+                vaccination:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                      description: Vaccine name
+                    date:
+                      type: string
+                      format: date-time
+                      pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+                    expiresAt:
+                      type: string
+                      format: date-time
+                      pattern: ^(?:(?:\d\d[2468][048]|\d\d[13579][26]|\d\d0[48]|[02468][048]00|[13579][26]00)-02-29|\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\d|30)|(?:02)-(?:0[1-9]|1\d|2[0-8])))T(?:(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d+)?(?:Z))$
+                  required:
+                    - name
+                    - date
+                  description: A vaccine injection
+              required:
+                - shelterId
+                - animalId
+                - vaccination
+              description: Payload of the `vaccination_recorded` Pub/Sub event, sent by the
+                veterinary service
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootIncomingBookRestocked:
+        name: book_restocked
+        title: book_restocked
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                isbn:
+                  type: string
+                stock:
+                  type: number
+              required:
+                - isbn
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+      rootIncomingBookSoldOut:
+        name: book_sold_out
+        title: book_sold_out
+        payload:
+          type: array
+          prefixItems:
+            - type: object
+              properties:
+                isbn:
+                  type: string
+                stock:
+                  type: number
+              required:
+                - isbn
+          items:
+            not: {}
+          minItems: 1
+          maxItems: 1
+components: {}
+operations:
+  RootSendOperationAdoptionRequested:
+    action: send
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootOutgoingAdoptionRequested"
+    title: adoption_requested
+    summary: Outgoing event adoption_requested
+    description: The message produced by the application within the / namespace
+  RootSendOperationAdoptionDecided:
+    action: send
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootOutgoingAdoptionDecided"
+    title: adoption_decided
+    summary: Outgoing event adoption_decided
+    description: The message produced by the application within the / namespace
+  RootSendOperationBookPublished:
+    action: send
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootOutgoingBookPublished"
+    title: book_published
+    summary: Outgoing event book_published
+    description: The message produced by the application within the / namespace
+  RootRecvOperationAdoptionCompleted:
+    action: receive
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootIncomingAdoptionCompleted"
+    title: adoption_completed
+    summary: Incoming event adoption_completed
+    description: The message consumed by the application within the / namespace
+  RootRecvOperationVaccinationRecorded:
+    action: receive
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootIncomingVaccinationRecorded"
+    title: vaccination_recorded
+    summary: Incoming event vaccination_recorded
+    description: The message consumed by the application within the / namespace
+  RootRecvOperationBookRestocked:
+    action: receive
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootIncomingBookRestocked"
+    title: book_restocked
+    summary: Incoming event book_restocked
+    description: The message consumed by the application within the / namespace
+  RootRecvOperationBookSoldOut:
+    action: receive
+    channel:
+      $ref: "#/channels/Root"
+    messages:
+      - $ref: "#/channels/Root/messages/rootIncomingBookSoldOut"
+    title: book_sold_out
+    summary: Incoming event book_sold_out
+    description: The message consumed by the application within the / namespace

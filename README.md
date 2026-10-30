@@ -1,7 +1,7 @@
 # NestJS OpenAPI generation benchmark
 
-Which tool should generate the OpenAPI document of a NestJS service? This repository compares
-the main candidates on one realistic codebase, on three grades:
+Which tool should generate the OpenAPI document of a NestJS service, and the AsyncAPI document of its
+Pub/Sub events? This repository compares the main candidates on one realistic codebase, on three grades:
 
 1. **Ease of use**: how many lines of the codebase have to change to get a document out of the tool;
 2. **Correctness**: how many differences there are between the generated document and the expected one;
@@ -13,6 +13,8 @@ See [`docs/methodology.md`](docs/methodology.md) for how each grade is measured,
 ## Results at a glance
 
 Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better everywhere.
+
+### OpenAPI
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
@@ -30,6 +32,18 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
 | nestjs-zod | 5.5.0 | 689 | 51 | 64 | 2.38 s | 538 MB |
 | swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 94 ms | 78 MB |
 
+### AsyncAPI
+
+The Pub/Sub events of the same app: 4 `@EventPattern` topics received, 3 topics published with `ClientProxy.emit`.
+
+| Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| nestoa (unreleased AsyncAPI) | pr-76@f79b1a0 | **6** | **0** | **0** | **17 ms** | **8 MB** |
+| @nmime/nestjs-asyncapi | 2.0.9 | 74 | **0** | 1 | 2.30 s | 517 MB |
+| nestjs-asyncapi | 2.0.1 | 75 | **0** | 1 | 2.80 s | 517 MB |
+| asyncapi-decorators | 1.1.3 | 103 | 33 | 33 | 408 ms | 226 MB |
+| zod-sockets | 7.0.1 | 117 | 131 | 165 | 239 ms | 157 MB |
+
 Details: [`docs/results.md`](docs/results.md) and [`bench/results/REPORT.md`](bench/results/REPORT.md).
 
 ## Fairness
@@ -44,6 +58,10 @@ Details: [`docs/results.md`](docs/results.md) and [`bench/results/REPORT.md`](be
   the patch is counted in the lines changed.
 - `nestoa (unreleased main)` is built from source by `bench/scripts/build-nestoa-main.sh` and is not an
   installable release: it is listed to show where the tool is going, not as a peer of the published tools.
+- `nestoa (unreleased AsyncAPI)` is built the same way from the unmerged pull request adding AsyncAPI to
+  nestoa ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)). `expected/asyncapi.yaml` was written
+  by the same authors; like the OpenAPI one, it is checked against the running app by a contract test, not
+  against a tool's output.
 - Timings vary between sessions (up to ~2× for the slowest Node tools); the ranking does not change.
 
 ## Documentation

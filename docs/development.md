@@ -4,9 +4,10 @@
 
 ```
 app/                    the baseline NestJS app, without any OpenAPI tooling
-  test/                 contract test: the app really behaves as expected/openapi.yaml says
-expected/openapi.yaml   the reference document, written by hand
-variants/<tool>/        a copy of app/ with the changes one tool needs (+ bench.json)
+  test/                 contract tests: the app really behaves as expected/openapi.yaml and expected/asyncapi.yaml say
+expected/openapi.yaml   the reference OpenAPI document, written by hand
+expected/asyncapi.yaml  the reference AsyncAPI document of the Pub/Sub events, written by hand
+variants/<tool>/        a copy of app/ with the changes one tool needs (+ bench.json, `"spec": "asyncapi"` for AsyncAPI tools)
 bench/                  the harness: ease, correctness, perf, oasdiff, report
   VARIANT_GUIDE.md      rules followed by every variant (read it to add a tool)
   results/              REPORT.md, results.json, and per tool the generated document and its differences
@@ -21,15 +22,17 @@ The nestoa variant installs `@algoan/nestoa` from GitHub Packages: export `GITHU
 `nestoa` package of npmjs.com, which needs no token, on the first release published there.
 The `nestoa-main` variant runs nestoa built from its main branch: `npm run setup` builds it with
 `bench/scripts/build-nestoa-main.sh` when a Rust toolchain (`cargo`) is available; without it, that
-variant is reported as failed.
+variant is reported as failed. The `nestoa-asyncapi` variant runs nestoa built the same way from its
+unmerged AsyncAPI pull request ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)),
+`npm run setup:nestoa-asyncapi`.
 
 ```sh
 npm run setup              # install the harness, the app and every variant
-npm run test:contract      # check expected/openapi.yaml against the running app
+npm run test:contract      # check expected/openapi.yaml and expected/asyncapi.yaml against the running app
 npm run bench              # all three grades, every tool → bench/results/REPORT.md
 npm run bench:correctness  # ease + correctness only (no timing)
 node bench/src/cli.ts run --only nestoa,tsoa --runs 10
-node bench/src/cli.ts compare path/to/openapi.json   # compare any document with the expected one
+node bench/src/cli.ts compare path/to/openapi.json   # compare any OpenAPI or AsyncAPI document with the expected one
 node bench/src/cli.ts check new.yaml --baseline old.yaml  # fail when new.yaml has more differences than old.yaml
 ```
 

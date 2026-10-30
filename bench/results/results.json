@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-05T16:29:18.723Z",
+  "date": "2026-10-30T16:42:35.754Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -7,6 +7,246 @@
     "node": "v24.21.0"
   },
   "variants": [
+    {
+      "name": "asyncapi-decorators",
+      "spec": "asyncapi",
+      "tool": "asyncapi-decorators",
+      "versions": {
+        "asyncapi-decorators": "1.1.3"
+      },
+      "approach": "runtime",
+      "notes": [
+        "asyncapi-decorators 1.1.3 (latest, Nov. 2022, unmaintained since), Node 24. Generic decorators, not NestJS-aware: it reads neither @EventPattern nor ClientProxy.emit. It produces AsyncAPI 2.0.0. The decorators run when the classes are loaded (reflection metadata), so the script imports the decorated files and writes the YAML with ts-node in transpile-only mode: no build step, no app boot. It is a production dependency, since the decorators sit on the app's models and event classes.",
+        "Channels are class decorators: the receive channels (`publish` in AsyncAPI 2.x) are declared on EventsController, the send channels (`subscribe`) on AdoptionsService and BooksService beside the emit calls; addresses are repeated by hand (EventName values). The handlers' JSDoc is copied into each operation `summary`.",
+        "Every payload property needs its own @ApiProperty: the event interfaces were turned into classes, and the Book, Author, Adopter and Vaccination models are annotated too (nested classes become a $ref only when the nested class is annotated as well). The @Payload('isbn') / @Payload('stock') handler of book_restocked/book_sold_out needed a new BookStockChangedEvent class.",
+        "Not expressible: `required`. There is no per-property flag, and @ApiMessage({ payload }) replaces the payload built by @ApiProperty (class decorators run after property decorators), so every property is optional: all the remaining differences.",
+        "Type reflection is shallow: Dates become `format: date` (overridden with `format: date-time`), enums need `type: 'string', enum: Object.values(...)`, ObjectIds need `type: 'string'`, arrays get empty `items`, and passing any option to @ApiProperty drops a reflected $ref. Constraints, formats and descriptions (copied from the JSDoc) are given inline.",
+        "Arrays of classes: the typings declare `$ref` as a Function, but the YAML serializer crashes on functions; a string `$ref: '#/components/schemas/Author'` works at runtime only with a type cast (`as never`).",
+        "Nested classes (Adopter, Author, Vaccination) also show up as unused components.messages."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts",
+            "wallMs": {
+              "median": 407.610458,
+              "mean": 417.4026666000001,
+              "min": 395.284417,
+              "max": 467.445625,
+              "stddev": 25.681801694403717
+            },
+            "cpuMs": {
+              "median": 470,
+              "mean": 468,
+              "min": 460,
+              "max": 480,
+              "stddev": 7.483314773547883
+            },
+            "maxRssMb": {
+              "median": 226.1875,
+              "mean": 226.15,
+              "min": 225.4375,
+              "max": 226.6875,
+              "stddev": 0.40379063263032744
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 407.610458,
+            "mean": 417.4026666000001,
+            "min": 395.284417,
+            "max": 467.445625,
+            "stddev": 25.681801694403717
+          },
+          "cpuMs": {
+            "median": 470,
+            "mean": 468,
+            "min": 460,
+            "max": 480,
+            "stddev": 7.483314773547883
+          },
+          "maxRssMb": {
+            "median": 226.1875,
+            "mean": 226.15,
+            "min": 225.4375,
+            "max": 226.6875,
+            "stddev": 0.40379063263032744
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 7,
+            "matched": 7,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "payloads": {
+            "expected": 110,
+            "matched": 77,
+            "missing": 0,
+            "mismatch": 33,
+            "extra": 0,
+            "differences": 33
+          },
+          "constraints": {
+            "expected": 6,
+            "matched": 6,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 14,
+            "matched": 14,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 117,
+          "matched": 84,
+          "missing": 0,
+          "mismatch": 33,
+          "extra": 0,
+          "differences": 33
+        },
+        "total": {
+          "expected": 137,
+          "matched": 104,
+          "missing": 0,
+          "mismatch": 33,
+          "extra": 0,
+          "differences": 33
+        }
+      },
+      "ease": {
+        "filesTouched": 14,
+        "filesAdded": 2,
+        "linesAdded": 99,
+        "linesRemoved": 4,
+        "linesChanged": 103,
+        "sourceFilesTouched": 13,
+        "sourceLinesChanged": 102,
+        "configLinesChanged": 1,
+        "sourceFilesTotal": 83,
+        "dependenciesAdded": [
+          "asyncapi-decorators"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 0.84765625,
+        "productionFootprintMb": 0.84765625,
+        "changes": [
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 1,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/models/adopter.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 0
+          },
+          {
+            "file": "src/animals/models/vaccination.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/author.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 17,
+            "removed": 0
+          },
+          {
+            "file": "src/events/adoption-completed.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-decided.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 7,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-requested.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 8,
+            "removed": 1
+          },
+          {
+            "file": "src/events/book-stock-changed.event.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 11,
+            "removed": 0
+          },
+          {
+            "file": "src/events/events.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 15,
+            "removed": 0
+          },
+          {
+            "file": "src/events/vaccination-recorded.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 5,
+            "removed": 1
+          },
+          {
+            "file": "src/generate-asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 13,
+            "removed": 0
+          }
+        ]
+      }
+    },
     {
       "name": "nest-openapi-gen",
       "tool": "nest-openapi-gen",
@@ -219,7 +459,7 @@
         "sourceFilesTouched": 6,
         "sourceLinesChanged": 35,
         "configLinesChanged": 57,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "nest-openapi-gen",
           "patch-package"
@@ -505,7 +745,7 @@
         "sourceFilesTouched": 11,
         "sourceLinesChanged": 258,
         "configLinesChanged": 33,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestia/core",
           "@nestia/sdk",
@@ -513,7 +753,7 @@
           "typia"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 61.13671875,
+        "installFootprintMb": 61.5078125,
         "productionFootprintMb": 70.54296875,
         "changes": [
           {
@@ -620,6 +860,259 @@
             "kind": "config",
             "added": 6,
             "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nestjs-asyncapi",
+      "spec": "asyncapi",
+      "tool": "nestjs-asyncapi",
+      "versions": {
+        "nestjs-asyncapi": "2.0.1",
+        "@nestjs/swagger": "11.4.2"
+      },
+      "approach": "runtime",
+      "notes": [
+        "nestjs-asyncapi 2.0.1 (latest, AsyncAPI 3.0.0) with @nestjs/swagger 11.4.2: from 11.4.3 on, @nestjs/swagger has an `exports` map and nestjs-asyncapi's deep imports (`@nestjs/swagger/dist/...`) crash at load time (ERR_PACKAGE_PATH_NOT_EXPORTED); 12.x requires NestJS 12. @nestjs/websockets is not needed.",
+        "Both packages are production dependencies (the decorators run with the app), and importing nestjs-asyncapi eagerly loads @asyncapi/generator (HTML rendering, Puppeteer, Spectral…): the production dependency tree grows from ~120 to ~990 packages and node_modules from ~270 MB to ~650 MB, even though only createDocument() is used.",
+        "That generator crashed at import (`SyntaxError: Unexpected token ':'` in Ajv) because the app's pinned `ajv` 8.17.1 devDependency was hoisted for ajv-errors while Spectral needs ajv ^8.18: the devDependency was bumped to ajv 8.20.0.",
+        "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and calls AsyncApiModule.createDocument(); setup() (HTML/JSON/YAML routes) is not used.",
+        "@EventPattern and ClientProxy.emit are not read: each handler gets an @AsyncApiReceive and each emitting service method an @AsyncApiSend, repeating the topic and the payload class; the services also need the class decorator, exported as @AsyncApi() (the README calls it @AsyncApiService(), which does not exist in 2.0.1). The multi-topic handler takes one option per topic in a single @AsyncApiReceive.",
+        "Payloads must be classes introspected by @nestjs/swagger: the 4 event interfaces became classes, read through the @nestjs/swagger CLI plugin (dtoFileNameSuffix `.event.ts` / `.model.ts`, introspectComments, class-validator shim), so models and property JSDoc need no @ApiProperty; requires `nest build`. The `@Payload('isbn')` / `@Payload('stock')` handler has no payload type: a BookStockChangedEvent class was added. Book._id (mongodb ObjectId) needs @ApiProperty({ type: String }), otherwise the plugin emits require(\"bson/bson\"), which crashes at runtime.",
+        "The handlers' JSDoc is not read: it is copied into the decorators' `summary` option. Not fixed: the class-validator shim ignores @IsInt (Author.birthYear is a number, not an integer)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "build",
+            "command": "node node_modules/@nestjs/cli/bin/nest.js build",
+            "wallMs": {
+              "median": 1936.13725,
+              "mean": 1925.3263498000001,
+              "min": 1892.551125,
+              "max": 1945.545916,
+              "stddev": 20.481836709206043
+            },
+            "cpuMs": {
+              "median": 2639.9999999999995,
+              "mean": 2658,
+              "min": 2610.0000000000005,
+              "max": 2740,
+              "stddev": 45.343136195018474
+            },
+            "maxRssMb": {
+              "median": 517.21875,
+              "mean": 517.0125,
+              "min": 515.46875,
+              "max": 518.21875,
+              "stddev": 0.9922256390307599
+            }
+          },
+          {
+            "name": "generate",
+            "command": "node dist/generate-asyncapi.js",
+            "wallMs": {
+              "median": 862.8955,
+              "mean": 864.3583664,
+              "min": 845.619916,
+              "max": 885.147833,
+              "stddev": 13.03287090576815
+            },
+            "cpuMs": {
+              "median": 730,
+              "mean": 734,
+              "min": 720,
+              "max": 750,
+              "stddev": 10.198039027185569
+            },
+            "maxRssMb": {
+              "median": 191.640625,
+              "mean": 191.553125,
+              "min": 190.8125,
+              "max": 192.171875,
+              "stddev": 0.4785027102849053
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2799.03275,
+            "mean": 2789.6847162,
+            "min": 2750.97475,
+            "max": 2830.693749,
+            "stddev": 31.241613582584613
+          },
+          "cpuMs": {
+            "median": 3379.9999999999995,
+            "mean": 3392,
+            "min": 3330.0000000000005,
+            "max": 3490,
+            "stddev": 54.184868736576185
+          },
+          "maxRssMb": {
+            "median": 517.21875,
+            "mean": 517.0125,
+            "min": 515.46875,
+            "max": 518.21875,
+            "stddev": 0.9922256390307599
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 7,
+            "matched": 7,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "payloads": {
+            "expected": 110,
+            "matched": 110,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 6,
+            "matched": 5,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          },
+          "docs": {
+            "expected": 14,
+            "matched": 14,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 117,
+          "matched": 117,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 137,
+          "matched": 136,
+          "missing": 1,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 12,
+        "filesAdded": 2,
+        "linesAdded": 69,
+        "linesRemoved": 6,
+        "linesChanged": 75,
+        "sourceFilesTouched": 10,
+        "sourceLinesChanged": 68,
+        "configLinesChanged": 7,
+        "sourceFilesTotal": 83,
+        "dependenciesAdded": [
+          "@nestjs/swagger",
+          "nestjs-asyncapi"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 387.6640625,
+        "productionFootprintMb": 447.328125,
+        "changes": [
+          {
+            "file": "nest-cli.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 2,
+            "removed": 1
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 3,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/events/adoption-completed.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-decided.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-requested.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/book-stock-changed.event.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 7,
+            "removed": 0
+          },
+          {
+            "file": "src/events/events.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 24,
+            "removed": 0
+          },
+          {
+            "file": "src/events/vaccination-recorded.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/generate-asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 20,
+            "removed": 0
           }
         ]
       }
@@ -839,7 +1332,7 @@
         "sourceFilesTouched": 24,
         "sourceLinesChanged": 157,
         "configLinesChanged": 13,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger"
         ],
@@ -1256,7 +1749,7 @@
         "sourceFilesTouched": 38,
         "sourceLinesChanged": 672,
         "configLinesChanged": 17,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger",
           "nestjs-zod",
@@ -1721,12 +2214,12 @@
         "sourceFilesTouched": 5,
         "sourceLinesChanged": 14,
         "configLinesChanged": 19,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@algoan/nestoa"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 7.83984375,
+        "installFootprintMb": 7.53125,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -1789,9 +2282,158 @@
       }
     },
     {
+      "name": "nestoa-asyncapi",
+      "spec": "asyncapi",
+      "tool": "nestoa (unreleased AsyncAPI)",
+      "version": "pr-76@f79b1a0",
+      "versions": {},
+      "approach": "static",
+      "notes": [
+        "Unreleased: built from the head of algoan/nestoa#76 (AsyncAPI generation, not merged yet) by bench/scripts/build-nestoa-main.sh (NESTOA_REF=f79b1a0 NESTOA_BIN=nestoa-asyncapi). The same run also writes the OpenAPI document (openapi.json, not compared here).",
+        "Configuration only: `\"asyncapi\": { \"output\": \"asyncapi.yaml\" }` in nestoa.config.json. The @EventPattern handlers (string literal, enum member, array of enum members, @Payload() and @Payload('key') parameters) and the ClientProxy.emit calls of the services (field typed ClientProxy, enum member channel, payload inferred from the typed local variable) are found without any annotation; the handlers' JSDoc gives the operation summaries.",
+        "Mongoose's HydratedDocument is not unwrapped: the emit of the created BookDocument needs the payload type as a type argument, emit<void, Book>(…) (1 line), like the return types added to 3 handlers for OpenAPI. Without it, the book_published payload is x-unresolved (43 core differences)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "../../.tools/bin/nestoa-asyncapi",
+            "wallMs": {
+              "median": 17.088334,
+              "mean": 17.334091800000003,
+              "min": 16.458708,
+              "max": 18.528084,
+              "stddev": 0.8249183511874127
+            },
+            "cpuMs": {
+              "median": 0,
+              "mean": 0,
+              "min": 0,
+              "max": 0,
+              "stddev": 0
+            },
+            "maxRssMb": {
+              "median": 8.46875,
+              "mean": 8.453125,
+              "min": 8.296875,
+              "max": 8.53125,
+              "stddev": 0.08615030470056388
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 17.088334,
+            "mean": 17.334091800000003,
+            "min": 16.458708,
+            "max": 18.528084,
+            "stddev": 0.8249183511874127
+          },
+          "cpuMs": {
+            "median": 0,
+            "mean": 0,
+            "min": 0,
+            "max": 0,
+            "stddev": 0
+          },
+          "maxRssMb": {
+            "median": 8.46875,
+            "mean": 8.453125,
+            "min": 8.296875,
+            "max": 8.53125,
+            "stddev": 0.08615030470056388
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 7,
+            "matched": 7,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "payloads": {
+            "expected": 110,
+            "matched": 110,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 6,
+            "matched": 6,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "docs": {
+            "expected": 14,
+            "matched": 14,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 117,
+          "matched": 117,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 137,
+          "matched": 137,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        }
+      },
+      "ease": {
+        "filesTouched": 2,
+        "filesAdded": 1,
+        "linesAdded": 5,
+        "linesRemoved": 1,
+        "linesChanged": 6,
+        "sourceFilesTouched": 1,
+        "sourceLinesChanged": 2,
+        "configLinesChanged": 4,
+        "sourceFilesTotal": 83,
+        "dependenciesAdded": [],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 0,
+        "productionFootprintMb": 0,
+        "changes": [
+          {
+            "file": "nestoa.config.json",
+            "status": "added",
+            "kind": "config",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          }
+        ]
+      }
+    },
+    {
       "name": "nestoa-main",
       "tool": "nestoa (unreleased main)",
-      "version": "main@2c57103",
+      "version": "main@00c0442",
       "versions": {},
       "approach": "static",
       "notes": [
@@ -1957,10 +2599,10 @@
         "sourceFilesTouched": 5,
         "sourceLinesChanged": 14,
         "configLinesChanged": 16,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
-        "installFootprintMb": 175.66015625,
+        "installFootprintMb": 0,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -2004,6 +2646,259 @@
             "kind": "source",
             "added": 2,
             "removed": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "nmime-nestjs-asyncapi",
+      "spec": "asyncapi",
+      "tool": "@nmime/nestjs-asyncapi",
+      "versions": {
+        "@nmime/nestjs-asyncapi": "2.0.9",
+        "@nestjs/swagger": "11.4.2"
+      },
+      "approach": "runtime",
+      "notes": [
+        "Fork of flamewow's nestjs-asyncapi, AsyncAPI 3.0.0 by default. In 3.0 mode @AsyncApiPub becomes a send operation and @AsyncApiSub a receive operation.",
+        "Payload schemas come from @nestjs/swagger internals (deep imports of @nestjs/swagger/dist/...): 11.4.3+ declares package exports and crashes with ERR_PACKAGE_PATH_NOT_EXPORTED, so @nestjs/swagger is pinned to 11.4.2, the last version without exports. @nestjs/websockets is an optional peer dependency (not needed).",
+        "Nothing is inferred from @EventPattern nor ClientProxy.emit: every channel, action and payload class is repeated in an @AsyncApiSub decorator on the handler or an @AsyncApiPub decorator on the emitting service method (the service class also needs @AsyncApi() to be scanned). The handlers' JSDoc is repeated as the decorator summary.",
+        "Payloads must be classes: the event interfaces were turned into classes, and the book_restocked / book_sold_out handler, which reads two @Payload('key') params, needed a new BookStockChangedEvent class. One @AsyncApiSub entry per topic of the array pattern.",
+        "The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require(\"bson/bson\"), which crashes at runtime: @ApiProperty({ type: String }) needed.",
+        "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.",
+        "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number)."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "build",
+            "command": "node node_modules/@nestjs/cli/bin/nest.js build",
+            "wallMs": {
+              "median": 1912.115583,
+              "mean": 1917.7510832,
+              "min": 1903.10875,
+              "max": 1937.16075,
+              "stddev": 13.037984546648037
+            },
+            "cpuMs": {
+              "median": 2650,
+              "mean": 2646,
+              "min": 2610.0000000000005,
+              "max": 2670,
+              "stddev": 20.59126028197384
+            },
+            "maxRssMb": {
+              "median": 517.40625,
+              "mean": 516.98125,
+              "min": 516.1875,
+              "max": 517.46875,
+              "stddev": 0.5691790963747703
+            }
+          },
+          {
+            "name": "generate",
+            "command": "node dist/generate-asyncapi.js",
+            "wallMs": {
+              "median": 368.409541,
+              "mean": 376.7855998,
+              "min": 362.606416,
+              "max": 414.858417,
+              "stddev": 19.227057335250116
+            },
+            "cpuMs": {
+              "median": 360,
+              "mean": 370,
+              "min": 360,
+              "max": 400,
+              "stddev": 15.491933384829668
+            },
+            "maxRssMb": {
+              "median": 137.171875,
+              "mean": 136.390625,
+              "min": 133.53125,
+              "max": 137.28125,
+              "stddev": 1.4428907074861907
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 2295.953541,
+            "mean": 2294.536683,
+            "min": 2265.715166,
+            "max": 2322.397542,
+            "stddev": 19.94485565864401
+          },
+          "cpuMs": {
+            "median": 3010.0000000000005,
+            "mean": 3016,
+            "min": 3010,
+            "max": 3030,
+            "stddev": 7.999999999999932
+          },
+          "maxRssMb": {
+            "median": 517.40625,
+            "mean": 516.98125,
+            "min": 516.1875,
+            "max": 517.46875,
+            "stddev": 0.5691790963747703
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 7,
+            "matched": 7,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "payloads": {
+            "expected": 110,
+            "matched": 110,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          },
+          "constraints": {
+            "expected": 6,
+            "matched": 5,
+            "missing": 1,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 1
+          },
+          "docs": {
+            "expected": 14,
+            "matched": 14,
+            "missing": 0,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 0
+          }
+        },
+        "core": {
+          "expected": 117,
+          "matched": 117,
+          "missing": 0,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 0
+        },
+        "total": {
+          "expected": 137,
+          "matched": 136,
+          "missing": 1,
+          "mismatch": 0,
+          "extra": 0,
+          "differences": 1
+        }
+      },
+      "ease": {
+        "filesTouched": 12,
+        "filesAdded": 2,
+        "linesAdded": 69,
+        "linesRemoved": 5,
+        "linesChanged": 74,
+        "sourceFilesTouched": 10,
+        "sourceLinesChanged": 64,
+        "configLinesChanged": 10,
+        "sourceFilesTotal": 83,
+        "dependenciesAdded": [
+          "@nestjs/swagger",
+          "@nmime/nestjs-asyncapi"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 430.03515625,
+        "productionFootprintMb": 486.28125,
+        "changes": [
+          {
+            "file": "nest-cli.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 7,
+            "removed": 1
+          },
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/adoptions/adoptions.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 4,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.service.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 3,
+            "removed": 0
+          },
+          {
+            "file": "src/books/models/book.model.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 2,
+            "removed": 0
+          },
+          {
+            "file": "src/events/adoption-completed.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-decided.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/adoption-requested.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/events/book-stock-changed.event.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 7,
+            "removed": 0
+          },
+          {
+            "file": "src/events/events.controller.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 19,
+            "removed": 0
+          },
+          {
+            "file": "src/events/vaccination-recorded.event.ts",
+            "status": "modified",
+            "kind": "source",
+            "added": 1,
+            "removed": 1
+          },
+          {
+            "file": "src/generate-asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 21,
+            "removed": 0
           }
         ]
       }
@@ -2188,7 +3083,7 @@
         "sourceFilesTouched": 41,
         "sourceLinesChanged": 1429,
         "configLinesChanged": 76,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "swagger-jsdoc"
         ],
@@ -2684,7 +3579,7 @@
         "sourceFilesTouched": 16,
         "sourceLinesChanged": 489,
         "configLinesChanged": 24,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "ts-oas"
         ],
@@ -3003,7 +3898,7 @@
         "sourceFilesTouched": 22,
         "sourceLinesChanged": 284,
         "configLinesChanged": 16,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "tsoa"
         ],
@@ -3382,7 +4277,7 @@
         "sourceFilesTouched": 16,
         "sourceLinesChanged": 142,
         "configLinesChanged": 11,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger",
           "tspec"
@@ -3720,7 +4615,7 @@
         "sourceFilesTouched": 7,
         "sourceLinesChanged": 241,
         "configLinesChanged": 42,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "typoa"
         ],
@@ -3976,12 +4871,14 @@
         "sourceFilesTouched": 7,
         "sourceLinesChanged": 570,
         "configLinesChanged": 4,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "zod",
           "zod-openapi"
         ],
         "dependenciesRemoved": [],
+        "installFootprintMb": 8.28515625,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "package.json",
@@ -4037,6 +4934,186 @@
             "status": "added",
             "kind": "source",
             "added": 98,
+            "removed": 0
+          }
+        ]
+      }
+    },
+    {
+      "name": "zod-sockets",
+      "spec": "asyncapi",
+      "tool": "zod-sockets",
+      "versions": {
+        "zod-sockets": "7.0.1",
+        "zod": "4.6.7",
+        "socket.io": "4.8.4"
+      },
+      "approach": "static",
+      "notes": [
+        "zod-sockets 7.0.1 (latest) with zod 4.6.7 and its peer dependency socket.io 4.8.4, Node 24, all dev dependencies: nothing is attached to a server, the declarations only produce the document. The definitions are TypeScript run by ts-node in transpile-only mode: no build step. The documentation entry point is imported as `zod-sockets/dist/documentation` (also exported by the package), because the app's `moduleResolution` cannot resolve the `zod-sockets/documentation` subpath export and `nest build` would fail.",
+        "A Socket.IO framework, not a Pub/Sub one, and framework-agnostic: it reads neither the @EventPattern handlers nor the ClientProxy.emit() calls. The topics are re-declared beside the modules: the published ones as the config's `emission` (`adoptions.asyncapi.ts`, `books.asyncapi.ts`), the subscribed ones as actions with a no-op handler (`events/events.asyncapi.ts`, one per topic, so `book_restocked` and `book_sold_out` are two actions sharing a schema). Payload interfaces and models are re-declared as Zod schemas, with the JSDoc copied into `.describe()`; nothing ties them to the TypeScript interfaces.",
+        "Each topic is a Socket.IO event in the root namespace, the mapping NestJS itself uses for Socket.IO (`@SubscribeMessage(event)` in its gateways). The document lays Socket.IO out as one channel per namespace (address `/`, with WebSocket bindings) and one operation per event on that channel: the topic only appears as the operation and message title, so no operation lands on its topic's channel and nothing matches. One namespace per topic would give one channel per topic, but with the address `/<topic>` (still not the topic) and one Socket.IO connection per topic, which no team would design; it scores the same.",
+        "Socket.IO events carry a list of arguments, so every payload is a tuple: an array with `prefixItems` holding the JSON object, `minItems`/`maxItems: 1` and `items: { not: {} }`, instead of the object itself.",
+        "Operation summaries and descriptions are generated (`Incoming event <name>`, `The message consumed by the application within the / namespace`) and cannot be set: the handlers' JSDoc cannot be documented. Zod's own additions cannot be overridden either (no hook): `additionalProperties: false` on every object, the regex `pattern` of `z.email()` and `z.iso.datetime()`.",
+        "Dates and ObjectIds are declared in their JSON form (`z.iso.datetime()`, `z.string()`); the Book payload of `book_published` is the model's `toJSON()`."
+      ],
+      "perf": {
+        "runs": 5,
+        "steps": [
+          {
+            "name": "generate",
+            "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts",
+            "wallMs": {
+              "median": 238.501292,
+              "mean": 237.9013168,
+              "min": 233.998,
+              "max": 240.501292,
+              "stddev": 2.1703540264190515
+            },
+            "cpuMs": {
+              "median": 260,
+              "mean": 260,
+              "min": 260,
+              "max": 260,
+              "stddev": 0
+            },
+            "maxRssMb": {
+              "median": 157.265625,
+              "mean": 157.165625,
+              "min": 156.796875,
+              "max": 157.40625,
+              "stddev": 0.2272027591161692
+            }
+          }
+        ],
+        "total": {
+          "wallMs": {
+            "median": 238.501292,
+            "mean": 237.9013168,
+            "min": 233.998,
+            "max": 240.501292,
+            "stddev": 2.1703540264190515
+          },
+          "cpuMs": {
+            "median": 260,
+            "mean": 260,
+            "min": 260,
+            "max": 260,
+            "stddev": 0
+          },
+          "maxRssMb": {
+            "median": 157.265625,
+            "mean": 157.165625,
+            "min": 156.796875,
+            "max": 157.40625,
+            "stddev": 0.2272027591161692
+          }
+        }
+      },
+      "correctness": {
+        "categories": {
+          "operations": {
+            "expected": 7,
+            "matched": 0,
+            "missing": 7,
+            "mismatch": 0,
+            "extra": 7,
+            "differences": 14
+          },
+          "payloads": {
+            "expected": 110,
+            "matched": 0,
+            "missing": 110,
+            "mismatch": 0,
+            "extra": 7,
+            "differences": 117
+          },
+          "constraints": {
+            "expected": 6,
+            "matched": 0,
+            "missing": 6,
+            "mismatch": 0,
+            "extra": 14,
+            "differences": 20
+          },
+          "docs": {
+            "expected": 14,
+            "matched": 0,
+            "missing": 14,
+            "mismatch": 0,
+            "extra": 0,
+            "differences": 14
+          }
+        },
+        "core": {
+          "expected": 117,
+          "matched": 0,
+          "missing": 117,
+          "mismatch": 0,
+          "extra": 14,
+          "differences": 131
+        },
+        "total": {
+          "expected": 137,
+          "matched": 0,
+          "missing": 137,
+          "mismatch": 0,
+          "extra": 28,
+          "differences": 165
+        }
+      },
+      "ease": {
+        "filesTouched": 5,
+        "filesAdded": 4,
+        "linesAdded": 116,
+        "linesRemoved": 1,
+        "linesChanged": 117,
+        "sourceFilesTouched": 4,
+        "sourceLinesChanged": 112,
+        "configLinesChanged": 5,
+        "sourceFilesTotal": 83,
+        "dependenciesAdded": [
+          "socket.io",
+          "zod",
+          "zod-sockets"
+        ],
+        "dependenciesRemoved": [],
+        "installFootprintMb": 14.48046875,
+        "productionFootprintMb": 0,
+        "changes": [
+          {
+            "file": "package.json",
+            "status": "modified",
+            "kind": "config",
+            "added": 4,
+            "removed": 1
+          },
+          {
+            "file": "src/adoptions/adoptions.asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 39,
+            "removed": 0
+          },
+          {
+            "file": "src/books/books.asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 30,
+            "removed": 0
+          },
+          {
+            "file": "src/events/events.asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 38,
+            "removed": 0
+          },
+          {
+            "file": "src/generate-asyncapi.ts",
+            "status": "added",
+            "kind": "source",
+            "added": 5,
             "removed": 0
           }
         ]
@@ -4219,7 +5296,7 @@
         "sourceFilesTouched": 7,
         "sourceLinesChanged": 606,
         "configLinesChanged": 4,
-        "sourceFilesTotal": 75,
+        "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@asteasolutions/zod-to-openapi",
           "zod"

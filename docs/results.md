@@ -65,6 +65,28 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
   Mongo `ObjectId`s into objects; not a realistic option.
 - **nestia** latest (12–14) requires TypeScript 7; 11.3.4 was used, with ts-patch.
 
+## AsyncAPI: what the numbers say
+
+- **nestoa reads the events from the code**: the `@EventPattern` handlers (literal, enum member, array of
+  topics, `@Payload('key')` parameters) and the `ClientProxy.emit` calls of the services, with their payload
+  inferred from the declared types, and the handlers' JSDoc as summaries. One configuration key and one type
+  argument (`emit<void, Book>`, as Mongoose's `HydratedDocument` is not unwrapped) give 0 differences in 6 lines,
+  in 17 ms and 8 MB. It is not released yet (pull request #76).
+- **nestjs-asyncapi and its fork @nmime/nestjs-asyncapi** reach 0 core differences, but every topic, action and
+  payload class is written a second time in a decorator beside `@EventPattern` or on the emitting service method
+  (74–75 lines), the event interfaces become classes for `@nestjs/swagger`'s plugin, and the handlers' JSDoc is
+  copied into `summary` options. Nothing checks that a decorator matches the handler or the `emit` call it
+  annotates. They boot the app after a `nest build` (2.3–2.8 s, 517 MB), pin `@nestjs/swagger` to 11.4.2 (their
+  deep imports break with its later `exports` map), and ship `@asyncapi/generator` with the service: +450–490 MB
+  of production dependencies. nestjs-asyncapi also needed `ajv` 8.20 instead of the app's 8.17.
+- **asyncapi-decorators** (unmaintained since 2022, AsyncAPI 2.0) needs an `@ApiProperty` on every payload property,
+  models included, and cannot mark a property as required: its 33 differences are all `required`.
+- **zod-sockets** documents Socket.IO, not Pub/Sub topics: every event is an operation on the namespace channel `/`,
+  each payload is a tuple of arguments, and summaries are generated. Nothing matches the expected document,
+  whatever the mapping (a namespace per topic gives `/<topic>` addresses and the same score).
+- `underfisk/nestjs-asyncapi` could not be benchmarked (see [tools](tools.md#skipped-tools)), and the DIY pattern of
+  an AsyncAPI document hand-written around `@nestjs/swagger` schemas is what nestjs-asyncapi packages.
+
 ## Reading the numbers
 
 Correctness is a **ceiling**: each variant was iterated against the comparator until the tool could not express

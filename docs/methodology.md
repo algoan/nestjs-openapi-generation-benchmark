@@ -20,9 +20,9 @@ with the private `@algoan/*` libraries replaced by small local equivalents in `a
 | Handlers without a return type (inferred from the service), interface and union (`Cat \| Dog`) return types | controllers |
 | `setGlobalPrefix('v1')` outside of `main.ts` | `src/setup.ts` |
 | JSDoc on handlers, DTO and model properties, `@internal` fields stripped by a `toJSON` transform | everywhere |
-| A Pub/Sub `@EventPattern` controller (must not appear in the document) | `events/` |
+| Pub/Sub events: `@EventPattern` handlers (string, enum member, array of topics, `@Payload('key')`), `ClientProxy.emit` in services through a local Pub/Sub client; none of them may appear in the OpenAPI document | `events/`, `core/pubsub`, services |
 
-29 HTTP operations, 75 source files. `cd app && npm start` runs it (needs MongoDB on `MONGODB_URI`).
+29 HTTP operations, 7 Pub/Sub operations, 83 source files. `cd app && npm start` runs it (needs MongoDB on `MONGODB_URI`).
 
 ## The expected document
 
@@ -42,6 +42,17 @@ in-memory MongoDB and checks that
   (missing required field, wrong type, out-of-range value, too long string, invalid enum, bad email…) and
   must get a `400`;
 - every documented status code (`400`, `401`, `403`, `404`, `409`, success) is observed at least once.
+
+## The expected AsyncAPI document
+
+[`expected/asyncapi.yaml`](../expected/asyncapi.yaml) (AsyncAPI 3.0) describes the Pub/Sub events the same way:
+one `receive` operation per topic an `@EventPattern` handler subscribes to (4, the array pattern giving two),
+one `send` operation per topic the services publish to with `ClientProxy.emit` (3), and the JSON payload of
+each message (ObjectIds and Dates as strings, a published Mongoose document as its `toJSON()` output).
+[`app/test/asyncapi.e2e-spec.ts`](../app/test/asyncapi.e2e-spec.ts) checks that the documented `receive` topics are
+exactly the ones the app's Pub/Sub server dispatches, and that every event the app publishes while its HTTP
+routes are called is documented on its topic, its payload matching the document **with no undocumented
+property**, every documented `send` topic being observed.
 
 ## Ease of use
 
@@ -81,6 +92,19 @@ Facts are grouped in categories, so a tool is not judged on what it was never me
 The [oasdiff](https://github.com/oasdiff/oasdiff) changelog from the expected document to the generated
 one is reported as a second opinion (breaking changes = what would break a client written against the
 expected document).
+
+For AsyncAPI, both documents (2.x or 3.x) are read as the operations of the application: an action
+(`send` or `receive`; 2.x `publish` is `receive` and `subscribe` is `send`) on a channel address, with the
+payload of its messages, flattened into facts the same way. Channel, operation and message ids are ignored.
+
+| Category | Facts |
+| --- | --- |
+| `operations` | the operation exists (action + channel address) |
+| `payloads` | the message payload: types, properties, `required`, enums, `date-time` |
+| `constraints` | same as for OpenAPI |
+| `docs` | operation summaries (the handlers' JSDoc) and property descriptions, recall only |
+
+**Core** = operations + payloads: what a generated consumer or producer relies on.
 
 ## Speed and memory
 

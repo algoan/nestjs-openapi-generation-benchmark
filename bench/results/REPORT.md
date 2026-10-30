@@ -1,10 +1,12 @@
-# NestJS OpenAPI generators benchmark
+# NestJS OpenAPI and AsyncAPI generators benchmark
 
-Generated on 2026-11-05T16:29:18.723Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
+Generated on 2026-10-30T16:42:35.754Z — 10 × Apple M4, darwin/arm64, Node v24.21.0.
 
-Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodology.md for the methodology.
+Lower is better everywhere; `(#n)` is the rank among the tools of a specification. See docs/methodology.md for the methodology.
 
-## Summary
+## OpenAPI
+
+### Summary
 
 | Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -13,7 +15,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodo
 | **@nestjs/swagger** | 11.4.7 | runtime | 170 (#5) | 0 (#1) | 22 (#8) | 2.74 s (#11) | 509 MB (#10) |
 | **nestjs-zod** | 5.5.0 | runtime | 689 (#12) | 51 (#11) | 64 (#9) | 2.38 s (#9) | 538 MB (#11) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 48 ms (#2) | 47 MB (#2) |
-| **nestoa (unreleased main)** | main@2c57103 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
+| **nestoa (unreleased main)** | main@00c0442 | static | 30 (#1) | 0 (#3) | 0 (#2) | 19 ms (#1) | 8 MB (#1) |
 | **swagger-jsdoc** | 6.3.0 | static | 1505 (#13) | 0 (#4) | 0 (#3) | 94 ms (#3) | 78 MB (#3) |
 | **ts-oas** | 0.6.1 | static | 513 (#9) | 3 (#8) | 4 (#7) | 816 ms (#7) | 430 MB (#8) |
 | **tsoa** | 6.6.0 | static | 300 (#8) | 0 (#5) | 0 (#4) | 792 ms (#6) | 415 MB (#6) |
@@ -27,28 +29,28 @@ Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodo
 - **All differences**: core + error responses, validation constraints, security and documentation.
 - **Time / Peak RSS**: the whole pipeline from the sources to the document (build step included when the tool needs one).
 
-## 1. Ease of use
+### 1. Ease of use
 
 | Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ | Production Δ |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nest-openapi-gen | 9 | 2 | 6 / 75 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB | 0 MB |
-| @nestia/sdk | 15 | 3 | 11 / 75 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +61 MB | +71 MB |
-| @nestjs/swagger | 26 | 2 | 24 / 75 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
-| nestjs-zod | 40 | 6 | 38 / 75 | 672 | 17 | +379 −310 | `@nestjs/swagger`, `nestjs-zod`, `zod` | +26 MB | +31 MB |
-| nestoa | 8 | 2 | 5 / 75 | 14 | 19 | +30 −3 | `@algoan/nestoa` | +8 MB | 0 MB |
-| nestoa (unreleased main) | 6 | 1 | 5 / 75 | 14 | 16 | +27 −3 | – | +176 MB | 0 MB |
-| swagger-jsdoc | 43 | 1 | 41 / 75 | 1429 | 76 | +1505 −0 | `swagger-jsdoc` | +4 MB | 0 MB |
-| ts-oas | 18 | 7 | 16 / 75 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
-| tsoa | 24 | 2 | 22 / 75 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
-| tspec | 18 | 1 | 16 / 75 | 142 | 11 | +148 −5 | `@nestjs/swagger`, `tspec` | +61 MB | +22 MB |
-| typoa | 9 | 1 | 7 / 75 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
-| zod-openapi | 8 | 7 | 7 / 75 | 570 | 4 | +573 −1 | `zod`, `zod-openapi` | – | – |
-| @asteasolutions/zod-to-openapi | 8 | 7 | 7 / 75 | 606 | 4 | +609 −1 | `@asteasolutions/zod-to-openapi`, `zod` | +9 MB | 0 MB |
+| nest-openapi-gen | 9 | 2 | 6 / 83 | 35 | 57 | +81 −11 | `nest-openapi-gen`, `patch-package` | +14 MB | 0 MB |
+| @nestia/sdk | 15 | 3 | 11 / 83 | 258 | 33 | +221 −70 | `@nestia/core`, `@nestia/sdk`, `ts-patch`, `typia` | +62 MB | +71 MB |
+| @nestjs/swagger | 26 | 2 | 24 / 83 | 157 | 13 | +154 −16 | `@nestjs/swagger` | +17 MB | +22 MB |
+| nestjs-zod | 40 | 6 | 38 / 83 | 672 | 17 | +379 −310 | `@nestjs/swagger`, `nestjs-zod`, `zod` | +26 MB | +31 MB |
+| nestoa | 8 | 2 | 5 / 83 | 14 | 19 | +30 −3 | `@algoan/nestoa` | +8 MB | 0 MB |
+| nestoa (unreleased main) | 6 | 1 | 5 / 83 | 14 | 16 | +27 −3 | – | 0 MB | 0 MB |
+| swagger-jsdoc | 43 | 1 | 41 / 83 | 1429 | 76 | +1505 −0 | `swagger-jsdoc` | +4 MB | 0 MB |
+| ts-oas | 18 | 7 | 16 / 83 | 489 | 24 | +513 −0 | `ts-oas` | +1 MB | 0 MB |
+| tsoa | 24 | 2 | 22 / 83 | 284 | 16 | +259 −41 | `tsoa` | +9 MB | +44 MB |
+| tspec | 18 | 1 | 16 / 83 | 142 | 11 | +148 −5 | `@nestjs/swagger`, `tspec` | +61 MB | +22 MB |
+| typoa | 9 | 1 | 7 / 83 | 241 | 42 | +214 −69 | `typoa` | +22 MB | +29 MB |
+| zod-openapi | 8 | 7 | 7 / 83 | 570 | 4 | +573 −1 | `zod`, `zod-openapi` | +8 MB | 0 MB |
+| @asteasolutions/zod-to-openapi | 8 | 7 | 7 / 83 | 606 | 4 | +609 −1 | `@asteasolutions/zod-to-openapi`, `zod` | +9 MB | 0 MB |
 
 - **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
 - **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).
 
-## 2. Correctness
+### 2. Correctness
 
 Differences (missing + mismatching + extra facts) per category, against `expected/openapi.yaml`:
 
@@ -104,7 +106,7 @@ Recall (share of the expected facts found) per category:
 | zod-openapi | 27 | 0 | 65 | 92 |
 | @asteasolutions/zod-to-openapi | 25 | 0 | 37 | 62 |
 
-## 3. Speed and memory
+### 3. Speed and memory
 
 | Tool | Step | Wall (median) | Wall (min–max) | CPU (median) | Peak RSS (median) |
 | --- | ---: | ---: | ---: | ---: | ---: |
@@ -128,7 +130,87 @@ Recall (share of the expected facts found) per category:
 
 5 measured runs per tool, after one warm-up run.
 
+## AsyncAPI
+
+### Summary
+
+| Tool | Version | Approach | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| **asyncapi-decorators** | 1.1.3 | runtime | 103 (#4) | 33 (#4) | 33 (#4) | 408 ms (#3) | 226 MB (#3) |
+| **nestjs-asyncapi** | 2.0.1 | runtime | 75 (#3) | 0 (#1) | 1 (#2) | 2.80 s (#5) | 517 MB (#4) |
+| **nestoa (unreleased AsyncAPI)** | pr-76@f79b1a0 | static | 6 (#1) | 0 (#2) | 0 (#1) | 17 ms (#1) | 8 MB (#1) |
+| **@nmime/nestjs-asyncapi** | 2.0.9 | runtime | 74 (#2) | 0 (#3) | 1 (#3) | 2.30 s (#4) | 517 MB (#5) |
+| **zod-sockets** | 7.0.1 | static | 117 (#5) | 131 (#5) | 165 (#5) | 239 ms (#2) | 157 MB (#2) |
+
+- **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.
+- **Core differences**: operations (action and channel) and message payloads (what a generated consumer or producer relies on).
+- **All differences**: core + validation constraints and documentation.
+- **Time / Peak RSS**: the whole pipeline from the sources to the document (build step included when the tool needs one).
+
+### 1. Ease of use
+
+| Tool | Files touched | Files added | Source files touched | Source lines | Config lines | Total lines | Deps added | node_modules Δ | Production Δ |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| asyncapi-decorators | 14 | 2 | 13 / 83 | 102 | 1 | +99 −4 | `asyncapi-decorators` | +1 MB | +1 MB |
+| nestjs-asyncapi | 12 | 2 | 10 / 83 | 68 | 7 | +69 −6 | `@nestjs/swagger`, `nestjs-asyncapi` | +388 MB | +447 MB |
+| nestoa (unreleased AsyncAPI) | 2 | 1 | 1 / 83 | 2 | 4 | +5 −1 | – | 0 MB | 0 MB |
+| @nmime/nestjs-asyncapi | 12 | 2 | 10 / 83 | 64 | 10 | +69 −5 | `@nestjs/swagger`, `@nmime/nestjs-asyncapi` | +430 MB | +486 MB |
+| zod-sockets | 5 | 4 | 4 / 83 | 112 | 5 | +116 −1 | `socket.io`, `zod`, `zod-sockets` | +14 MB | 0 MB |
+
+- **node_modules Δ**: growth of the whole install (dev dependencies included), what a developer or the CI downloads.
+- **Production Δ**: growth of the production dependency tree (`npm ls --omit=dev`), what ships with the service. A tool used only to generate the document is a dev dependency and weighs nothing; runtime decorators and helpers bring their dependencies along (a dev dependency of the app, such as `typescript`, counts once it becomes a production one).
+
+### 2. Correctness
+
+Differences (missing + mismatching + extra facts) per category, against `expected/asyncapi.yaml`:
+
+| Tool | operations | payloads | constraints | docs | core | total | expected facts matched |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| asyncapi-decorators | 0 | 33 | 0 | 0 | **33** | **33** | 75.9% |
+| nestjs-asyncapi | 0 | 0 | 1 | 0 | **0** | **1** | 99.3% |
+| nestoa (unreleased AsyncAPI) | 0 | 0 | 0 | 0 | **0** | **0** | 100.0% |
+| @nmime/nestjs-asyncapi | 0 | 0 | 1 | 0 | **0** | **1** | 99.3% |
+| zod-sockets | 14 | 117 | 20 | 14 | **131** | **165** | 0.0% |
+
+Recall (share of the expected facts found) per category:
+
+| Tool | operations | payloads | constraints | docs |
+| --- | ---: | ---: | ---: | ---: |
+| asyncapi-decorators | 100.0% | 70.0% | 100.0% | 100.0% |
+| nestjs-asyncapi | 100.0% | 100.0% | 83.3% | 100.0% |
+| nestoa (unreleased AsyncAPI) | 100.0% | 100.0% | 100.0% | 100.0% |
+| @nmime/nestjs-asyncapi | 100.0% | 100.0% | 83.3% | 100.0% |
+| zod-sockets | 0.0% | 0.0% | 0.0% | 0.0% |
+
+### 3. Speed and memory
+
+| Tool | Step | Wall (median) | Wall (min–max) | CPU (median) | Peak RSS (median) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| asyncapi-decorators | `generate` | 408 ms | 395 ms – 467 ms | 470 ms | 226 MB |
+| nestjs-asyncapi | `build` | 1.94 s | 1.89 s – 1.95 s | 2.64 s | 517 MB |
+| nestjs-asyncapi | `generate` | 863 ms | 846 ms – 885 ms | 730 ms | 192 MB |
+| nestjs-asyncapi | **total** | **2.80 s** |  | 3.38 s | 517 MB |
+| nestoa (unreleased AsyncAPI) | `generate` | 17 ms | 16 ms – 19 ms | 0 ms | 8 MB |
+| @nmime/nestjs-asyncapi | `build` | 1.91 s | 1.90 s – 1.94 s | 2.65 s | 517 MB |
+| @nmime/nestjs-asyncapi | `generate` | 368 ms | 363 ms – 415 ms | 360 ms | 137 MB |
+| @nmime/nestjs-asyncapi | **total** | **2.30 s** |  | 3.01 s | 517 MB |
+| zod-sockets | `generate` | 239 ms | 234 ms – 241 ms | 260 ms | 157 MB |
+
+5 measured runs per tool, after one warm-up run.
+
 ## Notes per tool
+
+### asyncapi-decorators (`variants/asyncapi-decorators`)
+
+- asyncapi-decorators 1.1.3 (latest, Nov. 2022, unmaintained since), Node 24. Generic decorators, not NestJS-aware: it reads neither @EventPattern nor ClientProxy.emit. It produces AsyncAPI 2.0.0. The decorators run when the classes are loaded (reflection metadata), so the script imports the decorated files and writes the YAML with ts-node in transpile-only mode: no build step, no app boot. It is a production dependency, since the decorators sit on the app's models and event classes.
+- Channels are class decorators: the receive channels (`publish` in AsyncAPI 2.x) are declared on EventsController, the send channels (`subscribe`) on AdoptionsService and BooksService beside the emit calls; addresses are repeated by hand (EventName values). The handlers' JSDoc is copied into each operation `summary`.
+- Every payload property needs its own @ApiProperty: the event interfaces were turned into classes, and the Book, Author, Adopter and Vaccination models are annotated too (nested classes become a $ref only when the nested class is annotated as well). The @Payload('isbn') / @Payload('stock') handler of book_restocked/book_sold_out needed a new BookStockChangedEvent class.
+- Not expressible: `required`. There is no per-property flag, and @ApiMessage({ payload }) replaces the payload built by @ApiProperty (class decorators run after property decorators), so every property is optional: all the remaining differences.
+- Type reflection is shallow: Dates become `format: date` (overridden with `format: date-time`), enums need `type: 'string', enum: Object.values(...)`, ObjectIds need `type: 'string'`, arrays get empty `items`, and passing any option to @ApiProperty drops a reflected $ref. Constraints, formats and descriptions (copied from the JSDoc) are given inline.
+- Arrays of classes: the typings declare `$ref` as a Function, but the YAML serializer crashes on functions; a string `$ref: '#/components/schemas/Author'` works at runtime only with a type cast (`as never`).
+- Nested classes (Adopter, Author, Vaccination) also show up as unused components.messages.
+
+Differences: [`bench/results/asyncapi-decorators/differences.md`](asyncapi-decorators/differences.md)
 
 ### nest-openapi-gen (`variants/nest-openapi-gen`)
 
@@ -156,6 +238,18 @@ Differences: [`bench/results/nest-openapi-gen/differences.md`](nest-openapi-gen/
 - Operation JSDoc becomes `description`/`summary`. Path, query and body names and descriptions, union return types (Cat | Dog), ObjectId/Date serialised as string (via toJSON), mapped-types DTOs and the @EventPattern controller are handled out of the box.
 
 Differences: [`bench/results/nestia/differences.md`](nestia/differences.md)
+
+### nestjs-asyncapi (`variants/nestjs-asyncapi`)
+
+- nestjs-asyncapi 2.0.1 (latest, AsyncAPI 3.0.0) with @nestjs/swagger 11.4.2: from 11.4.3 on, @nestjs/swagger has an `exports` map and nestjs-asyncapi's deep imports (`@nestjs/swagger/dist/...`) crash at load time (ERR_PACKAGE_PATH_NOT_EXPORTED); 12.x requires NestJS 12. @nestjs/websockets is not needed.
+- Both packages are production dependencies (the decorators run with the app), and importing nestjs-asyncapi eagerly loads @asyncapi/generator (HTML rendering, Puppeteer, Spectral…): the production dependency tree grows from ~120 to ~990 packages and node_modules from ~270 MB to ~650 MB, even though only createDocument() is used.
+- That generator crashed at import (`SyntaxError: Unexpected token ':'` in Ajv) because the app's pinned `ajv` 8.17.1 devDependency was hoisted for ajv-errors while Spectral needs ajv ^8.18: the devDependency was bumped to ajv 8.20.0.
+- Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and calls AsyncApiModule.createDocument(); setup() (HTML/JSON/YAML routes) is not used.
+- @EventPattern and ClientProxy.emit are not read: each handler gets an @AsyncApiReceive and each emitting service method an @AsyncApiSend, repeating the topic and the payload class; the services also need the class decorator, exported as @AsyncApi() (the README calls it @AsyncApiService(), which does not exist in 2.0.1). The multi-topic handler takes one option per topic in a single @AsyncApiReceive.
+- Payloads must be classes introspected by @nestjs/swagger: the 4 event interfaces became classes, read through the @nestjs/swagger CLI plugin (dtoFileNameSuffix `.event.ts` / `.model.ts`, introspectComments, class-validator shim), so models and property JSDoc need no @ApiProperty; requires `nest build`. The `@Payload('isbn')` / `@Payload('stock')` handler has no payload type: a BookStockChangedEvent class was added. Book._id (mongodb ObjectId) needs @ApiProperty({ type: String }), otherwise the plugin emits require("bson/bson"), which crashes at runtime.
+- The handlers' JSDoc is not read: it is copied into the decorators' `summary` option. Not fixed: the class-validator shim ignores @IsInt (Author.birthYear is a number, not an integer).
+
+Differences: [`bench/results/nestjs-asyncapi/differences.md`](nestjs-asyncapi/differences.md)
 
 ### @nestjs/swagger (`variants/nestjs-swagger`)
 
@@ -196,6 +290,14 @@ Differences: [`bench/results/nestjs-zod/differences.md`](nestjs-zod/differences.
 
 Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 
+### nestoa (unreleased AsyncAPI) (`variants/nestoa-asyncapi`)
+
+- Unreleased: built from the head of algoan/nestoa#76 (AsyncAPI generation, not merged yet) by bench/scripts/build-nestoa-main.sh (NESTOA_REF=f79b1a0 NESTOA_BIN=nestoa-asyncapi). The same run also writes the OpenAPI document (openapi.json, not compared here).
+- Configuration only: `"asyncapi": { "output": "asyncapi.yaml" }` in nestoa.config.json. The @EventPattern handlers (string literal, enum member, array of enum members, @Payload() and @Payload('key') parameters) and the ClientProxy.emit calls of the services (field typed ClientProxy, enum member channel, payload inferred from the typed local variable) are found without any annotation; the handlers' JSDoc gives the operation summaries.
+- Mongoose's HydratedDocument is not unwrapped: the emit of the created BookDocument needs the payload type as a type argument, emit<void, Book>(…) (1 line), like the return types added to 3 handlers for OpenAPI. Without it, the book_published payload is x-unresolved (43 core differences).
+
+Differences: [`bench/results/nestoa-asyncapi/differences.md`](nestoa-asyncapi/differences.md)
+
 ### nestoa (unreleased main) (`variants/nestoa-main`)
 
 - Unreleased: built from the main branch of algoan/nestoa by bench/scripts/build-nestoa-main.sh; compare with the nestoa variant for the published release (main@00c0442 is the v0.2.1 release).
@@ -204,6 +306,18 @@ Differences: [`bench/results/nestoa/differences.md`](nestoa/differences.md)
 - Errors thrown in services (404/409 of books) and the 400 of the pagination decorator need @throws JSDoc tags (8 lines): only the handler's own body is scanned, and a decorator alias cannot declare the errors it throws. The 401/403/400/404 coming from guards, @Roles, @Body validation and ParseObjectIdPipe are found automatically.
 
 Differences: [`bench/results/nestoa-main/differences.md`](nestoa-main/differences.md)
+
+### @nmime/nestjs-asyncapi (`variants/nmime-nestjs-asyncapi`)
+
+- Fork of flamewow's nestjs-asyncapi, AsyncAPI 3.0.0 by default. In 3.0 mode @AsyncApiPub becomes a send operation and @AsyncApiSub a receive operation.
+- Payload schemas come from @nestjs/swagger internals (deep imports of @nestjs/swagger/dist/...): 11.4.3+ declares package exports and crashes with ERR_PACKAGE_PATH_NOT_EXPORTED, so @nestjs/swagger is pinned to 11.4.2, the last version without exports. @nestjs/websockets is an optional peer dependency (not needed).
+- Nothing is inferred from @EventPattern nor ClientProxy.emit: every channel, action and payload class is repeated in an @AsyncApiSub decorator on the handler or an @AsyncApiPub decorator on the emitting service method (the service class also needs @AsyncApi() to be scanned). The handlers' JSDoc is repeated as the decorator summary.
+- Payloads must be classes: the event interfaces were turned into classes, and the book_restocked / book_sold_out handler, which reads two @Payload('key') params, needed a new BookStockChangedEvent class. One @AsyncApiSub entry per topic of the array pattern.
+- The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require("bson/bson"), which crashes at runtime: @ApiProperty({ type: String }) needed.
+- Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.
+- Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number).
+
+Differences: [`bench/results/nmime-nestjs-asyncapi/differences.md`](nmime-nestjs-asyncapi/differences.md)
 
 ### swagger-jsdoc (`variants/swagger-jsdoc`)
 
@@ -283,6 +397,17 @@ Differences: [`bench/results/typoa/differences.md`](typoa/differences.md)
 - A generic `override` in the generation script removes what Zod adds by itself: the safe-integer `minimum`/`maximum` of `.int()`, the regex `pattern` of `z.email()` and `z.iso.datetime()`, and `additionalProperties: false` on response objects.
 
 Differences: [`bench/results/zod-openapi/differences.md`](zod-openapi/differences.md)
+
+### zod-sockets (`variants/zod-sockets`)
+
+- zod-sockets 7.0.1 (latest) with zod 4.6.7 and its peer dependency socket.io 4.8.4, Node 24, all dev dependencies: nothing is attached to a server, the declarations only produce the document. The definitions are TypeScript run by ts-node in transpile-only mode: no build step. The documentation entry point is imported as `zod-sockets/dist/documentation` (also exported by the package), because the app's `moduleResolution` cannot resolve the `zod-sockets/documentation` subpath export and `nest build` would fail.
+- A Socket.IO framework, not a Pub/Sub one, and framework-agnostic: it reads neither the @EventPattern handlers nor the ClientProxy.emit() calls. The topics are re-declared beside the modules: the published ones as the config's `emission` (`adoptions.asyncapi.ts`, `books.asyncapi.ts`), the subscribed ones as actions with a no-op handler (`events/events.asyncapi.ts`, one per topic, so `book_restocked` and `book_sold_out` are two actions sharing a schema). Payload interfaces and models are re-declared as Zod schemas, with the JSDoc copied into `.describe()`; nothing ties them to the TypeScript interfaces.
+- Each topic is a Socket.IO event in the root namespace, the mapping NestJS itself uses for Socket.IO (`@SubscribeMessage(event)` in its gateways). The document lays Socket.IO out as one channel per namespace (address `/`, with WebSocket bindings) and one operation per event on that channel: the topic only appears as the operation and message title, so no operation lands on its topic's channel and nothing matches. One namespace per topic would give one channel per topic, but with the address `/<topic>` (still not the topic) and one Socket.IO connection per topic, which no team would design; it scores the same.
+- Socket.IO events carry a list of arguments, so every payload is a tuple: an array with `prefixItems` holding the JSON object, `minItems`/`maxItems: 1` and `items: { not: {} }`, instead of the object itself.
+- Operation summaries and descriptions are generated (`Incoming event <name>`, `The message consumed by the application within the / namespace`) and cannot be set: the handlers' JSDoc cannot be documented. Zod's own additions cannot be overridden either (no hook): `additionalProperties: false` on every object, the regex `pattern` of `z.email()` and `z.iso.datetime()`.
+- Dates and ObjectIds are declared in their JSON form (`z.iso.datetime()`, `z.string()`); the Book payload of `book_published` is the model's `toJSON()`.
+
+Differences: [`bench/results/zod-sockets/differences.md`](zod-sockets/differences.md)
 
 ### @asteasolutions/zod-to-openapi (`variants/zod-to-openapi`)
 
