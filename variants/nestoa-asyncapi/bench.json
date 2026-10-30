@@ -1,0 +1,21 @@
+{
+  "tool": "nestoa (unreleased AsyncAPI)",
+  "spec": "asyncapi",
+  "packages": [],
+  "version": "pr-76@f79b1a0",
+  "approach": "static",
+  "output": "asyncapi.yaml",
+  "clean": "rm -f asyncapi.yaml openapi.json",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "../../.tools/bin/nestoa-asyncapi"
+    }
+  ],
+  "generated": ["openapi.json"],
+  "notes": [
+    "Unreleased: built from the head of algoan/nestoa#76 (AsyncAPI generation, not merged yet) by bench/scripts/build-nestoa-main.sh (NESTOA_REF=f79b1a0 NESTOA_BIN=nestoa-asyncapi). The same run also writes the OpenAPI document (openapi.json, not compared here).",
+    "Configuration only: `\"asyncapi\": { \"output\": \"asyncapi.yaml\" }` in nestoa.config.json. The @EventPattern handlers (string literal, enum member, array of enum members, @Payload() and @Payload('key') parameters) and the ClientProxy.emit calls of the services (field typed ClientProxy, enum member channel, payload inferred from the typed local variable) are found without any annotation; the handlers' JSDoc gives the operation summaries.",
+    "Mongoose's HydratedDocument is not unwrapped: the emit of the created BookDocument needs the payload type as a type argument, emit<void, Book>(…) (1 line), like the return types added to 3 handlers for OpenAPI. Without it, the book_published payload is x-unresolved (43 core differences)."
+  ]
+}

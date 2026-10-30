@@ -1,0 +1,27 @@
+{
+  "tool": "zod-sockets",
+  "spec": "asyncapi",
+  "packages": [
+    "zod-sockets",
+    "zod",
+    "socket.io"
+  ],
+  "approach": "static",
+  "output": "asyncapi.yaml",
+  "clean": "rm -rf dist asyncapi.yaml",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "zod-sockets 7.0.1 (latest) with zod 4.6.7 and its peer dependency socket.io 4.8.4, Node 24, all dev dependencies: nothing is attached to a server, the declarations only produce the document. The definitions are TypeScript run by ts-node in transpile-only mode: no build step. The documentation entry point is imported as `zod-sockets/dist/documentation` (also exported by the package), because the app's `moduleResolution` cannot resolve the `zod-sockets/documentation` subpath export and `nest build` would fail.",
+    "A Socket.IO framework, not a Pub/Sub one, and framework-agnostic: it reads neither the @EventPattern handlers nor the ClientProxy.emit() calls. The topics are re-declared beside the modules: the published ones as the config's `emission` (`adoptions.asyncapi.ts`, `books.asyncapi.ts`), the subscribed ones as actions with a no-op handler (`events/events.asyncapi.ts`, one per topic, so `book_restocked` and `book_sold_out` are two actions sharing a schema). Payload interfaces and models are re-declared as Zod schemas, with the JSDoc copied into `.describe()`; nothing ties them to the TypeScript interfaces.",
+    "Each topic is a Socket.IO event in the root namespace, the mapping NestJS itself uses for Socket.IO (`@SubscribeMessage(event)` in its gateways). The document lays Socket.IO out as one channel per namespace (address `/`, with WebSocket bindings) and one operation per event on that channel: the topic only appears as the operation and message title, so no operation lands on its topic's channel and nothing matches. One namespace per topic would give one channel per topic, but with the address `/<topic>` (still not the topic) and one Socket.IO connection per topic, which no team would design; it scores the same.",
+    "Socket.IO events carry a list of arguments, so every payload is a tuple: an array with `prefixItems` holding the JSON object, `minItems`/`maxItems: 1` and `items: { not: {} }`, instead of the object itself.",
+    "Operation summaries and descriptions are generated (`Incoming event <name>`, `The message consumed by the application within the / namespace`) and cannot be set: the handlers' JSDoc cannot be documented. Zod's own additions cannot be overridden either (no hook): `additionalProperties: false` on every object, the regex `pattern` of `z.email()` and `z.iso.datetime()`.",
+    "Dates and ObjectIds are declared in their JSON form (`z.iso.datetime()`, `z.string()`); the Book payload of `book_published` is the model's `toJSON()`."
+  ]
+}

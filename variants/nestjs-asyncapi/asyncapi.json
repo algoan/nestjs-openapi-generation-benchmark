@@ -1,0 +1,456 @@
+{
+  "asyncapi": "3.0.0",
+  "info": {
+    "title": "Petstore events",
+    "description": "",
+    "version": "1.0.0",
+    "contact": {},
+    "tags": []
+  },
+  "servers": {},
+  "components": {
+    "schemas": {
+      "Adopter": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "lastName": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Phone number, in the E.164 format"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "email"
+        ]
+      },
+      "AdoptionRequestedEvent": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "animalId": {
+            "type": "string"
+          },
+          "species": {
+            "enum": [
+              "CAT",
+              "DOG"
+            ],
+            "type": "string"
+          },
+          "adopter": {
+            "$ref": "#/components/schemas/Adopter"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Adoption fee, in euros"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "shelterId",
+          "animalId",
+          "species",
+          "adopter",
+          "fee"
+        ]
+      },
+      "AdoptionDecidedEvent": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PENDING",
+              "APPROVED",
+              "REJECTED"
+            ],
+            "type": "string"
+          },
+          "rejectionReason": {
+            "type": "string",
+            "description": "Why the request was rejected"
+          },
+          "decidedAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "shelterId",
+          "status",
+          "decidedAt"
+        ]
+      },
+      "Author": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "birthYear": {
+            "type": "number",
+            "minimum": 1000,
+            "maximum": 2100
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Book": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "isbn": {
+            "type": "string",
+            "description": "ISBN-13, without dashes"
+          },
+          "title": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Author"
+            }
+          },
+          "genre": {
+            "enum": [
+              "CARE_GUIDE",
+              "TRAINING",
+              "NOVEL",
+              "CHILDREN"
+            ],
+            "type": "string"
+          },
+          "publishedOn": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "pageCount": {
+            "type": "number"
+          },
+          "language": {
+            "type": "string",
+            "description": "ISO 639-1 language code"
+          },
+          "topics": {
+            "description": "Species the book is about",
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "CAT",
+                "DOG"
+              ]
+            }
+          },
+          "rating": {
+            "type": "number",
+            "description": "Average reader rating, from 0 to 5"
+          },
+          "available": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Value added by mongoose"
+          },
+          "updatedAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Value added by mongoose"
+          }
+        },
+        "required": [
+          "_id",
+          "isbn",
+          "title",
+          "authors",
+          "genre",
+          "language",
+          "topics",
+          "available",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "AdoptionCompletedEvent": {
+        "type": "object",
+        "properties": {
+          "adoptionId": {
+            "type": "string"
+          },
+          "shelterId": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "adoptionId",
+          "shelterId"
+        ]
+      },
+      "Vaccination": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Vaccine name"
+          },
+          "date": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "expiresAt": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "date"
+        ]
+      },
+      "VaccinationRecordedEvent": {
+        "type": "object",
+        "properties": {
+          "shelterId": {
+            "type": "string"
+          },
+          "animalId": {
+            "type": "string"
+          },
+          "vaccination": {
+            "$ref": "#/components/schemas/Vaccination"
+          }
+        },
+        "required": [
+          "shelterId",
+          "animalId",
+          "vaccination"
+        ]
+      },
+      "BookStockChangedEvent": {
+        "type": "object",
+        "properties": {
+          "isbn": {
+            "type": "string"
+          },
+          "stock": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "isbn"
+        ]
+      }
+    },
+    "messages": {
+      "AdoptionsService_create": {
+        "name": "AdoptionsService_create",
+        "payload": {
+          "$ref": "#/components/schemas/AdoptionRequestedEvent"
+        }
+      },
+      "AdoptionsService_decide": {
+        "name": "AdoptionsService_decide",
+        "payload": {
+          "$ref": "#/components/schemas/AdoptionDecidedEvent"
+        }
+      },
+      "BooksService_create": {
+        "name": "BooksService_create",
+        "payload": {
+          "$ref": "#/components/schemas/Book"
+        }
+      },
+      "EventsController_onAdoptionCompleted": {
+        "name": "EventsController_onAdoptionCompleted",
+        "payload": {
+          "$ref": "#/components/schemas/AdoptionCompletedEvent"
+        }
+      },
+      "EventsController_onVaccinationRecorded": {
+        "name": "EventsController_onVaccinationRecorded",
+        "payload": {
+          "$ref": "#/components/schemas/VaccinationRecordedEvent"
+        }
+      },
+      "EventsController_onBookStockChanged": {
+        "name": "EventsController_onBookStockChanged",
+        "payload": {
+          "$ref": "#/components/schemas/BookStockChangedEvent"
+        }
+      }
+    }
+  },
+  "defaultContentType": "application/json",
+  "channels": {
+    "adoptionRequested": {
+      "address": "adoption_requested",
+      "messages": {
+        "AdoptionsService_create": {
+          "$ref": "#/components/messages/AdoptionsService_create"
+        }
+      }
+    },
+    "adoptionDecided": {
+      "address": "adoption_decided",
+      "messages": {
+        "AdoptionsService_decide": {
+          "$ref": "#/components/messages/AdoptionsService_decide"
+        }
+      }
+    },
+    "bookPublished": {
+      "address": "book_published",
+      "messages": {
+        "BooksService_create": {
+          "$ref": "#/components/messages/BooksService_create"
+        }
+      }
+    },
+    "adoptionCompleted": {
+      "address": "adoption_completed",
+      "messages": {
+        "EventsController_onAdoptionCompleted": {
+          "$ref": "#/components/messages/EventsController_onAdoptionCompleted"
+        }
+      }
+    },
+    "vaccinationRecorded": {
+      "address": "vaccination_recorded",
+      "messages": {
+        "EventsController_onVaccinationRecorded": {
+          "$ref": "#/components/messages/EventsController_onVaccinationRecorded"
+        }
+      }
+    },
+    "bookRestocked": {
+      "address": "book_restocked",
+      "messages": {
+        "EventsController_onBookStockChanged": {
+          "$ref": "#/components/messages/EventsController_onBookStockChanged"
+        }
+      }
+    },
+    "bookSoldOut": {
+      "address": "book_sold_out",
+      "messages": {
+        "EventsController_onBookStockChanged": {
+          "$ref": "#/components/messages/EventsController_onBookStockChanged"
+        }
+      }
+    }
+  },
+  "operations": {
+    "sendAdoptionRequested": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/adoptionRequested"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/adoptionRequested/messages/AdoptionsService_create"
+        }
+      ]
+    },
+    "sendAdoptionDecided": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/adoptionDecided"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/adoptionDecided/messages/AdoptionsService_decide"
+        }
+      ]
+    },
+    "sendBookPublished": {
+      "action": "send",
+      "channel": {
+        "$ref": "#/channels/bookPublished"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/bookPublished/messages/BooksService_create"
+        }
+      ]
+    },
+    "receiveAdoptionCompleted": {
+      "summary": "Handle the adoption_completed event",
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/adoptionCompleted"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/adoptionCompleted/messages/EventsController_onAdoptionCompleted"
+        }
+      ]
+    },
+    "receiveVaccinationRecorded": {
+      "summary": "Add a vaccination to the health record of an animal",
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/vaccinationRecorded"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/vaccinationRecorded/messages/EventsController_onVaccinationRecorded"
+        }
+      ]
+    },
+    "receiveBookRestocked": {
+      "summary": "Update the availability of a book when the bookshop's stock changes",
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/bookRestocked"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/bookRestocked/messages/EventsController_onBookStockChanged"
+        }
+      ]
+    },
+    "receiveBookSoldOut": {
+      "summary": "Update the availability of a book when the bookshop's stock changes",
+      "action": "receive",
+      "channel": {
+        "$ref": "#/channels/bookSoldOut"
+      },
+      "messages": [
+        {
+          "$ref": "#/channels/bookSoldOut/messages/EventsController_onBookStockChanged"
+        }
+      ]
+    }
+  }
+}

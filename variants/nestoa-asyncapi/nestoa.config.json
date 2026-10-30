@@ -1,0 +1,4 @@
+{
+  "info": { "title": "Petstore API", "version": "1.0.0" },
+  "asyncapi": { "output": "asyncapi.yaml" }
+}
