@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-30T16:42:35.754Z",
+  "date": "2026-10-30T17:50:05.114Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -880,7 +880,8 @@
         "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and calls AsyncApiModule.createDocument(); setup() (HTML/JSON/YAML routes) is not used.",
         "@EventPattern and ClientProxy.emit are not read: each handler gets an @AsyncApiReceive and each emitting service method an @AsyncApiSend, repeating the topic and the payload class; the services also need the class decorator, exported as @AsyncApi() (the README calls it @AsyncApiService(), which does not exist in 2.0.1). The multi-topic handler takes one option per topic in a single @AsyncApiReceive.",
         "Payloads must be classes introspected by @nestjs/swagger: the 4 event interfaces became classes, read through the @nestjs/swagger CLI plugin (dtoFileNameSuffix `.event.ts` / `.model.ts`, introspectComments, class-validator shim), so models and property JSDoc need no @ApiProperty; requires `nest build`. The `@Payload('isbn')` / `@Payload('stock')` handler has no payload type: a BookStockChangedEvent class was added. Book._id (mongodb ObjectId) needs @ApiProperty({ type: String }), otherwise the plugin emits require(\"bson/bson\"), which crashes at runtime.",
-        "The handlers' JSDoc is not read: it is copied into the decorators' `summary` option. Not fixed: the class-validator shim ignores @IsInt (Author.birthYear is a number, not an integer)."
+        "The handlers' JSDoc is not read: it is copied into the decorators' `summary` option. Not fixed: the class-validator shim ignores @IsInt (Author.birthYear is a number, not an integer).",
+        "@asyncapi/generator, a production dependency of the tool, depends on simple-git 3.36.0 and @simple-git/argv-parser 1.1.1, which have critical CVEs (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c): npm `overrides` pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (4 lines), and the generation is unchanged."
       ],
       "perf": {
         "runs": 5,
@@ -889,74 +890,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1936.13725,
-              "mean": 1925.3263498000001,
-              "min": 1892.551125,
-              "max": 1945.545916,
-              "stddev": 20.481836709206043
+              "median": 2195.8665,
+              "mean": 2171.1707666,
+              "min": 2085.801,
+              "max": 2231.307333,
+              "stddev": 56.06199990126659
             },
             "cpuMs": {
-              "median": 2639.9999999999995,
-              "mean": 2658,
-              "min": 2610.0000000000005,
-              "max": 2740,
-              "stddev": 45.343136195018474
+              "median": 3060,
+              "mean": 3012,
+              "min": 2900,
+              "max": 3080,
+              "stddev": 73.0479294709987
             },
             "maxRssMb": {
-              "median": 517.21875,
-              "mean": 517.0125,
-              "min": 515.46875,
-              "max": 518.21875,
-              "stddev": 0.9922256390307599
+              "median": 517.421875,
+              "mean": 517.65625,
+              "min": 516.59375,
+              "max": 518.515625,
+              "stddev": 0.7233548143891765
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-asyncapi.js",
             "wallMs": {
-              "median": 862.8955,
-              "mean": 864.3583664,
-              "min": 845.619916,
-              "max": 885.147833,
-              "stddev": 13.03287090576815
+              "median": 910.420375,
+              "mean": 893.9112751999999,
+              "min": 832.362417,
+              "max": 923.374167,
+              "stddev": 33.234276046461765
             },
             "cpuMs": {
-              "median": 730,
-              "mean": 734,
-              "min": 720,
-              "max": 750,
-              "stddev": 10.198039027185569
+              "median": 799.9999999999999,
+              "mean": 796,
+              "min": 730,
+              "max": 840,
+              "stddev": 39.293765408777006
             },
             "maxRssMb": {
-              "median": 191.640625,
-              "mean": 191.553125,
-              "min": 190.8125,
-              "max": 192.171875,
-              "stddev": 0.4785027102849053
+              "median": 191.421875,
+              "mean": 191.296875,
+              "min": 190.796875,
+              "max": 191.578125,
+              "stddev": 0.273147167292652
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2799.03275,
-            "mean": 2789.6847162,
-            "min": 2750.97475,
-            "max": 2830.693749,
-            "stddev": 31.241613582584613
+            "median": 3036.0324170000004,
+            "mean": 3065.0820418000003,
+            "min": 3002.8693749999998,
+            "max": 3154.6815,
+            "stddev": 55.82829276399318
           },
           "cpuMs": {
-            "median": 3379.9999999999995,
-            "mean": 3392,
-            "min": 3330.0000000000005,
-            "max": 3490,
-            "stddev": 54.184868736576185
+            "median": 3800,
+            "mean": 3808,
+            "min": 3730,
+            "max": 3920,
+            "stddev": 67.94115100585212
           },
           "maxRssMb": {
-            "median": 517.21875,
-            "mean": 517.0125,
-            "min": 515.46875,
-            "max": 518.21875,
-            "stddev": 0.9922256390307599
+            "median": 517.421875,
+            "mean": 517.65625,
+            "min": 516.59375,
+            "max": 518.515625,
+            "stddev": 0.7233548143891765
           }
         }
       },
@@ -1015,20 +1016,20 @@
       "ease": {
         "filesTouched": 12,
         "filesAdded": 2,
-        "linesAdded": 69,
+        "linesAdded": 73,
         "linesRemoved": 6,
-        "linesChanged": 75,
+        "linesChanged": 79,
         "sourceFilesTouched": 10,
         "sourceLinesChanged": 68,
-        "configLinesChanged": 7,
+        "configLinesChanged": 11,
         "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger",
           "nestjs-asyncapi"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 387.6640625,
-        "productionFootprintMb": 447.328125,
+        "installFootprintMb": 388.02734375,
+        "productionFootprintMb": 447.69140625,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -1041,7 +1042,7 @@
             "file": "package.json",
             "status": "modified",
             "kind": "config",
-            "added": 3,
+            "added": 7,
             "removed": 1
           },
           {
@@ -2666,7 +2667,8 @@
         "Payloads must be classes: the event interfaces were turned into classes, and the book_restocked / book_sold_out handler, which reads two @Payload('key') params, needed a new BookStockChangedEvent class. One @AsyncApiSub entry per topic of the array pattern.",
         "The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require(\"bson/bson\"), which crashes at runtime: @ApiProperty({ type: String }) needed.",
         "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.",
-        "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number)."
+        "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number).",
+        "@asyncapi/generator, a production dependency of the tool, depends on simple-git 3.36.0 and @simple-git/argv-parser 1.1.1, which have critical CVEs (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c): npm `overrides` pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (4 lines), and the generation is unchanged."
       ],
       "perf": {
         "runs": 5,
@@ -2675,74 +2677,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1912.115583,
-              "mean": 1917.7510832,
-              "min": 1903.10875,
-              "max": 1937.16075,
-              "stddev": 13.037984546648037
+              "median": 1962.710375,
+              "mean": 1989.3607334,
+              "min": 1907.628334,
+              "max": 2086.353917,
+              "stddev": 72.74095376142915
             },
             "cpuMs": {
-              "median": 2650,
-              "mean": 2646,
-              "min": 2610.0000000000005,
-              "max": 2670,
-              "stddev": 20.59126028197384
+              "median": 2700,
+              "mean": 2752,
+              "min": 2630,
+              "max": 2900,
+              "stddev": 104.19213022104883
             },
             "maxRssMb": {
-              "median": 517.40625,
-              "mean": 516.98125,
-              "min": 516.1875,
-              "max": 517.46875,
-              "stddev": 0.5691790963747703
+              "median": 517.203125,
+              "mean": 517.43125,
+              "min": 517.046875,
+              "max": 517.890625,
+              "stddev": 0.3659853992989338
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-asyncapi.js",
             "wallMs": {
-              "median": 368.409541,
-              "mean": 376.7855998,
-              "min": 362.606416,
-              "max": 414.858417,
-              "stddev": 19.227057335250116
+              "median": 406.411292,
+              "mean": 415.83451640000004,
+              "min": 385.743041,
+              "max": 473.860208,
+              "stddev": 31.22529617531128
             },
             "cpuMs": {
-              "median": 360,
-              "mean": 370,
+              "median": 380,
+              "mean": 396,
               "min": 360,
-              "max": 400,
-              "stddev": 15.491933384829668
+              "max": 490,
+              "stddev": 47.58150901348127
             },
             "maxRssMb": {
-              "median": 137.171875,
-              "mean": 136.390625,
-              "min": 133.53125,
-              "max": 137.28125,
-              "stddev": 1.4428907074861907
+              "median": 137.28125,
+              "mean": 136.103125,
+              "min": 134.078125,
+              "max": 137.40625,
+              "stddev": 1.5235007999669707
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2295.953541,
-            "mean": 2294.536683,
-            "min": 2265.715166,
-            "max": 2322.397542,
-            "stddev": 19.94485565864401
+            "median": 2356.2032910000003,
+            "mean": 2405.1952498,
+            "min": 2311.540832,
+            "max": 2538.173458,
+            "stddev": 97.29270340632573
           },
           "cpuMs": {
-            "median": 3010.0000000000005,
-            "mean": 3016,
+            "median": 3070,
+            "mean": 3148,
             "min": 3010,
-            "max": 3030,
-            "stddev": 7.999999999999932
+            "max": 3339.9999999999995,
+            "stddev": 134.96666255042385
           },
           "maxRssMb": {
-            "median": 517.40625,
-            "mean": 516.98125,
-            "min": 516.1875,
-            "max": 517.46875,
-            "stddev": 0.5691790963747703
+            "median": 517.203125,
+            "mean": 517.43125,
+            "min": 517.046875,
+            "max": 517.890625,
+            "stddev": 0.3659853992989338
           }
         }
       },
@@ -2801,20 +2803,20 @@
       "ease": {
         "filesTouched": 12,
         "filesAdded": 2,
-        "linesAdded": 69,
+        "linesAdded": 73,
         "linesRemoved": 5,
-        "linesChanged": 74,
+        "linesChanged": 78,
         "sourceFilesTouched": 10,
         "sourceLinesChanged": 64,
-        "configLinesChanged": 10,
+        "configLinesChanged": 14,
         "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger",
           "@nmime/nestjs-asyncapi"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 430.03515625,
-        "productionFootprintMb": 486.28125,
+        "installFootprintMb": 430.3984375,
+        "productionFootprintMb": 486.64453125,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -2827,7 +2829,7 @@
             "file": "package.json",
             "status": "modified",
             "kind": "config",
-            "added": 2,
+            "added": 6,
             "removed": 0
           },
           {

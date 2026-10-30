@@ -26,6 +26,7 @@
     "Payloads must be classes: the event interfaces were turned into classes, and the book_restocked / book_sold_out handler, which reads two @Payload('key') params, needed a new BookStockChangedEvent class. One @AsyncApiSub entry per topic of the array pattern.",
     "The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require(\"bson/bson\"), which crashes at runtime: @ApiProperty({ type: String }) needed.",
     "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.",
-    "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number)."
+    "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number).",
+    "@asyncapi/generator, a production dependency of the tool, depends on simple-git 3.36.0 and @simple-git/argv-parser 1.1.1, which have critical CVEs (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c): npm `overrides` pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (4 lines), and the generation is unchanged."
   ]
 }

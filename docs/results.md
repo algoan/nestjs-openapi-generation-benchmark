@@ -74,11 +74,12 @@ Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better
   in 17 ms and 8 MB. It is not released yet (pull request #76).
 - **nestjs-asyncapi and its fork @nmime/nestjs-asyncapi** reach 0 core differences, but every topic, action and
   payload class is written a second time in a decorator beside `@EventPattern` or on the emitting service method
-  (74–75 lines), the event interfaces become classes for `@nestjs/swagger`'s plugin, and the handlers' JSDoc is
+  (78–79 lines), the event interfaces become classes for `@nestjs/swagger`'s plugin, and the handlers' JSDoc is
   copied into `summary` options. Nothing checks that a decorator matches the handler or the `emit` call it
-  annotates. They boot the app after a `nest build` (2.3–2.8 s, 517 MB), pin `@nestjs/swagger` to 11.4.2 (their
+  annotates. They boot the app after a `nest build` (2.4–3.0 s, 517 MB), pin `@nestjs/swagger` to 11.4.2 (their
   deep imports break with its later `exports` map), and ship `@asyncapi/generator` with the service: +450–490 MB
-  of production dependencies. nestjs-asyncapi also needed `ajv` 8.20 instead of the app's 8.17.
+  of production dependencies, whose simple-git has critical CVEs (patched versions pinned with npm `overrides`,
+  4 lines). nestjs-asyncapi also needed `ajv` 8.20 instead of the app's 8.17.
 - **asyncapi-decorators** (unmaintained since 2022, AsyncAPI 2.0) needs an `@ApiProperty` on every payload property,
   models included, and cannot mark a property as required: its 33 differences are all `required`.
 - **zod-sockets** documents Socket.IO, not Pub/Sub topics: every event is an operation on the namespace channel `/`,
