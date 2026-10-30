@@ -1,12 +1,15 @@
-import { CATEGORIES } from './correctness/compare.ts';
 import type { Category, Comparison, Difference } from './correctness/compare.ts';
 import type { EaseResult } from './ease.ts';
 import type { OasdiffResult } from './oasdiff.ts';
 import type { PerfResult } from './perf.ts';
-import type { VariantConfig } from './variants.ts';
+import { SPECS, specOf } from './specs.ts';
+import type { SpecDefinition } from './specs.ts';
+import type { Spec, VariantConfig } from './variants.ts';
 
 export interface VariantResult {
   name: string;
+  /** Absent for OpenAPI */
+  spec?: Spec;
   tool: string;
   version?: string;
   versions: Record<string, string | undefined>;
@@ -56,28 +59,23 @@ const version = (r: VariantResult): string =>
     .slice(0, 1)
     .join('') || '?');
 
-export const renderReport = (bench: BenchResult): string => {
-  const ok: VariantResult[] = bench.variants.filter((r: VariantResult): boolean => r.error === undefined);
+/** Sections of one specification: summary, ease of use, correctness, speed and memory */
+const renderSpec = (spec: Spec, variants: VariantResult[]): string[] => {
+  const definition: SpecDefinition = SPECS[spec];
+  const categories: Category[] = definition.categories;
+  const ok: VariantResult[] = variants.filter((r: VariantResult): boolean => r.error === undefined);
   const easeRank = rankBy(ok, (r) => r.ease?.linesChanged);
   const coreRank = rankBy(ok, (r) => r.correctness?.core.differences);
   const totalRank = rankBy(ok, (r) => r.correctness?.total.differences);
   const speedRank = rankBy(ok, (r) => r.perf?.total.wallMs.median);
   const memRank = rankBy(ok, (r) => r.perf?.total.maxRssMb.median);
 
-  const lines: string[] = [];
-  lines.push('# NestJS OpenAPI generators benchmark', '');
-  lines.push(
-    `Generated on ${bench.date} — ${bench.machine.cpus}, ${bench.machine.platform}/${bench.machine.arch}, Node ${bench.machine.node}.`,
-    '',
-    'Lower is better everywhere; `(#n)` is the rank among the tools. See docs/methodology.md for the methodology.',
-    '',
-  );
-
-  lines.push('## Summary', '');
+  const lines: string[] = [`## ${definition.title}`, ''];
+  lines.push('### Summary', '');
   lines.push(
     table(
       ['Tool', 'Version', 'Approach', 'Lines changed', 'Core differences', 'All differences', 'Time (median)', 'Peak RSS'],
-      bench.variants.map((r: VariantResult): string[] =>
+      variants.map((r: VariantResult): string[] =>
         r.error !== undefined
           ? [`**${r.tool}**`, version(r), r.approach, 'failed', '–', '–', '–', '–']
           : [
@@ -96,13 +94,13 @@ export const renderReport = (bench: BenchResult): string => {
   );
   lines.push(
     '- **Lines changed**: lines added + removed in the app (sources and configuration) to generate the document.',
-    '- **Core differences**: operations, parameters, request bodies and success responses (what a generated client relies on).',
-    '- **All differences**: core + error responses, validation constraints, security and documentation.',
+    `- **Core differences**: ${definition.coreHelp}.`,
+    `- **All differences**: ${definition.allHelp}.`,
     '- **Time / Peak RSS**: the whole pipeline from the sources to the document (build step included when the tool needs one).',
     '',
   );
 
-  lines.push('## 1. Ease of use', '');
+  lines.push('### 1. Ease of use', '');
   lines.push(
     table(
       ['Tool', 'Files touched', 'Files added', 'Source files touched', 'Source lines', 'Config lines', 'Total lines', 'Deps added', 'node_modules Δ', 'Production Δ'],
@@ -131,19 +129,19 @@ export const renderReport = (bench: BenchResult): string => {
     '',
   );
 
-  lines.push('## 2. Correctness', '');
-  lines.push('Differences (missing + mismatching + extra facts) per category, against `expected/openapi.yaml`:', '');
+  lines.push('### 2. Correctness', '');
+  lines.push(`Differences (missing + mismatching + extra facts) per category, against \`expected/${spec}.yaml\`:`, '');
   lines.push(
     table(
-      ['Tool', ...CATEGORIES, 'core', 'total', 'expected facts matched'],
+      ['Tool', ...categories, 'core', 'total', 'expected facts matched'],
       ok.map((r: VariantResult): string[] => {
         const c = r.correctness;
 
         return c === undefined
-          ? [r.tool, ...CATEGORIES.map((): string => '–'), '–', '–', '–']
+          ? [r.tool, ...categories.map((): string => '–'), '–', '–', '–']
           : [
               r.tool,
-              ...CATEGORIES.map((cat: Category): string => String(c.categories[cat].differences)),
+              ...categories.map((cat: Category): string => String(c.categories[cat].differences)),
               `**${c.core.differences}**`,
               `**${c.total.differences}**`,
               pct(c.total.matched, c.total.expected),
@@ -155,10 +153,10 @@ export const renderReport = (bench: BenchResult): string => {
   lines.push('Recall (share of the expected facts found) per category:', '');
   lines.push(
     table(
-      ['Tool', ...CATEGORIES],
+      ['Tool', ...categories],
       ok.map((r: VariantResult): string[] => [
         r.tool,
-        ...CATEGORIES.map((cat: Category): string =>
+        ...categories.map((cat: Category): string =>
           r.correctness ? pct(r.correctness.categories[cat].matched, r.correctness.categories[cat].expected) : '–',
         ),
       ]),
@@ -183,7 +181,7 @@ export const renderReport = (bench: BenchResult): string => {
     );
   }
 
-  lines.push('## 3. Speed and memory', '');
+  lines.push('### 3. Speed and memory', '');
   lines.push(
     table(
       ['Tool', 'Step', 'Wall (median)', 'Wall (min–max)', 'CPU (median)', 'Peak RSS (median)'],
@@ -211,6 +209,25 @@ export const renderReport = (bench: BenchResult): string => {
     lines.push(`${ok.find((r) => r.perf)?.perf?.runs} measured runs per tool, after one warm-up run.`, '');
   }
 
+  return lines;
+};
+
+export const renderReport = (bench: BenchResult): string => {
+  const lines: string[] = [];
+  lines.push('# NestJS OpenAPI and AsyncAPI generators benchmark', '');
+  lines.push(
+    `Generated on ${bench.date} — ${bench.machine.cpus}, ${bench.machine.platform}/${bench.machine.arch}, Node ${bench.machine.node}.`,
+    '',
+    'Lower is better everywhere; `(#n)` is the rank among the tools of a specification. See docs/methodology.md for the methodology.',
+    '',
+  );
+  for (const spec of Object.keys(SPECS) as Spec[]) {
+    const variants: VariantResult[] = bench.variants.filter((r: VariantResult): boolean => specOf(r) === spec);
+    if (variants.length > 0) {
+      lines.push(...renderSpec(spec, variants));
+    }
+  }
+
   lines.push('## Notes per tool', '');
   for (const r of bench.variants) {
     lines.push(`### ${r.tool} (\`variants/${r.name}\`)`, '');
@@ -232,7 +249,7 @@ export const renderReport = (bench: BenchResult): string => {
 /** Group the differences by what they are about, without the operation part */
 const pattern = (d: Difference): string =>
   d.key
-    .replace(/^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE) \S+ ?/, '')
+    .replace(/^(GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS|TRACE|send|receive) \S+ ?/, '')
     .replace(/^(success|\d{3}) \S+ \$/, '$1 $')
     .replace(/^body \S+ \$/, 'body $');
 
@@ -241,7 +258,7 @@ export const renderDifferences = (r: VariantResult, differences: Difference[]): 
   if (r.correctness?.addedPrefix !== undefined) {
     lines.push(`The document lacks the \`${r.correctness.addedPrefix}\` global prefix: it was added before the comparison (counted as one difference).`, '');
   }
-  for (const category of CATEGORIES) {
+  for (const category of SPECS[specOf(r)].categories) {
     const list: Difference[] = differences.filter((d: Difference): boolean => d.category === category);
     if (list.length === 0) {
       continue;

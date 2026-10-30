@@ -79,9 +79,10 @@ export class Normalizer {
   private readonly doc: Json;
   private readonly isOas30: boolean;
 
-  constructor(doc: Json) {
+  /** `oas30` reads `nullable`, as in OpenAPI 3.0 schemas (an AsyncAPI payload may use that schema format) */
+  constructor(doc: Json, oas30: boolean = typeof doc.openapi === 'string' && doc.openapi.startsWith('3.0')) {
     this.doc = doc;
-    this.isOas30 = typeof doc.openapi === 'string' && doc.openapi.startsWith('3.0');
+    this.isOas30 = oas30;
   }
 
   public resolveRef(node: Json, seen: Set<string> = new Set()): { node: Json; refs: Set<string> } {

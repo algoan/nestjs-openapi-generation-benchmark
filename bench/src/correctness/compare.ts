@@ -9,17 +9,9 @@
 import { Normalizer } from './normalize.ts';
 import type { Json, NormalizedDocument, Operation, Parameter, Schema } from './normalize.ts';
 
-export const CATEGORIES = [
-  'operations',
-  'parameters',
-  'requestBody',
-  'responses',
-  'errors',
-  'constraints',
-  'security',
-  'docs',
-] as const;
-export type Category = (typeof CATEGORIES)[number];
+export const CATEGORIES: string[] = ['operations', 'parameters', 'requestBody', 'responses', 'errors', 'constraints', 'security', 'docs'];
+/** A group of facts, scored separately: `constraints` and `docs` are shared by every specification */
+export type Category = string;
 
 /** Categories describing the structure of the API (what a generated client relies on) */
 export const CORE_CATEGORIES: Category[] = ['operations', 'parameters', 'requestBody', 'responses'];
@@ -62,7 +54,7 @@ const DATA_FORMATS: string[] = ['date-time', 'date', 'time', 'binary', 'byte'];
 const typeOf = (schema: Schema): string =>
   [...new Set(schema.types.map((t: string): string => (t === 'integer' ? 'number' : t)))].sort().join('|');
 
-const schemaFacts = (schema: Schema, path: string, base: Category, out: Fact[], guide?: Schema): void => {
+export const schemaFacts = (schema: Schema, path: string, base: Category, out: Fact[], guide?: Schema): void => {
   const push = (suffix: string, value: unknown, category: Category = base): void => {
     out.push({ key: `${path}${suffix}`, value: String(value), category });
   };
@@ -147,7 +139,7 @@ const matchBranches = (branches: Schema[], guide: Schema[] | undefined, base: Ca
 
 // ------------------------------------------------------------------ operation facts
 
-const docText = (...parts: (string | undefined)[]): string | undefined => {
+export const docText = (...parts: (string | undefined)[]): string | undefined => {
   const text: string = parts.filter((p?: string): boolean => p !== undefined && p.trim() !== '').join(' ');
 
   return text === '' ? undefined : text;
@@ -210,7 +202,7 @@ const operationFacts = (op: Operation, out: Fact[], guide?: Operation): void => 
 
 // ------------------------------------------------------------------ comparison
 
-const normalizeText = (text: string): string =>
+export const normalizeText = (text: string): string =>
   text
     .toLowerCase()
     .replace(/\s+/g, ' ')
@@ -258,11 +250,28 @@ export const compareDocuments = (expectedDoc: Json, actualDoc: Json): Comparison
     operationFacts(op, actualFacts, guide);
   }
 
+  return {
+    ...scoreFacts(expectedFacts, actualFacts, CATEGORIES, CORE_CATEGORIES, differences),
+    addedPrefix,
+  };
+};
+
+/**
+ * Score the facts of a generated document against the expected ones, per category.
+ * `differences` may already hold differences found before the facts were compared (e.g. a missing prefix).
+ */
+export const scoreFacts = (
+  expectedFacts: Fact[],
+  actualFacts: Fact[],
+  categoryNames: Category[],
+  coreNames: Category[],
+  differences: Difference[] = [],
+): Comparison => {
   const actualByKey: Map<string, Fact> = new Map(actualFacts.map((f: Fact): [string, Fact] => [f.key, f]));
   const expectedKeys: Set<string> = new Set(expectedFacts.map((f: Fact): string => f.key));
-  const categories = Object.fromEntries(CATEGORIES.map((c: Category) => [c, emptyScore()])) as Record<Category, CategoryScore>;
-  if (addedPrefix !== undefined) {
-    categories.operations.mismatch += 1;
+  const categories = Object.fromEntries(categoryNames.map((c: Category) => [c, emptyScore()])) as Record<Category, CategoryScore>;
+  for (const d of differences) {
+    categories[d.category][d.kind] += 1;
   }
 
   for (const fact of expectedFacts) {
@@ -296,7 +305,7 @@ export const compareDocuments = (expectedDoc: Json, actualDoc: Json): Comparison
     }
   }
 
-  const sum = (cats: readonly Category[]): CategoryScore => {
+  const sum = (cats: Category[]): CategoryScore => {
     const out: CategoryScore = emptyScore();
     for (const c of cats) {
       for (const k of Object.keys(out) as (keyof CategoryScore)[]) {
@@ -310,5 +319,5 @@ export const compareDocuments = (expectedDoc: Json, actualDoc: Json): Comparison
     score.differences = score.missing + score.mismatch + score.extra;
   }
 
-  return { categories, core: sum(CORE_CATEGORIES), total: sum(CATEGORIES), differences, addedPrefix };
+  return { categories, core: sum(coreNames), total: sum(categoryNames), differences };
 };

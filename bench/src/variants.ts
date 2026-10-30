@@ -5,6 +5,7 @@ export const ROOT: string = resolve(import.meta.dirname, '../..');
 export const APP_DIR: string = join(ROOT, 'app');
 export const VARIANTS_DIR: string = join(ROOT, 'variants');
 export const EXPECTED_FILE: string = join(ROOT, 'expected/openapi.yaml');
+export const EXPECTED_ASYNCAPI_FILE: string = join(ROOT, 'expected/asyncapi.yaml');
 export const RESULTS_DIR: string = join(ROOT, 'bench/results');
 
 export interface Step {
@@ -14,10 +15,15 @@ export interface Step {
   command: string;
 }
 
+/** Specification of the generated document */
+export type Spec = 'openapi' | 'asyncapi';
+
 /** Content of `variants/<name>/bench.json` */
 export interface VariantConfig {
   /** Display name of the tool, e.g. `@nestjs/swagger` */
   tool: string;
+  /** Specification of `output`, `openapi` by default */
+  spec?: Spec;
   /** npm packages of the tool, their installed versions are reported */
   packages: string[];
   /** Version to report when the tool is not installed from npm (e.g. built from a git commit) */

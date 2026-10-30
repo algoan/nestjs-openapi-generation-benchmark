@@ -1,7 +1,7 @@
 /**
  * node bench/src/cli.ts install [--only a,b]             install every variant
  * node bench/src/cli.ts run [--only a,b] [--runs 5] [--warmup 1] [--skip-perf]
- * node bench/src/cli.ts compare <generated-openapi-file>  compare one document with the expected one
+ * node bench/src/cli.ts compare <generated-file>          compare one OpenAPI or AsyncAPI document with the expected one
  * node bench/src/cli.ts check <candidate> [--baseline <file>] [--summary <file.md>]
  *                                                       fail when the candidate has more differences than the baseline
  */
@@ -11,7 +11,7 @@ import { extname, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { parse } from 'yaml';
 import { checkRegression } from './check.ts';
-import { compareDocuments } from './correctness/compare.ts';
+import { isAsyncApi } from './correctness/asyncapi.ts';
 import type { Comparison } from './correctness/compare.ts';
 import { measureEase } from './ease.ts';
 import { runOasdiff } from './oasdiff.ts';
@@ -19,8 +19,10 @@ import { measurePerf, runShell } from './perf.ts';
 import { renderHtml } from './html.ts';
 import { renderDifferences, renderReport } from './report.ts';
 import type { BenchResult, VariantResult } from './report.ts';
-import { EXPECTED_FILE, installedVersion, loadVariants, RESULTS_DIR } from './variants.ts';
-import type { Variant } from './variants.ts';
+import { SPECS, specOf } from './specs.ts';
+import type { SpecDefinition } from './specs.ts';
+import { installedVersion, loadVariants, RESULTS_DIR } from './variants.ts';
+import type { Spec, Variant } from './variants.ts';
 
 const { values, positionals } = parseArgs({
   allowPositionals: true,
@@ -59,9 +61,12 @@ const generateOnce = (variant: Variant): void => {
 };
 
 /** `previous`: the last result of the variant, whose speed and memory are kept with --skip-perf */
-const benchVariant = (variant: Variant, expected: unknown, previous?: VariantResult): VariantResult => {
+const benchVariant = (variant: Variant, previous?: VariantResult): VariantResult => {
+  const spec: Spec = specOf(variant.config);
+  const definition: SpecDefinition = SPECS[spec];
   const result: VariantResult = {
     name: variant.name,
+    ...(spec === 'openapi' ? {} : { spec }),
     tool: variant.config.tool,
     version: variant.config.version,
     versions: Object.fromEntries(variant.config.packages.map((p: string) => [p, installedVersion(variant.dir, p)])),
@@ -86,16 +91,18 @@ const benchVariant = (variant: Variant, expected: unknown, previous?: VariantRes
     if (!existsSync(outputFile)) {
       throw new Error(`${variant.config.output} was not generated`);
     }
-    copyFileSync(outputFile, join(outDir, `openapi${extname(outputFile)}`));
+    copyFileSync(outputFile, join(outDir, `${spec}${extname(outputFile)}`));
 
     log('  comparing with the expected document');
-    const comparison: Comparison = compareDocuments(expected, readDocument(outputFile));
+    const comparison: Comparison = definition.compare(readDocument(definition.expectedFile), readDocument(outputFile));
     const { differences, ...summary } = comparison;
     result.correctness = summary;
-    // oasdiff does not apply `servers` to the paths: pass the prefix the comparator applied
-    const generated = readDocument(outputFile) as { servers?: { url?: string }[] };
-    const serverPrefix: string | undefined = generated.servers?.[0]?.url?.replace(/^[a-z]+:\/\/[^/]+/i, '').replace(/\/$/, '') || undefined;
-    result.oasdiff = runOasdiff(EXPECTED_FILE, outputFile, comparison.addedPrefix ?? serverPrefix);
+    if (spec === 'openapi') {
+      // oasdiff does not apply `servers` to the paths: pass the prefix the comparator applied
+      const generated = readDocument(outputFile) as { servers?: { url?: string }[] };
+      const serverPrefix: string | undefined = generated.servers?.[0]?.url?.replace(/^[a-z]+:\/\/[^/]+/i, '').replace(/\/$/, '') || undefined;
+      result.oasdiff = runOasdiff(definition.expectedFile, outputFile, comparison.addedPrefix ?? serverPrefix);
+    }
     writeFileSync(join(outDir, 'differences.md'), renderDifferences(result, differences));
     writeFileSync(join(outDir, 'differences.json'), `${JSON.stringify(differences, null, 2)}\n`);
   } catch (err) {
@@ -111,10 +118,18 @@ const benchVariant = (variant: Variant, expected: unknown, previous?: VariantRes
 
 const main = (): void => {
   const [command, arg] = positionals;
-  const expected: unknown = readDocument(EXPECTED_FILE);
+  const definitionOf = (doc: unknown): SpecDefinition => SPECS[isAsyncApi(doc) ? 'asyncapi' : 'openapi'];
+  const compareWithExpected = (doc: unknown): Comparison => {
+    const definition: SpecDefinition = definitionOf(doc);
+
+    return definition.compare(readDocument(definition.expectedFile), doc);
+  };
 
   if (command === 'compare') {
-    const comparison: Comparison = compareDocuments(expected, readDocument(arg));
+    const comparison: Comparison = compareWithExpected(readDocument(arg));
+    for (const d of comparison.differences) {
+      console.log(`${d.category}: ${d.kind} ${d.key}${d.expected === undefined ? '' : ` expected=${d.expected}`}${d.actual === undefined ? '' : ` actual=${d.actual}`}`);
+    }
     console.table(comparison.categories);
     console.log(`core: ${comparison.core.differences} differences, total: ${comparison.total.differences}`);
 
@@ -122,14 +137,15 @@ const main = (): void => {
   }
 
   if (command === 'check') {
-    const baseline: Comparison | undefined = values.baseline === undefined ? undefined : compareDocuments(expected, readDocument(values.baseline));
-    const { regressed, markdown } = checkRegression(compareDocuments(expected, readDocument(arg)), baseline);
+    const candidate: unknown = readDocument(arg);
+    const baseline: Comparison | undefined = values.baseline === undefined ? undefined : compareWithExpected(readDocument(values.baseline));
+    const { regressed, markdown } = checkRegression(compareWithExpected(candidate), baseline);
     const verdict: string = regressed
       ? 'More differences with the expected document than the baseline.'
       : baseline === undefined
         ? 'No baseline: differences with the expected document.'
         : 'No regression against the baseline.';
-    const report: string = `## NestJS OpenAPI generation benchmark\n\n${verdict}\n\n${markdown}\n`;
+    const report: string = `## NestJS ${definitionOf(candidate).title} generation benchmark\n\n${verdict}\n\n${markdown}\n`;
     console.log(report);
     if (values.summary !== undefined) {
       appendFileSync(values.summary, report);
@@ -180,7 +196,7 @@ const main = (): void => {
 
   for (const variant of variants) {
     log(`${variant.name} (${variant.config.tool})`);
-    bench.variants.push(benchVariant(variant, expected, previous.find((r: VariantResult): boolean => r.name === variant.name)));
+    bench.variants.push(benchVariant(variant, previous.find((r: VariantResult): boolean => r.name === variant.name)));
   }
   bench.variants.sort((a: VariantResult, b: VariantResult): number => a.name.localeCompare(b.name));
 
