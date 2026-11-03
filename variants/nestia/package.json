@@ -41,7 +41,7 @@
     "supertest": "7.1.4",
     "ts-jest": "29.4.15",
     "ts-node": "10.9.2",
-    "ts-patch": "3.3.0",
+    "ts-patch": "4.0.1",
     "typescript": "5.9.3",
     "yaml": "2.9.1"
   }
