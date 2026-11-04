@@ -193,7 +193,7 @@ jobs:
           if jq -e '.devDependencies["@algoan/nestoa"]' package.json > /dev/null; then
             npm uninstall --no-audit --no-fund --ignore-scripts @algoan/nestoa
           fi
-          npm install --no-audit --no-fund --ignore-scripts --save-exact "nestoa@$NESTOA_VERSION"
+          npm install --no-audit --no-fund --ignore-scripts --save-dev --save-exact "nestoa@$NESTOA_VERSION"
           # shellcheck disable=SC2016 # JavaScript template literals, not shell
           node -e '
             const fs = require("node:fs");
