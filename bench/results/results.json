@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-29T13:41:50.332Z",
+  "date": "2026-11-04T19:26:47.956Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -1791,7 +1791,7 @@
     {
       "name": "nestoa-main",
       "tool": "nestoa (unreleased main)",
-      "version": "main@00c0442",
+      "version": "main@720d8a6",
       "versions": {},
       "approach": "static",
       "notes": [
@@ -1960,6 +1960,8 @@
         "sourceFilesTotal": 75,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
+        "installFootprintMb": 174.1875,
+        "productionFootprintMb": 0,
         "changes": [
           {
             "file": "nestoa.config.json",
