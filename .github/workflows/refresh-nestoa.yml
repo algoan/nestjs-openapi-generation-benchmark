@@ -1,51 +1,135 @@
 name: Refresh nestoa results
 
-# Re-runs a nestoa variant when nestoa changes and opens a pull request with the new results:
-#   - nestoa-main:    a commit was merged on algoan/nestoa main (dispatched by its CI workflow);
-#   - nestoa-release: a version was published (dispatched by its release workflow).
+# Polls algoan/nestoa every hour, re-runs a nestoa variant when it changed, and opens a pull request with
+# the new results:
+#   - nestoa-main: the latest commit of nestoa's main branch is not the one benchmarked;
+#   - nestoa:      the latest version of `nestoa` on npmjs.com is not the one installed.
+# A variant is skipped when its bot/refresh-<variant> pull request is already open for that commit or version.
 #
 # Speed and memory are not measured here: a CI runner is not the machine the other tools were measured
 # on, so the report keeps the numbers of the last local `npm run bench`.
 #
-# Needs the NESTOA_TOKEN secret (read access to the contents of algoan/nestoa) to build nestoa main, and
-# read access of this repository to the @algoan/nestoa package (package settings → Manage Actions access).
+# Needs no secret: nestoa's repository and npm packages are public.
 on:
-  repository_dispatch:
-    types: [nestoa-main, nestoa-release]
+  schedule:
+    - cron: "23 * * * *"
   workflow_dispatch:
     inputs:
       variant:
         description: Variant to refresh
         type: choice
-        options: [nestoa-main, nestoa]
-        required: true
+        options: [all, nestoa-main, nestoa]
+        default: all
       ref:
-        description: "nestoa-main: commit, tag or branch of algoan/nestoa to build"
+        description: "nestoa-main: branch, tag or full commit SHA of algoan/nestoa to build"
         default: main
       version:
-        description: "nestoa: version of @algoan/nestoa to install"
+        description: "nestoa: version or dist-tag of nestoa to install"
         default: latest
 
-# One group per variant, whatever the trigger: both update the same bot/refresh-<variant> branch
-concurrency:
-  group: refresh-${{ github.event_name == 'workflow_dispatch' && inputs.variant || (github.event.action == 'nestoa-release' && 'nestoa' || 'nestoa-main') }}
-  cancel-in-progress: true
+permissions: {}
 
 jobs:
+  check:
+    name: Check for nestoa changes
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    outputs:
+      targets: ${{ steps.check.outputs.targets }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: List the variants to refresh
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VARIANTS: ${{ (github.event_name == 'schedule' || inputs.variant == 'all') && 'nestoa-main nestoa' || inputs.variant }}
+          NESTOA_REF: ${{ inputs.ref || 'main' }}
+          NESTOA_VERSION: ${{ inputs.version || 'latest' }}
+        run: |
+          targets='[]'
+          # <variant> <recorded label> <latest label>: true when there is nothing to refresh
+          up_to_date() {
+            if [ "$2" = "$3" ]; then
+              echo "::notice::$1 is up to date ($3)"
+              return 0
+            fi
+            titles=$(gh pr list --repo "$GITHUB_REPOSITORY" --head "bot/refresh-$1" --state open --json title --jq '.[].title')
+            if grep -qF "($3)" <<< "$titles"; then
+              echo "::notice::$1: a pull request is already open for $3"
+              return 0
+            fi
+            echo "$1: $2 → $3"
+            return 1
+          }
+          # <variant> <commit or version to install> <label>
+          add() {
+            targets=$(jq -c --arg variant "$1" --arg target "$2" --arg label "$3" \
+              '. + [{ variant: $variant, target: $target, label: $label }]' <<< "$targets")
+          }
+
+          for variant in $VARIANTS; do
+            case "$variant" in
+              nestoa-main)
+                if [[ "$NESTOA_REF" =~ ^[0-9a-f]{40}$ ]]; then
+                  sha=$NESTOA_REF
+                else
+                  sha=$(git ls-remote https://github.com/algoan/nestoa "refs/heads/$NESTOA_REF" | cut -f1)
+                  # An annotated tag's commit is listed as its peeled ref (^{}), sorted after the tag itself
+                  [ -n "$sha" ] || sha=$(git ls-remote https://github.com/algoan/nestoa \
+                    "refs/tags/$NESTOA_REF" "refs/tags/$NESTOA_REF^{}" | awk 'END { print $1 }')
+                fi
+                if [ -z "$sha" ]; then
+                  echo "::error::$NESTOA_REF is not a branch, a tag or a full commit SHA of algoan/nestoa"
+                  exit 1
+                fi
+                label="main@${sha:0:7}"
+                up_to_date nestoa-main "$(jq -r .version variants/nestoa-main/bench.json)" "$label" \
+                  || add nestoa-main "$sha" "$label"
+                ;;
+              nestoa)
+                status=$(curl -sS -o "$RUNNER_TEMP/nestoa.json" -w '%{http_code}' "https://registry.npmjs.org/nestoa/$NESTOA_VERSION")
+                case "$status" in
+                  200) version=$(jq -r .version "$RUNNER_TEMP/nestoa.json") ;;
+                  404)
+                    echo "::notice::nestoa@$NESTOA_VERSION is not published on npmjs.com, nestoa skipped"
+                    continue
+                    ;;
+                  *)
+                    echo "::error::npmjs.com answered $status for nestoa@$NESTOA_VERSION"
+                    exit 1
+                    ;;
+                esac
+                up_to_date nestoa "$(jq -r '.devDependencies.nestoa // "none"' variants/nestoa/package.json)" "$version" \
+                  || add nestoa "$version" "$version"
+                ;;
+            esac
+          done
+          echo "targets=$targets" >> "$GITHUB_OUTPUT"
+
   refresh:
-    name: Refresh ${{ github.event.action || inputs.variant }}
+    name: Refresh ${{ matrix.variant }} (${{ matrix.label }})
+    needs: check
+    if: needs.check.outputs.targets != '[]'
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      packages: read
       pull-requests: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.check.outputs.targets) }}
+    # Both runs of a variant update the same bot/refresh-<variant> branch
+    concurrency:
+      group: refresh-${{ matrix.variant }}
+      cancel-in-progress: true
     env:
       OASDIFF_VERSION: 1.34.0 # the version of the published results
-      VARIANT: ${{ github.event_name == 'workflow_dispatch' && inputs.variant || (github.event.action == 'nestoa-release' && 'nestoa' || 'nestoa-main') }}
-      # A dispatch only triggers the refresh: dispatches may arrive out of order, so an automatic run
-      # always takes the latest main commit or release, never the one in its payload
-      NESTOA_REF: ${{ inputs.ref || 'main' }}
-      NESTOA_VERSION: ${{ inputs.version || 'latest' }}
+      VARIANT: ${{ matrix.variant }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -75,28 +159,18 @@ jobs:
         if: env.VARIANT == 'nestoa-main'
         uses: dtolnay/rust-toolchain@stable
 
-      # Cloned apart from the build, without persisting the token: nothing the build runs can read it
-      - name: Check out nestoa
-        if: env.VARIANT == 'nestoa-main'
-        uses: actions/checkout@v7
-        with:
-          repository: algoan/nestoa
-          ref: ${{ env.NESTOA_REF }}
-          token: ${{ secrets.NESTOA_TOKEN }}
-          path: .tools/nestoa-checkout # ignored, so kept out of the refresh pull request
-          persist-credentials: false
-
+      # The commit found by the check, not the branch: main may have moved since
       - name: Build nestoa main
         if: env.VARIANT == 'nestoa-main'
         env:
-          NESTOA_REPO: ${{ github.workspace }}/.tools/nestoa-checkout
-          NESTOA_REF: HEAD
+          NESTOA_REF: ${{ matrix.target }}
         run: |
           bench/scripts/build-nestoa-main.sh
           SHORT=$(cut -c1-7 .tools/bin/nestoa-main.commit)
           echo "NESTOA_LABEL=main@$SHORT" >> "$GITHUB_ENV"
           # Pin the build script and the reported version to the benchmarked commit
           sed -i "s/NESTOA_REF:-[0-9a-f]*}/NESTOA_REF:-$SHORT}/" bench/scripts/build-nestoa-main.sh
+          # shellcheck disable=SC2016 # JavaScript template literals, not shell
           node -e '
             const fs = require("node:fs");
             const file = "variants/nestoa-main/bench.json";
@@ -106,28 +180,40 @@ jobs:
           ' "main@$SHORT"
           node bench/src/cli.ts install --only nestoa-main
 
-      # The install runs with the token and without any install script; nestoa's own (which makes its
-      # binary executable) runs in another step, whose process never had the token
+      # Installed without any install script, so that only nestoa's own (which makes its binary
+      # executable) runs, in the next step
       - name: Install the released nestoa
         if: env.VARIANT == 'nestoa'
         working-directory: variants/nestoa
         env:
-          GITHUB_PACKAGES_TOKEN: ${{ github.token }}
-        run: npm install --no-audit --no-fund --ignore-scripts --save-exact "@algoan/nestoa@$NESTOA_VERSION"
+          NESTOA_VERSION: ${{ matrix.target }}
+        run: |
+          # The variant used to install @algoan/nestoa from GitHub Packages, which needed a token
+          rm -f .npmrc
+          if jq -e '.devDependencies["@algoan/nestoa"]' package.json > /dev/null; then
+            npm uninstall --no-audit --no-fund --ignore-scripts @algoan/nestoa
+          fi
+          npm install --no-audit --no-fund --ignore-scripts --save-exact "nestoa@$NESTOA_VERSION"
+          # shellcheck disable=SC2016 # JavaScript template literals, not shell
+          node -e '
+            const fs = require("node:fs");
+            const config = JSON.parse(fs.readFileSync("bench.json", "utf8"));
+            config.packages = ["nestoa"];
+            fs.writeFileSync("bench.json", `${JSON.stringify(config, null, 2)}\n`);
+          '
 
       - name: Set up the released nestoa
         if: env.VARIANT == 'nestoa'
         working-directory: variants/nestoa
-        env:
-          GITHUB_PACKAGES_TOKEN: unused # read by .npmrc
         run: |
-          npm rebuild --ignore-scripts=false @algoan/nestoa
-          echo "NESTOA_LABEL=$(node -p 'require("@algoan/nestoa/package.json").version')" >> "$GITHUB_ENV"
+          npm rebuild --ignore-scripts=false nestoa
+          echo "NESTOA_LABEL=$(node -p 'require("nestoa/package.json").version')" >> "$GITHUB_ENV"
 
       - name: Run the benchmark (ease and correctness)
         run: |
           node bench/src/cli.ts run --only "$VARIANT" --skip-perf
           # `run` records a failed variant instead of exiting: never open a pull request for it
+          # shellcheck disable=SC2016 # JavaScript template literals, not shell
           node -e '
             const { variants } = require("./bench/results/results.json");
             const result = variants.find((v) => v.name === process.argv[1]);
