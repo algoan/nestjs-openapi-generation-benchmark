@@ -11,7 +11,7 @@
     "test:e2e": "MONGOMS_SYSTEM_BINARY=${MONGOMS_SYSTEM_BINARY:-$(command -v mongod)} jest --config ./test/jest-e2e.json --runInBand"
   },
   "dependencies": {
-    "@nestia/core": "11.3.4",
+    "@nestia/core": "14.1.0",
     "@nestjs/common": "11.2.8",
     "@nestjs/core": "11.2.8",
     "@nestjs/mapped-types": "2.1.1",
