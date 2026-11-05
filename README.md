@@ -12,25 +12,25 @@ See [`docs/methodology.md`](docs/methodology.md) for how each grade is measured,
 
 ## Results at a glance
 
-Run on an Apple M4, Node 24 (5 measured runs after one warm-up). Lower is better everywhere.
+Run on an Apple M4, Node 26 (5 measured runs after one warm-up). Lower is better everywhere.
 
 ### OpenAPI
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| nestoa (unreleased main) | main@00c0442 | **30** | **0** | **0** | **19 ms** | **8 MB** |
-| nestoa | 0.2.1 | 33 | **0** | **0** | 48 ms | 47 MB |
-| nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.51 s | 424 MB |
-| tspec | 0.2.11 | 153 | 1023 | 1717 | 10.84 s | 705 MB |
-| @nestjs/swagger | 11.4.7 | 170 | **0** | 22 | 2.74 s | 509 MB |
-| typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 898 ms | 443 MB |
+| nestoa (unreleased main) | main@2c57103 | **30** | **0** | **0** | **23 ms** | **8 MB** |
+| nestoa | 0.2.1 | 33 | **0** | **0** | 52 ms | 52 MB |
+| nest-openapi-gen | 1.0.20 (patched) | 92 | 1246 | 2394 | 2.61 s | 412 MB |
+| tspec | 0.2.11 | 153 | 1023 | 1717 | 19.88 s | 802 MB |
+| @nestjs/swagger | 11.4.8 | 170 | **0** | 22 | 2.30 s | 462 MB |
+| typoa | 1.0.0-alpha.70 | 283 | 8 | 304 | 928 ms | 408 MB |
 | @nestia/sdk | 11.3.4 | 291 | 10 | 92 | 2.94 s | 674 MB |
-| tsoa | 6.6.0 | 300 | **0** | **0** | 792 ms | 415 MB |
-| ts-oas | 0.6.1 | 513 | 3 | 4 | 816 ms | 430 MB |
-| zod-openapi | 6.0.2 | 574 | **0** | **0** | 205 ms | 155 MB |
-| @asteasolutions/zod-to-openapi | 9.1.0 | 610 | **0** | **0** | 204 ms | 153 MB |
-| nestjs-zod | 5.5.0 | 689 | 51 | 64 | 2.38 s | 538 MB |
-| swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 94 ms | 78 MB |
+| tsoa | 6.6.0 | 300 | **0** | **0** | 819 ms | 391 MB |
+| ts-oas | 0.6.1 | 513 | 3 | 4 | 844 ms | 390 MB |
+| zod-openapi | 6.0.2 | 574 | **0** | **0** | 185 ms | 166 MB |
+| @asteasolutions/zod-to-openapi | 9.1.0 | 610 | **0** | **0** | 177 ms | 169 MB |
+| nestjs-zod | 5.5.0 | 689 | 51 | 64 | 2.49 s | 491 MB |
+| swagger-jsdoc | 6.3.0 | 1505 | **0** | **0** | 104 ms | 84 MB |
 
 ### AsyncAPI
 
@@ -38,11 +38,11 @@ The Pub/Sub events of the same app: 4 `@EventPattern` topics received, 3 topics 
 
 | Tool | Version | Lines changed | Core differences | All differences | Time (median) | Peak RSS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| nestoa (unreleased AsyncAPI) | pr-76@f79b1a0 | **6** | **0** | **0** | **17 ms** | **8 MB** |
-| @nmime/nestjs-asyncapi | 2.0.9 | 80 | **0** | 1 | 2.39 s | 517 MB |
-| nestjs-asyncapi | 2.0.1 | 82 | **0** | 1 | 2.82 s | 517 MB |
-| asyncapi-decorators | 1.1.3 | 103 | 33 | 33 | 408 ms | 226 MB |
-| zod-sockets | 7.0.1 | 117 | 131 | 165 | 239 ms | 157 MB |
+| nestoa (unreleased AsyncAPI) | main@2c57103 | **6** | **0** | **0** | **25 ms** | **9 MB** |
+| @nmime/nestjs-asyncapi | 2.0.9 | 80 | **0** | 1 | 2.43 s | 465 MB |
+| nestjs-asyncapi | 2.0.1 | 80 | **0** | 1 | 3.12 s | 465 MB |
+| asyncapi-decorators | 1.1.3 | 103 | 33 | 33 | 408 ms | 242 MB |
+| zod-sockets | 7.0.1 | 117 | 131 | 165 | 248 ms | 169 MB |
 
 Details: [`docs/results.md`](docs/results.md) and [`bench/results/REPORT.md`](bench/results/REPORT.md).
 

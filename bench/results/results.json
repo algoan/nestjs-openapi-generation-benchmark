@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-30T17:53:34.607Z",
+  "date": "2026-11-05T17:25:00.538Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
     "cpus": "10 × Apple M4",
-    "node": "v24.21.0"
+    "node": "v26.13.0"
   },
   "variants": [
     {
@@ -16,7 +16,7 @@
       },
       "approach": "runtime",
       "notes": [
-        "asyncapi-decorators 1.1.3 (latest, Nov. 2022, unmaintained since), Node 24. Generic decorators, not NestJS-aware: it reads neither @EventPattern nor ClientProxy.emit. It produces AsyncAPI 2.0.0. The decorators run when the classes are loaded (reflection metadata), so the script imports the decorated files and writes the YAML with ts-node in transpile-only mode: no build step, no app boot. It is a production dependency, since the decorators sit on the app's models and event classes.",
+        "asyncapi-decorators 1.1.3 (latest, Nov. 2022, unmaintained since), Node 26. Generic decorators, not NestJS-aware: it reads neither @EventPattern nor ClientProxy.emit. It produces AsyncAPI 2.0.0. The decorators run when the classes are loaded (reflection metadata), so the script imports the decorated files and writes the YAML with ts-node in transpile-only mode: no build step, no app boot. It is a production dependency, since the decorators sit on the app's models and event classes.",
         "Channels are class decorators: the receive channels (`publish` in AsyncAPI 2.x) are declared on EventsController, the send channels (`subscribe`) on AdoptionsService and BooksService beside the emit calls; addresses are repeated by hand (EventName values). The handlers' JSDoc is copied into each operation `summary`.",
         "Every payload property needs its own @ApiProperty: the event interfaces were turned into classes, and the Book, Author, Adopter and Vaccination models are annotated too (nested classes become a $ref only when the nested class is annotated as well). The @Payload('isbn') / @Payload('stock') handler of book_restocked/book_sold_out needed a new BookStockChangedEvent class.",
         "Not expressible: `required`. There is no per-property flag, and @ApiMessage({ payload }) replaces the payload built by @ApiProperty (class decorators run after property decorators), so every property is optional: all the remaining differences.",
@@ -31,49 +31,49 @@
             "name": "generate",
             "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts",
             "wallMs": {
-              "median": 407.610458,
-              "mean": 417.4026666000001,
-              "min": 395.284417,
-              "max": 467.445625,
-              "stddev": 25.681801694403717
+              "median": 408.396458,
+              "mean": 422.03895819999997,
+              "min": 400.822459,
+              "max": 480.1225,
+              "stddev": 29.570324190966456
             },
             "cpuMs": {
-              "median": 470,
-              "mean": 468,
-              "min": 460,
-              "max": 480,
-              "stddev": 7.483314773547883
+              "median": 510,
+              "mean": 528,
+              "min": 510,
+              "max": 580,
+              "stddev": 27.129319932501073
             },
             "maxRssMb": {
-              "median": 226.1875,
-              "mean": 226.15,
-              "min": 225.4375,
-              "max": 226.6875,
-              "stddev": 0.40379063263032744
+              "median": 241.984375,
+              "mean": 242.540625,
+              "min": 241.921875,
+              "max": 244.796875,
+              "stddev": 1.1295740347582357
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 407.610458,
-            "mean": 417.4026666000001,
-            "min": 395.284417,
-            "max": 467.445625,
-            "stddev": 25.681801694403717
+            "median": 408.396458,
+            "mean": 422.03895819999997,
+            "min": 400.822459,
+            "max": 480.1225,
+            "stddev": 29.570324190966456
           },
           "cpuMs": {
-            "median": 470,
-            "mean": 468,
-            "min": 460,
-            "max": 480,
-            "stddev": 7.483314773547883
+            "median": 510,
+            "mean": 528,
+            "min": 510,
+            "max": 580,
+            "stddev": 27.129319932501073
           },
           "maxRssMb": {
-            "median": 226.1875,
-            "mean": 226.15,
-            "min": 225.4375,
-            "max": 226.6875,
-            "stddev": 0.40379063263032744
+            "median": 241.984375,
+            "mean": 242.540625,
+            "min": 241.921875,
+            "max": 244.796875,
+            "stddev": 1.1295740347582357
           }
         }
       },
@@ -143,7 +143,7 @@
           "asyncapi-decorators"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 0.84765625,
+        "installFootprintMb": 143.140625,
         "productionFootprintMb": 0.84765625,
         "changes": [
           {
@@ -271,49 +271,49 @@
             "name": "generate",
             "command": "node generate-openapi.js",
             "wallMs": {
-              "median": 2509.0615,
-              "mean": 2541.6276167999995,
-              "min": 2455.463459,
-              "max": 2661.783875,
-              "stddev": 75.0616151442728
+              "median": 2606.384209,
+              "mean": 2609.1040999999996,
+              "min": 2543.023083,
+              "max": 2700.998,
+              "stddev": 55.4226575582661
             },
             "cpuMs": {
-              "median": 3510,
-              "mean": 3506,
-              "min": 3400,
-              "max": 3590,
-              "stddev": 62.80127387243033
+              "median": 3570.0000000000005,
+              "mean": 3580,
+              "min": 3480,
+              "max": 3679.9999999999995,
+              "stddev": 83.18653737234156
             },
             "maxRssMb": {
-              "median": 424.484375,
-              "mean": 424.31875,
-              "min": 414.53125,
-              "max": 435.1875,
-              "stddev": 7.326499686497639
+              "median": 411.734375,
+              "mean": 411.45625,
+              "min": 410.34375,
+              "max": 411.953125,
+              "stddev": 0.5812331986819059
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2509.0615,
-            "mean": 2541.6276167999995,
-            "min": 2455.463459,
-            "max": 2661.783875,
-            "stddev": 75.0616151442728
+            "median": 2606.384209,
+            "mean": 2609.1040999999996,
+            "min": 2543.023083,
+            "max": 2700.998,
+            "stddev": 55.4226575582661
           },
           "cpuMs": {
-            "median": 3510,
-            "mean": 3506,
-            "min": 3400,
-            "max": 3590,
-            "stddev": 62.80127387243033
+            "median": 3570.0000000000005,
+            "mean": 3580,
+            "min": 3480,
+            "max": 3679.9999999999995,
+            "stddev": 83.18653737234156
           },
           "maxRssMb": {
-            "median": 424.484375,
-            "mean": 424.31875,
-            "min": 414.53125,
-            "max": 435.1875,
-            "stddev": 7.326499686497639
+            "median": 411.734375,
+            "mean": 411.45625,
+            "min": 410.34375,
+            "max": 411.953125,
+            "stddev": 0.5812331986819059
           }
         }
       },
@@ -465,7 +465,7 @@
           "patch-package"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 14.11328125,
+        "installFootprintMb": 155.51171875,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -876,7 +876,6 @@
       "notes": [
         "nestjs-asyncapi 2.0.1 (latest, AsyncAPI 3.0.0) with @nestjs/swagger 11.4.2: from 11.4.3 on, @nestjs/swagger has an `exports` map and nestjs-asyncapi's deep imports (`@nestjs/swagger/dist/...`) crash at load time (ERR_PACKAGE_PATH_NOT_EXPORTED); 12.x requires NestJS 12. @nestjs/websockets is not needed.",
         "Both packages are production dependencies (the decorators run with the app), and importing nestjs-asyncapi eagerly loads @asyncapi/generator (HTML rendering, Puppeteer, Spectral…): the production dependency tree grows from ~120 to ~990 packages and node_modules from ~270 MB to ~650 MB, even though only createDocument() is used.",
-        "That generator crashed at import (`SyntaxError: Unexpected token ':'` in Ajv) because the app's pinned `ajv` 8.17.1 devDependency was hoisted for ajv-errors while Spectral needs ajv ^8.18: the devDependency was bumped to ajv 8.20.0.",
         "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and calls AsyncApiModule.createDocument(); setup() (HTML/JSON/YAML routes) is not used.",
         "@EventPattern and ClientProxy.emit are not read: each handler gets an @AsyncApiReceive and each emitting service method an @AsyncApiSend, repeating the topic and the payload class; the services also need the class decorator, exported as @AsyncApi() (the README calls it @AsyncApiService(), which does not exist in 2.0.1). The multi-topic handler takes one option per topic in a single @AsyncApiReceive.",
         "Payloads must be classes introspected by @nestjs/swagger: the 4 event interfaces became classes, read through the @nestjs/swagger CLI plugin (dtoFileNameSuffix `.event.ts` / `.model.ts`, introspectComments, class-validator shim), so models and property JSDoc need no @ApiProperty; requires `nest build`. The `@Payload('isbn')` / `@Payload('stock')` handler has no payload type: a BookStockChangedEvent class was added. Book._id (mongodb ObjectId) needs @ApiProperty({ type: String }), otherwise the plugin emits require(\"bson/bson\"), which crashes at runtime.",
@@ -890,74 +889,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1968.694,
-              "mean": 1965.5311832,
-              "min": 1945.520584,
-              "max": 1987.629708,
-              "stddev": 15.94450417195105
+              "median": 2011.831208,
+              "mean": 2069.7306164,
+              "min": 1937.929667,
+              "max": 2320.694458,
+              "stddev": 132.39428348421734
             },
             "cpuMs": {
-              "median": 2670,
-              "mean": 2682,
-              "min": 2639.9999999999995,
-              "max": 2750,
-              "stddev": 42.61455150532521
+              "median": 2380,
+              "mean": 2402,
+              "min": 2330,
+              "max": 2480,
+              "stddev": 58.10335618533574
             },
             "maxRssMb": {
-              "median": 516.90625,
-              "mean": 516.84375,
-              "min": 516.359375,
-              "max": 517.09375,
-              "stddev": 0.25368379678253006
+              "median": 464.78125,
+              "mean": 464.9,
+              "min": 462.484375,
+              "max": 466.609375,
+              "stddev": 1.4038729910501162
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-asyncapi.js",
             "wallMs": {
-              "median": 849.305,
-              "mean": 856.9311329999998,
-              "min": 840.544916,
-              "max": 890.662375,
-              "stddev": 17.75917611859181
+              "median": 1109.07025,
+              "mean": 1095.7218584,
+              "min": 928.997417,
+              "max": 1211.057833,
+              "stddev": 104.80831013165755
             },
             "cpuMs": {
-              "median": 730,
-              "mean": 728,
-              "min": 720,
-              "max": 740,
-              "stddev": 7.483314773547883
+              "median": 780,
+              "mean": 778,
+              "min": 740,
+              "max": 830,
+              "stddev": 31.874754901018456
             },
             "maxRssMb": {
-              "median": 190.71875,
-              "mean": 190.684375,
-              "min": 190.484375,
-              "max": 190.78125,
-              "stddev": 0.10476909133900131
+              "median": 205.125,
+              "mean": 205.09375,
+              "min": 204.96875,
+              "max": 205.1875,
+              "stddev": 0.07718180647017793
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2815.053833,
-            "mean": 2822.4623162000003,
-            "min": 2790.060832,
-            "max": 2878.292083,
-            "stddev": 30.326854290466553
+            "median": 3120.9014580000003,
+            "mean": 3165.4524748,
+            "min": 2936.018708,
+            "max": 3531.752291,
+            "stddev": 196.69259022361456
           },
           "cpuMs": {
-            "median": 3400,
-            "mean": 3410,
-            "min": 3359.9999999999995,
-            "max": 3490,
-            "stddev": 46.90415759823447
+            "median": 3160,
+            "mean": 3180,
+            "min": 3150.0000000000005,
+            "max": 3220,
+            "stddev": 28.982753492378784
           },
           "maxRssMb": {
-            "median": 516.90625,
-            "mean": 516.84375,
-            "min": 516.359375,
-            "max": 517.09375,
-            "stddev": 0.25368379678253006
+            "median": 464.78125,
+            "mean": 464.9,
+            "min": 462.484375,
+            "max": 466.609375,
+            "stddev": 1.4038729910501162
           }
         }
       },
@@ -1016,20 +1015,20 @@
       "ease": {
         "filesTouched": 12,
         "filesAdded": 2,
-        "linesAdded": 76,
-        "linesRemoved": 6,
-        "linesChanged": 82,
+        "linesAdded": 75,
+        "linesRemoved": 5,
+        "linesChanged": 80,
         "sourceFilesTouched": 10,
         "sourceLinesChanged": 68,
-        "configLinesChanged": 14,
+        "configLinesChanged": 12,
         "sourceFilesTotal": 83,
         "dependenciesAdded": [
           "@nestjs/swagger",
           "nestjs-asyncapi"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 392.27734375,
-        "productionFootprintMb": 451.94140625,
+        "installFootprintMb": 540.1875,
+        "productionFootprintMb": 452.23046875,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -1042,8 +1041,8 @@
             "file": "package.json",
             "status": "modified",
             "kind": "config",
-            "added": 10,
-            "removed": 1
+            "added": 9,
+            "removed": 0
           },
           {
             "file": "src/adoptions/adoptions.service.ts",
@@ -1122,7 +1121,7 @@
       "name": "nestjs-swagger",
       "tool": "@nestjs/swagger",
       "versions": {
-        "@nestjs/swagger": "11.4.7"
+        "@nestjs/swagger": "11.4.8"
       },
       "approach": "runtime",
       "notes": [
@@ -1144,74 +1143,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 2263.169125,
-              "mean": 2236.1648082,
-              "min": 2134.175583,
-              "max": 2312.302,
-              "stddev": 60.78527943645238
+              "median": 1851.91125,
+              "mean": 1873.7834582,
+              "min": 1824.765,
+              "max": 1995.754458,
+              "stddev": 62.189003174335305
             },
             "cpuMs": {
-              "median": 3170,
-              "mean": 3140,
-              "min": 2929.9999999999995,
-              "max": 3370,
-              "stddev": 161.49303390549093
+              "median": 2320.0000000000005,
+              "mean": 2364,
+              "min": 2270,
+              "max": 2550,
+              "stddev": 101.50862032359612
             },
             "maxRssMb": {
-              "median": 508.671875,
-              "mean": 507.81875,
-              "min": 504.34375,
-              "max": 511.015625,
-              "stddev": 2.4728920947950805
+              "median": 462.28125,
+              "mean": 462.225,
+              "min": 462.03125,
+              "max": 462.296875,
+              "stddev": 0.09911719704471066
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-openapi.js",
             "wallMs": {
-              "median": 484.330667,
-              "mean": 488.6170668,
-              "min": 429.678,
-              "max": 552.195667,
-              "stddev": 38.910656263567624
+              "median": 457.616208,
+              "mean": 458.9350415999999,
+              "min": 441.484417,
+              "max": 479.326125,
+              "stddev": 15.458927970313425
             },
             "cpuMs": {
-              "median": 480,
-              "mean": 480,
-              "min": 440.00000000000006,
-              "max": 520,
-              "stddev": 31.62277660168379
+              "median": 410.00000000000006,
+              "mean": 406,
+              "min": 380,
+              "max": 440,
+              "stddev": 23.323807579381203
             },
             "maxRssMb": {
-              "median": 139.25,
-              "mean": 139.234375,
-              "min": 139.015625,
-              "max": 139.390625,
-              "stddev": 0.12616643273866468
+              "median": 147.625,
+              "mean": 147.165625,
+              "min": 146.09375,
+              "max": 148.03125,
+              "stddev": 0.8170306374304455
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2741.98,
-            "mean": 2724.7818749999997,
-            "min": 2618.390667,
-            "max": 2815.364792,
-            "stddev": 64.71178194270155
+            "median": 2304.091125,
+            "mean": 2332.7184998,
+            "min": 2294.141291,
+            "max": 2437.238875,
+            "stddev": 54.18414073176116
           },
           "cpuMs": {
-            "median": 3650,
-            "mean": 3620,
-            "min": 3369.9999999999995,
-            "max": 3820,
-            "stddev": 162.72676485446405
+            "median": 2760.0000000000005,
+            "mean": 2770,
+            "min": 2650,
+            "max": 2960,
+            "stddev": 111.53474794878947
           },
           "maxRssMb": {
-            "median": 508.671875,
-            "mean": 507.81875,
-            "min": 504.34375,
-            "max": 511.015625,
-            "stddev": 2.4728920947950805
+            "median": 462.28125,
+            "mean": 462.225,
+            "min": 462.03125,
+            "max": 462.296875,
+            "stddev": 0.09911719704471066
           }
         }
       },
@@ -1338,8 +1337,8 @@
           "@nestjs/swagger"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 17.05078125,
-        "productionFootprintMb": 22.08203125,
+        "installFootprintMb": 158.65234375,
+        "productionFootprintMb": 22.51171875,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -1532,7 +1531,7 @@
       "versions": {
         "nestjs-zod": "5.5.0",
         "zod": "4.6.7",
-        "@nestjs/swagger": "11.4.7"
+        "@nestjs/swagger": "11.4.8"
       },
       "approach": "runtime",
       "notes": [
@@ -1552,74 +1551,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1932.036708,
-              "mean": 1945.4350998000002,
-              "min": 1889.508917,
-              "max": 2008.533291,
-              "stddev": 43.097153366025154
+              "median": 1987.554958,
+              "mean": 2576.7169000000004,
+              "min": 1960.815542,
+              "max": 4966.765333,
+              "stddev": 1195.0693192901374
             },
             "cpuMs": {
               "median": 2590,
-              "mean": 2620,
-              "min": 2550.0000000000005,
-              "max": 2690.0000000000005,
-              "stddev": 55.136195008360886
+              "mean": 3180,
+              "min": 2540,
+              "max": 5580,
+              "stddev": 1200.5165554876785
             },
             "maxRssMb": {
-              "median": 537.59375,
-              "mean": 537.6375,
-              "min": 536.984375,
-              "max": 538.328125,
-              "stddev": 0.4347457949767887
+              "median": 490.78125,
+              "mean": 490.75625,
+              "min": 488.34375,
+              "max": 493.984375,
+              "stddev": 1.9300916833793158
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-openapi.js",
             "wallMs": {
-              "median": 469.855625,
-              "mean": 482.58807479999996,
-              "min": 448.450083,
-              "max": 543.79475,
-              "stddev": 36.30369897033937
+              "median": 510.27175,
+              "mean": 687.6231752,
+              "min": 459.899959,
+              "max": 1404.699209,
+              "stddev": 359.9454714498101
             },
             "cpuMs": {
-              "median": 410.00000000000006,
-              "mean": 418,
-              "min": 400,
-              "max": 459.99999999999994,
-              "stddev": 21.354156504062587
+              "median": 460,
+              "mean": 604,
+              "min": 410.00000000000006,
+              "max": 1160,
+              "stddev": 281.8935969475007
             },
             "maxRssMb": {
-              "median": 146.09375,
-              "mean": 145.559375,
-              "min": 143.546875,
-              "max": 147.796875,
-              "stddev": 1.5150739977803065
+              "median": 150.71875,
+              "mean": 151.525,
+              "min": 150.671875,
+              "max": 154.296875,
+              "stddev": 1.4015058865377625
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2380.874208,
-            "mean": 2428.0231746,
-            "min": 2359.3645420000003,
-            "max": 2523.7977920000003,
-            "stddev": 73.24182202308337
+            "median": 2493.722959,
+            "mean": 3264.3400752000002,
+            "min": 2447.454917,
+            "max": 6371.464542000001,
+            "stddev": 1553.739833077266
           },
           "cpuMs": {
-            "median": 3000,
-            "mean": 3038,
-            "min": 2960.0000000000005,
-            "max": 3140,
-            "stddev": 69.39740629158987
+            "median": 3079.9999999999995,
+            "mean": 3784,
+            "min": 2950,
+            "max": 6740,
+            "stddev": 1479.3863592719788
           },
           "maxRssMb": {
-            "median": 537.59375,
-            "mean": 537.6375,
-            "min": 536.984375,
-            "max": 538.328125,
-            "stddev": 0.4347457949767887
+            "median": 490.78125,
+            "mean": 490.75625,
+            "min": 488.34375,
+            "max": 493.984375,
+            "stddev": 1.9300916833793158
           }
         }
       },
@@ -1757,8 +1756,8 @@
           "zod"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 26.27734375,
-        "productionFootprintMb": 31.3671875,
+        "installFootprintMb": 167.8828125,
+        "productionFootprintMb": 31.796875,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -2065,11 +2064,11 @@
             "name": "generate",
             "command": "node_modules/.bin/nestoa",
             "wallMs": {
-              "median": 47.963625,
-              "mean": 47.5131834,
-              "min": 45.296125,
-              "max": 49.931334,
-              "stddev": 1.6609226579836394
+              "median": 52.050417,
+              "mean": 51.8180166,
+              "min": 50.670083,
+              "max": 52.651,
+              "stddev": 0.7646401582822093
             },
             "cpuMs": {
               "median": 30,
@@ -2079,21 +2078,21 @@
               "stddev": 0
             },
             "maxRssMb": {
-              "median": 46.59375,
-              "mean": 46.596875,
-              "min": 46.53125,
-              "max": 46.6875,
-              "stddev": 0.05077524002897475
+              "median": 52.25,
+              "mean": 52.228125,
+              "min": 52.140625,
+              "max": 52.265625,
+              "stddev": 0.04697905118241534
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 47.963625,
-            "mean": 47.5131834,
-            "min": 45.296125,
-            "max": 49.931334,
-            "stddev": 1.6609226579836394
+            "median": 52.050417,
+            "mean": 51.8180166,
+            "min": 50.670083,
+            "max": 52.651,
+            "stddev": 0.7646401582822093
           },
           "cpuMs": {
             "median": 30,
@@ -2103,11 +2102,11 @@
             "stddev": 0
           },
           "maxRssMb": {
-            "median": 46.59375,
-            "mean": 46.596875,
-            "min": 46.53125,
-            "max": 46.6875,
-            "stddev": 0.05077524002897475
+            "median": 52.25,
+            "mean": 52.228125,
+            "min": 52.140625,
+            "max": 52.265625,
+            "stddev": 0.04697905118241534
           }
         }
       },
@@ -2220,7 +2219,7 @@
           "@algoan/nestoa"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 7.53125,
+        "installFootprintMb": 148.52734375,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -2286,11 +2285,11 @@
       "name": "nestoa-asyncapi",
       "spec": "asyncapi",
       "tool": "nestoa (unreleased AsyncAPI)",
-      "version": "pr-76@f79b1a0",
+      "version": "main@2c57103",
       "versions": {},
       "approach": "static",
       "notes": [
-        "Unreleased: built from the head of algoan/nestoa#76 (AsyncAPI generation, not merged yet) by bench/scripts/build-nestoa-main.sh (NESTOA_REF=f79b1a0 NESTOA_BIN=nestoa-asyncapi). The same run also writes the OpenAPI document (openapi.json, not compared here).",
+        "Unreleased: built from the main branch of algoan/nestoa, where the AsyncAPI generation was merged (algoan/nestoa#76), by bench/scripts/build-nestoa-main.sh (NESTOA_REF=2c57103 NESTOA_BIN=nestoa-asyncapi). The same run also writes the OpenAPI document (openapi.json, not compared here).",
         "Configuration only: `\"asyncapi\": { \"output\": \"asyncapi.yaml\" }` in nestoa.config.json. The @EventPattern handlers (string literal, enum member, array of enum members, @Payload() and @Payload('key') parameters) and the ClientProxy.emit calls of the services (field typed ClientProxy, enum member channel, payload inferred from the typed local variable) are found without any annotation; the handlers' JSDoc gives the operation summaries.",
         "Mongoose's HydratedDocument is not unwrapped: the emit of the created BookDocument needs the payload type as a type argument, emit<void, Book>(…) (1 line), like the return types added to 3 handlers for OpenAPI. Without it, the book_published payload is x-unresolved (43 core differences)."
       ],
@@ -2301,49 +2300,49 @@
             "name": "generate",
             "command": "../../.tools/bin/nestoa-asyncapi",
             "wallMs": {
-              "median": 17.088334,
-              "mean": 17.334091800000003,
-              "min": 16.458708,
-              "max": 18.528084,
-              "stddev": 0.8249183511874127
+              "median": 24.789,
+              "mean": 24.717750000000002,
+              "min": 24.377041,
+              "max": 24.914959,
+              "stddev": 0.2040525115562172
             },
             "cpuMs": {
-              "median": 0,
-              "mean": 0,
-              "min": 0,
-              "max": 0,
+              "median": 10,
+              "mean": 10,
+              "min": 10,
+              "max": 10,
               "stddev": 0
             },
             "maxRssMb": {
-              "median": 8.46875,
-              "mean": 8.453125,
-              "min": 8.296875,
-              "max": 8.53125,
-              "stddev": 0.08615030470056388
+              "median": 8.6875,
+              "mean": 8.675,
+              "min": 8.625,
+              "max": 8.71875,
+              "stddev": 0.03186887195995491
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 17.088334,
-            "mean": 17.334091800000003,
-            "min": 16.458708,
-            "max": 18.528084,
-            "stddev": 0.8249183511874127
+            "median": 24.789,
+            "mean": 24.717750000000002,
+            "min": 24.377041,
+            "max": 24.914959,
+            "stddev": 0.2040525115562172
           },
           "cpuMs": {
-            "median": 0,
-            "mean": 0,
-            "min": 0,
-            "max": 0,
+            "median": 10,
+            "mean": 10,
+            "min": 10,
+            "max": 10,
             "stddev": 0
           },
           "maxRssMb": {
-            "median": 8.46875,
-            "mean": 8.453125,
-            "min": 8.296875,
-            "max": 8.53125,
-            "stddev": 0.08615030470056388
+            "median": 8.6875,
+            "mean": 8.675,
+            "min": 8.625,
+            "max": 8.71875,
+            "stddev": 0.03186887195995491
           }
         }
       },
@@ -2411,7 +2410,7 @@
         "sourceFilesTotal": 83,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
-        "installFootprintMb": 0,
+        "installFootprintMb": 142.29296875,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -2434,7 +2433,7 @@
     {
       "name": "nestoa-main",
       "tool": "nestoa (unreleased main)",
-      "version": "main@00c0442",
+      "version": "main@2c57103",
       "versions": {},
       "approach": "static",
       "notes": [
@@ -2450,11 +2449,11 @@
             "name": "generate",
             "command": "../../.tools/bin/nestoa-main",
             "wallMs": {
-              "median": 18.699292,
-              "mean": 18.873025000000002,
-              "min": 17.837916,
-              "max": 20.557459,
-              "stddev": 0.9068695766911584
+              "median": 22.643958,
+              "mean": 22.536441399999998,
+              "min": 21.867541,
+              "max": 22.995209,
+              "stddev": 0.43553619847291725
             },
             "cpuMs": {
               "median": 0,
@@ -2464,21 +2463,21 @@
               "stddev": 0
             },
             "maxRssMb": {
-              "median": 7.96875,
-              "mean": 7.98125,
-              "min": 7.9375,
-              "max": 8.046875,
-              "stddev": 0.03878023014372143
+              "median": 8.484375,
+              "mean": 8.51875,
+              "min": 8.4375,
+              "max": 8.609375,
+              "stddev": 0.06945659615904022
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 18.699292,
-            "mean": 18.873025000000002,
-            "min": 17.837916,
-            "max": 20.557459,
-            "stddev": 0.9068695766911584
+            "median": 22.643958,
+            "mean": 22.536441399999998,
+            "min": 21.867541,
+            "max": 22.995209,
+            "stddev": 0.43553619847291725
           },
           "cpuMs": {
             "median": 0,
@@ -2488,11 +2487,11 @@
             "stddev": 0
           },
           "maxRssMb": {
-            "median": 7.96875,
-            "mean": 7.98125,
-            "min": 7.9375,
-            "max": 8.046875,
-            "stddev": 0.03878023014372143
+            "median": 8.484375,
+            "mean": 8.51875,
+            "min": 8.4375,
+            "max": 8.609375,
+            "stddev": 0.06945659615904022
           }
         }
       },
@@ -2603,7 +2602,7 @@
         "sourceFilesTotal": 83,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
-        "installFootprintMb": 0,
+        "installFootprintMb": 140.99609375,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -2677,74 +2676,74 @@
             "name": "build",
             "command": "node node_modules/@nestjs/cli/bin/nest.js build",
             "wallMs": {
-              "median": 1999.535334,
-              "mean": 2013.3915581999997,
-              "min": 1979.373208,
-              "max": 2072.465541,
-              "stddev": 32.46271621242772
+              "median": 1961.858208,
+              "mean": 2183.6863664,
+              "min": 1863.879208,
+              "max": 3099.704708,
+              "stddev": 467.59074358580204
             },
             "cpuMs": {
-              "median": 2750,
-              "mean": 2758,
-              "min": 2690.0000000000005,
-              "max": 2809.9999999999995,
-              "stddev": 43.54308211415423
+              "median": 2550,
+              "mean": 2794,
+              "min": 2330,
+              "max": 3720,
+              "stddev": 503.2931551292944
             },
             "maxRssMb": {
-              "median": 517.125,
-              "mean": 517.359375,
-              "min": 516.703125,
-              "max": 518.25,
-              "stddev": 0.5329018436823052
+              "median": 465.046875,
+              "mean": 465.128125,
+              "min": 463.453125,
+              "max": 468.1875,
+              "stddev": 1.7314699769993125
             }
           },
           {
             "name": "generate",
             "command": "node dist/generate-asyncapi.js",
             "wallMs": {
-              "median": 373.98275,
-              "mean": 382.199625,
-              "min": 370.44075,
-              "max": 414.295292,
-              "stddev": 16.41885246189288
+              "median": 463.325292,
+              "mean": 458.1568586,
+              "min": 434.65175,
+              "max": 479.227417,
+              "stddev": 16.0010754518641
             },
             "cpuMs": {
-              "median": 360,
-              "mean": 368,
-              "min": 360,
-              "max": 390,
-              "stddev": 11.661903789690601
+              "median": 399.99999999999994,
+              "mean": 406,
+              "min": 370,
+              "max": 440,
+              "stddev": 29.39387691339814
             },
             "maxRssMb": {
-              "median": 137.125,
-              "mean": 136.415625,
-              "min": 133.21875,
-              "max": 137.5,
-              "stddev": 1.6055810863983169
+              "median": 142.578125,
+              "mean": 142.4625,
+              "min": 141.265625,
+              "max": 143.3125,
+              "stddev": 0.6943268997741626
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 2391.787083,
-            "mean": 2395.5911831999997,
-            "min": 2353.355958,
-            "max": 2444.216166,
-            "stddev": 31.39756821895978
+            "median": 2429.901208,
+            "mean": 2641.843225,
+            "min": 2314.4577090000002,
+            "max": 3578.9321250000003,
+            "stddev": 476.68505368692036
           },
           "cpuMs": {
-            "median": 3140,
-            "mean": 3126,
-            "min": 3060.0000000000005,
-            "max": 3169.9999999999995,
-            "stddev": 40.792156108742034
+            "median": 2920,
+            "mean": 3200,
+            "min": 2710,
+            "max": 4160,
+            "stddev": 519.7306994973454
           },
           "maxRssMb": {
-            "median": 517.125,
-            "mean": 517.359375,
-            "min": 516.703125,
-            "max": 518.25,
-            "stddev": 0.5329018436823052
+            "median": 465.046875,
+            "mean": 465.128125,
+            "min": 463.453125,
+            "max": 468.1875,
+            "stddev": 1.7314699769993125
           }
         }
       },
@@ -2815,8 +2814,8 @@
           "@nmime/nestjs-asyncapi"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 432.55078125,
-        "productionFootprintMb": 488.796875,
+        "installFootprintMb": 559.7109375,
+        "productionFootprintMb": 477.99609375,
         "changes": [
           {
             "file": "nest-cli.json",
@@ -2928,49 +2927,49 @@
             "name": "generate",
             "command": "node node_modules/swagger-jsdoc/bin/swagger-jsdoc.js -d openapi.definition.yaml -o openapi.json 'src/**/*.ts'",
             "wallMs": {
-              "median": 93.531667,
-              "mean": 93.747075,
-              "min": 92.657,
-              "max": 95.155125,
-              "stddev": 0.8886890890895437
+              "median": 103.636125,
+              "mean": 107.1799086,
+              "min": 102.553084,
+              "max": 117.48,
+              "stddev": 5.702245799528766
             },
             "cpuMs": {
-              "median": 99.99999999999999,
-              "mean": 104,
-              "min": 99.99999999999999,
-              "max": 110,
-              "stddev": 4.898979485566363
+              "median": 120.00000000000001,
+              "mean": 122,
+              "min": 110,
+              "max": 140,
+              "stddev": 11.661903789690601
             },
             "maxRssMb": {
-              "median": 77.546875,
-              "mean": 77.553125,
-              "min": 77.5,
-              "max": 77.625,
-              "stddev": 0.04485218779502289
+              "median": 84.109375,
+              "mean": 84.128125,
+              "min": 83.921875,
+              "max": 84.375,
+              "stddev": 0.15097340411476454
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 93.531667,
-            "mean": 93.747075,
-            "min": 92.657,
-            "max": 95.155125,
-            "stddev": 0.8886890890895437
+            "median": 103.636125,
+            "mean": 107.1799086,
+            "min": 102.553084,
+            "max": 117.48,
+            "stddev": 5.702245799528766
           },
           "cpuMs": {
-            "median": 99.99999999999999,
-            "mean": 104,
-            "min": 99.99999999999999,
-            "max": 110,
-            "stddev": 4.898979485566363
+            "median": 120.00000000000001,
+            "mean": 122,
+            "min": 110,
+            "max": 140,
+            "stddev": 11.661903789690601
           },
           "maxRssMb": {
-            "median": 77.546875,
-            "mean": 77.553125,
-            "min": 77.5,
-            "max": 77.625,
-            "stddev": 0.04485218779502289
+            "median": 84.109375,
+            "mean": 84.128125,
+            "min": 83.921875,
+            "max": 84.375,
+            "stddev": 0.15097340411476454
           }
         }
       },
@@ -3090,7 +3089,7 @@
           "swagger-jsdoc"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 4.26171875,
+        "installFootprintMb": 146.62890625,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -3405,7 +3404,7 @@
       },
       "approach": "static",
       "notes": [
-        "ts-oas 0.6.1 (latest) with the app's TypeScript 5.9.3, Node 24; generation runs on the sources, no build step.",
+        "ts-oas 0.6.1 (latest) with the app's TypeScript 5.9.3, Node 26; generation runs on the sources, no build step.",
         "Framework-agnostic: it reads nothing from the NestJS controllers. Every endpoint is re-declared by hand as a TypeScript type (`*.api.ts` beside the controllers: path with the hard-coded `v1` prefix, method, params, query, body, responses by status, security), reusing the app's DTO/model/interface types. Nothing keeps these declarations in sync with the controllers (routes, status codes, guards, pipes, interceptors).",
         "Pagination (PaginationParams + PaginationBodyInterceptor), error responses (`HttpError` per status), bearer security (global `security` + `security: []` on @Unprotected routes) and handler JSDoc are all re-stated manually in the API types; shared helper types live in `src/core/openapi.ts`.",
         "Intersection types (`A & { b: string }`) are not flattened for `params`/`query` (parameters silently disappear): named interfaces with `extends` must be used instead.",
@@ -3423,49 +3422,49 @@
             "name": "generate",
             "command": "node generate-openapi.mjs",
             "wallMs": {
-              "median": 815.787333,
-              "mean": 821.8008581999999,
-              "min": 796.6655,
-              "max": 858.841791,
-              "stddev": 20.444927751380884
+              "median": 843.71075,
+              "mean": 839.5873749999998,
+              "min": 816.621625,
+              "max": 851.197166,
+              "stddev": 12.281630985340133
             },
             "cpuMs": {
-              "median": 1650,
-              "mean": 1654,
-              "min": 1609.9999999999998,
-              "max": 1720.0000000000002,
-              "stddev": 37.20215047547669
+              "median": 1589.9999999999998,
+              "mean": 1569.9999999999998,
+              "min": 1509.9999999999998,
+              "max": 1609.9999999999998,
+              "stddev": 35.77708763999664
             },
             "maxRssMb": {
-              "median": 429.796875,
-              "mean": 429.984375,
-              "min": 429.625,
-              "max": 430.71875,
-              "stddev": 0.4009266609992406
+              "median": 390.203125,
+              "mean": 390.2125,
+              "min": 389.40625,
+              "max": 390.875,
+              "stddev": 0.5150659848504849
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 815.787333,
-            "mean": 821.8008581999999,
-            "min": 796.6655,
-            "max": 858.841791,
-            "stddev": 20.444927751380884
+            "median": 843.71075,
+            "mean": 839.5873749999998,
+            "min": 816.621625,
+            "max": 851.197166,
+            "stddev": 12.281630985340133
           },
           "cpuMs": {
-            "median": 1650,
-            "mean": 1654,
-            "min": 1609.9999999999998,
-            "max": 1720.0000000000002,
-            "stddev": 37.20215047547669
+            "median": 1589.9999999999998,
+            "mean": 1569.9999999999998,
+            "min": 1509.9999999999998,
+            "max": 1609.9999999999998,
+            "stddev": 35.77708763999664
           },
           "maxRssMb": {
-            "median": 429.796875,
-            "mean": 429.984375,
-            "min": 429.625,
-            "max": 430.71875,
-            "stddev": 0.4009266609992406
+            "median": 390.203125,
+            "mean": 390.2125,
+            "min": 389.40625,
+            "max": 390.875,
+            "stddev": 0.5150659848504849
           }
         }
       },
@@ -3586,7 +3585,7 @@
           "ts-oas"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 1.05078125,
+        "installFootprintMb": 142.32421875,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -3743,49 +3742,49 @@
             "name": "generate",
             "command": "node node_modules/tsoa/dist/cli.js spec",
             "wallMs": {
-              "median": 792.149416,
-              "mean": 802.75375,
-              "min": 788.419667,
-              "max": 824.135917,
-              "stddev": 15.048372144663093
+              "median": 818.63275,
+              "mean": 861.6865336000001,
+              "min": 813.527208,
+              "max": 990.096792,
+              "stddev": 67.41215709247963
             },
             "cpuMs": {
               "median": 1500,
-              "mean": 1500,
-              "min": 1460,
-              "max": 1549.9999999999998,
-              "stddev": 30.331501776206114
+              "mean": 1556,
+              "min": 1480,
+              "max": 1770,
+              "stddev": 110.01818031580054
             },
             "maxRssMb": {
-              "median": 415.1875,
-              "mean": 414.965625,
-              "min": 414.125,
-              "max": 415.671875,
-              "stddev": 0.5392232550159535
+              "median": 390.53125,
+              "mean": 391.090625,
+              "min": 389.8125,
+              "max": 393.609375,
+              "stddev": 1.3325624399066636
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 792.149416,
-            "mean": 802.75375,
-            "min": 788.419667,
-            "max": 824.135917,
-            "stddev": 15.048372144663093
+            "median": 818.63275,
+            "mean": 861.6865336000001,
+            "min": 813.527208,
+            "max": 990.096792,
+            "stddev": 67.41215709247963
           },
           "cpuMs": {
             "median": 1500,
-            "mean": 1500,
-            "min": 1460,
-            "max": 1549.9999999999998,
-            "stddev": 30.331501776206114
+            "mean": 1556,
+            "min": 1480,
+            "max": 1770,
+            "stddev": 110.01818031580054
           },
           "maxRssMb": {
-            "median": 415.1875,
-            "mean": 414.965625,
-            "min": 414.125,
-            "max": 415.671875,
-            "stddev": 0.5392232550159535
+            "median": 390.53125,
+            "mean": 391.090625,
+            "min": 389.8125,
+            "max": 393.609375,
+            "stddev": 1.3325624399066636
           }
         }
       },
@@ -3905,8 +3904,8 @@
           "tsoa"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 8.5546875,
-        "productionFootprintMb": 43.625,
+        "installFootprintMb": 148.71875,
+        "productionFootprintMb": 43.9140625,
         "changes": [
           {
             "file": "package.json",
@@ -4103,49 +4102,49 @@
             "name": "generate",
             "command": "node_modules/.bin/tspec generate --nestjs --silent",
             "wallMs": {
-              "median": 10838.532292,
-              "mean": 10980.7111502,
-              "min": 10755.976417,
-              "max": 11317.854583,
-              "stddev": 229.09980939990626
+              "median": 19876.710875,
+              "mean": 20009.216208,
+              "min": 19716.889708,
+              "max": 20501.598458,
+              "stddev": 284.89419199281554
             },
             "cpuMs": {
-              "median": 13240,
-              "mean": 13352,
-              "min": 13129.999999999998,
-              "max": 13660,
-              "stddev": 227.2795635335485
+              "median": 22890,
+              "mean": 22850,
+              "min": 22360,
+              "max": 23360,
+              "stddev": 346.5256123290167
             },
             "maxRssMb": {
-              "median": 704.625,
-              "mean": 697.921875,
-              "min": 658.40625,
-              "max": 733.828125,
-              "stddev": 24.973360807067998
+              "median": 801.78125,
+              "mean": 819.53125,
+              "min": 799.890625,
+              "max": 892.515625,
+              "stddev": 36.50642468071545
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 10838.532292,
-            "mean": 10980.7111502,
-            "min": 10755.976417,
-            "max": 11317.854583,
-            "stddev": 229.09980939990626
+            "median": 19876.710875,
+            "mean": 20009.216208,
+            "min": 19716.889708,
+            "max": 20501.598458,
+            "stddev": 284.89419199281554
           },
           "cpuMs": {
-            "median": 13240,
-            "mean": 13352,
-            "min": 13129.999999999998,
-            "max": 13660,
-            "stddev": 227.2795635335485
+            "median": 22890,
+            "mean": 22850,
+            "min": 22360,
+            "max": 23360,
+            "stddev": 346.5256123290167
           },
           "maxRssMb": {
-            "median": 704.625,
-            "mean": 697.921875,
-            "min": 658.40625,
-            "max": 733.828125,
-            "stddev": 24.973360807067998
+            "median": 801.78125,
+            "mean": 819.53125,
+            "min": 799.890625,
+            "max": 892.515625,
+            "stddev": 36.50642468071545
           }
         }
       },
@@ -4285,8 +4284,8 @@
           "tspec"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 61.01171875,
-        "productionFootprintMb": 22.08203125,
+        "installFootprintMb": 201.53125,
+        "productionFootprintMb": 22.51171875,
         "changes": [
           {
             "file": "package.json",
@@ -4442,49 +4441,49 @@
             "name": "generate",
             "command": "node generate-openapi.js",
             "wallMs": {
-              "median": 897.866334,
-              "mean": 905.6869586,
-              "min": 859.281125,
-              "max": 984.443333,
-              "stddev": 42.89344264576569
+              "median": 927.947375,
+              "mean": 934.303725,
+              "min": 915.3675,
+              "max": 955.027833,
+              "stddev": 16.875199965661334
             },
             "cpuMs": {
               "median": 1600,
-              "mean": 1598,
-              "min": 1569.9999999999998,
-              "max": 1630,
-              "stddev": 21.354156504062658
+              "mean": 1636,
+              "min": 1580,
+              "max": 1730,
+              "stddev": 56.07138307550475
             },
             "maxRssMb": {
-              "median": 443.21875,
-              "mean": 443.121875,
-              "min": 439.8125,
-              "max": 447.109375,
-              "stddev": 2.615074240102946
+              "median": 408.375,
+              "mean": 408.209375,
+              "min": 407.28125,
+              "max": 408.796875,
+              "stddev": 0.5761876321997896
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 897.866334,
-            "mean": 905.6869586,
-            "min": 859.281125,
-            "max": 984.443333,
-            "stddev": 42.89344264576569
+            "median": 927.947375,
+            "mean": 934.303725,
+            "min": 915.3675,
+            "max": 955.027833,
+            "stddev": 16.875199965661334
           },
           "cpuMs": {
             "median": 1600,
-            "mean": 1598,
-            "min": 1569.9999999999998,
-            "max": 1630,
-            "stddev": 21.354156504062658
+            "mean": 1636,
+            "min": 1580,
+            "max": 1730,
+            "stddev": 56.07138307550475
           },
           "maxRssMb": {
-            "median": 443.21875,
-            "mean": 443.121875,
-            "min": 439.8125,
-            "max": 447.109375,
-            "stddev": 2.615074240102946
+            "median": 408.375,
+            "mean": 408.209375,
+            "min": 407.28125,
+            "max": 408.796875,
+            "stddev": 0.5761876321997896
           }
         }
       },
@@ -4622,8 +4621,8 @@
           "typoa"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 22.02734375,
-        "productionFootprintMb": 29.0078125,
+        "installFootprintMb": 163.015625,
+        "productionFootprintMb": 29.015625,
         "changes": [
           {
             "file": "generate-openapi.js",
@@ -4700,7 +4699,7 @@
       },
       "approach": "static",
       "notes": [
-        "zod-openapi 6.0.2 (latest) with zod 4.6.7, Node 24. The definitions are TypeScript run by ts-node in transpile-only mode (already a dev dependency of the app, it resolves the app's extensionless imports and enums): no build step.",
+        "zod-openapi 6.0.2 (latest) with zod 4.6.7, Node 26. The definitions are TypeScript run by ts-node in transpile-only mode (already a dev dependency of the app, it resolves the app's extensionless imports and enums): no build step.",
         "Framework-agnostic: it reads neither the NestJS controllers nor the class-validator DTOs. Every DTO, model and interface is re-declared as a Zod schema, and every operation (path with the hard-coded `v1` prefix, path/query/header parameters, request body, status codes, error responses, `security: []` on the @Unprotected routes) in a `*.openapi.ts` file per module beside the controllers; the error body, error responses, pagination query parameters and envelope are shared in `src/core/openapi.ts`. Nothing ties these declarations to the controllers or the DTOs.",
         "The Zod schemas only describe the API: the app keeps validating with class-validator, so each DTO exists twice. Validating with the Zod schemas instead would mean replacing the ValidationPipe and rewriting the DTOs, which the guide forbids.",
         "Zod covers the patterns of the app without workarounds: `.omit()`, `.partial()` and `.extend()` for PartialType/OmitType and model inheritance, `z.enum()` on the app's TypeScript enums, constraints (`.max()`, `.int()`, `z.email()`…), the optional `x-request-id` header. Descriptions are copied from the JSDoc into `.describe()`.",
@@ -4714,49 +4713,49 @@
             "name": "generate",
             "command": "node -r ts-node/register/transpile-only src/generate-openapi.ts",
             "wallMs": {
-              "median": 205.465333,
-              "mean": 218.71991659999998,
-              "min": 185.171042,
-              "max": 302.287584,
-              "stddev": 42.66024877102629
+              "median": 185.013625,
+              "mean": 184.30896680000004,
+              "min": 171.622375,
+              "max": 192.981084,
+              "stddev": 7.237674425667721
             },
             "cpuMs": {
-              "median": 240,
-              "mean": 262,
+              "median": 250,
+              "mean": 240,
               "min": 220,
-              "max": 360,
-              "stddev": 50.75431016179808
+              "max": 250,
+              "stddev": 12.649110640673522
             },
             "maxRssMb": {
-              "median": 154.90625,
-              "mean": 155.259375,
-              "min": 154.4375,
-              "max": 157.078125,
-              "stddev": 0.9294760789014422
+              "median": 165.609375,
+              "mean": 164.98125,
+              "min": 163.765625,
+              "max": 165.8125,
+              "stddev": 0.8733466522521284
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 205.465333,
-            "mean": 218.71991659999998,
-            "min": 185.171042,
-            "max": 302.287584,
-            "stddev": 42.66024877102629
+            "median": 185.013625,
+            "mean": 184.30896680000004,
+            "min": 171.622375,
+            "max": 192.981084,
+            "stddev": 7.237674425667721
           },
           "cpuMs": {
-            "median": 240,
-            "mean": 262,
+            "median": 250,
+            "mean": 240,
             "min": 220,
-            "max": 360,
-            "stddev": 50.75431016179808
+            "max": 250,
+            "stddev": 12.649110640673522
           },
           "maxRssMb": {
-            "median": 154.90625,
-            "mean": 155.259375,
-            "min": 154.4375,
-            "max": 157.078125,
-            "stddev": 0.9294760789014422
+            "median": 165.609375,
+            "mean": 164.98125,
+            "min": 163.765625,
+            "max": 165.8125,
+            "stddev": 0.8733466522521284
           }
         }
       },
@@ -4879,7 +4878,7 @@
           "zod-openapi"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 8.28515625,
+        "installFootprintMb": 149.28125,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -4952,7 +4951,7 @@
       },
       "approach": "static",
       "notes": [
-        "zod-sockets 7.0.1 (latest) with zod 4.6.7 and its peer dependency socket.io 4.8.4, Node 24, all dev dependencies: nothing is attached to a server, the declarations only produce the document. The definitions are TypeScript run by ts-node in transpile-only mode: no build step. The documentation entry point is imported as `zod-sockets/dist/documentation` (also exported by the package), because the app's `moduleResolution` cannot resolve the `zod-sockets/documentation` subpath export and `nest build` would fail.",
+        "zod-sockets 7.0.1 (latest) with zod 4.6.7 and its peer dependency socket.io 4.8.4, Node 26, all dev dependencies: nothing is attached to a server, the declarations only produce the document. The definitions are TypeScript run by ts-node in transpile-only mode: no build step. The documentation entry point is imported as `zod-sockets/dist/documentation` (also exported by the package), because the app's `moduleResolution` cannot resolve the `zod-sockets/documentation` subpath export and `nest build` would fail.",
         "A Socket.IO framework, not a Pub/Sub one, and framework-agnostic: it reads neither the @EventPattern handlers nor the ClientProxy.emit() calls. The topics are re-declared beside the modules: the published ones as the config's `emission` (`adoptions.asyncapi.ts`, `books.asyncapi.ts`), the subscribed ones as actions with a no-op handler (`events/events.asyncapi.ts`, one per topic, so `book_restocked` and `book_sold_out` are two actions sharing a schema). Payload interfaces and models are re-declared as Zod schemas, with the JSDoc copied into `.describe()`; nothing ties them to the TypeScript interfaces.",
         "Each topic is a Socket.IO event in the root namespace, the mapping NestJS itself uses for Socket.IO (`@SubscribeMessage(event)` in its gateways). The document lays Socket.IO out as one channel per namespace (address `/`, with WebSocket bindings) and one operation per event on that channel: the topic only appears as the operation and message title, so no operation lands on its topic's channel and nothing matches. One namespace per topic would give one channel per topic, but with the address `/<topic>` (still not the topic) and one Socket.IO connection per topic, which no team would design; it scores the same.",
         "Socket.IO events carry a list of arguments, so every payload is a tuple: an array with `prefixItems` holding the JSON object, `minItems`/`maxItems: 1` and `items: { not: {} }`, instead of the object itself.",
@@ -4966,49 +4965,49 @@
             "name": "generate",
             "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts",
             "wallMs": {
-              "median": 238.501292,
-              "mean": 237.9013168,
-              "min": 233.998,
-              "max": 240.501292,
-              "stddev": 2.1703540264190515
+              "median": 248.285042,
+              "mean": 248.87380000000002,
+              "min": 238.902708,
+              "max": 263.764042,
+              "stddev": 9.318721691383498
             },
             "cpuMs": {
-              "median": 260,
-              "mean": 260,
+              "median": 279.99999999999994,
+              "mean": 278,
               "min": 260,
-              "max": 260,
-              "stddev": 0
+              "max": 300,
+              "stddev": 13.266499161421596
             },
             "maxRssMb": {
-              "median": 157.265625,
-              "mean": 157.165625,
-              "min": 156.796875,
-              "max": 157.40625,
-              "stddev": 0.2272027591161692
+              "median": 168.90625,
+              "mean": 169.16875,
+              "min": 168.5,
+              "max": 169.890625,
+              "stddev": 0.5669442488022962
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 238.501292,
-            "mean": 237.9013168,
-            "min": 233.998,
-            "max": 240.501292,
-            "stddev": 2.1703540264190515
+            "median": 248.285042,
+            "mean": 248.87380000000002,
+            "min": 238.902708,
+            "max": 263.764042,
+            "stddev": 9.318721691383498
           },
           "cpuMs": {
-            "median": 260,
-            "mean": 260,
+            "median": 279.99999999999994,
+            "mean": 278,
             "min": 260,
-            "max": 260,
-            "stddev": 0
+            "max": 300,
+            "stddev": 13.266499161421596
           },
           "maxRssMb": {
-            "median": 157.265625,
-            "mean": 157.165625,
-            "min": 156.796875,
-            "max": 157.40625,
-            "stddev": 0.2272027591161692
+            "median": 168.90625,
+            "mean": 169.16875,
+            "min": 168.5,
+            "max": 169.890625,
+            "stddev": 0.5669442488022962
           }
         }
       },
@@ -5080,7 +5079,7 @@
           "zod-sockets"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 14.48046875,
+        "installFootprintMb": 156.7734375,
         "productionFootprintMb": 0,
         "changes": [
           {
@@ -5143,49 +5142,49 @@
             "name": "generate",
             "command": "node -r ts-node/register/transpile-only src/generate-openapi.ts",
             "wallMs": {
-              "median": 203.732584,
-              "mean": 204.7835168,
-              "min": 202.565292,
-              "max": 207.768333,
-              "stddev": 1.9815280611145998
+              "median": 177.231,
+              "mean": 177.4595998,
+              "min": 176.417041,
+              "max": 178.971208,
+              "stddev": 0.9280652132684153
             },
             "cpuMs": {
-              "median": 250,
-              "mean": 254,
-              "min": 250,
-              "max": 260,
-              "stddev": 4.898979485566356
+              "median": 220,
+              "mean": 220,
+              "min": 220,
+              "max": 220,
+              "stddev": 0
             },
             "maxRssMb": {
-              "median": 152.53125,
-              "mean": 152.528125,
-              "min": 152.140625,
-              "max": 152.796875,
-              "stddev": 0.2186160304049088
+              "median": 169.390625,
+              "mean": 169.34375,
+              "min": 169.125,
+              "max": 169.5,
+              "stddev": 0.14823176532039278
             }
           }
         ],
         "total": {
           "wallMs": {
-            "median": 203.732584,
-            "mean": 204.7835168,
-            "min": 202.565292,
-            "max": 207.768333,
-            "stddev": 1.9815280611145998
+            "median": 177.231,
+            "mean": 177.4595998,
+            "min": 176.417041,
+            "max": 178.971208,
+            "stddev": 0.9280652132684153
           },
           "cpuMs": {
-            "median": 250,
-            "mean": 254,
-            "min": 250,
-            "max": 260,
-            "stddev": 4.898979485566356
+            "median": 220,
+            "mean": 220,
+            "min": 220,
+            "max": 220,
+            "stddev": 0
           },
           "maxRssMb": {
-            "median": 152.53125,
-            "mean": 152.528125,
-            "min": 152.140625,
-            "max": 152.796875,
-            "stddev": 0.2186160304049088
+            "median": 169.390625,
+            "mean": 169.34375,
+            "min": 169.125,
+            "max": 169.5,
+            "stddev": 0.14823176532039278
           }
         }
       },
@@ -5304,7 +5303,7 @@
           "zod"
         ],
         "dependenciesRemoved": [],
-        "installFootprintMb": 8.76171875,
+        "installFootprintMb": 149.7578125,
         "productionFootprintMb": 0,
         "changes": [
           {

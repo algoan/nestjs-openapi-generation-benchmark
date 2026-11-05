@@ -15,7 +15,7 @@ cd variants/<name> && npm install && npm install --save-exact <tool packages>
 ```
 
 Pin exact versions (`--save-exact`). Use the latest release of the tool that works with this stack
-(NestJS 11, TypeScript 5.9, Node 24). Say in `notes` if you had to use an older one, and why.
+(NestJS 11, TypeScript 5.9, Node 26). Say in `notes` if you had to use an older one, and why.
 
 ## 2. Make the tool describe the real API
 
