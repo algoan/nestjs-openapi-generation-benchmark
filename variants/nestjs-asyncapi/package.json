@@ -48,6 +48,6 @@
     "@simple-git/argv-parser": "2.0.1",
     "js-yaml@^4": "4.3.2",
     "markdown-it": "14.3.3",
-    "zod": "4.6.6"
+    "zod": "4.6.7"
   }
 }
