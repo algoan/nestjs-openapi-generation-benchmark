@@ -1,7 +1,7 @@
 {
   "tool": "nestoa (unreleased main)",
   "packages": [],
-  "version": "main@720d8a6",
+  "version": "main@2c57103",
   "approach": "static",
   "output": "openapi.yaml",
   "clean": "rm -f openapi.yaml",
