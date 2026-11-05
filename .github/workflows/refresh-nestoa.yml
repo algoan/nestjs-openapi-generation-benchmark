@@ -242,7 +242,7 @@ jobs:
           } > "$RUNNER_TEMP/body.md"
 
       - name: Open a pull request
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@v8
         with:
           branch: bot/refresh-${{ env.VARIANT }}
           commit-message: "chore: refresh ${{ env.VARIANT }} results (${{ env.NESTOA_LABEL }})"
