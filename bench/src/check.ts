@@ -3,7 +3,6 @@
  * compared with the expected one, and the check fails when the candidate has more differences than the
  * baseline in any category.
  */
-import { CATEGORIES } from './correctness/compare.ts';
 import type { Category, CategoryScore, Comparison, Difference } from './correctness/compare.ts';
 
 export interface CheckResult {
@@ -55,13 +54,14 @@ const delta = (before: number, after: number): string => {
 };
 
 export const checkRegression = (candidate: Comparison, baseline?: Comparison): CheckResult => {
+  const categories: Category[] = Object.keys(candidate.categories);
   const rows: [string, CategoryScore, CategoryScore | undefined][] = [
-    ...CATEGORIES.map((c: Category): [string, CategoryScore, CategoryScore | undefined] => [c, candidate.categories[c], baseline?.categories[c]]),
+    ...categories.map((c: Category): [string, CategoryScore, CategoryScore | undefined] => [c, candidate.categories[c], baseline?.categories[c]]),
     ['**core**', candidate.core, baseline?.core],
     ['**total**', candidate.total, baseline?.total],
   ];
   const regressed: boolean =
-    baseline !== undefined && CATEGORIES.some((c: Category): boolean => candidate.categories[c].differences > baseline.categories[c].differences);
+    baseline !== undefined && categories.some((c: Category): boolean => candidate.categories[c].differences > baseline.categories[c].differences);
 
   const lines: string[] = [];
   if (baseline === undefined) {

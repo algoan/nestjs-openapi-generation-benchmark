@@ -1,0 +1,8 @@
+[
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#integer",
+    "expected": "true"
+  }
+]

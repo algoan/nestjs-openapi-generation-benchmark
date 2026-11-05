@@ -1,0 +1,992 @@
+[
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "receive adoption_completed",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "receive adoption_completed#summary",
+    "expected": "Handle the adoption_completed event"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive adoption_completed $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive adoption_completed $.adoptionId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive adoption_completed $.adoptionId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive adoption_completed $.shelterId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive adoption_completed $.shelterId#type",
+    "expected": "string"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "receive vaccination_recorded",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "receive vaccination_recorded#summary",
+    "expected": "Add a vaccination to the health record of an animal"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.shelterId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.shelterId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.animalId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.animalId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.name#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.name#type",
+    "expected": "string"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.name#description",
+    "expected": "Vaccine name"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.date#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.date#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.date#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.expiresAt#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.expiresAt#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive vaccination_recorded $.vaccination.expiresAt#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "receive book_restocked",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "receive book_restocked#summary",
+    "expected": "Update the availability of a book when the bookshop's stock changes"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_restocked $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_restocked $.isbn#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_restocked $.isbn#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_restocked $.stock#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_restocked $.stock#type",
+    "expected": "number"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "receive book_sold_out",
+    "expected": "true"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "receive book_sold_out#summary",
+    "expected": "Update the availability of a book when the bookshop's stock changes"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_sold_out $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_sold_out $.isbn#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_sold_out $.isbn#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_sold_out $.stock#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "receive book_sold_out $.stock#type",
+    "expected": "number"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "send adoption_requested",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adoptionId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adoptionId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.shelterId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.shelterId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.animalId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.animalId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.species#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.species#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.species#enum=\"CAT\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.species#enum=\"DOG\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.firstName#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.firstName#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.firstName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.lastName#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.lastName#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.lastName#maxLength",
+    "expected": "80"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.email#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.email#type",
+    "expected": "string"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.email#format",
+    "expected": "email"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.phone#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.phone#type",
+    "expected": "string"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send adoption_requested $.adopter.phone#description",
+    "expected": "Phone number, in the E.164 format"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.fee#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_requested $.fee#type",
+    "expected": "number"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send adoption_requested $.fee#description",
+    "expected": "Adoption fee, in euros"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "send adoption_decided",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.adoptionId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.adoptionId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.shelterId#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.shelterId#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.status#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.status#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.status#enum=\"PENDING\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.status#enum=\"APPROVED\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.status#enum=\"REJECTED\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.rejectionReason#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.rejectionReason#type",
+    "expected": "string"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send adoption_decided $.rejectionReason#description",
+    "expected": "Why the request was rejected"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.decidedAt#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.decidedAt#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send adoption_decided $.decidedAt#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "operations",
+    "kind": "missing",
+    "key": "send book_published",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $._id#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $._id#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.isbn#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.isbn#type",
+    "expected": "string"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.isbn#description",
+    "expected": "ISBN-13, without dashes"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.title#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.title#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors#type",
+    "expected": "array"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors[]#type",
+    "expected": "object"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors[].name#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors[].name#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#type",
+    "expected": "number"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#integer",
+    "expected": "true"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#minimum",
+    "expected": "1000"
+  },
+  {
+    "category": "constraints",
+    "kind": "missing",
+    "key": "send book_published $.authors[].birthYear#maximum",
+    "expected": "2100"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#enum=\"CARE_GUIDE\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#enum=\"TRAINING\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#enum=\"NOVEL\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.genre#enum=\"CHILDREN\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.publishedOn#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.publishedOn#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.publishedOn#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.pageCount#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.pageCount#type",
+    "expected": "number"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.language#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.language#type",
+    "expected": "string"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.language#description",
+    "expected": "ISO 639-1 language code"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.topics#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.topics#type",
+    "expected": "array"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.topics#description",
+    "expected": "Species the book is about"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.topics[]#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.topics[]#enum=\"CAT\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.topics[]#enum=\"DOG\"",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.rating#required",
+    "expected": "false"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.rating#type",
+    "expected": "number"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.rating#description",
+    "expected": "Average reader rating, from 0 to 5"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.available#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.available#type",
+    "expected": "boolean"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.createdAt#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.createdAt#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.createdAt#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.createdAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.updatedAt#required",
+    "expected": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.updatedAt#type",
+    "expected": "string"
+  },
+  {
+    "category": "payloads",
+    "kind": "missing",
+    "key": "send book_published $.updatedAt#format",
+    "expected": "date-time"
+  },
+  {
+    "category": "docs",
+    "kind": "missing",
+    "key": "send book_published $.updatedAt#description",
+    "expected": "Value added by mongoose"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "send /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "send / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "send /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "send / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "send /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "send / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "send / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "receive /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "receive / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "receive /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "receive / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "receive /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "receive / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#maxItems",
+    "actual": "1"
+  },
+  {
+    "category": "operations",
+    "kind": "extra",
+    "key": "receive /",
+    "actual": "true"
+  },
+  {
+    "category": "payloads",
+    "kind": "extra",
+    "key": "receive / $#type",
+    "actual": "array"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#minItems",
+    "actual": "1"
+  },
+  {
+    "category": "constraints",
+    "kind": "extra",
+    "key": "receive / $#maxItems",
+    "actual": "1"
+  }
+]

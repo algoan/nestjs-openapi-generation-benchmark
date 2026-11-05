@@ -8,6 +8,7 @@ import { BooksModule } from './books/books.module';
 import { AuthGuard } from './core/auth/auth.guard';
 import { RoleGuard } from './core/auth/role.guard';
 import { LoggingInterceptor } from './core/logging/logging.interceptor';
+import { PubSubModule } from './core/pubsub/pubsub.module';
 import { EventsModule } from './events/events.module';
 import { SheltersModule } from './shelters/shelters.module';
 
@@ -17,6 +18,7 @@ import { SheltersModule } from './shelters/shelters.module';
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGODB_URI ?? 'mongodb://localhost:27017/petstore'),
+    PubSubModule,
     SheltersModule,
     AnimalsModule,
     AdoptionsModule,

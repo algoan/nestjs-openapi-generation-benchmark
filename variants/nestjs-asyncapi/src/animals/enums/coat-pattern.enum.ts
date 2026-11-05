@@ -1,0 +1,7 @@
+export enum CoatPattern {
+  SOLID = 'SOLID',
+  TABBY = 'TABBY',
+  TORTOISESHELL = 'TORTOISESHELL',
+  CALICO = 'CALICO',
+  BICOLOR = 'BICOLOR',
+}

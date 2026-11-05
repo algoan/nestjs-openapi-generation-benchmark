@@ -1,0 +1,32 @@
+{
+  "tool": "@nmime/nestjs-asyncapi",
+  "spec": "asyncapi",
+  "packages": [
+    "@nmime/nestjs-asyncapi",
+    "@nestjs/swagger"
+  ],
+  "approach": "runtime",
+  "output": "asyncapi.json",
+  "clean": "rm -rf dist asyncapi.json",
+  "steps": [
+    {
+      "name": "build",
+      "command": "node node_modules/@nestjs/cli/bin/nest.js build"
+    },
+    {
+      "name": "generate",
+      "command": "node dist/generate-asyncapi.js"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "Fork of flamewow's nestjs-asyncapi, AsyncAPI 3.0.0 by default. In 3.0 mode @AsyncApiPub becomes a send operation and @AsyncApiSub a receive operation.",
+    "Payload schemas come from @nestjs/swagger internals (deep imports of @nestjs/swagger/dist/...): 11.4.3+ declares package exports and crashes with ERR_PACKAGE_PATH_NOT_EXPORTED, so @nestjs/swagger is pinned to 11.4.2, the last version without exports. @nestjs/websockets is an optional peer dependency (not needed).",
+    "Nothing is inferred from @EventPattern nor ClientProxy.emit: every channel, action and payload class is repeated in an @AsyncApiSub decorator on the handler or an @AsyncApiPub decorator on the emitting service method (the service class also needs @AsyncApi() to be scanned). The handlers' JSDoc is repeated as the decorator summary.",
+    "Payloads must be classes: the event interfaces were turned into classes, and the book_restocked / book_sold_out handler, which reads two @Payload('key') params, needed a new BookStockChangedEvent class. One @AsyncApiSub entry per topic of the array pattern.",
+    "The @nestjs/swagger CLI plugin (dtoFileNameSuffix .event.ts / .model.ts, introspectComments) reflects the event classes and Mongoose models without @ApiProperty, with property comments and class-validator constraints; requires `nest build`. The Book _id (mongodb ObjectId) makes the plugin emit require(\"bson/bson\"), which crashes at runtime: @ApiProperty({ type: String }) needed.",
+    "Generation boots the app with NestFactory.create(AppModule, { preview: true }) (no MongoDB connection, no HTTP server) and writes AsyncApiModule.createDocument() to a file.",
+    "Not fixed: the class-validator shim ignores @IsInt (author birthYear documented as number).",
+    "Dependencies of @asyncapi/generator and @asyncapi/html-template, production dependencies of the tool, have critical and high CVEs flagged by Socket: npm `overrides` (6 lines) pin the patched simple-git 4.0.1 and @simple-git/argv-parser 2.0.1 (GHSA-x6jw-m9v5-85vh, GHSA-v5rq-49vh-5v5c), js-yaml 4.3.2 and zod 4.6.6 (Puppeteer's chromium-bidi). The HTML renderer and Puppeteer are never called to generate the JSON document, which is unchanged."
+  ]
+}

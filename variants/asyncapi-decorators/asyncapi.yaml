@@ -1,0 +1,216 @@
+asyncapi: 2.0.0
+info:
+  title: Petstore events
+  version: 1.0.0
+servers: {}
+defaultContentType: application/json
+channels:
+  adoption_decided:
+    subscribe:
+      message:
+        $ref: "#/components/messages/AdoptionDecidedEvent"
+  adoption_requested:
+    subscribe:
+      message:
+        $ref: "#/components/messages/AdoptionRequestedEvent"
+  book_published:
+    subscribe:
+      message:
+        $ref: "#/components/messages/Book"
+  book_sold_out:
+    publish:
+      message:
+        $ref: "#/components/messages/BookStockChangedEvent"
+      summary: Update the availability of a book when the bookshop's stock changes
+  book_restocked:
+    publish:
+      message:
+        $ref: "#/components/messages/BookStockChangedEvent"
+      summary: Update the availability of a book when the bookshop's stock changes
+  vaccination_recorded:
+    publish:
+      message:
+        $ref: "#/components/messages/VaccinationRecordedEvent"
+      summary: Add a vaccination to the health record of an animal
+  adoption_completed:
+    publish:
+      message:
+        $ref: "#/components/messages/AdoptionCompletedEvent"
+      summary: Handle the adoption_completed event
+components:
+  messages:
+    AdoptionDecidedEvent:
+      payload:
+        $ref: "#/components/schemas/AdoptionDecidedEvent"
+    Adopter:
+      payload:
+        $ref: "#/components/schemas/Adopter"
+    AdoptionRequestedEvent:
+      payload:
+        $ref: "#/components/schemas/AdoptionRequestedEvent"
+    Author:
+      payload:
+        $ref: "#/components/schemas/Author"
+    Book:
+      payload:
+        $ref: "#/components/schemas/Book"
+    AdoptionCompletedEvent:
+      payload:
+        $ref: "#/components/schemas/AdoptionCompletedEvent"
+    BookStockChangedEvent:
+      payload:
+        $ref: "#/components/schemas/BookStockChangedEvent"
+    Vaccination:
+      payload:
+        $ref: "#/components/schemas/Vaccination"
+    VaccinationRecordedEvent:
+      payload:
+        $ref: "#/components/schemas/VaccinationRecordedEvent"
+  schemas:
+    AdoptionDecidedEvent:
+      type: object
+      properties:
+        adoptionId:
+          type: string
+        shelterId:
+          type: string
+        status:
+          type: string
+          enum:
+            - PENDING
+            - APPROVED
+            - REJECTED
+        rejectionReason:
+          description: Why the request was rejected
+          type: string
+        decidedAt:
+          format: date-time
+          type: string
+    Adopter:
+      type: object
+      properties:
+        firstName:
+          maxLength: 80
+          type: string
+        lastName:
+          maxLength: 80
+          type: string
+        email:
+          format: email
+          type: string
+        phone:
+          description: Phone number, in the E.164 format
+          type: string
+    AdoptionRequestedEvent:
+      type: object
+      properties:
+        adoptionId:
+          type: string
+        shelterId:
+          type: string
+        animalId:
+          type: string
+        species:
+          type: string
+          enum:
+            - CAT
+            - DOG
+        adopter:
+          $ref: "#/components/schemas/Adopter"
+        fee:
+          description: Adoption fee, in euros
+          type: number
+    Author:
+      type: object
+      properties:
+        name:
+          type: string
+        birthYear:
+          type: integer
+          minimum: 1000
+          maximum: 2100
+    Book:
+      type: object
+      properties:
+        _id:
+          type: string
+        isbn:
+          description: ISBN-13, without dashes
+          type: string
+        title:
+          type: string
+        authors:
+          items:
+            $ref: "#/components/schemas/Author"
+          type: array
+        genre:
+          type: string
+          enum:
+            - CARE_GUIDE
+            - TRAINING
+            - NOVEL
+            - CHILDREN
+        publishedOn:
+          format: date-time
+          type: string
+        pageCount:
+          type: number
+        language:
+          description: ISO 639-1 language code
+          type: string
+        topics:
+          description: Species the book is about
+          items:
+            type: string
+            enum:
+              - CAT
+              - DOG
+          type: array
+        rating:
+          description: Average reader rating, from 0 to 5
+          type: number
+        available:
+          type: boolean
+        createdAt:
+          description: Value added by mongoose
+          format: date-time
+          type: string
+        updatedAt:
+          description: Value added by mongoose
+          format: date-time
+          type: string
+    AdoptionCompletedEvent:
+      type: object
+      properties:
+        adoptionId:
+          type: string
+        shelterId:
+          type: string
+    BookStockChangedEvent:
+      type: object
+      properties:
+        isbn:
+          type: string
+        stock:
+          type: number
+    Vaccination:
+      type: object
+      properties:
+        name:
+          description: Vaccine name
+          type: string
+        date:
+          format: date-time
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+    VaccinationRecordedEvent:
+      type: object
+      properties:
+        shelterId:
+          type: string
+        animalId:
+          type: string
+        vaccination:
+          $ref: "#/components/schemas/Vaccination"

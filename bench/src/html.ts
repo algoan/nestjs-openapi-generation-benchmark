@@ -3,6 +3,9 @@
  * with hover tooltips, direct value labels, and a table view.
  */
 import type { BenchResult, VariantResult } from './report.ts';
+import { SPECS, specOf } from './specs.ts';
+import type { SpecDefinition } from './specs.ts';
+import type { Spec } from './variants.ts';
 
 interface Metric {
   title: string;
@@ -13,10 +16,10 @@ interface Metric {
 
 const fmtMs = (v: number): string => (v >= 1000 ? `${(v / 1000).toFixed(2)} s` : `${Math.round(v)} ms`);
 
-const METRICS: Metric[] = [
+const metricsOf = (definition: SpecDefinition): Metric[] => [
   { title: 'Ease of use', subtitle: 'Lines changed in the app', value: (r) => r.ease?.linesChanged, format: String },
-  { title: 'Correctness — core', subtitle: 'Differences: operations, parameters, bodies, success responses', value: (r) => r.correctness?.core.differences, format: String },
-  { title: 'Correctness — all', subtitle: 'Differences incl. errors, constraints, security, docs', value: (r) => r.correctness?.total.differences, format: String },
+  { title: 'Correctness — core', subtitle: `Differences: ${definition.coreHelp}`, value: (r) => r.correctness?.core.differences, format: String },
+  { title: 'Correctness — all', subtitle: `Differences: ${definition.allHelp}`, value: (r) => r.correctness?.total.differences, format: String },
   { title: 'Speed', subtitle: 'Median wall time, sources → document', value: (r) => r.perf?.total.wallMs.median, format: fmtMs },
   { title: 'Memory', subtitle: 'Median peak RSS', value: (r) => r.perf?.total.maxRssMb.median, format: (v) => `${Math.round(v)} MB` },
 ];
@@ -60,12 +63,13 @@ ${bars}
 </figure>`;
 };
 
-export const renderHtml = (bench: BenchResult): string => {
-  const ok: VariantResult[] = bench.variants.filter((r) => r.error === undefined);
+/** Charts and table view of the tools of one specification */
+const renderSpec = (definition: SpecDefinition, ok: VariantResult[]): string => {
+  const metrics: Metric[] = metricsOf(definition);
   const tableRows: string = ok
     .map(
       (r) =>
-        `<tr><th scope="row">${esc(r.tool)}</th>${METRICS.map((m) => {
+        `<tr><th scope="row">${esc(r.tool)}</th>${metrics.map((m) => {
           const v = m.value(r);
 
           return `<td>${v === undefined ? '–' : esc(m.format(v))}</td>`;
@@ -73,16 +77,35 @@ export const renderHtml = (bench: BenchResult): string => {
     )
     .join('\n');
 
+  return `<section>
+<h2 class="spec">${esc(definition.title)}</h2>
+<div class="grid">
+${metrics.map((m) => chart(m, ok)).join('\n')}
+</div>
+<table><caption style="text-align:left;color:var(--text-secondary)">Table view</caption>
+<thead><tr><th>Tool</th>${metrics.map((m) => `<th>${esc(m.title)}</th>`).join('')}</tr></thead>
+<tbody>${tableRows}</tbody></table>
+</section>`;
+};
+
+export const renderHtml = (bench: BenchResult): string => {
+  const ok: VariantResult[] = bench.variants.filter((r) => r.error === undefined);
+  const sections: string = (Object.keys(SPECS) as Spec[])
+    .map((spec: Spec): [SpecDefinition, VariantResult[]] => [SPECS[spec], ok.filter((r) => specOf(r) === spec)])
+    .filter(([, results]) => results.length > 0)
+    .map(([definition, results]) => renderSpec(definition, results))
+    .join('\n');
+
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>NestJS OpenAPI generators benchmark</title>
+<title>NestJS OpenAPI and AsyncAPI generators benchmark</title>
 <style>
 .viz-root { color-scheme: light; --surface-1: #fcfcfb; --surface-2: #f3f2ef; --text-primary: #0b0b0b; --text-secondary: #52514e; --grid: #d9d8d3; --series-1: #2a78d6; }
 @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; } }
 :root[data-theme="dark"] .viz-root { color-scheme: dark; --surface-1: #1a1a19; --surface-2: #242422; --text-primary: #f0efec; --text-secondary: #c3c2b7; --grid: #3a3a37; --series-1: #3987e5; }
 body { margin: 0; }
 .viz-root { background: var(--surface-1); color: var(--text-primary); font: 14px/1.4 system-ui, sans-serif; padding: 24px; box-sizing: border-box; }
-h1 { font-size: 20px; margin: 0 0 4px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
+h1 { font-size: 20px; margin: 0 0 4px; } .spec { font-size: 17px; margin: 28px 0 12px; } .meta { color: var(--text-secondary); margin: 0 0 20px; }
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(460px, 1fr)); gap: 16px; }
 .card { background: var(--surface-2); border-radius: 8px; padding: 16px; margin: 0; }
 .card h2 { font-size: 15px; margin: 0; } .card p { color: var(--text-secondary); margin: 2px 0 8px; font-size: 12px; }
@@ -95,14 +118,9 @@ table { border-collapse: collapse; margin-top: 24px; width: 100%; } th, td { pad
 thead th { color: var(--text-secondary); font-weight: 600; }
 </style></head>
 <body><main class="viz-root">
-<h1>NestJS OpenAPI generators benchmark</h1>
+<h1>NestJS OpenAPI and AsyncAPI generators benchmark</h1>
 <p class="meta">${esc(bench.date.slice(0, 10))} · ${esc(bench.machine.cpus)} · Node ${esc(bench.machine.node)} · one bar per tool, sorted best first</p>
-<div class="grid">
-${METRICS.map((m) => chart(m, ok)).join('\n')}
-</div>
-<table><caption style="text-align:left;color:var(--text-secondary)">Table view</caption>
-<thead><tr><th>Tool</th>${METRICS.map((m) => `<th>${esc(m.title)}</th>`).join('')}</tr></thead>
-<tbody>${tableRows}</tbody></table>
+${sections}
 <div id="tip" role="tooltip"></div>
 </main>
 <script>

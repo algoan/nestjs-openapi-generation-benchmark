@@ -1,0 +1,26 @@
+{
+  "tool": "asyncapi-decorators",
+  "spec": "asyncapi",
+  "packages": [
+    "asyncapi-decorators"
+  ],
+  "approach": "runtime",
+  "output": "asyncapi.yaml",
+  "clean": "rm -rf dist asyncapi.yaml",
+  "steps": [
+    {
+      "name": "generate",
+      "command": "node -r ts-node/register/transpile-only src/generate-asyncapi.ts"
+    }
+  ],
+  "generated": [],
+  "notes": [
+    "asyncapi-decorators 1.1.3 (latest, Nov. 2022, unmaintained since), Node 26. Generic decorators, not NestJS-aware: it reads neither @EventPattern nor ClientProxy.emit. It produces AsyncAPI 2.0.0. The decorators run when the classes are loaded (reflection metadata), so the script imports the decorated files and writes the YAML with ts-node in transpile-only mode: no build step, no app boot. It is a production dependency, since the decorators sit on the app's models and event classes.",
+    "Channels are class decorators: the receive channels (`publish` in AsyncAPI 2.x) are declared on EventsController, the send channels (`subscribe`) on AdoptionsService and BooksService beside the emit calls; addresses are repeated by hand (EventName values). The handlers' JSDoc is copied into each operation `summary`.",
+    "Every payload property needs its own @ApiProperty: the event interfaces were turned into classes, and the Book, Author, Adopter and Vaccination models are annotated too (nested classes become a $ref only when the nested class is annotated as well). The @Payload('isbn') / @Payload('stock') handler of book_restocked/book_sold_out needed a new BookStockChangedEvent class.",
+    "Not expressible: `required`. There is no per-property flag, and @ApiMessage({ payload }) replaces the payload built by @ApiProperty (class decorators run after property decorators), so every property is optional: all the remaining differences.",
+    "Type reflection is shallow: Dates become `format: date` (overridden with `format: date-time`), enums need `type: 'string', enum: Object.values(...)`, ObjectIds need `type: 'string'`, arrays get empty `items`, and passing any option to @ApiProperty drops a reflected $ref. Constraints, formats and descriptions (copied from the JSDoc) are given inline.",
+    "Arrays of classes: the typings declare `$ref` as a Function, but the YAML serializer crashes on functions; a string `$ref: '#/components/schemas/Author'` works at runtime only with a type cast (`as never`).",
+    "Nested classes (Adopter, Author, Vaccination) also show up as unused components.messages."
+  ]
+}
