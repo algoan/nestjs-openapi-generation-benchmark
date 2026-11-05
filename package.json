@@ -8,6 +8,6 @@
     "bench:correctness": "node bench/src/cli.ts run --skip-perf",
     "test:contract": "npm --prefix app run test:e2e",
     "setup:nestoa-main": "if command -v cargo >/dev/null; then bench/scripts/build-nestoa-main.sh; else echo 'cargo not found: nestoa-main is not built (install Rust, then run npm run setup:nestoa-main)' >&2; fi",
-    "setup:nestoa-asyncapi": "if command -v cargo >/dev/null; then NESTOA_REF=f79b1a060e5fbdefd0f3751dae268a6acd91f656 NESTOA_BIN=nestoa-asyncapi bench/scripts/build-nestoa-main.sh; else echo 'cargo not found: nestoa-asyncapi is not built (install Rust, then run npm run setup:nestoa-asyncapi)' >&2; fi"
+    "setup:nestoa-asyncapi": "if command -v cargo >/dev/null; then NESTOA_REF=2c57103 NESTOA_BIN=nestoa-asyncapi bench/scripts/build-nestoa-main.sh; else echo 'cargo not found: nestoa-asyncapi is not built (install Rust, then run npm run setup:nestoa-asyncapi)' >&2; fi"
   }
 }

@@ -58,8 +58,8 @@ Details: [`docs/results.md`](docs/results.md) and [`bench/results/REPORT.md`](be
   the patch is counted in the lines changed.
 - `nestoa (unreleased main)` is built from source by `bench/scripts/build-nestoa-main.sh` and is not an
   installable release: it is listed to show where the tool is going, not as a peer of the published tools.
-- `nestoa (unreleased AsyncAPI)` is built the same way from the unmerged pull request adding AsyncAPI to
-  nestoa ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)). `expected/asyncapi.yaml` was written
+- `nestoa (unreleased AsyncAPI)` is built the same way from the commit of nestoa's main branch that merged
+  its AsyncAPI generation ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)). `expected/asyncapi.yaml` was written
   by the same authors; like the OpenAPI one, it is checked against the running app by a contract test, not
   against a tool's output.
 - Timings vary between sessions (up to ~2× for the slowest Node tools); the ranking does not change.

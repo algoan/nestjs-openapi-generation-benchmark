@@ -22,8 +22,8 @@ The nestoa variant installs `@algoan/nestoa` from GitHub Packages: export `GITHU
 `nestoa` package of npmjs.com, which needs no token, on the first release published there.
 The `nestoa-main` variant runs nestoa built from its main branch: `npm run setup` builds it with
 `bench/scripts/build-nestoa-main.sh` when a Rust toolchain (`cargo`) is available; without it, that
-variant is reported as failed. The `nestoa-asyncapi` variant runs nestoa built the same way from its
-unmerged AsyncAPI pull request ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)),
+variant is reported as failed. The `nestoa-asyncapi` variant runs nestoa built the same way from the
+commit that merged its AsyncAPI generation ([algoan/nestoa#76](https://github.com/algoan/nestoa/pull/76)),
 `npm run setup:nestoa-asyncapi`.
 
 ```sh
