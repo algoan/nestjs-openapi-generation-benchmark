@@ -21,8 +21,12 @@ fi
 
 node bench/src/cli.ts install --only "$VARIANT"
 
-# bench/results/<variant>/<spec>.<ext>, overwritten by `run`
-committed="$(find "$RESULTS" -maxdepth 1 \( -name 'openapi.*' -o -name 'asyncapi.*' \) | head -n 1)"
+# The document `run` generates, and the one of bench/results it compares with: bench/results/<variant>/<spec>.<ext>,
+# or the document of another format when the variant has just changed its output
+output="$DIR/$(node -p 'require(process.argv[1]).output' "$DIR/bench.json")"
+spec="$(node -p 'require(process.argv[1]).spec ?? "openapi"' "$DIR/bench.json")"
+committed="$RESULTS/$spec.${output##*.}"
+[ -f "$committed" ] || committed="$(find "$RESULTS" -maxdepth 1 -name "$spec.*" | head -n 1)"
 if [ -z "$committed" ]; then
   echo "::error::$VARIANT has no document in bench/results/$VARIANT to compare with"
   exit 1
@@ -41,7 +45,7 @@ node -e '
     process.exit(1);
   }
 ' "$VARIANT"
-node bench/src/cli.ts check "$committed" --baseline "$baseline" ${SUMMARY:+--summary "$SUMMARY"}
+node bench/src/cli.ts check "$output" --baseline "$baseline" ${SUMMARY:+--summary "$SUMMARY"}
 
 trap 'rm -rf "$TMP" "$DIR/test"' EXIT
 cp -r app/test "$DIR/test"
