@@ -8,6 +8,18 @@
       "description": "TypeScript 7.0 ships no compiler API (back in 7.1): the Nest CLI, ts-jest and the generators need it",
       "matchPackageNames": ["typescript"],
       "allowedVersions": "!/^7\\.0\\./"
+    },
+    {
+      "description": "nestia 12+ needs TypeScript 7 (ttsc): keep the nestia variant on 11.x",
+      "matchFileNames": ["variants/nestia/**"],
+      "matchPackageNames": ["@nestia/core", "@nestia/sdk"],
+      "allowedVersions": "<12"
+    },
+    {
+      "description": "nestia 11 needs typia 12",
+      "matchFileNames": ["variants/nestia/**"],
+      "matchPackageNames": ["typia"],
+      "allowedVersions": "<13"
     }
   ]
 }
