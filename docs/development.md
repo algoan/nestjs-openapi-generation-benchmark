@@ -36,6 +36,19 @@ node bench/src/cli.ts compare path/to/openapi.json   # compare any OpenAPI or As
 node bench/src/cli.ts check new.yaml --baseline old.yaml  # fail when new.yaml has more differences than old.yaml
 ```
 
+## Checks on pull requests
+
+The [check workflow](../.github/workflows/check.yml) makes sure a pull request, Renovate's dependency bumps
+in particular, breaks nothing. Each variant it touches (every variant when it changes `bench/` or `expected/`)
+goes through `bench/scripts/check-variant.sh`: `npm ci`, generation, `check` against the document of
+`bench/results` (fails on a generation error or on more differences in any category), then the contract test of
+the app in the variant. When `app/` changes, the app is built and its contract test is run. `All checks` sums
+the jobs up. To check a variant locally (it rewrites its results):
+
+```sh
+bench/scripts/check-variant.sh nestjs-swagger
+```
+
 ## Keeping nestoa up to date
 
 nestoa is checked against this benchmark on every pull request: its CI builds the pull request and its
