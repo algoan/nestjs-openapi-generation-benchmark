@@ -40,7 +40,8 @@ jobs:
           # Variants still in the tree, with a bench.json
           all=$(find variants -mindepth 2 -maxdepth 2 -name bench.json | cut -d/ -f2 | sort)
           if [ "$EVENT" = pull_request ]; then
-            changed=$(git diff --name-only HEAD^1 HEAD)
+            # Without rename detection, a moved file counts for both its old and its new directory
+            changed=$(git diff --name-only --no-renames HEAD^1 HEAD)
           else
             changed=bench/
           fi
