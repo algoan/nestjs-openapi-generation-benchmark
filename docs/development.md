@@ -43,7 +43,8 @@ in particular, breaks nothing. Each variant it touches (every variant when it ch
 goes through `bench/scripts/check-variant.sh`: `npm ci`, generation, `check` against the document of
 `bench/results` (fails on a generation error or on more differences in any category), then the contract test of
 the app in the variant. When `app/` changes, the app is built and its contract test is run. `All checks` sums
-the jobs up. To check a variant locally (it rewrites its results):
+the jobs up. The refresh workflow (below) runs it on the branch of its pull requests, which trigger no
+workflow by themselves. To check a variant locally (it rewrites its results):
 
 ```sh
 bench/scripts/check-variant.sh nestjs-swagger

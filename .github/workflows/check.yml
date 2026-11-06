@@ -6,6 +6,8 @@ name: Check
 #     (bench/scripts/check-variant.sh); a change to the harness or the expected documents checks them all;
 #   - when app/ changes, the app builds and passes its contract test.
 # "All checks" sums them up, so that it can be the only required status check.
+# The refresh workflow's pull requests, opened with the job token, trigger no pull_request event: it runs this
+# workflow on their branch with workflow_dispatch, which checks every variant.
 on:
   pull_request:
   workflow_dispatch:

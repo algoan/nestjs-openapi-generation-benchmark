@@ -117,6 +117,8 @@ jobs:
     if: needs.check.outputs.targets != '[]'
     runs-on: ubuntu-latest
     permissions:
+      # Runs the check workflow on the pull request branch
+      actions: write
       contents: write
       pull-requests: write
     strategy:
@@ -242,6 +244,7 @@ jobs:
           } > "$RUNNER_TEMP/body.md"
 
       - name: Open a pull request
+        id: pr
         uses: peter-evans/create-pull-request@v8
         with:
           branch: bot/refresh-${{ env.VARIANT }}
@@ -249,3 +252,11 @@ jobs:
           title: "[CHORE] Refresh ${{ env.VARIANT }} results (${{ env.NESTOA_LABEL }})"
           body-path: ${{ runner.temp }}/body.md
           delete-branch: true
+
+      # A pull request opened with the job token triggers no workflow: run the checks on its branch, they are
+      # reported on its head commit
+      - name: Check the pull request
+        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run check.yml --repo "$GITHUB_REPOSITORY" --ref "bot/refresh-$VARIANT"
