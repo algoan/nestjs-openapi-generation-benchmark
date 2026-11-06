@@ -1,0 +1,147 @@
+name: Check
+
+# On every pull request (Renovate's in particular), checks that the changes break nothing:
+#   - each variant it touches is installed, regenerates its document without more differences with the
+#     expected one than the document of bench/results, and passes the contract test of the app
+#     (bench/scripts/check-variant.sh); a change to the harness or the expected documents checks them all;
+#   - when app/ changes, the app builds and passes its contract test.
+# "All checks" sums them up, so that it can be the only required status check.
+# The refresh workflow's pull requests, opened with the job token, trigger no pull_request event: it runs this
+# workflow on their branch with workflow_dispatch, which checks every variant.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: check-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  changes:
+    name: List the variants to check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      variants: ${{ steps.list.outputs.variants }}
+      app: ${{ steps.list.outputs.app }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          # The merge commit of a pull request and its base, its first parent
+          fetch-depth: 2
+
+      - name: List the variants to check
+        id: list
+        env:
+          EVENT: ${{ github.event_name }}
+        run: |
+          # Variants still in the tree, with a bench.json
+          all=$(find variants -mindepth 2 -maxdepth 2 -name bench.json | cut -d/ -f2 | sort)
+          if [ "$EVENT" = pull_request ]; then
+            # Without rename detection, a moved file counts for both its old and its new directory
+            changed=$(git diff --name-only --no-renames HEAD^1 HEAD)
+          else
+            changed=bench/
+          fi
+          if grep -qE '^(bench/|expected/|package\.json$|\.github/workflows/check\.yml$)' <<< "$changed"; then
+            variants=$all
+          else
+            variants=$(comm -12 <(echo "$all") <(grep -oE '^variants/[^/]+/' <<< "$changed" | cut -d/ -f2 | sort -u))
+          fi
+          app=false
+          if grep -qE '^(app/|expected/|\.github/workflows/check\.yml$)' <<< "$changed"; then
+            app=true
+          fi
+          echo "variants=$(jq -cRn '[inputs | select(. != "")]' <<< "$variants")" >> "$GITHUB_OUTPUT"
+          echo "app=$app" >> "$GITHUB_OUTPUT"
+          echo "Variants: $(tr '\n' ' ' <<< "$variants")"
+          echo "App: $app"
+
+  variant:
+    name: ${{ matrix.variant }}
+    needs: changes
+    if: needs.changes.outputs.variants != '[]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # variants/nestoa installs @algoan/nestoa from GitHub Packages
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        variant: ${{ fromJSON(needs.changes.outputs.variants) }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install Rust
+        if: matrix.variant == 'nestoa-main' || matrix.variant == 'nestoa-asyncapi'
+        uses: dtolnay/rust-toolchain@stable
+
+      # Both variants run nestoa built from a commit of its repository (see package.json)
+      - name: Build nestoa
+        if: matrix.variant == 'nestoa-main' || matrix.variant == 'nestoa-asyncapi'
+        env:
+          VARIANT: ${{ matrix.variant }}
+        run: npm run "setup:$VARIANT"
+
+      - name: Install the harness
+        run: npm --prefix bench ci --no-audit --no-fund
+
+      - name: Check ${{ matrix.variant }}
+        env:
+          VARIANT: ${{ matrix.variant }}
+          GITHUB_PACKAGES_TOKEN: ${{ github.token }}
+        run: SUMMARY="$GITHUB_STEP_SUMMARY" bench/scripts/check-variant.sh "$VARIANT"
+
+  app:
+    name: app
+    needs: changes
+    if: needs.changes.outputs.app == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Install the app
+        run: npm --prefix app ci --no-audit --no-fund
+
+      - name: Build
+        run: npm --prefix app run build
+
+      - name: Contract test
+        run: npm run test:contract
+
+  all:
+    name: All checks
+    needs: [changes, variant, app]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sum up
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: |
+          echo "Results: $RESULTS"
+          for result in $RESULTS; do
+            case "$result" in
+              success | skipped) ;;
+              *) exit 1 ;;
+            esac
+          done
