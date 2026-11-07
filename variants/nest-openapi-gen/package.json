@@ -38,7 +38,7 @@
     "mongodb-memory-server": "11.3.0",
     "nest-openapi-gen": "1.0.20",
     "patch-package": "8.0.1",
-    "supertest": "7.3.1",
+    "supertest": "7.3.2",
     "ts-jest": "29.4.15",
     "ts-node": "10.9.2",
     "typescript": "6.0.3",
