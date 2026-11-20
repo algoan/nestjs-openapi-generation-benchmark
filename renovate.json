@@ -3,7 +3,62 @@
   "extends": [
     "config:recommended"
   ],
+  "timezone": "Europe/Paris",
+  "labels": ["dependencies"],
+  "automerge": false,
+  "osvVulnerabilityAlerts": true,
+  "vulnerabilityAlerts": {
+    "description": "Security fixes are opened immediately, pinned to the lowest fixing version, and routed by renovate-triage.yml (CVSS) between automerge and manual review.",
+    "labels": ["dependencies", "security"],
+    "schedule": ["at any time"],
+    "prCreation": "immediate",
+    "rangeStrategy": "pin",
+    "vulnerabilityFixStrategy": "lowest",
+    "minimumReleaseAge": null,
+    "automerge": false
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Keeps the versions quoted in README.md (results table) and docs/development.md in sync: each one carries a hidden marker mirroring the pin it documents (a variant's package.json, the setup-node version, OASDIFF_VERSION), so they move in the same PR.",
+      "managerFilePatterns": ["/^README\\.md$/", "/^docs/development\\.md$/"],
+      "matchStrings": [
+        "\\| (?<currentValue>[^\\s|`]+) <!-- renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>\\S+))?(?: extractVersion=(?<extractVersion>\\S+))? -->",
+        "`(?<currentValue>[^`]+)` <!-- renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>\\S+))?(?: extractVersion=(?<extractVersion>\\S+))? -->"
+      ]
+    },
+    {
+      "customType": "regex",
+      "description": "Tool versions of the workflows, pinned in an env variable with a `# renovate:` comment above (OASDIFF_VERSION).",
+      "managerFilePatterns": ["/^\\.github/workflows/[^/]+\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: versioning=(?<versioning>\\S+))?(?: extractVersion=(?<extractVersion>\\S+))?\\s+[A-Z_]+_VERSION: ['\"]?(?<currentValue>[^'\"\\s]+)"
+      ]
+    }
+  ],
   "packageRules": [
+    {
+      "description": "Routine updates once a week. Not grouped: a tool bump changes what its variant measures, and each PR re-checks only the variants it touches.",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest", "major"],
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "description": "nestoa itself is refreshed by refresh-nestoa.yml (bot/refresh-* PRs, with the new results): not by Renovate, which can't read @algoan/nestoa on GitHub Packages anyway.",
+      "matchPackageNames": ["nestoa", "@algoan/nestoa"],
+      "enabled": false
+    },
+    {
+      "description": "nestjs-asyncapi and @nmime/nestjs-asyncapi deep-import @nestjs/swagger, which its later `exports` map breaks: they stay on 11.4.2 (docs/results.md).",
+      "matchFileNames": ["variants/nestjs-asyncapi/**", "variants/nmime-nestjs-asyncapi/**"],
+      "matchPackageNames": ["@nestjs/swagger"],
+      "allowedVersions": "11.4.2"
+    },
+    {
+      "description": "algoan/renovate-security-actions runs the Renovate triage and automerge: its updates come in their own PR, for a human review.",
+      "matchPackageNames": ["algoan/renovate-security-actions"],
+      "groupName": "algoan renovate-security-actions",
+      "groupSlug": "algoan-renovate-security-actions"
+    },
     {
       "description": "TypeScript 7.0 ships no compiler API (back in 7.1): the Nest CLI, ts-jest and the generators need it",
       "matchPackageNames": ["typescript"],
