@@ -1,6 +1,6 @@
 # NestJS OpenAPI and AsyncAPI generators benchmark
 
-Generated on 2026-11-07T16:27:02.400Z — 10 × Apple M4, darwin/arm64, Node v26.13.0.
+Generated on 2026-11-23T12:33:48.914Z — 10 × Apple M4, darwin/arm64, Node v26.13.0.
 
 Lower is better everywhere; `(#n)` is the rank among the tools of a specification. See docs/methodology.md for the methodology.
 
@@ -15,7 +15,7 @@ Lower is better everywhere; `(#n)` is the rank among the tools of a specificatio
 | **@nestjs/swagger** | 11.4.8 | runtime | 170 (#5) | 0 (#1) | 22 (#8) | 2.30 s (#9) | 462 MB (#10) |
 | **nestjs-zod** | 5.5.0 | runtime | 689 (#12) | 51 (#11) | 64 (#9) | 2.49 s (#10) | 491 MB (#11) |
 | **nestoa** | 0.2.1 | static | 33 (#2) | 0 (#2) | 0 (#1) | 52 ms (#2) | 52 MB (#2) |
-| **nestoa (unreleased main)** | main@372e28e | static | 30 (#1) | 0 (#3) | 0 (#2) | 23 ms (#1) | 8 MB (#1) |
+| **nestoa (unreleased main)** | main@d781e4b | static | 30 (#1) | 0 (#3) | 0 (#2) | 23 ms (#1) | 8 MB (#1) |
 | **swagger-jsdoc** | 6.3.0 | static | 1505 (#13) | 0 (#4) | 0 (#3) | 104 ms (#3) | 84 MB (#3) |
 | **ts-oas** | 0.6.1 | static | 513 (#9) | 3 (#8) | 4 (#7) | 844 ms (#7) | 390 MB (#6) |
 | **tsoa** | 6.6.0 | static | 300 (#8) | 0 (#5) | 0 (#4) | 819 ms (#6) | 391 MB (#7) |
