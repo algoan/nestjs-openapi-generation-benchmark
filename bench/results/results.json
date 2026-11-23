@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-23T12:33:48.914Z",
+  "date": "2026-11-23T13:28:53.287Z",
   "machine": {
     "platform": "darwin",
     "arch": "arm64",
@@ -2433,7 +2433,7 @@
     {
       "name": "nestoa-main",
       "tool": "nestoa (unreleased main)",
-      "version": "main@d781e4b",
+      "version": "main@906864e",
       "versions": {},
       "approach": "static",
       "notes": [
@@ -2602,7 +2602,7 @@
         "sourceFilesTotal": 83,
         "dependenciesAdded": [],
         "dependenciesRemoved": [],
-        "installFootprintMb": 211.421875,
+        "installFootprintMb": 211.41796875,
         "productionFootprintMb": 0,
         "changes": [
           {
