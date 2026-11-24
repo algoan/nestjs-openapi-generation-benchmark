@@ -23,7 +23,7 @@
     "mongoose": "8.24.11",
     "reflect-metadata": "0.2.2",
     "rxjs": "7.8.2",
-    "typoa": "1.0.0-alpha.79"
+    "typoa": "1.0.0-alpha.82"
   },
   "devDependencies": {
     "@nestjs/cli": "11.0.24",
