@@ -6,7 +6,7 @@
 set -eu
 ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 REPO="${NESTOA_REPO:-https://github.com/algoan/nestoa.git}"
-REF="${NESTOA_REF:-906864e}"
+REF="${NESTOA_REF:-57d8c82}"
 BIN="${NESTOA_BIN:-nestoa-main}"
 SRC="$ROOT/.tools/$BIN-src"
 
