@@ -15,8 +15,9 @@ bench/                  the harness: ease, correctness, perf, oasdiff, report
 
 ## Quick start
 
-Requirements: Node.js ≥ 22.18 (24 used here), optionally [`oasdiff`](https://github.com/oasdiff/oasdiff)
-(`brew install oasdiff`) and `mongod` (for the contract test; downloaded by mongodb-memory-server otherwise).
+Requirements: Node.js ≥ 22.18 (CI uses `26` <!-- renovate: datasource=node-version depName=node -->), optionally
+[`oasdiff`](https://github.com/oasdiff/oasdiff) (`brew install oasdiff`; the published results use
+`1.34.0` <!-- renovate: datasource=github-releases depName=oasdiff/oasdiff extractVersion=^v(?<version>.+)$ -->) and `mongod` (for the contract test; downloaded by mongodb-memory-server otherwise).
 The nestoa variant installs `@algoan/nestoa` from GitHub Packages: export `GITHUB_PACKAGES_TOKEN`
 (a token with `read:packages`) before installing it. The refresh workflow (below) moves it to the
 `nestoa` package of npmjs.com, which needs no token, on the first release published there.

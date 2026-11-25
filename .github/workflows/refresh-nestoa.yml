@@ -130,7 +130,9 @@ jobs:
       group: refresh-${{ matrix.variant }}
       cancel-in-progress: true
     env:
-      OASDIFF_VERSION: 1.34.0 # the version of the published results
+      # The version of the published results, also given in docs/development.md (same Renovate PR)
+      # renovate: datasource=github-releases depName=oasdiff/oasdiff extractVersion=^v(?<version>.+)$
+      OASDIFF_VERSION: 1.34.0
       VARIANT: ${{ matrix.variant }}
     steps:
       - uses: actions/checkout@v7
